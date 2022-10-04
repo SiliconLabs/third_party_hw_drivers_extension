@@ -1,0 +1,32 @@
+id: sparkfun_rfid_id12la
+package: third_party_hw_drivers
+label: ID-12LA - RFID Reader (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun RFID Reader ID-12LA board, this board relies on the ID-12LA RFID reader module from ID Innovations.
+category: Wireless Connectivity
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: sleeptimer
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [rfid]
+config_file:
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: rfid
+    path: public/silabs/rfid_id12la/config/sl_i2cspm_rfid_config.h
+provides:
+  - name: sparkfun_rfid_id12la
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_rfid_id12la 
+include:
+  - path: public/silabs/rfid_id12la/inc
+    file_list:
+      - path: sparkfun_rfid_id12la.h   
+source:
+  - path: public/silabs/rfid_id12la/src/sparkfun_rfid_id12la.c

@@ -1,0 +1,32 @@
+id: mikroe_brushless16
+package: third_party_hw_drivers
+label: LB11685AV - Brushless 16 Click (Mikroe)
+description: >
+  Driver for the Brushless 16 Click board, this board relies on the LB11685AV Brushless 16 Click.
+category: Motor Control
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/brushless16_lb11685av/config/mikroe_lb11685av_config.h
+    file_id: driver_config_brushless16
+template_contribution:
+  - name: component_catalog
+    value: mikroe_brushless16
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/brushless16/lib/include
+    file_list:
+      - path: brushless16.h
+  - path: public/mikroe/brushless16_lb11685av/inc
+    file_list:
+      - path: mikroe_lb11685av.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/brushless16/lib/src/brushless16.c
+  - path: public/mikroe/brushless16_lb11685av/src/mikroe_lb11685av.c

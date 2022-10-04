@@ -1,0 +1,27 @@
+id: services_mikroe_peripheral_drivers_i2c
+package: third_party_hw_drivers
+label: I2C
+description: >
+  Interface provider for mikroSDK 2.0 SDK I2C peripheral integration.
+category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
+quality: evaluation
+root_path: driver
+requires:
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [mikroe]
+provides:
+  - name: mikroe_peripheral_driver_i2c
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: services_mikroe_peripheral_drivers_i2c
+include:
+  - path: peripheral_drivers/mikroe/inc
+    file_list:
+      - path: hal_target.h
+      - path: drv_name.h
+      - path: drv_i2c_master.h
+source:
+  - path: peripheral_drivers/mikroe/src/drv_i2c_master.c

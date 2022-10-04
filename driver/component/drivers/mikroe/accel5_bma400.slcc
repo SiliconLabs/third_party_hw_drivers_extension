@@ -1,0 +1,35 @@
+id: mikroe_accel5
+package: third_party_hw_drivers
+label: BMA400 - Accel 5 Click (Mikroe)
+description: >
+  Driver for the Accel 5 2 CLICK board, Accel 5 Click is an add-on board based on BMA400 for accelerometer measurement applications.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_i2c
+config_file:
+  - path: public/mikroe/accel5_bma400/config/mikroe_bma400_config.h
+    file_id: driver_config_accel5
+provides:
+  - name: mikroe_accel5
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_accel5
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/accel5/lib/include
+    file_list:
+      - path: accel5.h
+  - path: public/mikroe/accel5_bma400/inc
+    file_list:
+      - path: mikroe_bma400.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/accel5/lib/src/accel5.c
+  - path: public/mikroe/accel5_bma400/src/mikroe_bma400.c

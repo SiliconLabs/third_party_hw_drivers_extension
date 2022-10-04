@@ -1,0 +1,32 @@
+id: mikroe_captouch2
+package: third_party_hw_drivers
+label: CAP1166 - Capacitive Touch 2 Click (Mikroe)
+description: >
+  Driver for the Capacitive Touch 2 CLICK board, this board relies on the CAP1166 Capacitive Touch using SPI interface.
+category: Human Machine Interface
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_spi
+config_file:
+  - path: public/mikroe/captouch2_cap1166/config/mikroe_cap1166_config.h
+    file_id: driver_config_captouch2
+template_contribution:
+  - name: component_catalog
+    value: mikroe_captouch2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/captouch2/lib/include
+    file_list:
+      - path: captouch2.h
+  - path: public/mikroe/captouch2_cap1166/inc
+    file_list:
+      - path: mikroe_cap1166.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/captouch2/lib/src/captouch2.c
+  - path: public/mikroe/captouch2_cap1166/src/mikroe_cap1166.c

@@ -1,0 +1,36 @@
+id: mikroe_oledw
+package: third_party_hw_drivers
+label: SSD1306 - OLED W Click (Mikroe) - SPI
+description: >
+  Driver for the OLED W Click board, this board relies on the SSD1306 IC using SPI interface.
+category: Display & LED
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_spi
+  - name: mikroe_peripheral_driver_i2c
+provides:
+  - name: oled_display
+config_file:
+  - path: public/mikroe/oledw_ssd1306/config/mikroe_ssd1306_config.h
+    file_id: driver_config_oledw
+template_contribution:
+  - name: component_catalog
+    value: mikroe_oledw
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/oledw/lib/include
+    file_list:
+      - path: oledw.h
+  - path: public/mikroe/oledw_ssd1306/inc
+    file_list:
+      - path: mikroe_ssd1306.h
+      - path: mikroe_resources.h
+      - path: oled_display.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/oledw/lib/src/oledw.c
+  - path: public/mikroe/oledw_ssd1306/src/mikroe_ssd1306.c
+  - path: public/mikroe/oledw_ssd1306/src/oled_display.c

@@ -1,0 +1,32 @@
+id: mikroe_buzz2
+package: third_party_hw_drivers
+label: CMT_8540S_SMT - Buzz 2 Click (Mikroe)
+description: >
+  Driver for the BUZZ 2 CLICK board, Buzz 2 Click is an add-on board based on CMT_8540S_SMT using PWM
+category: Audio & Voice
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: sleeptimer
+  - name: mikroe_peripheral_driver_pwm
+provides:
+  - name: mikroe_buzz2
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_buzz2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/buzz2/lib/include
+    file_list:
+      - path: buzz2.h
+  - path: public/mikroe/buzz2_cmt_8540s_smt/inc
+    file_list:
+      - path: mikroe_cmt_8540s_smt.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/buzz2/lib/src/buzz2.c
+  - path: public/mikroe/buzz2_cmt_8540s_smt/src/mikroe_cmt_8540s_smt.c

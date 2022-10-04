@@ -1,0 +1,32 @@
+id: sparkfun_micro_oled_ssd1306
+package: third_party_hw_drivers
+label: SSD1306 - Micro OLED Breakout (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun SSD1306 - Micro OLED Breakout board, this board relies on the SSD1306 IC using I2C interface.
+category: Display & LED
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: oled_display
+config_file:
+  - path: public/silabs/micro_oled_ssd1306/config/micro_oled_ssd1306_config.h
+    file_id: sparkfun_micro_oled_ssd1306_config
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_micro_oled_ssd1306
+include:
+  - path: public/silabs/micro_oled_ssd1306/inc
+    file_list:
+      - path: micro_oled_ssd1306_i2c.h
+      - path: micro_oled_ssd1306.h
+      - path: oled_display.h
+source:
+  - path: public/silabs/micro_oled_ssd1306/src/micro_oled_ssd1306.c
+  - path: public/silabs/micro_oled_ssd1306/src/micro_oled_ssd1306_i2c.c
+  - path: public/silabs/micro_oled_ssd1306/src/oled_display.c

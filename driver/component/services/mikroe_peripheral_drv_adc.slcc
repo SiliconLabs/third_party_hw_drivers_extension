@@ -1,0 +1,22 @@
+id: services_mikroe_peripheral_drivers_adc
+package: third_party_hw_drivers
+label: ADC
+description: >
+  Interface provider for mikroSDK 2.0 SDK ADC peripheral integration.
+category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
+quality: evaluation
+root_path: driver
+requires:
+  - name: emlib_iadc
+provides:
+  - name: mikroe_peripheral_driver_adc
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: services_mikroe_peripheral_drivers_adc
+include:
+  - path: peripheral_drivers/mikroe/inc
+    file_list:
+      - path: drv_analog_in.h
+source:
+  - path: peripheral_drivers/mikroe/src/drv_analog_in.c

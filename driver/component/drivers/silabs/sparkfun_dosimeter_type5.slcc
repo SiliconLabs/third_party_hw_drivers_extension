@@ -1,0 +1,28 @@
+id: sparkfun_dosimeter_type5
+package: third_party_hw_drivers
+label: Type 5 - Pocket Geiger Radiation (Sparkfun)
+description: >
+  Driver for the Type 5 - Pocket Geiger Radiation sensor board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: sleeptimer
+  - name: gpiointerrupt
+config_file:
+  - path: public/silabs/dosimeter_type5/config/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+provides:
+  - name: sparkfun_dosimeter_type5
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_dosimeter_type5
+include:
+  - path: public/silabs/dosimeter_type5/inc
+    file_list:
+      - path: sparkfun_type5.h
+source:
+  - path: public/silabs/dosimeter_type5/src/sparkfun_type5.c

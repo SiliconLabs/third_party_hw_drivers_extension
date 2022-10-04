@@ -1,0 +1,26 @@
+id: services_mikroe_peripheral_drivers_digital_io
+package: third_party_hw_drivers
+label: Digital I/O
+description: >
+  Interface provider for mikroSDK 2.0 SDK digital I/O peripheral integration.
+category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
+quality: evaluation
+root_path: driver
+provides:
+  - name: mikroe_peripheral_driver_digital_io
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: services_mikroe_peripheral_drivers_digital_io
+include:
+  - path: peripheral_drivers/mikroe/inc
+    file_list:
+      - path: hal_target.h
+      - path: drv_name.h
+      - path: drv_digital_in.h
+      - path: drv_digital_out.h
+      - path: drv_port.h
+      - path: hal_gpio.h
+source:
+  - path: peripheral_drivers/mikroe/src/drv_digital_in.c
+  - path: peripheral_drivers/mikroe/src/drv_digital_out.c

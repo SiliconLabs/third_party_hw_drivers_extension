@@ -1,0 +1,25 @@
+id: services_mikroe_peripheral_drivers_uart
+package: third_party_hw_drivers
+label: UART
+description: >
+  Interface provider for mikroSDK 2.0 SDK UART peripheral integration.
+category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
+quality: evaluation
+root_path: driver
+requires:
+  - name: iostream
+recommends:
+  - id: iostream_uart
+    instance: [vcom]
+provides:
+  - name: mikroe_peripheral_driver_uart
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: services_mikroe_peripheral_drivers_uart
+include:
+  - path: peripheral_drivers/mikroe/inc
+    file_list:
+      - path: drv_uart.h
+source:
+  - path: peripheral_drivers/mikroe/src/drv_uart.c

@@ -1,0 +1,25 @@
+id: services_oled_glib
+package: third_party_hw_drivers
+label: GLIB - OLED Graphics Library
+description: >
+  GLIB Graphics Library for OLED displays supporting GFX fonts.
+category: Services
+quality: evaluation
+root_path: driver
+provides:
+  - name: services_oled_glib
+    allow_multiple: false
+requires:
+  - name: status
+  - name: oled_display
+template_contribution:
+  - name: component_catalog
+    value: services_oled_glib
+include:
+  - path: public/silabs/services_tphd_glib/inc
+    file_list:
+      - path: glib.h
+      - path: glib_font.h
+source:
+  - path: public/silabs/services_tphd_glib/src/glib.c
+  - path: public/silabs/services_tphd_glib/src/glib_font.c

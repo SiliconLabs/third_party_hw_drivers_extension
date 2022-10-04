@@ -1,0 +1,36 @@
+id: mikroe_temphum9
+package: third_party_hw_drivers
+label: SHTC3 - Temp&Hum 9 Click (Mikroe)
+description: >
+  Driver for the Temp&Hum 9 CLICK board, this board relies on the SHTC3 Temperature and humidity sensor using I2C interface.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_i2c
+config_file:
+  - path: public/mikroe/temphum9_shtc3/config/mikroe_shtc3_config.h
+    file_id: driver_config_temphum9
+provides:
+  - name: mikroe_temphum9
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_temphum9
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/temphum9/lib/include
+    file_list:
+      - path: temphum9.h
+  - path: public/mikroe/temphum9_shtc3/inc
+    file_list:
+      - path: mikroe_shtc3.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/temphum9/lib/src/temphum9.c
+  - path: public/mikroe/temphum9_shtc3/src/mikroe_shtc3.c
