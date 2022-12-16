@@ -32,7 +32,7 @@ A full list of all drivers in this repository is defined below:
 
 - Clone the repository somewhere on your PC
 
-  `git clone https://github.com/SiliconLabs/platform_hardware_drivers_sdk_extensions.git`
+  `git clone https://github.com/SiliconLabs/third_party_hw_drivers_extension.git`
 
 - Add the SDK extension to the GSDK
   
