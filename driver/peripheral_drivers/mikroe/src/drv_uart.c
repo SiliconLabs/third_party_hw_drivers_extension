@@ -37,7 +37,10 @@
  *
  ******************************************************************************/
 
+
+
 #include <string.h>
+#include "sl_gsdk_version.h"
 #if defined(SL_COMPONENT_CATALOG_PRESENT)
 #include "sl_component_catalog.h"
 #endif
@@ -50,22 +53,24 @@ static void uart_config_frame(uart_t *obj);
 
 static uart_t *_owner = NULL;
 
-static err_t _acquire(uart_t *obj, bool obj_open_state)
+static err_t _acquire( uart_t *obj, bool obj_open_state )
 {
   err_t status = ACQUIRE_SUCCESS;
 
-  if ((obj_open_state == true) && (_owner == obj)) {
+  if ( obj_open_state == true && _owner == obj )
+  {
     return ACQUIRE_FAIL;
   }
 
-  if (_owner != obj) {
+  if ( _owner != obj )
+  {
     _owner = obj;
   }
 
   return status;
 }
 
-void uart_configure_default(uart_config_t *config)
+void uart_configure_default( uart_config_t *config )
 {
   config->tx_pin = 0xFFFFFFFF;
   config->rx_pin = 0xFFFFFFFF;
@@ -78,10 +83,10 @@ void uart_configure_default(uart_config_t *config)
   config->rx_ring_size = 0;
 }
 
-err_t uart_open(uart_t *obj, uart_config_t *config)
+err_t uart_open( uart_t *obj, uart_config_t *config )
 {
   uart_config_t *p_config = &obj->config;
-  memcpy(p_config, config, sizeof(uart_config_t));
+  memcpy( p_config, config, sizeof( uart_config_t ) );
 
   // Configure baudrate.
   uart_config_baudrate(obj);
@@ -95,13 +100,14 @@ err_t uart_open(uart_t *obj, uart_config_t *config)
   // Default to blocking mode
   uart_set_blocking(obj, true);
 
-  return _acquire(obj, true);
+  return _acquire( obj, true );
 }
 
-err_t uart_set_baud(uart_t *obj, uint32_t baud)
+err_t uart_set_baud( uart_t *obj, uint32_t baud )
 {
   if (baud > 0) {
-    if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    if ( _acquire( obj, false ) != ACQUIRE_FAIL )
+    {
       obj->config.baud = baud;
       // Configure baudrate.
       uart_config_baudrate(obj);
@@ -111,10 +117,10 @@ err_t uart_set_baud(uart_t *obj, uint32_t baud)
   return UART_ERROR;
 }
 
-err_t uart_set_parity(uart_t *obj, uart_parity_t parity)
+err_t uart_set_parity( uart_t *obj, uart_parity_t parity )
 {
   if (parity <= UART_PARITY_ODD) {
-    if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    if ( _acquire( obj, false ) != ACQUIRE_FAIL ) {
       obj->config.parity = parity;
 
       // Configure frame.
@@ -125,10 +131,10 @@ err_t uart_set_parity(uart_t *obj, uart_parity_t parity)
   return UART_ERROR;
 }
 
-err_t uart_set_stop_bits(uart_t *obj, uart_stop_bits_t stop)
+err_t uart_set_stop_bits( uart_t *obj, uart_stop_bits_t stop )
 {
   if (stop <= UART_STOP_BITS_TWO) {
-    if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    if ( _acquire( obj, false ) != ACQUIRE_FAIL ) {
       obj->config.stop_bits = stop;
 
       // Configure frame.
@@ -139,10 +145,10 @@ err_t uart_set_stop_bits(uart_t *obj, uart_stop_bits_t stop)
   return UART_ERROR;
 }
 
-err_t uart_set_data_bits(uart_t *obj, uart_data_bits_t bits)
+err_t uart_set_data_bits( uart_t *obj, uart_data_bits_t bits )
 {
   if (bits <= UART_DATA_BITS_9) {
-    if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    if ( _acquire( obj, false ) != ACQUIRE_FAIL ) {
       obj->config.data_bits = bits;
 
       // Configure frame.
@@ -153,7 +159,7 @@ err_t uart_set_data_bits(uart_t *obj, uart_data_bits_t bits)
   return UART_ERROR;
 }
 
-void uart_set_blocking(uart_t *obj, bool blocking)
+void uart_set_blocking( uart_t *obj, bool blocking)
 {
 #if (defined(SL_CATALOG_KERNEL_PRESENT))
   sl_iostream_uart_set_read_block(obj->handle);
@@ -161,11 +167,12 @@ void uart_set_blocking(uart_t *obj, bool blocking)
   obj->is_blocking = blocking;
 }
 
-err_t uart_write(uart_t *obj, uint8_t *buffer, size_t size)
+err_t uart_write( uart_t *obj, uint8_t *buffer, size_t size )
 {
   sl_status_t status;
 
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+  if ( _acquire( obj, false ) != ACQUIRE_FAIL )
+  {
     status = sl_iostream_write(&(obj->handle->stream),
                                buffer,
                                size);
@@ -176,13 +183,13 @@ err_t uart_write(uart_t *obj, uint8_t *buffer, size_t size)
   return UART_ERROR;
 }
 
-err_t uart_read(uart_t *obj, uint8_t *buffer, size_t size)
+err_t uart_read( uart_t *obj, uint8_t *buffer, size_t size )
 {
   sl_status_t status;
   size_t read_size;
   int32_t total_size = 0;
 
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+  if ( _acquire( obj, false ) != ACQUIRE_FAIL ) {
     while (size) {
       status = sl_iostream_read(&(obj->handle->stream),
                                 buffer,
@@ -210,38 +217,37 @@ err_t uart_read(uart_t *obj, uint8_t *buffer, size_t size)
   return UART_ERROR;
 }
 
-err_t uart_print(uart_t *obj, char *text)
+err_t uart_print( uart_t *obj, char *text )
 {
-  size_t data_written = 0;
+    size_t data_written = 0;
 
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    while (*text) {
-      if (SL_STATUS_OK
-          != sl_iostream_write(&(obj->handle->stream), text++, 1)) {
-        return data_written;
+    if ( _acquire( obj, false ) != ACQUIRE_FAIL )
+    {
+      while (*text) {
+        if (SL_STATUS_OK != sl_iostream_write(&(obj->handle->stream), text++, 1)) {
+          return data_written;
+        }
+        data_written++;
       }
-      data_written++;
+      return data_written;
+    } else {
+      return UART_ERROR;
     }
-    return data_written;
-  } else {
-    return UART_ERROR;
-  }
 }
 
-err_t uart_println(uart_t *obj, char *text)
+err_t uart_println( uart_t *obj, char *text )
 {
   size_t data_written = 0;
 
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+  if ( _acquire( obj, false ) != ACQUIRE_FAIL )
+  {
     while (*text) {
-      if (SL_STATUS_OK
-          != sl_iostream_write(&(obj->handle->stream), text++, 1)) {
+      if (SL_STATUS_OK != sl_iostream_write(&(obj->handle->stream), text++, 1)) {
         return data_written;
       }
       data_written++;
     }
-    if (SL_STATUS_OK
-        != sl_iostream_write(&(obj->handle->stream), (uint8_t *)"\r\n", 2)) {
+    if (SL_STATUS_OK != sl_iostream_write(&(obj->handle->stream), (uint8_t *)"\r\n", 2)) {
       return data_written;
     }
     data_written += 2;
@@ -251,32 +257,141 @@ err_t uart_println(uart_t *obj, char *text)
   }
 }
 
-size_t uart_bytes_available(uart_t *obj)
+#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+static size_t nolock_uart_get_data_available(sl_iostream_uart_context_t *uart_context)
 {
-  sl_iostream_usart_context_t *ctx =
-    (sl_iostream_usart_context_t *)obj->handle->stream.context;
+  if (uart_context->dma.data_available == false) {
+    #if defined(SL_CATALOG_KERNEL_PRESENT)
+    if (uart_context->block) {
+      EFM_ASSERT(false); // Should always have data in blocking mode
+    }
+    #endif
+    return 0;
+  }
 
-  return ctx->context.rx_count;
+  uint8_t *write_ptr;
+  int remaining;
+  Ecode_t ecode;
+
+  unsigned int channel = uart_context->dma.channel;
+  size_t num_bytes_available = 0;
+
+  uint8_t *read_start = uart_context->read_ptr;
+  // Get tranfer remaining from DMADRV
+  ecode = DMADRV_PauseTransfer(channel);   // Pause for safety
+  EFM_ASSERT(ecode == ECODE_OK);
+  ecode = DMADRV_TransferRemainingCount(channel, &remaining);
+  EFM_ASSERT(ecode == ECODE_OK);
+
+  // Calculate write_ptr
+  write_ptr = uart_context->dma.active_desc.dst;
+  write_ptr += (uart_context->dma.active_desc.count - remaining);
+
+  // Calculate the number of bytes available for read
+  if (write_ptr > read_start) {
+    num_bytes_available = write_ptr - read_start;
+  } else {
+    num_bytes_available = (uart_context->rx_buffer + uart_context->rx_buffer_len) - read_start;
+  }
+
+  // Finished updating the descriptor, resume the transfer
+  ecode = DMADRV_ResumeTransfer(channel);
+  EFM_ASSERT(ecode == ECODE_OK);
+
+  return num_bytes_available;
 }
-
-void uart_clear(uart_t *obj)
+static sl_status_t uart_get_data_available(sl_iostream_uart_context_t *uart_context, size_t *data_size)
 {
   CORE_DECLARE_IRQ_STATE;
-  sl_iostream_usart_context_t *ctx =
-    (sl_iostream_usart_context_t *)obj->handle->stream.context;
-  uint8_t tmp;
 
+#if (defined(SL_CATALOG_KERNEL_PRESENT))
+  osStatus_t status;
+  if (osKernelGetState() == osKernelRunning) {
+    // Bypass lock if we print before the kernel is running
+    status = osMutexAcquire(uart_context->read_lock, osWaitForever);
+
+    if (status != osOK) {
+      return SL_STATUS_INVALID_STATE; // Can happen if a task deinit and another try to read at sametime
+    }
+
+    if (uart_context->block) {
+      EFM_ASSERT(osSemaphoreAcquire(uart_context->read_signal, osWaitForever) == osOK);
+    }
+  }
+#endif
+
+  CORE_ENTER_ATOMIC();
+  *data_size = nolock_uart_get_data_available(uart_context);
+  CORE_EXIT_ATOMIC();
+
+#if (defined(SL_CATALOG_KERNEL_PRESENT))
+  if (osKernelGetState() == osKernelRunning) {
+    // Bypass lock if we print before the kernel is running
+    EFM_ASSERT(osMutexRelease(uart_context->read_lock) == osOK);
+  }
+#endif
+
+  return SL_STATUS_OK;
+}
+#endif // #if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+
+
+size_t uart_bytes_available( uart_t *obj )
+{
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
+
+#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+  size_t data_size = 0;
+
+  if (SL_STATUS_OK != uart_get_data_available(&(ctx->context), &data_size)) {
+    data_size = 0;
+  }
+#else
+  CORE_DECLARE_IRQ_STATE;
+  CORE_ENTER_ATOMIC();
+  data_size = (size_t)ctx->context.rx_count;
+  CORE_EXIT_ATOMIC();
+#endif
+  return data_size;
+}
+
+void uart_clear( uart_t *obj )
+{
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
+
+#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+  size_t data_size = 0;
+  // Empty read buffer
+  if (SL_STATUS_OK == uart_get_data_available(&(ctx->context), &data_size)) {
+    while (data_size > 0) {
+      uint8_t tmp;
+      size_t read_size = 0;
+
+      if(SL_STATUS_OK != sl_iostream_read(&(obj->handle->stream),
+                                          &tmp,
+                                          1,
+                                          &read_size)) {
+        break;
+      }
+      if (read_size == 0) {
+        break;
+      }
+      data_size--;
+    }
+  }
+#else
+  CORE_DECLARE_IRQ_STATE;
   CORE_ENTER_ATOMIC();
   while (USART_StatusGet(ctx->usart) & USART_STATUS_RXDATAV) {
     tmp = ctx->usart->RXDATA;
     (void)tmp;
   }
-  while (!(USART_StatusGet(ctx->usart) & USART_STATUS_TXC)) {}
   ctx->context.rx_count = 0;
   CORE_EXIT_ATOMIC();
+#endif // #if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
 }
 
-void uart_close(uart_t *obj)
+void uart_close( uart_t *obj )
 {
   obj->handle = NULL;
   _owner = NULL;
@@ -284,8 +399,7 @@ void uart_close(uart_t *obj)
 
 static void uart_config_baudrate(uart_t *obj)
 {
-  sl_iostream_usart_context_t *ctx =
-    (sl_iostream_usart_context_t *)obj->handle->stream.context;
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
 
   // Configure baudrate.
   USART_BaudrateAsyncSet(ctx->usart,
@@ -296,8 +410,7 @@ static void uart_config_baudrate(uart_t *obj)
 
 static void uart_config_frame(uart_t *obj)
 {
-  sl_iostream_usart_context_t *ctx =
-    (sl_iostream_usart_context_t *)obj->handle->stream.context;
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
   uint32_t parity, stopbits, databits;
 
   switch (obj->config.data_bits) {
@@ -345,7 +458,6 @@ static void uart_config_frame(uart_t *obj)
       stopbits = ctx->usart->FRAME & _USART_FRAME_STOPBITS_MASK;
       break;
   }
-
   /* Configure databits, leave stopbits and parity. */
   ctx->usart->FRAME = databits | stopbits | parity;
 }
