@@ -55,7 +55,7 @@ You can follow this step-by-step guide to install and use the extension or watch
 
   It is up to you to choose a folder on your computer to clone the repository into.
 
-  > git clone https://github.com/SiliconLabs/platform_hardware_drivers_sdk_extensions.git
+  > git clone https://github.com/SiliconLabs/third_party_hw_drivers_extension.git
 
 
 * **STEP 2** Open Simplicity Studio and go to Window/Preferences
