@@ -48,7 +48,7 @@ You can find the Third Party Hardware Drivers GSDK Extension at Github, as a fir
 
 You can follow this step-by-step guide to install and use the extension or watch a guideline video showing the same steps.
 
-[![GuidelineVideo](doc/studio/sdke/sdke-demo-video.png)](https://www.brainshark.com/1/player/siliconlabs?pi=zHTzL3vkCziZVJz0&r3f1=)
+[![GuidelineVideo](doc/studio/sdke/sdke-demo-video.png)](https://www.brainshark.com/siliconlabs/Third-Party-Hardware-Drivers)
 
 
 * **STEP 1** Clone Third Party Hardware Drivers repository from Github
