@@ -1,0 +1,34 @@
+id: mikroe_relay2
+package: third_party_hw_drivers
+label: LCA717 - Relay 2 Click (Mikroe)
+description: >
+  Driver for the Relay 2 CLICK board.
+category: Miscellaneous
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/relay2_lca717/config/mikroe_relay2_config.h
+    file_id: driver_config_relay2
+provides:
+  - name: mikroe_relay2
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_relay2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/relay2/lib/include
+    file_list:
+      - path: relay2.h
+  - path: public/mikroe/relay2_lca717/inc
+    file_list:
+      - path: mikroe_relay2.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/relay2/lib/src/relay2.c
+  - path: public/mikroe/relay2_lca717/src/mikroe_relay2.c

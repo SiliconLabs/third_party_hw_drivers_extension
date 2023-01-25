@@ -1,0 +1,44 @@
+id: mikroe_barcode2
+package: third_party_hw_drivers
+label: EM3080-W - Barcode 2 Click (Mikroe)
+description: >
+  Driver for the Barcode 2 Click CLICK board, Barcode 2 Click is an add-on board based on EM3080-W for barcode reader applications.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_uart
+  - name: iostream_usart
+recommends:
+  - id: iostream_usart
+    instance: [barcode]
+config_file:
+  - path: public/mikroe/barcode2_em3080w/config/mikroe_em3080w_config.h
+    file_id: driver_config_barcode2
+  - override:
+      component: iostream_usart
+      file_id: iostream_usart_config
+      instance: barcode
+    path: public/mikroe/barcode2_em3080w/config/sl_iostream_usart_barcode_config.h
+provides:
+  - name: mikroe_barcode2
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_barcode2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/barcode2/lib/include
+    file_list:
+      - path: barcode2.h
+  - path: public/mikroe/barcode2_em3080w/inc
+    file_list:
+      - path: mikroe_em3080w.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/barcode2/lib/src/barcode2.c
+  - path: public/mikroe/barcode2_em3080w/src/mikroe_em3080w.c

@@ -1,0 +1,30 @@
+id: mikroe_utm7segr
+package: third_party_hw_drivers
+label: MAX6969 - UT-M 7-SEG R Click (Mikroe)
+description: >
+  Driver for the UT-M 7-SEG R board, this board relies on the Max6969
+category: Display & LED
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_spi
+  - name: mikroe_peripheral_driver_pwm
+template_contribution:
+  - name: component_catalog
+    value: mikroe_utm7segr
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/utm7segr/lib/include
+    file_list:
+      - path: utm7segr.h
+  - path: public/mikroe/utm7segr_max6969/inc
+    file_list:
+      - path: mikroe_max6969.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/utm7segr/lib/src/utm7segr.c
+  - path: public/mikroe/utm7segr_max6969/src/mikroe_max6969.c

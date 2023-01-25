@@ -1,7 +1,10 @@
 # Third Party Hardware Drivers #
 
-This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
+[![Version Badge](https://img.shields.io/badge/-v1.1.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+![License badge](https://img.shields.io/badge/License-Zlib-green)
 
+This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
 
 A full list of all drivers in this repository is defined below:
 
@@ -17,6 +20,20 @@ A full list of all drivers in this repository is defined below:
 | dosimeter_type5 | [Click Here](./driver/public/silabs/dosimeter_type5) | [Click Here](./app/example/sparkfun_dosimeter_type5) | [Click Here](./app/documentation/example/sparkfun_dosimeter_type5) |
 | micro_oled_ssd1306 | [Click Here](./driver/public/silabs/micro_oled_ssd1306) | [Click Here](./app/example/sparkfun_micro_oled_ssd1306) | [Click Here](./app/documentation/example/sparkfun_micro_oled_ssd1306) |
 | rfid_id12la | [Click Here](./driver/public/silabs/rfid_id12la) | [Click Here](./app/example/sparkfun_rfid_id12la) | [Click Here](./app/documentation/example/sparkfun_rfid_id12la) |
+| distance_vl53l1x | [Click Here](./driver/public/silabs/distance_vl53l1x) | [Click Here](./app/example/sparkfun_distance_vl53l1x) | [Click Here](./app/documentation/example/sparkfun_distance_vl53l1x) |
+| co_mq7 | [Click Here](./driver/public/mikroe/co_mq7) | [Click Here](./app/example/mikroe_co_mq7) | [Click Here](./app/documentation/example/mikroe_co_mq7) |
+| relay2_lca717 | [Click Here](./driver/public/mikroe/relay2_lca717) | [Click Here](./app/example/mikroe_relay2_lca717) | [Click Here](./app/documentation/example/mikroe_relay2_lca717) |
+| accelerometer_mma8452q | [Click Here](./driver/public/silabs/accelerometer_mma8452q) | [Click Here](./app/example/sparkfun_accelerometer_mma8452q) | [Click Here](./app/documentation/example/sparkfun_accelerometer_mma8452q) |
+| spectroscopy_as7265x | [Click Here](./driver/public/silabs/spectroscopy_as7265x) | [Click Here](./app/example/sparkfun_spectroscopy_as7265x) | [Click Here](./app/documentation/example/sparkfun_spectroscopy_as7265x) |
+| qwiic_joystick | [Click Here](./driver/public/silabs/qwiic_joystick) | [Click Here](./app/example/sparkfun_qwiic_joystick) | [Click Here](./app/documentation/example/sparkfun_qwiic_joystick) |
+| utm7segr_max6969 | [Click Here](./driver/public/mikroe/utm7segr_max6969) | [Click Here](./app/example/mikroe_utm7segr_max6969) | [Click Here](./app/documentation/example/mikroe_utm7segr_max6969) |
+| human_presence_ak9753 | [Click Here](./driver/public/silabs/human_presence_ak9753) | [Click Here](./app/example/sparkfun_human_presence_ak9753) | [Click Here](./app/documentation/example/sparkfun_human_presence_ak9753) |
+| soil_moisture | [Click Here](./driver/public/silabs/soil_moisture) | [Click Here](./app/example/sparkfun_soil_moisture) | [Click Here](./app/documentation/example/sparkfun_soil_moisture) |
+| ir_aray_mlx90640 | [Click Here](./driver/public/silabs/ir_array_mlx90640) | [Click Here](./app/example/sparkfun_ir_array_mlx90640) | [Click Here](./app/documentation/example/sparkfun_ir_array_mlx90640) |
+| proximity_vcnl4040 | [Click Here](./driver/public/silabs/proximity_vcnl4040) | [Click Here](./app/example/sparkfun_proximity_vcnl4040) | [Click Here](./app/documentation/example/sparkfun_proximity_vcnl4040) |
+| eth_wiz_w5500 | [Click Here](./driver/public/mikroe/eth_wiz_w5500) | [Click Here](./app/example/mikroe_eth_wiz_w5500) | [Click Here](./app/documentation/example/mikroe_eth_wiz_w5500) |
+| fuel_gauge_max17048 | [Click Here](./driver/public/silabs/fuel_gauge_max17048) | [Click Here](./app/example/maxim_fuel_gauge_max17048) | [Click Here](./app/documentation/example/maxim_fuel_gauge_max17048) |
+| barcode2_em3080w | [Click Here](./driver/public/mikroe/barcode2_em3080w) | [Click Here](./app/example/mikroe_barcode2_em3080w) | [Click Here](./app/documentation/example/mikroe_barcode2_em3080w) |
 
 ## Requirements ##
 
@@ -27,7 +44,7 @@ A full list of all drivers in this repository is defined below:
 
 ## How to add to Simplicity Studio IDE ##
 
-**Detailed documentation available [here](doc/readme.md)**.
+> **Detailed documentation available [here](doc/readme.md)**.
 
 
 - Clone the repository somewhere on your PC
@@ -35,7 +52,7 @@ A full list of all drivers in this repository is defined below:
   `git clone https://github.com/SiliconLabs/third_party_hw_drivers_extension.git`
 
 - Add the SDK extension to the GSDK
-  
+
   - In Simplicity Studio go to **Preferences** → **Simplicity Studio** → **SDKs** and select the Gecko SDK Suite to which the SDK extension will be added. Click **Add Extension…**
   - Click **Browse** and navigate to the root folder of the package above and click **Select Folder**.
   - The SDK extension should be displayed in the Detected SDK Extension window with the **Third Party Hardware Drivers** name, version, and path. Click **OK** and then **Trust** and **Apply and Close**.

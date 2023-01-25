@@ -1,0 +1,25 @@
+id: sparkfun_accelerometer_mma8452q
+package: third_party_hw_drivers
+label: MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)
+description: >
+  Driver for the SparkFun Triple Axis Accelerometer Breakout board based on MMA8452Q for accelerometer measurement applications.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_accelerometer_mma8452q
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_accelerometer_mma8452q 
+include:
+  - path: public/silabs/accelerometer_mma8452q/inc
+    file_list:
+      - path: mma8452q.h
+source:
+  - path: public/silabs/accelerometer_mma8452q/src/mma8452q.c

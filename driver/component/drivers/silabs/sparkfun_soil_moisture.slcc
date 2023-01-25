@@ -1,0 +1,25 @@
+id: sparkfun_soil_moisture
+package: third_party_hw_drivers
+label: Qwiic Soil Moisture Sensor (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun Soil Moisture Sensor Board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_soil_moisture
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_soil_moisture
+include:
+  - path: public/silabs/soil_moisture/inc
+    file_list:
+      - path: sparkfun_soil_moisture.h   
+source:
+  - path: public/silabs/soil_moisture/src/sparkfun_soil_moisture.c

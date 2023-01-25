@@ -1,0 +1,34 @@
+id: sparkfun_human_presence_ak9753
+package: third_party_hw_drivers
+label: AK9753 - Human Presence Sensor (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun Human Presence Sensor. The AK9753 is a low power and compact infrared-ray (IR) sensor module. It is composed of four quantum IR sensors and an integrated circuit (IC) for characteristic compensation.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: gpiointerrupt
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+config_file:
+  - path: public/silabs/human_presence_ak9753/config/sparkfun_ak9753_config.h
+    file_id: driver_config_ak9753
+provides:
+  - name: sparkfun_human_presence_ak9753
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_human_presence_ak9753
+include:
+  - path: public/silabs/human_presence_ak9753/inc
+    file_list:
+      - path: sparkfun_ak9753.h
+      - path: sparkfun_ak9753_platform.h
+source:
+  - path: public/silabs/human_presence_ak9753/src/sparkfun_ak9753.c
+  - path: public/silabs/human_presence_ak9753/src/sparkfun_ak9753_platform.c

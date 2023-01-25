@@ -1,0 +1,32 @@
+id: mikroe_co
+package: third_party_hw_drivers
+label: MQ7 - CO Click (Mikroe)
+description: >
+  Driver for the CO Click board, this board relies on the MQ7 sensor.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_adc
+config_file:
+  - path: public/mikroe/co_mq7/config/mikroe_mq7_config.h
+    file_id: driver_config_co
+template_contribution:
+  - name: component_catalog
+    value: mikroe_co
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/co/lib/include
+    file_list:
+      - path: co.h
+  - path: public/mikroe/co_mq7/inc
+    file_list:
+      - path: mikroe_mq7.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/co/lib/src/co.c
+  - path: public/mikroe/co_mq7/src/mikroe_mq7.c

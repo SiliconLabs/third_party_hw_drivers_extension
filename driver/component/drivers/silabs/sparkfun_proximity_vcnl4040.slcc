@@ -1,0 +1,30 @@
+id: sparkfun_proximity
+package: third_party_hw_drivers
+label: VCNL4040 - Proximity Sensor (Sparkfun)
+description: >
+  Driver for the Sparkfun Proximity Sensor Board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+config_file:
+  - path: public/silabs/proximity_vcnl4040/config/sparkfun_vcnl4040_config.h
+    file_id: sparkfun_vcnl4040_config
+provides:
+  - name: sparkfun_proximity
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_proximity_vcnl4040
+include:
+  - path: public/silabs/proximity_vcnl4040/inc
+    file_list:
+      - path: sparkfun_vcnl4040.h   
+      - path: sparkfun_vcnl4040_platform.h
+source:
+  - path: public/silabs/proximity_vcnl4040/src/sparkfun_vcnl4040.c
+  - path: public/silabs/proximity_vcnl4040/src/sparkfun_vcnl4040_platform.c

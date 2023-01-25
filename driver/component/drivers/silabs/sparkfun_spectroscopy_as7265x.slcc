@@ -1,0 +1,31 @@
+id: sparkfun_spectroscopy_as7265x
+package: third_party_hw_drivers
+label: AS7265x - Triad Spectroscopy Sensor (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun Triad Spectroscopy Sensor. The SparkFun Triad Spectroscopy Sensor is a powerful optical inspection sensor also known as a spectrophotometer.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: sleeptimer
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_spectroscopy_as7265x
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_spectroscopy_as7265x
+include:
+  - path: public/silabs/spectroscopy_as7265x/inc
+    file_list:
+      - path: sparkfun_as7265x.h
+      - path: sparkfun_as7265x_platform.h
+source:
+  - path: public/silabs/spectroscopy_as7265x/src/sparkfun_as7265x.c
+  - path: public/silabs/spectroscopy_as7265x/src/sparkfun_as7265x_platform.c

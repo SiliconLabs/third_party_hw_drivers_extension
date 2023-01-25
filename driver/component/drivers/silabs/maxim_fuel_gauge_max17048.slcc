@@ -1,0 +1,36 @@
+id: maxim_fuel_gauge_max17048
+package: third_party_hw_drivers
+label: MAX17048 - MAX17048EVKIT Evaluation Kits (Maxim)
+description: >
+  Driver for the MAX17048EVKIT Evaluation Kits, this board relies on the MAX17048 using I2C interface.
+category: Power Management
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: sleeptimer
+  - name: i2cspm
+  - name: tempdrv
+  - name: gpiointerrupt
+recommends:
+  - id: i2cspm
+    instance: [fuel_gauge]
+config_file:
+  - path: public/silabs/fuel_gauge_max17048/config/maxim_max17048_config.h
+    file_id: maxim_max17048_config
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: fuel_gauge
+    path: public/silabs/fuel_gauge_max17048/config/sl_i2cspm_fuel_gauge_config.h
+provides:
+  - name: maxim_fuel_gauge_max17048
+template_contribution:
+  - name: component_catalog
+    value: maxim_fuel_gauge_max17048 
+include:
+  - path: public/silabs/fuel_gauge_max17048/inc
+    file_list:
+      - path: maxim_fuel_gauge_max17048.h   
+source:
+  - path: public/silabs/fuel_gauge_max17048/src/maxim_fuel_gauge_max17048.c

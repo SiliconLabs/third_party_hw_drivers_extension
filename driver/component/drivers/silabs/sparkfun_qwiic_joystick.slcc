@@ -1,0 +1,26 @@
+id: sparkfun_qwiic_joystick
+package: third_party_hw_drivers
+label: Qwiic Joystick (Sparkfun)
+description: >
+  Driver for the Sparkfun Qwiic Joystick board.
+category: Human Machine Interface
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+  - name: sleeptimer
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_qwiic_joystick
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_qwiic_joystick 
+include:
+  - path: public/silabs/qwiic_joystick/inc
+    file_list:
+      - path: sparkfun_qwiic_joystick.h   
+source:
+  - path: public/silabs/qwiic_joystick/src/sparkfun_qwiic_joystick.c

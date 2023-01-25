@@ -1,0 +1,58 @@
+id: mikroe_eth_wiz
+package: third_party_hw_drivers
+label: W5500 - ETH WIZ Click (Mikroe)
+description: >
+  Driver for the ETH WIZ Click board, this board relies on the W5500 Hardwired TCP/IP embedded Ethernet controller using SPI interface.
+category: Interface
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: udelay
+  - name: sleeptimer
+  - name: spidrv
+recommends:
+  - id: spidrv
+    instance: [w5500]
+config_file:
+  - override:
+      component: spidrv
+      file_id: spidrv_config
+      instance: w5500
+    path: public/mikroe/eth_wiz_w5500/config/sl_spidrv_w5500_config.h
+  - path: public/mikroe/eth_wiz_w5500/config/mikroe_w5500_config.h
+    file_id: driver_config_eth_wiz
+template_contribution:
+  - name: component_catalog
+    value: mikroe_eth_wiz
+include:
+  - path: public/mikroe/eth_wiz_w5500/inc
+    file_list:
+      - path: dhcp.h
+      - path: dns.h
+      - path: ethernet.h
+      - path: ethernet_client.h
+      - path: ethernet_server.h
+      - path: ethernet_udp.h
+      - path: http_server.h
+      - path: sntp.h
+      - path: socket.h
+      - path: w5x00.h
+      - path: w5x00_common.h
+      - path: w5x00_platform.h
+      - path: w5x00_utils.h
+source:
+  - path: public/mikroe/eth_wiz_w5500/src/dhcp.c
+  - path: public/mikroe/eth_wiz_w5500/src/dns.c
+  - path: public/mikroe/eth_wiz_w5500/src/ethernet.c
+  - path: public/mikroe/eth_wiz_w5500/src/ethernet_client.c
+  - path: public/mikroe/eth_wiz_w5500/src/ethernet_server.c
+  - path: public/mikroe/eth_wiz_w5500/src/ethernet_udp.c
+  - path: public/mikroe/eth_wiz_w5500/src/http_server.c
+  - path: public/mikroe/eth_wiz_w5500/src/sntp.c
+  - path: public/mikroe/eth_wiz_w5500/src/socket.c
+  - path: public/mikroe/eth_wiz_w5500/src/w5x00.c
+  - path: public/mikroe/eth_wiz_w5500/src/w5x00_platform.c
+  - path: public/mikroe/eth_wiz_w5500/src/w5x00_utils.c

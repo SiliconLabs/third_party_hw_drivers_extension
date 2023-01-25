@@ -1,0 +1,45 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: mikroe_relay2
+label: mikroe_relay2
+description: |
+  This example project shows an example for Mikroe Relay 2 board driver integration.
+category: Example|Platform
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+package: platform
+quality: evaluation
+readme:
+- path: ../../documentation/example/mikroe_relay2_lca717/README.md
+source:
+- path: app.c
+- path: main.c
+include:
+- path: ''
+  file_list:
+  - path: app.h
+component:
+- id: BGM220PC22HNA
+- id: sl_system
+- id: mikroe_relay2
+  from: third_party_hw_drivers
+- id: device_init
+- id: brd4314a
+- id: sleeptimer
+define:
+- name: DEBUG_EFM
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.1.0
+other_file:
+  - path: ../../documentation/example/mikroe_relay2_lca717/hardware_connection.png
+  - path: ../../documentation/example/mikroe_relay2_lca717/create_example.png
+  - path: ../../documentation/example/mikroe_relay2_lca717/configuration.png
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

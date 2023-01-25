@@ -1,0 +1,44 @@
+id: sparkfun_distance_vl53l1x
+package: third_party_hw_drivers
+label: VL53L1X - Distance Sensor Breakout (Sparkfun)
+description: >
+  Driver for the VL53L1X Distance Breakout sensor board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+
+config_file:
+  - path: public/silabs/distance_vl53l1x/config/sparkfun_vl53l1x_config.h
+    file_id: driver_config_vl53l1x
+
+provides:
+  - name: sparkfun_distance_vl53l1x
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_distance_vl53l1x
+include:
+  - path: public/silabs/distance_vl53l1x/inc
+    file_list:
+      - path: sparkfun_vl53l1x.h
+
+  - path: thirdparty/stmicroelectronics/distance_vl53l1x/inc
+    file_list:
+      - path: sparkfun_vl53l1_platform.h
+      - path: sparkfun_vl53l1x_calibration.h
+      - path: sparkfun_vl53l1x_core.h
+      
+source:
+  - path: thirdparty/stmicroelectronics/distance_vl53l1x/src/sparkfun_vl53l1_platform.c
+  - path: thirdparty/stmicroelectronics/distance_vl53l1x/src/sparkfun_vl53l1x_calibration.c
+  - path: thirdparty/stmicroelectronics/distance_vl53l1x/src/sparkfun_vl53l1x_core.c
+  - path: public/silabs/distance_vl53l1x/src/sparkfun_vl53l1x.c
