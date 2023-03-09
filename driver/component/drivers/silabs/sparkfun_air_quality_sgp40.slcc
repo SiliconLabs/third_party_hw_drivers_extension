@@ -1,0 +1,29 @@
+id: sparkfun_air_quality_sgp40_qwiic
+package: third_party_hw_drivers
+label: SGP40 - Air Quality Sensor (Sparkfun)
+description: >
+  Driver for the Sparkfun SGP40 Air Quality Sensor board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+  - name: sleeptimer
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_air_quality_sgp40_qwiic
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_air_quality_sgp40_qwiic
+include:
+  - path: public/silabs/air_quality_sgp40/inc
+    file_list:
+      - path: sparkfun_sgp40.h   
+      - path: sparkfun_sgp40_i2c.h
+source:
+  - path: public/silabs/air_quality_sgp40/src/sparkfun_sgp40.c
+  - path: public/silabs/air_quality_sgp40/src/sparkfun_sgp40_i2c.c

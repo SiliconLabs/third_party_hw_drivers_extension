@@ -1,6 +1,6 @@
 /***************************************************************************//**
- * @file mikroe_bma400_config.h
- * @brief SCL BMA400 Configuration
+ * @file mikroe_max30101_config.h
+ * @brief SCL MAX30101 Configuration
  * @version 1.0.0
  *******************************************************************************
  * # License
@@ -37,34 +37,21 @@
  *
  ******************************************************************************/
 
-#ifndef SCL_BMA400_CONFIG_H_
-#define SCL_BMA400_CONFIG_H_
+#ifndef MIKROE_MAX30101_CONFIG_H_
+#define MIKROE_MAX30101_CONFIG_H_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-// A CMSIS annotation block starts with the following line:
-// <<< Use Configuration Wizard in Context Menu >>>
-// <o MIKROE_BMA400_DEFAULT_DEVICE_ADDRESS> I2C Address <0x1..0x7E:0x1><f.h>
-#define MIKROE_BMA400_DEFAULT_DEVICE_ADDRESS   0x15
-
-// The block ends with the following line or at the end of the file:
-// <<< end of configuration section >>>
-
 // <<< sl:start pin_tool >>>
 
-// <gpio optional=true> BMA400_IT1
-// $[GPIO_BMA400_IT1]
-#define BMA400_IT1_PORT                        gpioPortC
-#define BMA400_IT1_PIN                         3
-// [GPIO_BMA400_IT1]$
-
-// <gpio optional=true> BMA400_IT2
-// $[GPIO_BMA400_IT2]
-#define BMA400_IT2_PORT                        gpioPortB
-#define BMA400_IT2_PIN                         3
-// [GPIO_BMA400_IT2]$
+// <gpio optional=true> MAX30101_INT
+// $[GPIO_MAX30101_INT]
+#warning "Interrupt pin for MAX30101 is not configured"
+// #define MAX30101_INT_PORT                       gpioPortB
+// #define MAX30101_INT_PIN                        3
+// [GPIO_MAX30101_INT]$
 
 // <<< sl:end pin_tool >>>
 
@@ -72,4 +59,4 @@ extern "C" {
 }
 #endif
 
-#endif /* SCL_BMA400_CONFIG_H_ */
+#endif /* MIKROE_MAX30101_CONFIG_H_ */

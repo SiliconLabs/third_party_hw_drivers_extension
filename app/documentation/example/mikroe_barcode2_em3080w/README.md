@@ -2,7 +2,9 @@
 
 ## Summary ##
 
-This project shows the implementation of a Barcode reader using Barcode 2 Click board. Which is an adapter add-on board that contains a computerized image recognition system that is compliant with a wide range of different 1D and 2D barcode protocols.
+This project shows the implementation of a Barcode reader using Barcode 2 Click board.
+
+Barcode 2 Click is an adapter add-on board that contains a computerized image recognition system that is compliant with a wide range of different 1D and 2D barcode protocols. Barcode 2 Click can be used for a for both emerging mobile phone-based barcode applications, like coupons, e-tickets and boarding passes, and traditional applications.
 
 ## Required Hardware ##
 

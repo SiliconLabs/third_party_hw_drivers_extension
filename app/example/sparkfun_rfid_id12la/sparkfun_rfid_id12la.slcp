@@ -46,7 +46,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.1.0
+  version: 1.2.0
 other_file:
   - path: ../../documentation/example/sparkfun_rfid_id12la/api_overview.png
   - path: ../../documentation/example/sparkfun_rfid_id12la/create_example.png

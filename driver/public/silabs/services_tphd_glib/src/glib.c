@@ -38,21 +38,39 @@
 #include <string.h>
 #include <stdbool.h>
 #include "glib.h"
+#include "sl_sleeptimer.h"
 #include "oled_display.h"
 
 #define swap_int16_t(a, b) \
-        {                  \
-          int16_t t = a;   \
-          a = b;           \
-          b = t;           \
-        }
+  {                        \
+    int16_t t = a;         \
+    a = b;                 \
+    b = t;                 \
+  }
 #define draw_vline(g, x, y, h, color) \
-        glib_draw_line(g, x, y, x, y + h - 1, color)
+  glib_draw_line(g, x, y, x, y + h - 1, color)
 
 #define draw_hline(g, x, y, w, color) \
-        glib_draw_line(g, x, y, x + w - 1, y, color);
+  glib_draw_line(g, x, y, x + w - 1, y, color);
+
+#define write_string(ptr)  { while (*ptr) {                                   \
+                               glib_write_char(shift_data.context, *ptr++); } \
+                             glib_update_display(); }                         \
+
+typedef struct {
+  glib_context_t *context;
+  const char *data;
+  glib_shifting_direction_t direction;
+  uint32_t rate_ms;
+  uint32_t ticks;
+  uint16_t string_length;
+  uint8_t max_char_height;
+  uint8_t addition_pixel;
+  int16_t y;
+} glib_shift_string_data_t;
 
 const oled_display_t *oled_display = NULL;
+static glib_shift_string_data_t shift_data;
 
 /***************************************************************************//**
 *     @brief
@@ -1139,6 +1157,19 @@ glib_status_t glib_draw_char(glib_context_t *g_context,
   return status;
 }
 
+/***************************************************************************//**
+ *  @brief
+ *  Print one byte/character of data.
+ *
+ *  @param g_context
+ *  Pointer to the glib_context_t
+ *
+ *  @param c
+ *  The 8-bit ascii character to write
+ *
+ *  @return
+ *  Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
 glib_status_t glib_write_char(glib_context_t *g_context, unsigned char c)
 {
   glib_status_t status = GLIB_ERROR_NOTHING_TO_DRAW;
@@ -1296,6 +1327,64 @@ glib_status_t glib_set_font(glib_context_t *g_context, const glib_gfx_font_t *f)
 }
 
 /***************************************************************************//**
+ *     @brief       Set text 'magnification' size.
+ *                  Each increase in s makes 1 pixel that much bigger.
+ *                  For example: 1 is default 6x8, 2 is 12x16, 3 is 18x24, etc
+ *
+ *     @param  s_x  Desired text width magnification level in X-axis.
+ *                  1 is default
+ *
+ *     @param  s_y  Desired text width magnification level in Y-axis.
+ *                  1 is default
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_text_size(glib_context_t *g_context,
+                                 uint8_t s_x,
+                                 uint8_t s_y)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->textsize_x = s_x;
+  g_context->textsize_y = s_y;
+
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
+ *     @brief
+ *     Set text cursor location
+ *
+ *     @param g_context
+ *     Pointer to the glib_context_t
+ *
+ *     @param x
+ *     X-coordinate in pixels
+ *
+ *     @param y
+ *     Y-coordinate in pixels
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_cursor(glib_context_t *g_context, int16_t x, int16_t y)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->cursor_x = x;
+  g_context->cursor_y = y;
+
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
  *     @brief   Set text font color with custom background color
  *
  *     @param   c   16-bit 5-6-5 Color to draw text with
@@ -1305,9 +1394,9 @@ glib_status_t glib_set_font(glib_context_t *g_context, const glib_gfx_font_t *f)
  *     @return
  *     Returns GLIB_OK on success, or else error code
  ******************************************************************************/
-glib_status_t glib_set_text_color(glib_context_t *g_context,
-                                  uint16_t c,
-                                  uint16_t bg)
+glib_status_t glib_set_color(glib_context_t *g_context,
+                             uint16_t c,
+                             uint16_t bg)
 {
   /* Check arguments */
   if (g_context == NULL) {
@@ -1316,6 +1405,83 @@ glib_status_t glib_set_text_color(glib_context_t *g_context,
 
   g_context->text_color = c;
   g_context->bg_color = bg;
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
+ *     @brief   Set text font color
+ *
+ *     @param   c   16-bit 5-6-5 Color to draw text with
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_text_color(glib_context_t *g_context, uint16_t c)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->text_color = c;
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
+ *     @brief      Set background setting for display
+ *
+ *     @param  bg  16-bit 5-6-5 Color to draw background/fill with
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_bg_color(glib_context_t *g_context, uint16_t bg)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->bg_color = bg;
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
+ *     @brief      Set whether text that is too long for the screen width should
+ *                 automatically wrap around to the next line (else clip right).
+ *
+ *     @param  wr  true = wrapping, false = clipping
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_enable_wrap(glib_context_t *g_context, bool wr)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->wrap = wr;
+  return GLIB_OK;
+}
+
+/***************************************************************************//**
+ *     @brief      Set 'cp437' to use correct CP437 charset (default is off)
+ *
+ *     @param  cp  true = Enable cp437; false = Disable cp437
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_enable_cp437(glib_context_t *g_context, bool cp)
+{
+  /* Check arguments */
+  if (g_context == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  g_context->cp437 = cp;
   return GLIB_OK;
 }
 
@@ -1504,6 +1670,123 @@ glib_status_t glib_stop_scroll(void)
   }
   return ((oled_display->driver->stop_scroll()
            == SL_STATUS_OK) ? GLIB_OK : GLIB_ERROR_IO);
+}
+
+/***************************************************************************//**
+ *    @brief
+ *      Initialize for shifting text along the horizontal axis of the screen.
+ *
+ *    @param[in] string
+ *      The string that shifted along the axis.
+ *
+ *    @param[in] rate_ms
+ *      The moving speed of the string.
+ *
+ *    @param[in] direction
+ *      The moving direction of the string.
+ *
+ *    @param[in] y
+ *      The distance between the text and the upper boundary of the display.
+ ******************************************************************************/
+void glib_shift_text_init(glib_context_t *g_context, const char *string,
+                          uint32_t rate_ms,
+                          glib_shifting_direction_t direction, int16_t y)
+{
+  shift_data.context = g_context;
+  shift_data.data = string;
+  shift_data.direction = direction;
+  shift_data.string_length = 0;
+  shift_data.rate_ms = rate_ms;
+  shift_data.max_char_height = 0;
+  shift_data.addition_pixel = 0;
+  shift_data.ticks = sl_sleeptimer_get_tick_count();
+  shift_data.y = y;
+
+  if (!shift_data.context->font) {
+    shift_data.max_char_height = 8;
+    shift_data.string_length = (int)strlen(shift_data.data) * 6 - 1;
+  } else {
+    glib_gfx_font_t *font = shift_data.context->font;
+    for (int i = 0; i < (int)strlen(shift_data.data); i++) {
+      unsigned char c = shift_data.data[i] - font->first;
+      if (font->glyph[c].height > shift_data.max_char_height) {
+        shift_data.max_char_height = font->glyph[c].height;
+      }
+      if (font->glyph[c].y_offset <= 0) {
+        if (font->glyph[c].height + font->glyph[c].y_offset
+            > shift_data.addition_pixel) {
+          shift_data.addition_pixel =
+            font->glyph[c].height + font->glyph[c].y_offset;
+        }
+      }
+      shift_data.string_length += font->glyph[c].x_advance;
+    }
+  }
+}
+
+/***************************************************************************//**
+ *    @brief
+ *      Shifting string along the axis of the screen. Call it in the process
+ *      action funtion of the application.
+ *
+ *    @return
+ *      GLIB_OK if there are no errors.
+ ******************************************************************************/
+glib_status_t glib_shift_text(void)
+{
+  glib_status_t status = GLIB_OK;
+  static int16_t cursor_x = 0;
+
+  char *ptr = (char *)shift_data.data;
+
+  if (sl_sleeptimer_get_tick_count() - shift_data.ticks
+      < shift_data.rate_ms) {
+    return GLIB_ERROR_NOTHING_TO_DRAW;
+  }
+  switch (shift_data.direction) {
+    case LEFT:
+      if (!shift_data.context->font) {
+        status |= glib_fill_rect(shift_data.context, 0, shift_data.y,
+                                 shift_data.context->width,
+                                 shift_data.max_char_height, 0);
+      } else {
+        status |= glib_fill_rect(
+          shift_data.context,
+          0,
+          shift_data.y - shift_data.max_char_height,
+          shift_data.context->width,
+          shift_data.max_char_height + shift_data.addition_pixel,
+          0);
+      }
+      status |= glib_set_cursor(shift_data.context, cursor_x--, shift_data.y);
+      write_string(ptr);
+      if (cursor_x == -shift_data.string_length) {
+        cursor_x = shift_data.context->width;
+      }
+      break;
+
+    case RIGHT:
+      if (!shift_data.context->font) {
+        status |= glib_fill_rect(shift_data.context, 0, shift_data.y,
+                                 shift_data.context->width,
+                                 shift_data.max_char_height, 0);
+      } else {
+        status |= glib_fill_rect(
+          shift_data.context,
+          0,
+          shift_data.y - shift_data.max_char_height,
+          shift_data.context->width,
+          shift_data.max_char_height + shift_data.addition_pixel,
+          0);
+      }
+      status |= glib_set_cursor(shift_data.context, cursor_x++, shift_data.y);
+      write_string(ptr);
+      if (cursor_x == shift_data.context->width) {
+        cursor_x = -shift_data.string_length;
+      }
+      break;
+  }
+  return status;
 }
 
 /***************************************************************************//**

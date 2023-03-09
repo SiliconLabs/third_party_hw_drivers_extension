@@ -34,13 +34,14 @@ component:
 - id: app_assert
 - id: brd4314a
 - id: sleeptimer
+- id: simple_timer
 - id: i2cspm
   instance: [mikroe]
 define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.1.0
+  version: 1.2.0
 other_file:
   - path: ../../documentation/example/mikroe_accel5_bma400/hardware_connection.png
   - path: ../../documentation/example/mikroe_accel5_bma400/create_example.png

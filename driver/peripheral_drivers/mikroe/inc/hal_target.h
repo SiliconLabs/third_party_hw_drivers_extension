@@ -72,6 +72,10 @@ extern void sl_sleeptimer_delay_millisecond(uint16_t time_ms);
 #define Delay_10ms()  sl_sleeptimer_delay_millisecond(10)
 #define Delay_100ms() sl_sleeptimer_delay_millisecond(100)
 
+// Delay functions in seconds
+#define Delay_1sec()  sl_sleeptimer_delay_millisecond(1000)
+
+
 #ifdef __cplusplus
 }
 #endif

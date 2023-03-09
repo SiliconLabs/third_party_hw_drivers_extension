@@ -197,7 +197,7 @@ err_t uart_read( uart_t *obj, uint8_t *buffer, size_t size )
                                 &read_size);
       if (SL_STATUS_OK == status) {
         if (read_size > 0) {
-          if (read_size < size) {
+          if (read_size <= size) {
             size -= read_size;
             buffer += read_size;
             total_size += read_size;
@@ -257,7 +257,32 @@ err_t uart_println( uart_t *obj, char *text )
   }
 }
 
-#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+#if SL_GSDK_MAJOR_VERSION == 4
+#if SL_GSDK_MINOR_VERSION <= 1
+static sl_status_t uart_get_data_available(sl_iostream_uart_context_t *uart_context, size_t *data_size)
+{
+  CORE_DECLARE_IRQ_STATE;
+  CORE_ENTER_ATOMIC();
+  *data_size = (size_t)uart_context->rx_count;
+  CORE_EXIT_ATOMIC();
+  return SL_STATUS_OK;
+}
+static sl_status_t uart_clear_rx_buffer(sl_iostream_t *stream)
+{
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)stream->context;
+
+  CORE_DECLARE_IRQ_STATE;
+  CORE_ENTER_ATOMIC();
+  while (USART_StatusGet(ctx->usart) & USART_STATUS_RXDATAV) {
+    uint8_t tmp = ctx->usart->RXDATA;
+    (void)tmp;
+  }
+  ctx->context.rx_count = 0;
+  CORE_EXIT_ATOMIC();
+  return SL_STATUS_OK;
+}
+#else
+#if SL_GSDK_MINOR_VERSION == 2 && SL_GSDK_PATCH_VERSION == 0
 static size_t nolock_uart_get_data_available(sl_iostream_uart_context_t *uart_context)
 {
   if (uart_context->dma.data_available == false) {
@@ -300,6 +325,86 @@ static size_t nolock_uart_get_data_available(sl_iostream_uart_context_t *uart_co
 
   return num_bytes_available;
 }
+#else // Support for later version
+static uint8_t* get_write_ptr(const sl_iostream_uart_context_t * uart_context)
+{
+  uint8_t* dst;
+
+  #if defined(DMA_PRESENT)
+  int remaining;
+  Ecode_t ecode;
+
+  ecode = DMADRV_TransferRemainingCount(uart_context->dma.channel, &remaining);
+  EFM_ASSERT(ecode == ECODE_OK);
+
+  DMA_DESCRIPTOR_TypeDef* desc = ((DMA_DESCRIPTOR_TypeDef *)(DMA->CTRLBASE)) + uart_context->dma.channel;
+  dst = (uint8_t*)desc->DSTEND - remaining;
+
+  #elif defined(LDMA_PRESENT)
+  dst = (uint8_t *)LDMA->CH[uart_context->dma.channel].DST;
+
+  #else
+  #error Missing (L)DMA peripheral
+  #endif
+
+  // Check for buffer over/underflow
+  EFM_ASSERT(dst <= (uart_context->rx_buffer + uart_context->rx_buffer_len)
+             && dst >= uart_context->rx_buffer);
+
+  return dst;
+}
+static size_t nolock_uart_get_data_available(sl_iostream_uart_context_t *uart_context)
+{
+  if (uart_context->rx_data_available == false) {
+    #if defined(SL_CATALOG_KERNEL_PRESENT)
+    if (uart_context->block) {
+      EFM_ASSERT(false);     // Should always have data in blocking mode
+    }
+    #endif
+    return 0;
+  }
+
+  uint8_t *write_ptr;     // Pointer to the next byte to be written by the (L)DMA
+  Ecode_t ecode;
+  bool dma_done;          // Is the (L)DMA done
+  size_t read_size = 0;     // Number of bytes processed from the Rx Buffer
+
+  // Compute the read_size
+  {
+    #if defined(DMA_PRESENT)
+    ecode = DMADRV_PauseTransfer(uart_context->dma.channel);
+    EFM_ASSERT(ecode == ECODE_OK);
+    #endif // DMA_PRESENT
+
+    write_ptr = get_write_ptr(uart_context);
+
+    #if defined(DMA_PRESENT)
+    ecode = DMADRV_ResumeTransfer(uart_context->dma.channel);
+    EFM_ASSERT(ecode == ECODE_OK);
+    #endif // DMA_PRESENT
+
+    if (write_ptr == uart_context->rx_read_ptr) {
+      // (L)DMA is wrapped over rx_read_ptr, make sure it is stopped
+      ecode = DMADRV_TransferDone(uart_context->dma.channel, &dma_done);
+      EFM_ASSERT(ecode == ECODE_OK);
+
+      EFM_ASSERT(dma_done);
+    }
+
+    // (L)DMA ahead of read ptr, read data in between the (L)DMA and the read ptr
+    if (write_ptr > uart_context->rx_read_ptr) {
+      read_size = write_ptr - uart_context->rx_read_ptr;
+    }
+    // (L)DMA wrapped around RX buffer, read data between read ptr and end of RX buffer
+    else {
+      read_size = (uart_context->rx_buffer + uart_context->rx_buffer_len) - uart_context->rx_read_ptr;
+    }
+  }
+
+  // Number of bytes written to user buffer can be different if control character are present
+  return read_size;
+}
+#endif // #if SL_GSDK_MINOR_VERSION == 2 && SL_GSDK_PATCH_VERSION == 0
 static sl_status_t uart_get_data_available(sl_iostream_uart_context_t *uart_context, size_t *data_size)
 {
   CORE_DECLARE_IRQ_STATE;
@@ -333,41 +438,21 @@ static sl_status_t uart_get_data_available(sl_iostream_uart_context_t *uart_cont
 
   return SL_STATUS_OK;
 }
-#endif // #if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
 
-
-size_t uart_bytes_available( uart_t *obj )
+static sl_status_t uart_clear_rx_buffer(sl_iostream_t *stream)
 {
-  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
-
-#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+  sl_iostream_usart_context_t *context = (sl_iostream_usart_context_t *)stream->context;
   size_t data_size = 0;
+  sl_status_t sc;
 
-  if (SL_STATUS_OK != uart_get_data_available(&(ctx->context), &data_size)) {
-    data_size = 0;
-  }
-#else
-  CORE_DECLARE_IRQ_STATE;
-  CORE_ENTER_ATOMIC();
-  data_size = (size_t)ctx->context.rx_count;
-  CORE_EXIT_ATOMIC();
-#endif
-  return data_size;
-}
-
-void uart_clear( uart_t *obj )
-{
-  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
-
-#if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
-  size_t data_size = 0;
   // Empty read buffer
-  if (SL_STATUS_OK == uart_get_data_available(&(ctx->context), &data_size)) {
+  sc = uart_get_data_available(&(context->context), &data_size);
+  if (SL_STATUS_OK == sc) {
     while (data_size > 0) {
       uint8_t tmp;
       size_t read_size = 0;
 
-      if(SL_STATUS_OK != sl_iostream_read(&(obj->handle->stream),
+      if(SL_STATUS_OK != sl_iostream_read(stream,
                                           &tmp,
                                           1,
                                           &read_size)) {
@@ -379,16 +464,29 @@ void uart_clear( uart_t *obj )
       data_size--;
     }
   }
+  return sc;
+}
+#endif // #if SL_GSDK_MINOR_VERSION <= 1
+
 #else
-  CORE_DECLARE_IRQ_STATE;
-  CORE_ENTER_ATOMIC();
-  while (USART_StatusGet(ctx->usart) & USART_STATUS_RXDATAV) {
-    tmp = ctx->usart->RXDATA;
-    (void)tmp;
+#error "Current version of gecko sdk is not supported"
+#endif // #if SL_GSDK_MAJOR_VERSION == 4
+
+
+size_t uart_bytes_available( uart_t *obj )
+{
+  sl_iostream_usart_context_t *ctx = (sl_iostream_usart_context_t *)obj->handle->stream.context;
+  size_t data_size;
+
+  if (SL_STATUS_OK != uart_get_data_available(&(ctx->context), &data_size)) {
+    data_size = 0;
   }
-  ctx->context.rx_count = 0;
-  CORE_EXIT_ATOMIC();
-#endif // #if SL_GSDK_MAJOR_VERSION == 4 && SL_GSDK_MINOR_VERSION >= 2
+  return data_size;
+}
+
+void uart_clear( uart_t *obj )
+{
+  uart_clear_rx_buffer(&(obj->handle->stream));
 }
 
 void uart_close( uart_t *obj )

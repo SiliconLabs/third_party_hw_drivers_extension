@@ -145,13 +145,9 @@ err_t i2c_master_read(i2c_master_t *obj,
     seq.addr = obj->config.addr << 1;
     seq.flags = I2C_FLAG_READ;
 
-    /*Write buffer*/
-    seq.buf[0].data = NULL;
-    seq.buf[0].len = 0;
-
     /*Read buffer*/
-    seq.buf[1].data = read_data_buf;
-    seq.buf[1].len = len_read_data;
+    seq.buf[0].data = read_data_buf;
+    seq.buf[0].len = len_read_data;
 
     if (I2CSPM_Transfer(obj->handle, &seq) != i2cTransferDone) {
       return I2C_MASTER_ERROR;

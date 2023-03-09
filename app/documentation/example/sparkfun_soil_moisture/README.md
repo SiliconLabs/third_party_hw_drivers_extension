@@ -6,6 +6,8 @@ This project aims to implement a hardware driver interacting with the [Sparkfun 
 
 Sparkfun soil moisture is a simple breakout for measuring the moisture in soil and similar materials.The soil moisture sensor is pretty straightforward to use. The two large, exposed pads function as probes for the sensor, together acting as a variable resistor. The more water that is in the soil means the better the conductivity between the pads will be, resulting in a lower resistance and a higher SIG out. This version of the Soil Moisture Sensor includes a Qwiic connector, making it even easier to use this sensor.
 
+This soil moisture sensor be used in agricultural infrastructure, but also beneficial for household applications, like gardening tools or weather stations.
+
 ## Required Hardware ##
 
 - [BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

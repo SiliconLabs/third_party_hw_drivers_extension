@@ -90,10 +90,10 @@ void app_process_action(void)
       glib_fill_rect(&glib_context,
                      5, 5, 55, 25,
                      GLIB_WHITE);
-      glib_set_text_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
       glib_draw_string(&glib_context, "fill", 6, 7);
       glib_draw_string(&glib_context, "rectangle", 6, 18);
-      glib_set_text_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
       glib_update_display();
       break;
 
@@ -114,11 +114,11 @@ void app_process_action(void)
                            2, 5, 60, 40,
                            10,
                            GLIB_WHITE);
-      glib_set_text_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
       glib_draw_string(&glib_context, "fill", 6, 7);
       glib_draw_string(&glib_context, "round", 6, 18);
       glib_draw_string(&glib_context, "rectangle", 6, 29);
-      glib_set_text_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
       glib_update_display();
       break;
 
@@ -157,10 +157,10 @@ void app_process_action(void)
       glib_clear(&glib_context);
       glib_fill_circle(&glib_context, 32, 24, 20,
                        GLIB_WHITE);
-      glib_set_text_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
       glib_draw_string(&glib_context, "fill", 16, 12);
       glib_draw_string(&glib_context, "circle", 16, 23);
-      glib_set_text_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
       glib_update_display();
       break;
 
@@ -183,9 +183,9 @@ void app_process_action(void)
     case 11:
       glib_clear(&glib_context);
       glib_fill(&glib_context, GLIB_WHITE);
-      glib_set_text_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_BLACK, GLIB_WHITE);
       glib_draw_string(&glib_context, "FILL", 16, 23);
-      glib_set_text_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
+      glib_set_color(&glib_context, GLIB_WHITE, GLIB_WHITE);
       glib_update_display();
       break;
 

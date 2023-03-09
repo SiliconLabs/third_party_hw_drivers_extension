@@ -4,6 +4,8 @@
 
 This project shows the implementation of a RFID module that outputs the 10 character unique ID ( 5 bytes ID + 1 byte checksum + 4 bytes timestamp) of a 125kHz RFID card with **BGM220 Explorer Kit** based on Qwiic communication.
 
+It can be used for human tracking, checking event attendance, and also beneficial for electronic wallet applications.
+
 ## Required Hardware ##
 
 - [A BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

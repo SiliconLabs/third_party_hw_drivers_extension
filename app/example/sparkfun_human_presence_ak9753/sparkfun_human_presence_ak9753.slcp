@@ -42,7 +42,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.1.0
+  version: 1.2.0
 other_file:
   - path: ../../documentation/example/sparkfun_human_presence_ak9753/create_example.png
   - path: ../../documentation/example/sparkfun_human_presence_ak9753/hardware_connection.png

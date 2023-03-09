@@ -1,7 +1,7 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.1.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.2.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -13,7 +13,7 @@ A full list of all drivers in this repository is defined below:
 | captouch2_cap1166 | [Click Here](./driver/public/mikroe/captouch2_cap1166) | [Click Here](./app/example/mikroe_captouch2_cap1166) | [Click Here](./app/documentation/example/mikroe_captouch2_cap1166) |
 | heartrate2_maxm86161 | [Click Here](./driver/public/mikroe/heartrate2_maxm86161) | [Click Here](./app/example/mikroe_heartrate2_maxm86161) | [Click Here](./app/documentation/example/mikroe_heartrate2_maxm86161) |
 | temphum9_shtc3 | [Click Here](./driver/public/mikroe/temphum9_shtc3) | [Click Here](./app/example/mikroe_temphum9_shtc3) | [Click Here](./app/documentation/example/mikroe_temphum9_shtc3) |
-| oledw_ssd1306 | [Click Here](./driver/public/mikroe/oledw_ssd1306) | [Click Here](./app/example/oledw_ssd1306) | [Click Here](./app/documentation/example/oledw_ssd1306) |
+| oledw_ssd1306 | [Click Here](./driver/public/mikroe/oledw_ssd1306) | [Click Here](./app/example/mikroe_oledw_ssd1306) | [Click Here](./app/documentation/example/mikroe_oledw_ssd1306) |
 | buzz2_cmt_8540s_smt | [Click Here](./driver/public/mikroe/buzz2_cmt_8540s_smt) | [Click Here](./app/example/mikroe_buzz2_cmt_8540s_smt) | [Click Here](./app/documentation/example/mikroe_buzz2_cmt_8540s_smt) |
 | brushless16_lb11685av | [Click Here](./driver/public/mikroe/brushless16_lb11685av) | [Click Here](./app/example/mikroe_brushless16_lb11685av) | [Click Here](./app/documentation/example/mikroe_brushless16_lb11685av) |
 | accel5_bma400 | [Click Here](./driver/public/mikroe/accel5_bma400) | [Click Here](./app/example/mikroe_accel5_bma400) | [Click Here](./app/documentation/example/mikroe_accel5_bma400) |
@@ -34,17 +34,26 @@ A full list of all drivers in this repository is defined below:
 | eth_wiz_w5500 | [Click Here](./driver/public/mikroe/eth_wiz_w5500) | [Click Here](./app/example/mikroe_eth_wiz_w5500) | [Click Here](./app/documentation/example/mikroe_eth_wiz_w5500) |
 | fuel_gauge_max17048 | [Click Here](./driver/public/silabs/fuel_gauge_max17048) | [Click Here](./app/example/maxim_fuel_gauge_max17048) | [Click Here](./app/documentation/example/maxim_fuel_gauge_max17048) |
 | barcode2_em3080w | [Click Here](./driver/public/mikroe/barcode2_em3080w) | [Click Here](./app/example/mikroe_barcode2_em3080w) | [Click Here](./app/documentation/example/mikroe_barcode2_em3080w) |
+| water_detect | [Click Here](./driver/public/mikroe/water_detect) | [Click Here](./app/example/mikroe_water_detect) | [Click Here](./app/documentation/example/mikroe_water_detect) |
+| radar_mm5d91_00 | [Click Here](./driver/public/mikroe/radar_mm5d91_00) | [Click Here](./app/example/mikroe_radar_mm5d91_00) | [Click Here](./app/documentation/example/mikroe_radar_mm5d91_00) |
+| rgb_led_is31fl3741 | [Click Here](./driver/public/silabs/rgb_led_is31fl3741) | [Click Here](./app/example/adafruit_rgb_led_is31fl3741) | [Click Here](./app/documentation/example/adafruit_rgb_led_is31fl3741) |
+| fingerprint2_a172mrq | [Click Here](./driver/public/mikroe/fingerprint2_a172mrq) | [Click Here](./app/example/mikroe_fingerprint2_a172mrq) | [Click Here](./app/documentation/example/mikroe_fingerprint2_a172mrq) |
+| air_quality_sgp40 | [Click Here](./driver/public/silabs/air_quality_sgp40) | [Click Here](./app/example/sparkfun_air_quality_sgp40) | [Click Here](./app/documentation/example/sparkfun_air_quality_sgp40) |
+| environment2_sht40_sgp40 | [Click Here](./driver/public/mikroe/environment2_sht40_sgp40) | [Click Here](./app/example/mikroe_environment2_sht40_sgp40) | [Click Here](./app/documentation/example/mikroe_environment2_sht40_sgp40) |
+| heartrate4_max30101 | [Click Here](./driver/public/mikroe/heartrate4_max30101) | [Click Here](./app/example/mikroe_heartrate4_max30101) | [Click Here](./app/documentation/example/mikroe_heartrate4_max30101) |
+| hr_po_max30101_max32664 | [Click Here](./driver/public/silabs/hr_po_max30101_max32664) | [Click Here](./app/example/sparkfun_hr_po_max30101_max32664) | [Click Here](./app/documentation/example/sparkfun_hr_po_max30101_max32664) |
+
 
 ## Requirements ##
 
 - Desired Silicon Labs Starter Kit
 - Driver specific test hardware
 - Simplicity Studio v5.6.0.0 or newer
-- Gecko SDK Suite 4.2.0, available via Simplicity Studio
+- Gecko SDK Suite 4.2.1, available via Simplicity Studio
 
 ## How to add to Simplicity Studio IDE ##
 
-> **Detailed documentation available [here](doc/readme.md)**.
+> **Detailed documentation available on [https://docs.silabs.com](https://docs.silabs.com/application-examples/1.0.0/ae-getting-started/how-do-you-use-it#adding-sdk-extensions-for-hardware-drivers) or [here](doc/readme.md)**.
 
 
 - Clone the repository somewhere on your PC

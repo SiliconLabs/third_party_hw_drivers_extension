@@ -4,8 +4,9 @@
 
 This project aims to implement a hardware driver interacting with the [VCNL4040 proximity sensor](https://www.vishay.com/ppg?84274) via APIs of GSDK.
 
-VCNL4040 is integrated with a proximity sensor (PS) and an ambient light sensor (ALS). With the ability to detect objects that up to 20cm away it is often used in automatic towel and soap dispensers or automatic faucets. VCNL4040 Proximity sensor is a great digital alternative to the traditional analog sensor because it has no dead zone and can read all the way up to the face of the sensor. This sensor also has an ambient light sensor built it which is excellent if you need a digital light sensor for your next glitter cannon.
+VCNL4040 integrates a proximity sensor (PS), ambient light sensor (ALS), and a high power IRED into one small package. It incorporates photodiodes, amplifiers, and analog to digital converting circuits into a single chip by CMOS process. The 16-bit high resolution ALS offers excellent sensing capabilities with sufficient selections to fulfill most applications whether dark or high transparency lens design. High and low interrupt thresholds can be programmed for both ALS and PS, allowing the component to use a minimal amount of the microcontrollers resources. With the ability to detect objects up to 20 cm, it is often used in automatic towel and soap dispensers or automatic faucets.
 
+The patented Filtron technology achieves ambient light spectral sensitivity closest to real human eye response and offers the best background light cancellation capability (including sunlight) without utilizing the microcontrollers’ resources. This sensor is excellent if you need a digital light sensor for your next glitter cannon.
 
 ## Required Hardware ##
 

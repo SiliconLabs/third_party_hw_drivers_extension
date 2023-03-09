@@ -4,7 +4,7 @@
 
 This project shows the implementation of the OLED driver using a **Mikroe OLED W Click** with **BGM220 Explorer Kit** based on I2C communication.
 
-The Mikroe OLED W Click board carries a monochrome, 96 x 39px and blue-on-black OLED display. It uses a SSD1306 controller to drive the display. Its built-in functionalities include contrast control, normal or inverse image display, vertical and horizontal scrolling functions and more.
+MikroE OLED W Click is based on the MI9639BO-W OLED module which has a size of 19.3x7.8 mm and resolution of 96x39 pixels. This white light monochrome, passive matrix OLED display is from Multi-Inno Technology. The MI9639BO-W display features an SSD1306 device that is a 128x64 pixel, dot-matrix OLED/PLED segment/common driver with a controller. It can be used for applications where bright and crisp white text or icons are needed.
 
 For more information about the SSD1306 controller, see the [specification page](https://www.mikroe.com/oled-w-click).
 

@@ -675,6 +675,15 @@ sl_status_t mikroe_bma400_default_cfg(uint8_t mode, uint8_t range);
 
 /***************************************************************************//**
  * @brief
+ *  Check whether a special BMA400 is present on the bus or not.
+ *
+ * @return
+ *    SL_STATUS_OK if there are no errors.
+ ******************************************************************************/
+sl_status_t mikroe_bma400_present(void);
+
+/***************************************************************************//**
+ * @brief
  *    This function writes data to the desired register.
  *
  * @param[in] register_address

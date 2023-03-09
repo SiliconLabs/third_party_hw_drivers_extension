@@ -1,0 +1,45 @@
+id: mikroe_fingerprint2
+package: third_party_hw_drivers
+label: A-172-MRQ - Fingerprint 2 Click (Mikroe)
+description: >
+  Driver for the Mikroe Fingerprint 2 fingerprint scanner board.
+category: Human Machine Interface
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_uart
+config_file:
+  - path: public/mikroe/fingerprint2_a172mrq/config/brd2703a/mikroe_a172mrq_config.h
+    file_id: driver_config_fingerprint2
+    condition: [brd2703a]
+  - path: public/mikroe/fingerprint2_a172mrq/config/brd4108a/mikroe_a172mrq_config.h
+    file_id: driver_config_fingerprint2
+    condition: [brd4108a]
+  - path: public/mikroe/fingerprint2_a172mrq/config/brd4314a/mikroe_a172mrq_config.h
+    file_id: driver_config_fingerprint2
+    condition: [brd4314a]
+  - path: public/mikroe/fingerprint2_a172mrq/config/other/mikroe_a172mrq_config.h
+    file_id: driver_config_fingerprint2
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: mikroe_fingerprint2
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_fingerprint2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/fingerprint2/lib/include
+    file_list:
+      - path: fingerprint2.h
+  - path: public/mikroe/fingerprint2_a172mrq/inc
+    file_list:
+      - path: mikroe_a172mrq.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/fingerprint2/lib/src/fingerprint2.c
+  - path: public/mikroe/fingerprint2_a172mrq/src/mikroe_a172mrq.c

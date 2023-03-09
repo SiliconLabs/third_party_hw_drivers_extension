@@ -4,6 +4,8 @@
 
 This project shows the driver implementation of a SPI capacitive touch sensor using the CAP1166 sensor with Silicon Labs Platform.
 
+Cap Touch 2 click is a capacitive touch sensing Click board™ which features the CAP1166 chip, which is an advanced touch/proximity sensor IC. It packs a range of different touch/proximity functionalities allowing the development of robust and aesthetically pleasing touch interfaces. It can be used for desktop computer or notebook control, LCD/TFT monitors, various types of consumer electronic, home appliances, and other applications that can benefit of having a reliable and feature-rich touch activated user interface.
+
 ## Required Hardware ##
 
 - [**BGM220-EK4314A** BGM220 Bluetooth Module Explorer Kit (BRD4314A BGM220 Explorer Kit Board)](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

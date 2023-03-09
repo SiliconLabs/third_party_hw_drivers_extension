@@ -543,7 +543,7 @@ static err_t hal_adc_init(analog_in_t *obj)
           initAllConfigs.configs[0].reference = iadcCfgReferenceExt1V25;
           initAllConfigs.configs[0].vRef = reference_voltage;
 #if defined(_IADC_CFG_REFSEL_VREF2P5)
-          else if (reference_voltage <= 2500) {
+        } else if (reference_voltage <= 2500) {
             initAllConfigs.configs[0].reference = iadcCfgReferenceExt2V5;
             initAllConfigs.configs[0].vRef = reference_voltage;
 #endif

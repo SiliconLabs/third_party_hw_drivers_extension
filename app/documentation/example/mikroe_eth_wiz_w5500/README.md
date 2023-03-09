@@ -6,7 +6,9 @@ This project aims to implement a hardware driver for the W5500 ethernet controll
 
 W5500 enables users to have the Internet connectivity in their applications just by using the single chip to implement TCP/IP Stack, 10/100 Ethernet MAC and PHY. Hardwired TCP/IP stack supports TCP, UDP, IPv4, ICMP, ARP, IGMP, and PPPoE. W5500 uses a 32Kbytes internal buffer as its data communication memory. For more information about the W5500, see the following [source](https://docs.wiznet.io/img/products/w5500/w5500_ds_v109e.pdf).
 
-ETH Wiz click communicates with the target microcontroller over SPI interface that corresponds to the pinout on the mikroBUS™ socket as shown below.
+The board can be used for industrial automation systems, IP set-top boxes, VoIP/Video phone systems, security systems, home networks and gateways and test and measurement equipment and for many other applications.
+
+ETH Wiz Click board™ communicates with the target microcontroller over SPI interface that corresponds to the pinout on the mikroBUS™ socket as shown below.
 
 ![mikroBus](mikrobus.png)
 

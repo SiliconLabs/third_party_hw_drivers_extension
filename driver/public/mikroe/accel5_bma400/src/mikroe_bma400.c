@@ -67,6 +67,12 @@ sl_status_t mikroe_bma400_init(sl_i2cspm_t *i2cspm_instance)
 
   THIRD_PARTY_HW_DRV_RETCODE_TEST(accel5_init(&accel5, &accel5_cfg));
 
+  if (SL_STATUS_OK != THIRD_PARTY_HW_DRV_RETCODE_VALUE) {
+    return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  }
+
+  THIRD_PARTY_HW_DRV_RETCODE_TEST(mikroe_bma400_present());
+
   return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
 }
 
@@ -84,6 +90,21 @@ sl_status_t mikroe_bma400_set_i2csmp_instance(sl_i2cspm_t *i2cspm_instance)
 sl_status_t mikroe_bma400_default_cfg(uint8_t mode, uint8_t range)
 {
   accel5_default_cfg(&accel5, mode, range);
+
+  return SL_STATUS_OK;
+}
+
+/***************************************************************************//**
+ *  Check whether a special BMA400 is present on the bus or not.
+ ******************************************************************************/
+sl_status_t mikroe_bma400_present(void)
+{
+  uint8_t chip_id;
+
+  mikroe_bma400_read_byte(MIKROE_BMA400_REG_CHIP_ID, &chip_id);
+  if (chip_id != MIKROE_BMA400_CHIP_ID) {
+    return SL_STATUS_FAIL;
+  }
 
   return SL_STATUS_OK;
 }

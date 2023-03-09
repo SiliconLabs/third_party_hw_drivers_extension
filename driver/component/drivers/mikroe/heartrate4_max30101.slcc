@@ -1,0 +1,44 @@
+id: mikroe_heartrate4
+package: third_party_hw_drivers
+label: MAX30101 - Heart Rate 4 Click (Mikroe)
+description: >
+  Driver for the Heart rate 4 board, this board relies on the Max30101 sensor
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: gpiointerrupt
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/heartrate4_max30101/config/brd2703a/mikroe_max30101_config.h
+    file_id: driver_config_heartrate4
+    condition: [brd2703a]
+  - path: public/mikroe/heartrate4_max30101/config/brd4108a/mikroe_max30101_config.h
+    file_id: driver_config_heaertrat4
+    condition: [brd4108a]
+  - path: public/mikroe/heartrate4_max30101/config/brd4314a/mikroe_max30101_config.h
+    file_id: driver_config_heartrate4
+    condition: [brd4314a]
+  - path: public/mikroe/heartrate4_max30101/config/other/mikroe_max30101_config.h
+    file_id: driver_config_heartrate4
+    unless: [brd4314a, brd4108a, brd2703a]
+template_contribution:
+  - name: component_catalog
+    value: mikroe_heartrate4
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/heartrate4/lib/include
+    file_list:
+      - path: heartrate4.h
+  - path: public/mikroe/heartrate4_max30101/inc
+    file_list:
+      - path: mikroe_max30101.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/heartrate4/lib/src/heartrate4.c
+  - path: public/mikroe/heartrate4_max30101/src/mikroe_max30101.c

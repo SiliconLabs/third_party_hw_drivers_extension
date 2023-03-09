@@ -12,8 +12,18 @@ requires:
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_i2c
 config_file:
-  - path: public/mikroe/accel5_bma400/config/mikroe_bma400_config.h
+  - path: public/mikroe/accel5_bma400/config/brd2703a/mikroe_bma400_config.h
     file_id: driver_config_accel5
+    condition: [brd2703a]
+  - path: public/mikroe/accel5_bma400/config/brd4108a/mikroe_bma400_config.h
+    file_id: driver_config_accel5
+    condition: [brd4108a]
+  - path: public/mikroe/accel5_bma400/config/brd4314a/mikroe_bma400_config.h
+    file_id: driver_config_accel5
+    condition: [brd4314a]
+  - path: public/mikroe/accel5_bma400/config/other/mikroe_bma400_config.h
+    file_id: driver_config_accel5
+    unless: [brd4314a, brd4108a, brd2703a]
 provides:
   - name: mikroe_accel5
     allow_multiple: false

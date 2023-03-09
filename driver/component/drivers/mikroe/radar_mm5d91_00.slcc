@@ -1,0 +1,45 @@
+id: mikroe_radar
+package: third_party_hw_drivers
+label: MM5D91-00 - Radar Click (Mikroe)
+description: >
+  Driver for the Mikroe MM5D91-00 - Radar Click presence detection (radar) sensor board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_uart
+config_file:
+  - path: public/mikroe/radar_mm5d91_00/config/mikroe_mm5d91_00_config.h
+    file_id: driver_config_radar
+    unless: [brd2703a, brd4108a, brd4314a]
+  - path: "public/mikroe/radar_mm5d91_00/config/brd4108a/mikroe_mm5d91_00_config.h"
+    file_id: driver_config_radar
+    condition: [brd4108a]
+  - path: "public/mikroe/radar_mm5d91_00/config/brd4314a/mikroe_mm5d91_00_config.h"
+    file_id: driver_config_radar
+    condition: [brd4314a]
+  - path: "public/mikroe/radar_mm5d91_00/config/brd2703a/mikroe_mm5d91_00_config.h"
+    file_id: driver_config_radar
+    condition: [brd2703a]
+provides:
+  - name: mikroe_radar
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_radar
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/radar/lib/include
+    file_list:
+      - path: radar.h
+  - path: public/mikroe/radar_mm5d91_00/inc
+    file_list:
+      - path: mikroe_mm5d91_00.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/radar/lib/src/radar.c
+  - path: public/mikroe/radar_mm5d91_00/src/mikroe_mm5d91_00.c

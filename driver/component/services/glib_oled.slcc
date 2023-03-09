@@ -11,6 +11,7 @@ provides:
     allow_multiple: false
 requires:
   - name: status
+  - name: sleeptimer
   - name: oled_display
 template_contribution:
   - name: component_catalog

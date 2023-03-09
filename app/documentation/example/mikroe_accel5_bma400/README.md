@@ -4,6 +4,8 @@
 
 This project shows the implementation of a accelerometer sensor that is integrated on the Accel 5 Click board.
 
+With its ultra-low power consumption, onboard data processing, output data lowpass filtering, and ability to detect many different events, the Accel 5 click is a perfect solution for IoT applications. It can also be used to develop applications for wearables, where the BMA400 sensor shows its true potential, offering an ultra-low power always-on operation with no functionality compromises. In general, Accel 5 click can be used wherever a reliable detection of the acceleration-related events is needed: smart home applications, IoT applications, drop detection for warranty logging, power management based on motion, and similar.
+
 ## Required Hardware ##
 
 - [A BGM220P Explorer Kit board.](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)
@@ -46,7 +48,9 @@ You can either create a project based on a example project or start with an empt
         - [Services] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
-        - [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe)]
+        - [Application] → [Utility] → [Assert]
+        - [Application] → [Service] → [Simple timer service]
+        - [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe)] → use default configuration
 
 4. Build and flash this example to the board.
 

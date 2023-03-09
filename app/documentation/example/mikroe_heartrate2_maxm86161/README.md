@@ -4,6 +4,8 @@
 
 This project shows the implementation of Bio-sensor driver using Maxm86161 from Maxim Integrated with BGM220 Explorer Kit based on I2C communication.
 
+Heart Rate 2 Click board™ is an add-on board based on MAXM86161 integrated optical module from Analog Devices (AD). It is a complete, integrated, optical data acquisition system, ideal for optical pulse-oximetry (SpO2) and heart-rate (HR) detection applications. It can be implemented in various wearable health-related devices, like optimized for in-ear applications, or miniature package for mobile applications.
+
 ## Required Hardware ##
 
 - [**BGM220-EK4314A** BGM220 Bluetooth Module Explorer Kit (BRD4314A BGM220 Explorer Kit Board)](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

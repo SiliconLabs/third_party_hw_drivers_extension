@@ -6,6 +6,9 @@ This project aims to implement the hardware driver interacting with the [SparkFu
 
 The MLX90640 is equipped with a 32x24 array of thermopile sensors creating, in essence, a low resolution thermal imaging camera. With this breakout users can detect surface temperatures from many feet away with an accuracy of ±1.5°C (best case). To make it even easier to get the infrared image, all communication is enacted exclusively via I2C, utilizing our handy Qwiic system.
 
+It can be used for high precision non-contact temperature
+measurements, thermal leaks in homes, industrial temperature control of moving parts, movement detection, human presence, and other similar applications.
+
 ## Hardware Required ##
 
 - [BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit?tab=overview)

@@ -1,0 +1,28 @@
+id: sparkfun_hr_po_max30101_max32664
+package: third_party_hw_drivers
+label: MAX30101 & MAX32664  - Pulse Oximeter and Heart Rate Sensor (Sparkfun)
+description: >
+  Driver for the Sparkfun MAX30101 & MAX32664  - Pulse Oximeter and Heart Rate Sensor board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+config_file:
+  - path: public/silabs/hr_po_max30101_max32664/config/sparkfun_max30101_max32664_config.h
+    file_id: driver_config_sparkfun_hr_po_max30101_max32664
+provides:
+  - name: sparkfun_hr_po_max30101_max32664
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_hr_po_max30101_max32664 
+include:
+  - path: public/silabs/hr_po_max30101_max32664/inc
+    file_list:
+      - path: sparkfun_max30101_max32664.h
+source:
+  - path: public/silabs/hr_po_max30101_max32664/src/sparkfun_max30101_max32664.c

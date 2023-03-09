@@ -129,6 +129,12 @@ typedef struct __glib_context_t{
   glib_gfx_font_t *font;     ///< Font definition
 } glib_context_t;
 
+/// GLIB Shifting Direction
+typedef enum {
+  LEFT  = 0,
+  RIGHT = 1,
+} glib_shifting_direction_t;
+
 /***************************************************************************//**
  *    @brief
  *      Initialization function for the glib.
@@ -360,6 +366,21 @@ glib_status_t glib_draw_char(glib_context_t *g_context,
                              uint8_t size_x, uint8_t size_y);
 
 /***************************************************************************//**
+ *  @brief
+ *  Print one byte/character of data.
+ *
+ *  @param g_context
+ *  Pointer to the glib_context_t
+ *
+ *  @param c
+ *  The 8-bit ascii character to write
+ *
+ *  @return
+ *  Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_write_char(glib_context_t *g_context, unsigned char c);
+
+/***************************************************************************//**
  *     @brief
  *     Draws a string using the font supplied with the library.
  *
@@ -391,9 +412,58 @@ glib_status_t glib_draw_string(glib_context_t *g_context, const char *str,
  *     @return
  *     Returns GLIB_OK on success, or else error code
  ******************************************************************************/
-glib_status_t glib_set_text_color(glib_context_t *g_context,
-                                  uint16_t c,
-                                  uint16_t bg);
+glib_status_t glib_set_color(glib_context_t *g_context,
+                             uint16_t c,
+                             uint16_t bg);
+
+/***************************************************************************//**
+ *     @brief   Set text font color
+ *
+ *     @param   c   16-bit 5-6-5 Color to draw text with
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_text_color(glib_context_t *g_context, uint16_t c);
+
+/***************************************************************************//**
+ *     @brief      Set background setting for display
+ *
+ *     @param  bg  16-bit 5-6-5 Color to draw background/fill with
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_bg_color(glib_context_t *g_context, uint16_t bg);
+
+/***************************************************************************//**
+ *     @brief      Set whether text that is too long for the screen width should
+ *                 automatically wrap around to the next line (else clip right).
+ *
+ *     @param  wr  true = wrapping, false = clipping
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_enable_wrap(glib_context_t *g_context, bool wr);
+
+/***************************************************************************//**
+ *     @brief      Enable (or disable) Code Page 437-compatible charset.
+ *                 There was an error in glcdfont.c for the longest time -- one
+ *                 character (#176, the 'light shade' block) was missing -- this
+ *                 threw off the index of every character that followed it.
+ *                 But a TON of code has been written with the erroneous
+ *                 character indices. By default, the library uses the original
+ *                 'wrong' behavior and old sketches will still work. Pass
+ *                 'true' to this function to use correct CP437 character values
+ *                 in your code.
+ *
+ *     @param  cp  true = enable (new behavior), false = disable (old behavior)
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_enable_cp437(glib_context_t *g_context, bool cp);
 
 /***************************************************************************//**
  *     @brief
@@ -412,6 +482,42 @@ glib_status_t glib_set_text_color(glib_context_t *g_context,
  ******************************************************************************/
 glib_status_t glib_set_font(glib_context_t *g_context,
                             const glib_gfx_font_t *f);
+
+/***************************************************************************//**
+ *     @brief       Set text 'magnification' size.
+ *                  Each increase in s makes 1 pixel that much bigger.
+ *                  For example: 1 is default 6x8, 2 is 12x16, 3 is 18x24, etc
+ *
+ *     @param  s_x  Desired text width magnification level in X-axis.
+ *                  1 is default
+ *
+ *     @param  s_y  Desired text width magnification level in Y-axis.
+ *                  1 is default
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_text_size(glib_context_t *g_context,
+                                 uint8_t s_x,
+                                 uint8_t s_y);
+
+/***************************************************************************//**
+ *     @brief
+ *     Set text cursor location
+ *
+ *     @param g_context
+ *     Pointer to the glib_context_t
+ *
+ *     @param x
+ *     X-coordinate in pixels
+ *
+ *     @param y
+ *     Y-coordinate in pixels
+ *
+ *     @return
+ *     Returns GLIB_OK on success, or else error code
+ ******************************************************************************/
+glib_status_t glib_set_cursor(glib_context_t *g_context, int16_t x, int16_t y);
 
 /***************************************************************************//**
  *     @brief
@@ -601,6 +707,36 @@ glib_status_t glib_scroll_diag_left(uint8_t start_page_addr,
  *      GLIB_OK if there are no errors.
  ******************************************************************************/
 glib_status_t glib_stop_scroll(void);
+
+/***************************************************************************//**
+ *    @brief
+ *      Initialize for shifting text along the horizontal axis of the screen.
+ *
+ *    @param[in] string
+ *      The string that shifted along the axis.
+ *
+ *    @param[in] rate_ms
+ *      The moving speed of the string.
+ *
+ *    @param[in] direction
+ *      The moving direction of the string.
+ *
+ *    @param[in] y
+ *      The distance between the text and the upper boundary of the display.
+ ******************************************************************************/
+void glib_shift_text_init(glib_context_t *g_context, const char *string,
+                          uint32_t rate_ms,
+                          glib_shifting_direction_t direction, int16_t y);
+
+/***************************************************************************//**
+ *    @brief
+ *      Shifting string along the axis of the screen. Call it in the process
+ *      action funtion of the application.
+ *
+ *    @return
+ *      GLIB_OK if there are no errors.
+ ******************************************************************************/
+glib_status_t glib_shift_text(void);
 
 /***************************************************************************//**
  *    @brief

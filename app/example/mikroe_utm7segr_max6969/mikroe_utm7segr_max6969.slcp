@@ -47,7 +47,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.1.0
+  version: 1.2.0
 ui_hints:
   highlight:
     - path: README.md

@@ -1,0 +1,39 @@
+id: mikroe_water_detect
+package: third_party_hw_drivers
+label: Water Detect Click (Mikroe)
+description: >
+  Driver for the Mikroe Water Detect Click water and other electroconductive liquids detector board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/water_detect/config/mikroe_water_detect_config.h
+    file_id: driver_config_waterdetect
+    unless: [brd2703a]
+  - path: public/mikroe/water_detect/config/brd2703a/mikroe_water_detect_config.h
+    file_id: driver_config_waterdetect
+    condition: [brd2703a]
+provides:
+  - name: mikroe_water_detect
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_water_detect
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/waterdetect/lib/include
+    file_list:
+      - path: waterdetect.h
+  - path: public/mikroe/water_detect/inc
+    file_list:
+      - path: mikroe_water_detect.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/waterdetect/lib/src/waterdetect.c
+  - path: public/mikroe/water_detect/src/mikroe_water_detect.c
