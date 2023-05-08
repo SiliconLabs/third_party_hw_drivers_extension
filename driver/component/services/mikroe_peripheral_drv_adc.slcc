@@ -18,5 +18,8 @@ include:
   - path: peripheral_drivers/mikroe/inc
     file_list:
       - path: drv_analog_in.h
+      - path: hal_gpio.h
+      - path: drv_name.h
+      - path: hal_target.h
 source:
   - path: peripheral_drivers/mikroe/src/drv_analog_in.c

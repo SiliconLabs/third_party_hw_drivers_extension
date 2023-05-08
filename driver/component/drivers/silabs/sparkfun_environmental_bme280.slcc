@@ -1,0 +1,27 @@
+id: sparkfun_atmospheric_bme280
+package: third_party_hw_drivers
+label: BME280 - Atmospheric Sensor (Sparkfun)
+description: >
+  Driver for the Sparkfun BME280 Atmospheric Sensor board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+  - name: sleeptimer
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_atmospheric_bme280
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_atmospheric_bme280
+include:
+  - path: public/silabs/environmental_bme280_ccs811/inc
+    file_list:
+      - path: sparkfun_bme280.h
+source:
+  - path: public/silabs/environmental_bme280_ccs811/src/sparkfun_bme280.c

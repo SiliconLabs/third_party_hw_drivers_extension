@@ -1,7 +1,7 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.2.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.3.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -16,7 +16,7 @@ A full list of all drivers in this repository is defined below:
 | oledw_ssd1306 | [Click Here](./driver/public/mikroe/oledw_ssd1306) | [Click Here](./app/example/mikroe_oledw_ssd1306) | [Click Here](./app/documentation/example/mikroe_oledw_ssd1306) |
 | buzz2_cmt_8540s_smt | [Click Here](./driver/public/mikroe/buzz2_cmt_8540s_smt) | [Click Here](./app/example/mikroe_buzz2_cmt_8540s_smt) | [Click Here](./app/documentation/example/mikroe_buzz2_cmt_8540s_smt) |
 | brushless16_lb11685av | [Click Here](./driver/public/mikroe/brushless16_lb11685av) | [Click Here](./app/example/mikroe_brushless16_lb11685av) | [Click Here](./app/documentation/example/mikroe_brushless16_lb11685av) |
-| accel5_bma400 | [Click Here](./driver/public/mikroe/accel5_bma400) | [Click Here](./app/example/mikroe_accel5_bma400) | [Click Here](./app/documentation/example/mikroe_accel5_bma400) |
+| accel5_bma400 | [Click Here](./driver/public/silabs/accel5_bma400) | [Click Here](./app/example/mikroe_accel5_bma400) | [Click Here](./app/documentation/example/mikroe_accel5_bma400) |
 | dosimeter_type5 | [Click Here](./driver/public/silabs/dosimeter_type5) | [Click Here](./app/example/sparkfun_dosimeter_type5) | [Click Here](./app/documentation/example/sparkfun_dosimeter_type5) |
 | micro_oled_ssd1306 | [Click Here](./driver/public/silabs/micro_oled_ssd1306) | [Click Here](./app/example/sparkfun_micro_oled_ssd1306) | [Click Here](./app/documentation/example/sparkfun_micro_oled_ssd1306) |
 | rfid_id12la | [Click Here](./driver/public/silabs/rfid_id12la) | [Click Here](./app/example/sparkfun_rfid_id12la) | [Click Here](./app/documentation/example/sparkfun_rfid_id12la) |
@@ -42,14 +42,20 @@ A full list of all drivers in this repository is defined below:
 | environment2_sht40_sgp40 | [Click Here](./driver/public/mikroe/environment2_sht40_sgp40) | [Click Here](./app/example/mikroe_environment2_sht40_sgp40) | [Click Here](./app/documentation/example/mikroe_environment2_sht40_sgp40) |
 | heartrate4_max30101 | [Click Here](./driver/public/mikroe/heartrate4_max30101) | [Click Here](./app/example/mikroe_heartrate4_max30101) | [Click Here](./app/documentation/example/mikroe_heartrate4_max30101) |
 | hr_po_max30101_max32664 | [Click Here](./driver/public/silabs/hr_po_max30101_max32664) | [Click Here](./app/example/sparkfun_hr_po_max30101_max32664) | [Click Here](./app/documentation/example/sparkfun_hr_po_max30101_max32664) |
-
+| alcohol_mq3 | [Click Here](./driver/public/mikroe/alcohol_mq3) | [Click Here](./app/example/mikroe_alcohol_mq3) | [Click Here](./app/documentation/example/mikroe_alcohol_mq3) |
+| gpsclick_lea6s | [Click Here](./driver/public/mikroe/gpsclick_lea6s) | [Click Here](./app/example/mikroe_gpsclick_lea6s) | [Click Here](./app/documentation/example/mikroe_gpsclick_lea6s) |
+| temphum15_sht40 | [Click Here](./driver/public/mikroe/temphum15_sht40) | [Click Here](./app/example/mikroe_temphum15_sht40) | [Click Here](./app/documentation/example/mikroe_temphum15_sht40) |
+| irthermo3_mlx90632 | [Click Here](./driver/public/mikroe/irthermo3_mlx90632) | [Click Here](./app/example/mikroe_irthermo3_mlx90632) | [Click Here](./app/documentation/example/mikroe_irthermo3_mlx90632) |
+| stepper2_a4988 | [Click Here](./driver/public/mikroe/stepper2_a4988) | [Click Here](./app/example/mikroe_stepper2_a4988) | [Click Here](./app/documentation/example/mikroe_stepper2_a4988) |
+| dcmotor3_tb6549fg | [Click Here](./driver/public/mikroe/dcmotor3_tb6549fg) | [Click Here](./app/example/mikroe_dcmotor3_tb6549fg) | [Click Here](./app/documentation/example/mikroe_dcmotor3_tb6549fg) |
+| environmental_bme280_ccs811 | [Click Here](./driver/public/silabs/environmental_bme280_ccs811) | [Click Here](./app/example/sparkfun_environmental_bme280_ccs811) | [Click Here](./app/documentation/example/sparkfun_environmental_bme280_ccs811) |
 
 ## Requirements ##
 
 - Desired Silicon Labs Starter Kit
 - Driver specific test hardware
 - Simplicity Studio v5.6.0.0 or newer
-- Gecko SDK Suite 4.2.1, available via Simplicity Studio
+- Gecko SDK Suite 4.2.3, available via Simplicity Studio
 
 ## How to add to Simplicity Studio IDE ##
 

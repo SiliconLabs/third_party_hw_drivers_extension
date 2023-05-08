@@ -7,6 +7,7 @@ category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
 quality: evaluation
 root_path: driver
 requires:
+  - name: gsdk_version
   - name: iostream
 recommends:
   - id: iostream_uart
@@ -21,5 +22,7 @@ include:
   - path: peripheral_drivers/mikroe/inc
     file_list:
       - path: drv_uart.h
+      - path: drv_name.h
+      - path: hal_target.h
 source:
   - path: peripheral_drivers/mikroe/src/drv_uart.c

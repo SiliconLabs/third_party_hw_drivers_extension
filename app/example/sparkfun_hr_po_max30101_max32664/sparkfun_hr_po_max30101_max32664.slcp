@@ -1,5 +1,5 @@
 project_name: sparkfun_hr_po_max30101_max32664
-label: sparkfun_hr_po_max30101_max32664
+label: Third Party Hardware Drivers - MAX30101 & MAX32664 - Pulse Oximeter and Heart Rate Sensor (Sparkfun)
 description: |
   This example project shows an example for SparkFun Pulse Oximeter and Heart Rate Sensor board based on MAX30101 & MAX32664 driver integration.
 category: Example|Platform
@@ -31,13 +31,12 @@ component:
 - id: device_init
 - id: i2cspm
   instance: [qwiic]
-- id: brd4314a
 - id: simple_timer
 define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.2.0
+  version: 1.3.0
 other_file:
   - path: ../../documentation/example/sparkfun_hr_po_max30101_max32664/image/create_example.png
     directory: "image"

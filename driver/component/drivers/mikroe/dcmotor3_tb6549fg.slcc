@@ -1,0 +1,37 @@
+id: mikroe_dcmotor3
+package: third_party_hw_drivers
+label: TB6549FG - DC Motor 3 Click (Mikroe)
+description: >
+  Driver for the DC Motor 3 Click board, this board relies on the Toshiba TB6549FG full-bridge driver.
+category: Motor Control
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_pwm
+config_file:
+  - path: public/mikroe/dcmotor3_tb6549fg/config/mikroe_tb6549fg_config.h
+    file_id: driver_config_dcmotor3
+    unless: [brd2703a]
+  - path: public/mikroe/dcmotor3_tb6549fg/config/brd2703a/mikroe_tb6549fg_config.h
+    file_id: driver_config_dcmotor3
+    condition: [brd2703a]
+template_contribution:
+  - name: component_catalog
+    value: mikroe_dcmotor3
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/dcmotor3/lib/include
+    file_list:
+      - path: dcmotor3.h
+  - path: public/mikroe/dcmotor3_tb6549fg/inc
+    file_list:
+      - path: mikroe_tb6549fg.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/dcmotor3/lib/src/dcmotor3.c
+  - path: public/mikroe/dcmotor3_tb6549fg/src/mikroe_tb6549fg.c

@@ -1,0 +1,35 @@
+id: mikroe_alcohol_mq3
+package: third_party_hw_drivers
+label: MQ3 - Alcohol Click (Mikroe)
+description: >
+  Driver for the Mikroe Alcohol Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_adc
+config_file:
+  - path: public/mikroe/alcohol_mq3/config/mikroe_alcohol_mq3_config.h
+    file_id: driver_config_alcohol
+provides:
+  - name: mikroe_alcohol_mq3
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_alcohol_mq3
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/alcohol/lib/include
+    file_list:
+      - path: alcohol.h
+  - path: public/mikroe/alcohol_mq3/inc
+    file_list:
+      - path: mikroe_alcohol_mq3.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/alcohol/lib/src/alcohol.c
+  - path: public/mikroe/alcohol_mq3/src/mikroe_alcohol_mq3.c

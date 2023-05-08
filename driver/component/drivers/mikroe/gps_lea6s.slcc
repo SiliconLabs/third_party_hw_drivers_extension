@@ -1,0 +1,35 @@
+id: mikroe_gps
+package: third_party_hw_drivers
+label: LEA-6S - GPS Click (Mikroe)
+description: >
+  Driver for the Mikroe Lea-6S - GPS Click board
+category: Wireless Connectivity
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_uart
+config_file:
+  - path: public/mikroe/gpsclick_lea6s/config/mikroe_gps_click_lea6s_config.h
+    file_id: driver_config_gps_click_lea6s
+provides:
+  - name: mikroe_gps
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_gps
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/gps_lea6s/lib/include
+    file_list:
+      - path: gps.h
+  - path: public/mikroe/gpsclick_lea6s/inc
+    file_list:
+      - path: mikroe_lea6s.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/gps_lea6s/lib/src/gps.c
+  - path: public/mikroe/gpsclick_lea6s/src/mikroe_lea6s.c

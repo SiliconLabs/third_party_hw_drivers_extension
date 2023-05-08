@@ -126,10 +126,12 @@ static void app_bio_hub_timer_handle(sl_simple_timer_t *timer, void *data)
 {
   (void)timer;
   (void)data;
+  static uint32_t count = 0;
 
   // Information from the bio_hub_read_bpm function will be saved to our "body"
   // variable.
   if (SL_STATUS_OK == bio_hub_read_bpm(&libBpm)) {
+    app_log("\r\nCount: %lu\r\n", count++);
     app_log("Heartrate: %d\r\n", libBpm.heart_rate);
     app_log("Confidence: %d\r\n", libBpm.confidence);
     app_log("Oxygen: %d\r\n", libBpm.oxygen);

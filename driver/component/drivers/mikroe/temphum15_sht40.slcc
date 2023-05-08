@@ -1,0 +1,33 @@
+id: mikroe_temphum15
+package: third_party_hw_drivers
+label: SHT40 - Temp&Hum 15 Click (Mikroe)
+description: >
+  Driver for the Temp&Hum 15 Click board, this board relies on the SHT40 Temperature and humidity sensor using I2C interface.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+config_file:
+provides:
+  - name: mikroe_temphum15
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_temphum15
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/temphum15/lib/include
+    file_list:
+      - path: temphum15.h
+  - path: public/mikroe/temphum15_sht40/inc
+    file_list:
+      - path: mikroe_sht40.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/temphum15/lib/src/temphum15.c
+  - path: public/mikroe/temphum15_sht40/src/mikroe_sht40.c

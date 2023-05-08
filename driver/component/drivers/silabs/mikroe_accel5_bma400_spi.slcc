@@ -1,0 +1,53 @@
+id: mikroe_accel5_bma400_spi
+package: third_party_hw_drivers
+label: BMA400 - Accel 5 Click (Mikroe) - SPI
+description: >
+  Driver for the Bosch Sensortec BMA400 Accelerometer sensor using SPI interface
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: spidrv
+  - name: udelay
+recommends:
+  - id: spidrv
+    instance: [mikroe]
+
+provides:
+  - name: mikroe_accel5_bma400_spi
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: mikroe_accel5_bma400_spi
+
+config_file:
+  - path: public/silabs/accel5_bma400/config/brd2703a/mikroe_bma400_spi_config.h
+    file_id: driver_config_bma400_i2c
+    condition: [brd2703a]
+  - path: public/silabs/accel5_bma400/config/brd4108a/mikroe_bma400_spi_config.h
+    file_id: driver_config_bma400_i2c
+    condition: [brd4108a]
+  - path: public/silabs/accel5_bma400/config/brd4314a/mikroe_bma400_spi_config.h
+    file_id: driver_config_bma400_i2c
+    condition: [brd4314a]
+  - path: public/silabs/accel5_bma400/config/other/mikroe_bma400_spi_config.h
+    file_id: driver_config_bma400_i2c
+    unless: [brd4314a, brd4108a, brd2703a]
+
+include:
+  - path: public/silabs/accel5_bma400/inc
+    file_list:
+      - path: mikroe_bma400_spi.h
+
+  - path: thirdparty/boschsensortec/accelerometer_bma400
+    file_list:
+      - path: bma400_defs.h
+      - path: bma400.h
+
+source:
+  - path: thirdparty/boschsensortec/accelerometer_bma400/bma400.c
+  - path: public/silabs/accel5_bma400/src/mikroe_bma400_spi.c

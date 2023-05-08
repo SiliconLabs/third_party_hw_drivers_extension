@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-This project shows the implementation of a accelerometer sensor that is integrated on the Accel 5 Click board.
+This project shows the implementation of an accelerometer sensor that is integrated on the Accel 5 Click board.
 
 With its ultra-low power consumption, onboard data processing, output data lowpass filtering, and ability to detect many different events, the Accel 5 click is a perfect solution for IoT applications. It can also be used to develop applications for wearables, where the BMA400 sensor shows its true potential, offering an ultra-low power always-on operation with no functionality compromises. In general, Accel 5 click can be used wherever a reliable detection of the acceleration-related events is needed: smart home applications, IoT applications, drop detection for warranty logging, power management based on motion, and similar.
 
@@ -12,22 +12,37 @@ With its ultra-low power consumption, onboard data processing, output data lowpa
 
 - [A MikroE Accel 5 Click board.](https://www.mikroe.com/accel-5-click)
 
+**NOTE:**
+Tested boards for working with this example:
+
+| Board ID | Description  |
+| ---------------------- | ------ |
+| BRD2703A | [EFR32xG24 Explorer Kit - XG24-EK2703A ](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview)    |
+| BRD4314A | [BGM220 Bluetooth Module Explorer Kit - BGM220-EK4314A](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit?tab=overview)  |
+| BRD4108A | [EFR32BG22 Explorer Kit Board](https://www.silabs.com/development-tools/wireless/bluetooth/bg22-explorer-kit?tab=overview)  |
+
 ## Hardware Connection ##
 
 The Accel 5 Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line. Just be sure that the click board is configured into SPI-mode by the resistors and not into I2C-mode.
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter bma400.
+1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter: bma400.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - BMA400 (Accel 5 Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the example:
+
+    - **Third Party Hardware Drivers - BMA400 - Accelerometer Sensor (Mikroe) - I2C** if using the I2C interface.  
+
+    - **Third Party Hardware Drivers - BMA400 - Accelerometer Sensor (Mikroe) - SPI** if using the SPI interface.
+
+    Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+    ![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -35,7 +50,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_accel5_bma400) (overwriting existing file), into the project root folder.
+2. Copy the file app/example/mikroe_accelerometer_bma400 into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -45,12 +60,12 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
-        - [Application] → [Utility] → [Log]
-        - [Application] → [Utility] → [Assert]
         - [Application] → [Service] → [Simple timer service]
-        - [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe)] → use default configuration
+        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
+        - [Third Party] → [Tiny printf]
+        - [Application] → [Utility] → [Assert]
+        - If using the I2C interface: [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe) - I2C] → use default configuration
+        - If using the SPI interface: [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe) - SPI] → use default configuration
 
 4. Build and flash this example to the board.
 
@@ -58,15 +73,13 @@ You can either create a project based on a example project or start with an empt
 
 - Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
 
-- SDK Extension must be enabled for the project to install "BMA400 - Accel 5 Click (Mikroe)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: mikroe.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "BMA400 - Accel 5 Click (Mikroe)" component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
-
 ## How It Works ##
+
+You can choose the mode of operation by selecting the corresponding macro MIKROE_BMA400_READ_MODE_INTERRUPT or MIKROE_BMA400_READ_MODE_POLLING.
 
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
-![usb_debug](log.png "USB Debug Output Data")
+![usb_debug](image/log.png "USB Debug Output Data")
 
 ## Report Bugs & Get Support ##
 

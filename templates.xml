@@ -452,8 +452,134 @@
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="app/example/sparkfun_hr_po_max30101_max32664/sparkfun_hr_po_max30101_max32664.slcp"/>
     <properties key="readmeFiles" value="app/documentation/example/sparkfun_hr_po_max30101_max32664/README.md"/>
-    <properties key="boardCompatibility" value="brd2601a brd2601b brd2703a brd2704a brd4100a brd4101a brd4101b brd4103a brd4104a brd4108a brd4150a brd4150b brd4150c brd4151a brd4152a brd4153a brd4154a brd4155a brd4158a brd4159a brd4161a brd4162a brd4163a brd4164a brd4165b brd4166a brd4167a brd4168a brd4169a brd4169b brd4170a brd4171a brd4172a brd4172b brd4173a brd4174a brd4174b brd4175a brd4176a brd4177a brd4179b brd4180a brd4180b brd4181a brd4181b brd4181c brd4182a brd4183a brd4183b brd4183c brd4184a brd4184b brd4185a brd4186a brd4186b brd4186c brd4187a brd4187b brd4187c brd4188a brd4188b brd4190a brd4191a brd4194a brd4195a brd4196a brd4300a brd4300b brd4301a brd4302a brd4303a brd4304a brd4305a brd4305c brd4305d brd4305e brd4306a brd4306b brd4306c brd4306d brd4308a brd4308b brd4308c brd4308d brd4309a brd4309b brd4310a brd4311a brd4311b brd4312a brd4314a brd4316a brd4317a brd4319a brd4330a brd4331a com.silabs.board.none"/>
+    <properties key="boardCompatibility" value="brd2703a brd4108a brd4314a brd2601b brd2704a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*bgm1.* .*bgm13.* .*bgm21.* .*bgm22.* .*bgm27.* .*efr32bg12p.* .*efr32bg13p.* .*efr32bg1b.* .*efr32bg1p.* .*efr32bg21.* .*efr32bg22.* .*efr32bg24.* .*efr32bg27.* .*efr32mg12p.* .*efr32mg13p.* .*efr32mg14p.* .*efr32mg1p.* .*efr32mg21.* .*efr32mg22.* .*efr32mg24.* .*efr32mg27.* .*mgm1.* .*mgm12.* .*mgm13.* .*mgm21.* .*mgm22.* .*mgm24.* .*mgm27.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+    <descriptors name="mikroe_alcohol_mq3" label="Third Party Hardware Drivers - MQ3 - Alcohol Click (Mikroe)" description="This example project shows an example for Mikroe Alcohol Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_alcohol_mq3/mikroe_alcohol_mq3.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_alcohol_mq3/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+   <descriptors name="mikroe_gps_click_lea6s" label="Third Party Hardware Drivers - LEA-6S - GPS Click (Mikroe)" description="This example project shows an example for GPS Click - LEA-6S Sensor board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_gpsclick_lea6s/mikroe_gps_click_lea6s.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_gpsclick_lea6s/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_temphum15_sht40" label="Third Party Hardware Drivers - SHT40 - Temp&amp;Hum 15 Click (Mikroe)" description="This example project shows an example for Third Party Hardware Drivers - SHT40 - Temp&amp;Hum 15 Click (Mikroe) integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_temphum15_sht40/mikroe_temphum15_sht40.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_temphum15_sht40/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*bgm22.* .*bg22.* .*efr32[bm]g24.* .*efr32[x]g24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_irthermo3_mlx90632" label="Third Party Hardware Drivers - MLX90632 - IrThermo 3 Click (Mikroe)" description="This example project shows an example for Mikroe IrThermo 3 Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_irthermo3_mlx90632/mikroe_irthermo3_mlx90632.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_irthermo3_mlx90632/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_stepper2_a4988" label="Third Party Hardware Drivers - A4988 - Stepper 2 Click (Mikroe)" description="This example project shows an example for Third Party Hardware Drivers - A4988 - Stepper 2 Click (Mikroe) integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_stepper2_a4988/mikroe_stepper2_a4988.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_stepper2_a4988/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_dcmotor3_tb6549fg" label="Third Party Hardware Drivers - TB6549FG - DC Motor 3 Click (Mikroe)" description="This example project shows an example for Mikroe DC Motor 3 Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_dcmotor3_tb6549fg/mikroe_dcmotor3_tb6549fg.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_dcmotor3_tb6549fg/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_environmental_bme280_ccs811" label="Third Party Hardware Drivers - BME280 &amp; CCS811 - Environmental Sensor Combo Breakout (Sparkfun)" description=" This example project shows an example for Sparkfun BME280 - CCS811 Environmental Combo board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_environmental_bme280_ccs811/sparkfun_environmental_bme280_ccs811.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_environmental_bme280_ccs811/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4108a brd4314a brd2601b brd2704a"/>
+    <properties key="partCompatibility" value=".*bgm22.* .*bg22.* .*efr32[bm]g24.* .*efr32[x]g24.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+    <descriptors name="mikroe_accel5_bma400_i2c" label="Third Party Hardware Drivers - BMA400 - Accel 5 Click (Mikroe) - I2C" description="This example project shows an example for Mikroe Accel 5 Click driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_accel5_bma400/mikroe_accel5_bma400_i2c.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_accel5_bma400/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_accel5_bma400_spi" label="Third Party Hardware Drivers - BMA400 - Accel 5 Click (Mikroe) - SPI" description="This example project shows an example for Mikroe Accel 5 Click driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_accel5_bma400/mikroe_accel5_bma400_spi.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_accel5_bma400/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
