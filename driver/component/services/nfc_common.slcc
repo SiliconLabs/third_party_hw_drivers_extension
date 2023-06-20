@@ -1,0 +1,26 @@
+id: services_nfc_common
+package: third_party_hw_drivers
+label: NFC - Common
+description: >
+  Contains files commonly used across different NFC library components.
+category: Services|NFC
+quality: evaluation
+root_path: driver
+
+provides:
+  - name: nfc_common
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: nfc_common
+
+include:
+  - path: public/silabs/services_nfc/common/inc
+    file_list:
+      - path: nfc_serial.h
+      - path: nfc_tlv.h
+
+source:
+  - path: public/silabs/services_nfc/common/src/nfc_serial.c
+  - path: public/silabs/services_nfc/common/src/nfc_tlv.c

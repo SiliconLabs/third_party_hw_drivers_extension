@@ -1,0 +1,38 @@
+id: mirkoe_rf_meter
+package: third_party_hw_drivers
+label: AD8318 - RF Meter Click (Mikroe)
+description: >
+  Driver for the Mikroe RF Meter Click board.
+category: Sensors
+quality: evaluation
+
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: mikroe_peripheral_driver_spi
+  - name: status
+
+provides:
+  - name: mirkoe_rf_meter
+  - allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+  - value: rf_meter_ad8318
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/rfmeter/lib_rfmeter/include
+    file_list:
+      - path: rfmeter.h
+  - path: public/mikroe/rf_meter_ad8318/inc
+    file_list:
+      - path: mikroe_ad8318.h
+
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/rfmeter/lib_rfmeter/src/rfmeter.c
+  - path: public/mikroe/rf_meter_ad8318/src/mikroe_ad8318.c

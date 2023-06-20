@@ -1,0 +1,26 @@
+id: services_nfc_ndef
+package: third_party_hw_drivers
+label: NFC - NDEF
+description: >
+  NFC data exchange format (NDEF).
+category: Services|NFC
+quality: evaluation
+root_path: driver
+
+provides:
+  - name: nfc_ndef
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: nfc_ndef
+
+include:
+  - path: public/silabs/services_nfc/ndef/inc
+    file_list:
+      - path: ndef_message.h
+      - path: ndef_record.h
+
+source:
+  - path: public/silabs/services_nfc/ndef/src/ndef_message.c
+  - path: public/silabs/services_nfc/ndef/src/ndef_record.c

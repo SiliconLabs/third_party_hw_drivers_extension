@@ -1,0 +1,44 @@
+id: oledc_ssd1351
+package: third_party_hw_drivers
+label: SSD1351 - OLED C Click (Mikroe)
+description: >
+  Driver for the Mikroe OLED C Click display board.
+category: Display & LED
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_spi
+provides:
+  - name: oled_display
+config_file:
+  - path: public/mikroe/oledc_ssd1351/config/brd2703a/mikroe_ssd1351_config.h
+    file_id: driver_config_oledc
+    condition: [brd2703a]
+  - path: public/mikroe/oledc_ssd1351/config/brd4108a/mikroe_ssd1351_config.h
+    file_id: driver_config_oledc
+    condition: [brd4108a]
+  - path: public/mikroe/oledc_ssd1351/config/brd4314a/mikroe_ssd1351_config.h
+    file_id: driver_config_oledc
+    condition: [brd4314a]    
+template_contribution:
+  - name: component_catalog
+    value: oledc_ssd1351
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/oledc/lib/include
+    file_list:
+      - path: oledc.h
+      - path: oledc_font.h
+      - path: oledc_image.h
+  - path: public/mikroe/oledc_ssd1351/inc
+    file_list:
+      - path: mikroe_ssd1351.h
+      - path: mikroe_ssd1351_image.h     
+      - path: oled_display.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/oledc/lib/src/oledc.c
+  - path: public/mikroe/oledc_ssd1351/src/mikroe_ssd1351.c
+  - path: public/mikroe/oledc_ssd1351/src/oled_display.c

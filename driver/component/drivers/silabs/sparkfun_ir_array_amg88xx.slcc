@@ -1,0 +1,34 @@
+id: sparkfun_ir_array_amg88xx
+package: third_party_hw_drivers
+label: AMG88XX - Grid-EYE Infrared Array Breakout (Sparkfun)
+description: >
+  Driver for the Sparkfun Grid-EYE Infrared Array Breakout - AMG8833 (Qwiic) board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: sleeptimer
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+config_file:
+  - path: "public/silabs/ir_array_amg88xx/config/brd2601b/sl_i2cspm_qwiic_config.h"
+    condition: [brd2601b]
+    override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: qwiic
+    
+provides:
+  - name: sparkfun_ir_array_amg88xx
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_ir_array_amg88xx 
+include:
+  - path: public/silabs/ir_array_amg88xx/inc
+    file_list:
+      - path: ir_array_amg88xx.h  
+source:
+  - path: public/silabs/ir_array_amg88xx/src/ir_array_amg88xx.c

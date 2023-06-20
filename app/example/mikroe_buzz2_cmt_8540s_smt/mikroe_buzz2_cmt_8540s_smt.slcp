@@ -38,7 +38,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.3.0
+  version: 1.4.0
 other_file:
   - path: ../../documentation/example/mikroe_buzz2_cmt_8540s_smt/create_example.png
   - path: ../../documentation/example/mikroe_buzz2_cmt_8540s_smt/log.png

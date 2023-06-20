@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.3.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.4.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -46,9 +46,25 @@ A full list of all drivers in this repository is defined below:
 | gpsclick_lea6s | [Click Here](./driver/public/mikroe/gpsclick_lea6s) | [Click Here](./app/example/mikroe_gpsclick_lea6s) | [Click Here](./app/documentation/example/mikroe_gpsclick_lea6s) |
 | temphum15_sht40 | [Click Here](./driver/public/mikroe/temphum15_sht40) | [Click Here](./app/example/mikroe_temphum15_sht40) | [Click Here](./app/documentation/example/mikroe_temphum15_sht40) |
 | irthermo3_mlx90632 | [Click Here](./driver/public/mikroe/irthermo3_mlx90632) | [Click Here](./app/example/mikroe_irthermo3_mlx90632) | [Click Here](./app/documentation/example/mikroe_irthermo3_mlx90632) |
+| stepper_a3967 | [Click Here](./driver/public/silabs/stepper_a3967) | [Click Here](./app/example/mikroe_stepper_a3967) | [Click Here](./app/documentation/example/mikroe_stepper_a3967) |
 | stepper2_a4988 | [Click Here](./driver/public/mikroe/stepper2_a4988) | [Click Here](./app/example/mikroe_stepper2_a4988) | [Click Here](./app/documentation/example/mikroe_stepper2_a4988) |
 | dcmotor3_tb6549fg | [Click Here](./driver/public/mikroe/dcmotor3_tb6549fg) | [Click Here](./app/example/mikroe_dcmotor3_tb6549fg) | [Click Here](./app/documentation/example/mikroe_dcmotor3_tb6549fg) |
 | environmental_bme280_ccs811 | [Click Here](./driver/public/silabs/environmental_bme280_ccs811) | [Click Here](./app/example/sparkfun_environmental_bme280_ccs811) | [Click Here](./app/documentation/example/sparkfun_environmental_bme280_ccs811) |
+| oledc_ssd1351 | [Click Here](./driver/public/mikroe/oledc_ssd1351) | [Click Here](./app/example/mikroe_oledc_ssd1351) | [Click Here](./app/documentation/example/mikroe_oledc_ssd1351) |
+| pressure_dps310 | [Click Here](./driver/public/mikroe/pressure3_dps310) | [Click Here](./app/example/mikroe_pressure3_dps310) | [Click Here](./app/documentation/example/mikroe_pressure3_dps310) |
+| lte_iot_2 | [Click Here](./driver/public/mikroe/lte_iot2_bg96) | [Click Here](./app/example/mikroe_lte_iot2_bg96) | [Click Here](./app/documentation/example/mikroe_lte_iot2_bg96) |
+| e_paper | [Click Here](./driver/public/mikroe/e_paper) | [Click Here](./app/example/mikroe_e_paper) | [Click Here](./app/documentation/example/mikroe_e_paper) |
+| ir_array_amg88xx | [Click Here](./driver/public/silabs/ir_array_amg88xx) | [Click Here](./app/example/sparkfun_ir_array_amg88xx) | [Click Here](./app/documentation/example/sparkfun_ir_array_amg88xx) |
+| nfc2_pn7150 | [Click Here](./driver/public/mikroe/nfc2_pn7150) | [Click Here](./app/example/mikroe_nfc2_pn7150) | [Click Here](./app/documentation/example/mikroe_nfc2_pn7150) |
+| nfc2_pn7150_t2t_read | [Click Here](./driver/public/silabs/services_nfc) | [Click Here](./app/example/mikroe_nfc2_pn7150_nci_t2t_read) | [Click Here](./app/documentation/example/mikroe_nfc2_pn7150_nci_t2t_read) |
+| nfc2_pn7150_t2t_write | [Click Here](./driver/public/silabs/services_nfc) | [Click Here](./app/example/mikroe_nfc2_pn7150_nci_t2t_write) | [Click Here](./app/documentation/example/mikroe_nfc2_pn7150_nci_t2t_write) |
+| ir_generate | [Click Here](./driver/public/silabs/ir_generate) | [Click Here](./app/example/silabs_ir_generate) | [Click Here](./app/documentation/example/silabs_ir_generate) |
+| triac | [Click Here](./driver/public/silabs/triac) | [Click Here](./app/example/silabs_triac) | [Click Here](./app/documentation/example/silabs_triac) |
+| mikroe_microsd | [Click Here](./driver/public/mikroe/mikroe_microsd) | [Click Here](./app/example/mikroe_microsd) | [Click Here](./app/documentation/example/mikroe_microsd) |
+| pir_ira_s210st01 | [Click Here](./driver/public/silabs/pir_ira_s210st01) | [Click Here](./app/example/silabs_pir_ira_s210st01) | [Click Here](./app/documentation/example/silabs_pir_ira_s210st01) |
+| rf_meter_ad8318 | [Click Here](./driver/public/mikroe/rf_meter_ad8318) | [Click Here](./app/example/mikroe_rf_meter_ad8318) | [Click Here](./app/documentation/example/mikroe_rf_meter_ad8318) |
+| nfctag2_nt3h2111 | [Click Here](./driver/public/silabs/nfctag2_nt3h2111) | [Click Here](./app/example/mikroe_nfctag2_nt3h2111) | [Click Here](./app/documentation/example/mikroe_nfctag2_nt3h2111) |
+| pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) |
 
 ## Requirements ##
 

@@ -1,0 +1,29 @@
+id: mikroe_microsd
+package: third_party_hw_drivers
+label: microSD - microSD Click (Mikroe)
+description: >
+  Driver for the Mikroe microSD Click board.
+category: Storage
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: fatfs_sdc_spi_platform
+provides:
+  - name: fatfs_storage_device
+  - name: fatfs_storage_device_sdcard
+config_file:
+  - path: public/mikroe/microsd/config/mikroe_microsd_config.h
+    file_id: driver_config_microsd
+template_contribution:
+  - name: component_catalog
+    value: fatfs_storage_device_sdcard
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: public/mikroe/microsd/inc
+    file_list:
+      - path: sl_sdc_sd_card.h
+source:
+  - path: public/mikroe/microsd/src/sl_sdc_sd_card.c

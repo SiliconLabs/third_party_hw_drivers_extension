@@ -1,0 +1,38 @@
+id: services_nfc_nci
+package: third_party_hw_drivers
+label: NFC - NCI
+description: >
+  Events based NCI.
+category: Services|NFC
+quality: evaluation
+root_path: driver
+
+requires:
+  - name: nfc_common
+  - name: nci_tml
+
+provides:
+  - name: nfc_nci
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: nfc_nci
+
+config_file:
+  - path: public/silabs/services_nfc/nci/config/nci_config.h
+    file_id: nfc_nci_config
+
+include:
+  - path: public/silabs/services_nfc/nci/inc
+    file_list:
+      - path: nci.h
+      - path: nci_nxp_ext.h
+      - path: nci_evt.h
+      - path: nci_err.h
+      - path: nci_dbg.h
+
+source:
+  - path: public/silabs/services_nfc/nci/src/nci_dbg.c
+  - path: public/silabs/services_nfc/nci/src/nci_nxp_ext.c
+  - path: public/silabs/services_nfc/nci/src/nci.c

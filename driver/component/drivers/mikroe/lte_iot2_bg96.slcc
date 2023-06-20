@@ -1,0 +1,66 @@
+id: mikroe_lte_iot2
+package: third_party_hw_drivers
+label: BG96 - LTE IoT 2 Click (Mikroe)
+description: >
+  Driver for the Mikroe BG96 - LTE IoT Click board, this board relies on the Quectel BG96 LTE module using UART interface.
+category: Wireless Connectivity
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: emlib_gpio
+  - name: app_queue
+  - name: sleeptimer
+  - name: iostream_usart
+recommends:
+  - id: iostream_usart
+    instance: [bg96]
+config_file:
+  - path: public/mikroe/lte_iot2_bg96/config/brd2703a/mikroe_lte_iot2_bg96_config.h
+    condition: [brd2703a]
+  - path: public/mikroe/lte_iot2_bg96/config/brd4108a/mikroe_lte_iot2_bg96_config.h
+    condition: [brd4108a]
+  - path: public/mikroe/lte_iot2_bg96/config/brd4314a/mikroe_lte_iot2_bg96_config.h
+    condition: [brd4314a]
+  - override:
+      component: iostream_usart
+      file_id: iostream_usart_config
+      instance: bg96
+    path: public/mikroe/lte_iot2_bg96/config/brd4314a/sl_iostream_usart_bg96_config.h
+    condition: [brd4314a]
+  - override:
+      component: iostream_usart
+      file_id: iostream_usart_config
+      instance: bg96
+    path: public/mikroe/lte_iot2_bg96/config/brd4108a/sl_iostream_usart_bg96_config.h
+    condition: [brd4108a]
+  - override:
+      component: iostream_usart
+      file_id: iostream_usart_config
+      instance: bg96
+    path: public/mikroe/lte_iot2_bg96/config/brd2703a/sl_iostream_usart_bg96_config.h
+    condition: [brd2703a]
+provides:
+  - name: mikroe_lte_iot2
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_lte_iot2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: public/mikroe/lte_iot2_bg96/inc
+    file_list:
+      - path: mikroe_bg96.h
+      - path: at_parser_utility.h
+      - path: at_parser_platform.h
+      - path: at_parser_events.h
+      - path: at_parser_core.h
+source:
+  - path: public/mikroe/lte_iot2_bg96/src/mikroe_bg96.c
+  - path: public/mikroe/lte_iot2_bg96/src/at_parser_platform.c
+  - path: public/mikroe/lte_iot2_bg96/src/at_parser_events.c
+  - path: public/mikroe/lte_iot2_bg96/src/at_parser_core.c

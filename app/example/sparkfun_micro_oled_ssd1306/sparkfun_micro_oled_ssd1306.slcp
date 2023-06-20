@@ -44,7 +44,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.3.0
+  version: 1.4.0
 other_file:
   - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/bgm220_kit_sparkfun_oled.png
   - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/create_example.png

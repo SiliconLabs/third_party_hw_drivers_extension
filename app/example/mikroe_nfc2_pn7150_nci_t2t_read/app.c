@@ -1,0 +1,324 @@
+/***************************************************************************//**
+ * @file
+ * @brief Top level application functions
+ *******************************************************************************
+ * # License
+ * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
+ *******************************************************************************
+ *
+ * The licensor of this software is Silicon Laboratories Inc. Your use of this
+ * software is governed by the terms of Silicon Labs Master Software License
+ * Agreement (MSLA) available at
+ * www.silabs.com/about-us/legal/master-software-license-agreement. This
+ * software is distributed to you in Source Code format and is governed by the
+ * sections of the MSLA applicable to Source Code.
+ *
+ ******************************************************************************/
+#include <string.h>
+#include "sl_i2cspm_instances.h"
+#include "sl_sleeptimer.h"
+#include "gpiointerrupt.h"
+#include "app_log.h"
+#include "app_assert.h"
+
+#include "t2t.h"
+#include "nci.h"
+#include "nfc_serial.h"
+
+#include "mikroe_pn7150_config.h"
+#include "mikroe_pn7150.h"
+
+static uint16_t read_index = 0;
+static uint16_t t2t_area_size = 0;
+
+static uint8_t data_buff[16];
+
+static void app_int_callback(uint8_t intNo);
+
+/*
+ * T2T Read Process
+ * -----------------------------------------------------------------------------
+ * ----- Preparation Sequence ------
+ * DH --> Core Reset CMD                                                --> NFCC
+ * DH <-- Core Reset RSP                                                <-- NFCC
+ * DH --> Core Init CMD                                                 --> NFCC
+ * DH <-- Core Init RSP                                                 <-- NFCC
+ * DH --> NXP Proprietary Act CMD                                       --> NFCC
+ * DH <-- NXP Proprietary Act RSP                                       <-- NFCC
+ * ----- RF Discover Phase ------
+ * DH --> RF Discover Map CMD                                           --> NFCC
+ * (RF Prot. = PROTOCOL_T2T, Mode = Poll, RF Intf. = Frame RF)
+ * DH <-- RF Discover Map RSP                                           <-- NFCC
+ * DH --> RF Discover CMD (NFC_A_PASSIVE_POLL_MODE)                     --> NFCC
+ * DH <-- RF Discover RSP                                               <-- NFCC
+ * DH <-- RF Intf Activated NTF (Prot = PROTOCOL_T2T, Intf = Frame RF)  <-- NFCC
+ * ----- Data Exhange Phase (REPEAT) ------
+ * DH --> NCI Data Message (READ Command, Block Address)                <-- NFCC
+ * DH <-- Core Conn Credits NTF                                         <-- NFCC
+ * DH <-- NCI Data Message (Read Response or NACK Response)             <-- NFCC
+ * ----- RF Deactivate Phase ------
+ * DH --> RF Deactivate CMD (Discovery)                                 <-- NFCC
+ * DH <-- RF Deactivate RSP                                             <-- NFCC
+ * DH --> RF Deactivate NTF                                             <-- NFCC
+ * ----- Go Back to RF Discover Phase ------
+ */
+
+/***************************************************************************//**
+ * Initialize application.
+ ******************************************************************************/
+void app_init(void)
+{
+  // Initialize PN71x0 I2C communication.
+  if (SL_STATUS_OK != mikroe_pn7150_init(sl_i2cspm_mikroe)) {
+    app_log("> PN7150 - NFC 2 Click board driver init failed.\n");
+  }
+
+  GPIO_ExtIntConfig(MIKROE_PN7150_INT_PORT,
+                    MIKROE_PN7150_INT_PIN,
+                    MIKROE_PN7150_INT_PIN,
+                    1,
+                    0,
+                    1);
+  GPIOINT_CallbackRegister(MIKROE_PN7150_INT_PIN, app_int_callback);
+  GPIO_IntEnable(MIKROE_PN7150_INT_PIN);
+  app_log("        HW Reset       \r\n");
+  mikroe_pn7150_hw_reset();
+
+  // Initialize NCI.
+  nci_init();
+
+  // Print project name.
+  app_log("\r\n******************************\r\n*\r\n");
+  app_log("* NCI T2T Read Demo\r\n");
+  app_log("*\r\n******************************\r\n");
+}
+
+/***************************************************************************//**
+ * App ticking function.
+ ******************************************************************************/
+void app_process_action(void)
+{
+  // Get NCI event.
+  nci_evt_t *nci_evt = nci_get_event();
+
+  if (nci_evt->header == nci_evt_none) {
+    return;
+  }
+
+  // Log NCI event, if debug enabled.
+  nci_evt_log(nci_evt->header);
+
+  switch (nci_evt->header) {
+    /* Start up event, enter init sequence. */
+    case nci_evt_startup: {
+      /* Step 1 in init sequence: core reset. */
+      nci_core_reset_cmd_t core_reset_cmd;
+
+      /* Keep configurations. */
+      core_reset_cmd.reset_type = nci_core_reset_keep_config;
+
+      /* Send command and check for error/ */
+      nci_err_t nci_err = nci_core_reset(&core_reset_cmd);
+      app_assert(nci_err == nci_err_none,
+                 "NCI core reset error: %x \r\n",
+                 nci_err);
+      break;
+    }
+
+    /* Event generated by reception of core reset response. */
+    case nci_evt_core_reset_rsp_rec: {
+      /* Get core reset response data: NCI version of NFCC. */
+      uint8_t nci_version
+        = nci_evt->data.payload.nci_data.core_reset_rsp.nci_version;
+
+      /* Get core reset response data: configuration status. */
+      uint8_t config_status
+        = nci_evt->data.payload.nci_data.core_reset_rsp.config_status;
+
+      /* Log NCI version of NFCC. */
+      app_log("NFCC's NCI Version is %x.%x \r\n",
+              ((nci_version & 0xF0) >> 4),
+              (nci_version & 0x0F));
+
+      /* Log configuration status. */
+      if (config_status == nci_core_reset_keep_config) {
+        nci_log_ln("NCI RF Configuration has been kept.");
+      } else if (config_status == nci_core_reset_reset_conig) {
+        nci_log_ln("NCI RF Configuration has been reset. ");
+      }
+
+      /* Step 2 in init sequence: core init. */
+      /* Send command and check for error. */
+      nci_err_t nci_err = nci_core_init();
+      app_assert(nci_err == nci_err_none,
+                 "NCI core init error: %x \r\n",
+                 nci_err);
+      break;
+    }
+
+    /* Event generated by reception of core init response. */
+    case nci_evt_core_init_rsp_rec: {
+      uint8_t *manu_spec_info
+        = nci_evt->data.payload.nci_data.core_init_rsp.manu_spec_info;
+
+      app_log("NFCC's Firmware Version is %02x.%02x\r\n",
+              manu_spec_info[2],
+              manu_spec_info[3]);
+
+      /* Activate NXP proprietary extensions,
+       * send command and check for error.
+       */
+      nci_err_t nci_err = nci_proprietary_nxp_act();
+      app_assert(nci_err == nci_err_none,
+                 "NCI core init error: %x \r\n",
+                 nci_err);
+      break;
+    }
+
+    /* Event generated by reception of proprietary nxp act response. */
+    case nci_evt_proprietary_nxp_act_rsp_rec: {
+      nci_rf_mapping_config_t mapping_config_1 = {
+        .rf_protocol = nci_protocol_t2t,
+        .mode = nci_rf_mapping_mode_poll,
+        .rf_interface = nci_rf_interface_frame
+      };
+
+      nci_rf_mapping_config_t mapping_config[1] = { mapping_config_1 };
+
+      nci_rf_discover_map_cmd_t cmd = {
+        .num_of_mapping_config = 1,
+        .mapping_config = mapping_config
+      };
+
+      nci_err_t nci_err = nci_rf_discover_map(&cmd);
+      app_assert(nci_err == nci_err_none,
+                 "NCI RF discovery map error: %x \r\n",
+                 nci_err);
+      break;
+    }
+    case nci_evt_rf_discover_map_rsp_rec: {
+      if (nci_evt->data.payload.nci_data.rf_discover_map_rsp.status
+          != nci_status_ok) {
+        nci_log_ln("RF Discover Map Response status not ok.");
+        return;
+      }
+
+      uint8_t config[] = { nci_nfc_a_passive_poll_mode, 1 };
+
+      nci_rf_discover_cmd_t cmd = {
+        .num_of_config = 1,
+        .configurations = config
+      };
+
+      nci_err_t nci_err = nci_rf_discover(&cmd);
+      app_assert(nci_err == nci_err_none,
+                 "NCI RF discovery error: %x \r\n",
+                 nci_err);
+      break;
+    }
+
+    case nci_evt_rf_discover_rsp_rec: {
+      if (nci_evt->data.payload.nci_data.rf_discover_rsp.status
+          != nci_status_ok) {
+        nci_log_ln("RF Discover Response status not ok.");
+        return;
+      }
+
+      /* Wait for NTF */
+      break;
+    }
+    case nci_evt_rf_intf_activated_ntf_rec: {
+      uint8_t t2t_cmd_buff[] = { T2T_CMD_READ, read_index };
+
+      nci_data_packet_t pakcet = {
+        .pbf = nci_pbf_complete_msg,
+        .conn_id = 0,
+        .payload_len = 2,
+        .payload = t2t_cmd_buff
+      };
+
+      nci_err_t nci_err = nci_data_packet_send(&pakcet);
+      app_assert(nci_err == nci_err_none,
+                 "NCI RF discovery map error: %x \r\n",
+                 nci_err);
+      break;
+    }
+    case nci_evt_data_packet_rec: {
+      memcpy(data_buff,
+             nci_evt->data.payload.nci_data.rec_data_packet.payload,
+             16);
+
+      if (read_index == 0) {
+        /* CC2, convert to size in blocks. */
+        t2t_area_size = data_buff[14] * 2;
+
+        /* Print header area. */
+        app_log("\r\nHeader: \r\nBlock 000 ");
+        serial_put_hex_and_ascii(&data_buff[0], 4);
+        app_log("\r\nBlock 001 ");
+        serial_put_hex_and_ascii(&data_buff[4], 4);
+        app_log("\r\nBlock 002 ");
+        serial_put_hex_and_ascii(&data_buff[8], 4);
+        app_log("\r\nBlock 003 ");
+        serial_put_hex_and_ascii(&data_buff[12], 4);
+        app_log("\r\n\r\nT2T Area (Size: %d blocks): \r\n", t2t_area_size);
+      } else if (((4 + t2t_area_size) - read_index) == 2) {
+        app_log("Block %03u to %03u ", read_index, (read_index + 1));
+        serial_put_hex(data_buff, 8);
+        app_log(" -- -- -- -- -- -- -- --    ");
+        serial_put_ascii(data_buff, 8);
+        app_log("\r\n");
+      } else {
+        app_log("Block %03u to %03u ", read_index, (read_index + 3));
+        serial_put_hex_and_ascii(data_buff, 16);
+        app_log("\r\n");
+      }
+
+      read_index += 4;
+
+      if (read_index < (t2t_area_size + 4)) {
+        uint8_t t2t_cmd_buff[] = { T2T_CMD_READ, read_index };
+
+        nci_data_packet_t pakcet = {
+          .pbf = nci_pbf_complete_msg,
+          .conn_id = 0,
+          .payload_len = 2,
+          .payload = t2t_cmd_buff
+        };
+        nci_err_t nci_err = nci_data_packet_send(&pakcet);
+        app_assert(nci_err == nci_err_none,
+                   "NCI send packet error: %x \r\n",
+                   nci_err);
+      } else {
+        read_index = 0;
+        nci_rf_deactivate_cmd_t cmd = {
+          .deactivate_type = nci_rf_deact_type_discovery_mode
+        };
+
+        nci_err_t nci_err = nci_rf_deactivate(&cmd);
+        app_assert(nci_err == nci_err_none,
+                   "NCI rf deactive error: %x \r\n",
+                   nci_err);
+      }
+
+      break;
+    }
+    case nci_evt_core_conn_credits_ntf_rec: {
+      break;
+    }
+    case nci_evt_rf_deactivate_rsp_rec: {
+      break;
+    }
+    case nci_evt_rf_deactivate_ntf_rec: {
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+static void app_int_callback(uint8_t intNo)
+{
+  (void) intNo;
+  nci_notify_incoming_packet();
+}

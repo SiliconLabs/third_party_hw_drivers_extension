@@ -1,0 +1,23 @@
+id: services_nfc_tag
+package: third_party_hw_drivers
+label: NFC - Tag
+description: >
+  NFC forum tags related files.
+category: Services|NFC
+quality: evaluation
+root_path: driver
+
+provides:
+  - name: nfc_tag
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: nfc_tag
+
+include:
+  - path: public/silabs/services_nfc/tag/inc
+    file_list:
+      - path: nfc_t2t.h
+      - path: nfc_t4t.h
+      - path: nfc_tag_dbg.h

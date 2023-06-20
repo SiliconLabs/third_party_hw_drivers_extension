@@ -1,0 +1,31 @@
+id: pwm_driver_si8711cc
+package: third_party_hw_drivers
+label: Si8711CC - PWM Driver Click (Mikroe)
+description: >
+  Driver for the Mikroe PWM Driver Click board.
+category: Motor Control
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_pwm
+provides:
+  - name: pwm_driver_si8711cc
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: pwm_driver_si8711cc
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/pwmdriver/lib/include
+    file_list:
+      - path: pwmdriver.h
+  - path: public/mikroe/pwm_driver_si8711cc/inc
+    file_list:
+      - path: mikroe_si8711cc.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/pwmdriver/lib/src/pwmdriver.c
+  - path: public/mikroe/pwm_driver_si8711cc/src/mikroe_si8711cc.c

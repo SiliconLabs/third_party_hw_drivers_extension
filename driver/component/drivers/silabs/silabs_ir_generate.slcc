@@ -1,0 +1,26 @@
+id: silabs_ir_generate
+package: third_party_hw_drivers
+label: IR Generator (Silabs)
+description: >
+  Driver for the IR generator driver using WSTK kit.
+category: Miscellaneous
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: emlib_prs
+  - name: emlib_timer
+config_file:
+  - path: public/silabs/ir_generate/config/ir_generate_config.h
+    file_id: ir_generate_drv_config
+provides:
+  - name: silabs_ir_generate
+template_contribution:
+  - name: component_catalog
+    value: silabs_ir_generate
+include:
+  - path: public/silabs/ir_generate/inc
+    file_list:
+      - path: ir_generate.h
+source:
+  - path: public/silabs/ir_generate/src/ir_generate.c
