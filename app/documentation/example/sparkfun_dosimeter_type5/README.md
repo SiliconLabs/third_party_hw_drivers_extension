@@ -1,4 +1,4 @@
-# Dosimeter Driver #
+# Pocket Geiger Radiation - Type 5 (Sparkfun) #
 
 ## Overview ##
 
@@ -16,9 +16,11 @@ The Type 5 Pocket Geiger Radiation Sensor from Radiation Watch is a highly sensi
 
 ## Connections Required ##
 
-Connect the Pochet Geiger Type 5 board to the BGM220 Explorer Kit.
+Connect the Pocket Geiger Type 5 board to the BGM220 Explorer Kit through GPIO.
 
-By default, the binding used is as follow:
+![connection](image/connection.png)
+
+By default, the binding used is as the table below:
 
 | Pocket Geiger pin  | BGM220 Explorer Kit pin | Standing for                  |
 | ------------------ | ----------------------- | ----------------------------- |
@@ -29,14 +31,14 @@ By default, the binding used is as follow:
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter dosimeter.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter radiation.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - Dosimeter (Type5 Geiger Sensor board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - Pocket Geiger Radiation Sensor - Type 5 (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -44,7 +46,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/sparkfun_dosimeter_type5) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/sparkfun_dosimeter_type5/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -54,11 +56,9 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
-        - [Platform] → [Driver] → [GPIOINT]
         - [Application] → [Utility] → [Log]
-        - [Third Party Hardware Drivers] → [Sensors] → [Type 5 - Pocket Geiger Radiation (Sparkfun)]
+        - [Third Party Hardware Drivers] → [Sensors] → [Pocket Geiger Radiation - Type 5 (Sparkfun)]
 
 4. Install printf float
 
@@ -66,23 +66,21 @@ You can either create a project based on a example project or start with an empt
 
     - Select C/C++ Build > Settings > Tool Settings >GNU ARM C Linker > General. Check Printf float.
 
-        ![float](float.png)
+        ![float](image/float.png)
 
 5. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "Type 5 - Pocket Geiger Radiation (Sparkfun)" component.
-
-- The example project are built on the BRD4314A board. So users should add the BRD4314A to MyProducts to able be see them on the Launcher Home of Simplicity Studio IDE.
+- SDK Extension must be enabled for the project to install **Pocket Geiger Radiation - Type 5 (Sparkfun)** component.
 
 ## How It Works ##
 
 ### API Overview ###
 
-`sparkfun_type5_config.h`: Used to configuration the GPIO Pins for the sensor and some specific values for radiation measurement process. You need to config 2 pins (SIGNAL and NOISE), the period process, history length and the history unit
+`sparkfun_type5_config.h`: Used to configure the GPIO Pins for the sensor and some specific values for the radiation measurement process. You need to config 2 pins (SIGNAL and NOISE), the period process, history length and the history unit.
 
 `sparkfun_type5.h`: Containing public APIs of the sensor that will be called by the application.
 
@@ -90,9 +88,10 @@ You can either create a project based on a example project or start with an empt
 
 ### Testing ###
 
+The application monitors the Pocket Geiger through interrupts, processes and allows to get back the data using a callback function.
 Use Putty or other program to read the serial output. The BGM220P uses by default a baudrate of 115200. You should expect a similar output to the one below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

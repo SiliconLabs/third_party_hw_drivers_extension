@@ -1,9 +1,11 @@
-# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
 project_name: micro_oled_ssd1306_glib
-label: micro_oled_ssd1306
+package: platform
+label: Third Party Hardware Drivers - SSD1306 - Mikroe OLEDW Click (Mikroe) with GLIB
 description: |
   This example project shows an example for Mikroe OLEDW Click board driver integration with glib.
 category: Example|Platform
+quality: evaluation
+
 filter:
 - name: Device Type
   value: [SoC]
@@ -11,44 +13,49 @@ filter:
   value: [32-bit MCU]
 - name: Project Difficulty
   value: [Beginner]
-package: platform
-quality: evaluation
+
 readme:
 - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/README.md
+
 source:
 - path: app.c
 - path: main.c
+
 include:
 - path: ''
   file_list:
   - path: app.h
+
 component:
-- id: BGM220PC22HNA
 - id: sl_system
+- id: device_init
 - id: mikroe_oledw
   from: third_party_hw_drivers
 - id: services_oled_glib
   from: third_party_hw_drivers
-- id: iostream_usart
-  instance: [vcom]
 - id: i2cspm
   instance: [mikroe]
 - id: spidrv
   instance: [mikroe]
 - id: simple_button
   instance: [btn0]
-- id: device_init
 - id: sleeptimer
-- id: brd4314a
+
 define:
 - name: DEBUG_EFM
+
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
+
 other_file:
-  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/hardware_connection.png
-  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/create_example.png
-  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/testing.gif
+  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/image/hardware_connection.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_oledw_ssd1306_glib/image/testing_result.gif
+    directory: "image"
+
 ui_hints:
   highlight:
     - path: README.md

@@ -34,9 +34,9 @@
  * Silicon Labs may update projects from time to time.
  ******************************************************************************/
 
-#include "sparkfun_ak9753.h"
-#include "app_log.h"
 #include "sl_i2cspm_instances.h"
+#include "app_log.h"
+#include "sparkfun_ak9753.h"
 
 /***************************************************************************//**
  * Initialize application.
@@ -58,6 +58,7 @@ void app_init(void)
     .int_present = false,
     .PDN_present = false
   };
+
   sparkfun_ak9753_init(&sparkfun_ak9753_cfg);
   sparkfun_ak9753_set_hysteresis_eeprom_ir13(10);
 }
@@ -67,10 +68,11 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  bool is_avail = false;
-  sparkfun_ak9753_is_data_ready(&is_avail);
+  bool data_ready = false;
 
-  if (is_avail) {
+  sparkfun_ak9753_is_data_ready(&data_ready);
+
+  if (data_ready) {
     int16_t ret = 0;
     float tempC = 0;
     float tempF = 0;

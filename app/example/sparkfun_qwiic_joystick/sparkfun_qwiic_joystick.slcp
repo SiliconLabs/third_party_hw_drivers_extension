@@ -1,8 +1,11 @@
 project_name: sparkfun_qwiic_joystick
-label: sparkfun_qwiic_joystick
+label: Third Party Hardware Drivers - Qwiic Joystick (Sparkfun)
+package: platform
 description: |
   This project shows the implementation of a Joystick module that is integrated on the SparkFun Qwiic Joystick board.
 category: Example|Platform
+quality: evaluation
+
 filter:
 - name: Device Type
   value: [SoC]
@@ -10,39 +13,54 @@ filter:
   value: [32-bit MCU]
 - name: Project Difficulty
   value: [Beginner]
-package: platform
-quality: evaluation
+
 readme:
 - path: ../../documentation/example/sparkfun_qwiic_joystick/README.md
+
 source:
 - path: app.c
 - path: main.c
+
 include:
 - path: ''
   file_list:
   - path: app.h
+
 component:
-- id: BGM220PC22HNA
-- id: app_log
 - id: sl_system
+- id: device_init
 - id: sparkfun_qwiic_joystick
   from: third_party_hw_drivers
 - id: iostream_usart
   instance: [vcom]
 - id: i2cspm
   instance: [qwiic]
-- id: device_init
 - id: sleeptimer
-- id: brd4314a
+- id: app_log
+
+config_file:
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: qwiic
+    path: brd2601b/sl_i2cspm_qwiic_config.h
+    condition: [brd2601b]
+
 define:
 - name: DEBUG_EFM
+
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
+
 other_file:
-  - path: ../../documentation/example/sparkfun_qwiic_joystick/logs.png
-  - path: ../../documentation/example/sparkfun_qwiic_joystick/create_example.png
-  - path: ../../documentation/example/sparkfun_qwiic_joystick/hardware_connection.png
+  - path: ../../documentation/example/sparkfun_qwiic_joystick/image/logs.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_qwiic_joystick/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_qwiic_joystick/image/hardware_connection.png
+    directory: "image"
+
 ui_hints:
   highlight:
     - path: README.md

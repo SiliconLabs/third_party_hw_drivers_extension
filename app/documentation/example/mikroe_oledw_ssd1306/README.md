@@ -1,4 +1,4 @@
-# OLEDW Click #
+# SSD1306 - Mikroe OLEDW Click (Mikroe) #
 
 ## Summary ##
 
@@ -14,22 +14,22 @@ MikroE OLED W Click is based on the MI9639BO-W OLED module which has a size of 1
 
 ## Hardware Connection ##
 
-The OLEDW Click board support MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
+The OLEDW Click board supports MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png "Hardware connection")
+![board](image/hardware_connection.png "Hardware connection")
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter oledw.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter oledw.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - SSD1306 (OLEDW Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - SSD1306 - Mikroe OLEDW Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_oledw_ssd1306) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_oledw_ssd1306/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -50,23 +50,21 @@ You can either create a project based on a example project or start with an empt
         - [Services] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Assert]
-        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - OLED W Click (Mikroe) - SPI]
+        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - OLED W Click (Mikroe) - SPI] → use default config
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "SSD1306 - OLED W Click (Mikroe) - SPI" component. Selecting this component will also include the "SPIDRV" and "I2CSPM" components with default configurated instances: mikroe.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "SSD1306 - OLED W Click (Mikroe) - SPI" component will include the "SPIDRV" and "I2CSPM" component with unconfigured instance: inst0. These instances should be configurated by users.
+- SDK Extension must be enabled for the project to install "SSD1306 - OLED W Click (Mikroe) - SPI" component.
 
 ## How It Works ##
 
 The OLED display will look something like the GIF below.
 
-![logging_screen](testing_result.gif)
+![logging_screen](image/testing_result.gif)
 
 ## Report Bugs & Get Support ##
 

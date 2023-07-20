@@ -8,10 +8,14 @@ quality: evaluation
 root_path: driver
 requires:
   - name: gsdk_version
-  - name: iostream
+  - name: iostream_transport
 recommends:
-  - id: iostream_uart
-    instance: [vcom]
+  - id: iostream_transport
+    instance: [mikroe]
+    condition: [iostream_usart]
+  - id: iostream_transport
+    instance: [mikroe]
+    condition: [iostream_eusart]
 provides:
   - name: mikroe_peripheral_driver_uart
     allow_multiple: false

@@ -13,8 +13,18 @@ requires:
 provides:
   - name: oled_display
 config_file:
-  - path: public/mikroe/oledw_ssd1306/config/mikroe_ssd1306_config.h
+  - path: public/mikroe/oledw_ssd1306/config/brd2703a/mikroe_ssd1306_config.h
     file_id: driver_config_oledw
+    condition: [brd2703a]
+  - path: public/mikroe/oledw_ssd1306/config/brd4108a/mikroe_ssd1306_config.h
+    file_id: driver_config_oledw
+    condition: [brd4108a]
+  - path: public/mikroe/oledw_ssd1306/config/brd4314a/mikroe_ssd1306_config.h
+    file_id: driver_config_oledw
+    condition: [brd4314a]
+  - path: public/mikroe/oledw_ssd1306/config/other/mikroe_ssd1306_config.h
+    file_id: driver_config_oledw
+    unless: [brd4314a, brd4108a, brd2703a]
 template_contribution:
   - name: component_catalog
     value: mikroe_oledw

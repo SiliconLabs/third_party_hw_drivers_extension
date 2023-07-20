@@ -41,8 +41,6 @@
 #define MIKROE_MAX30101_H_
 #include "sl_status.h"
 #include "sl_i2cspm.h"
-#include "em_gpio.h"
-#include "gpiointerrupt.h"
 
 #ifdef __cplusplus
 extern "C" {

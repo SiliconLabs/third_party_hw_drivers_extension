@@ -40,12 +40,12 @@
 #ifndef SPARKFUN_AK9753_H_
 #define SPARKFUN_AK9753_H_
 
-#include "sparkfun_ak9753_platform.h"
-#include "sparkfun_ak9753_config.h"
-#include "sl_status.h"
-#include "sl_i2cspm.h"
 #include "em_gpio.h"
 #include "gpiointerrupt.h"
+#include "sl_status.h"
+#include "sl_i2cspm.h"
+#include "sparkfun_ak9753_platform.h"
+#include "sparkfun_ak9753_config.h"
 
 #if (defined(SL_CATALOG_POWER_MANAGER_PRESENT))
 #include "sl_power_manager.h"
@@ -212,6 +212,8 @@ sl_status_t sparkfun_ak9753_set_mode(sparkfun_ak9753_mode_t mode);
  *
  * @return
  *    @li @ref SL_STATUS_OK if there are no errors.
+ *
+ *    @li @ref SL_STATUS_NOT_INITIALIZED if PDN pin is not present
  ******************************************************************************/
 sl_status_t sparkfun_ak9753_power_down(void);
 
@@ -221,6 +223,8 @@ sl_status_t sparkfun_ak9753_power_down(void);
  *
  * @return
  *    @li @ref SL_STATUS_OK if there are no errors.
+ *
+ *    @li @ref SL_STATUS_NOT_INITIALIZED if PDN pin is not present
  ******************************************************************************/
 sl_status_t sparkfun_ak9753_power_up(void);
 

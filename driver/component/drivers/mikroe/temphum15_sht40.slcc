@@ -10,6 +10,7 @@ ui_hints:
 root_path: driver
 requires:
   - name: status
+  - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_i2c
 config_file:
 provides:

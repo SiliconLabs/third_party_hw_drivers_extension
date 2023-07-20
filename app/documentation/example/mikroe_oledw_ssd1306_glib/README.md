@@ -1,4 +1,4 @@
-# Mikroe OLED W Click Driver with glib #
+# SSD1306 - Mikroe OLEDW Click (Mikroe) with GLIB #
 
 ## Summary ##
 
@@ -24,18 +24,18 @@ You simply connect a *Mikroe OLED W Click board* to a *BGM220 Explorer Kit* boar
 
 The second of which is the I2C pull-up jumper. If multiple boards are connected to the I2C bus, the equivalent resistance goes down, increasing your pull up strength. If multiple boards are connected on the same bus, make sure only one board has the pull-up resistors connected.
 
-![hardware_connection](hardware_connection.png)
+![hardware_connection](image/hardware_connection.png)
 
 ## Setup ##
 
 To test this application, you should connect the BMG220 Explorer Kit Board to the PC using a microUSB cable.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "mikroe", "oledw".
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "mikroe", "oledw".
 
-2. Click **Create** button on the **Third Party Hardware Drivers - SSD1306 (Mikroe OLEDW Click Board) with glib** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - SSD1306 - Mikroe OLEDW Click (Mikroe) with GLIB** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -43,7 +43,7 @@ To test this application, you should connect the BMG220 Explorer Kit Board to th
 
 1. Create a "Platform - Empty C Example" project for the "BGM220 Explorer Kit Board" using Simplicity Studio 5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/micro_oled_ssd1306) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_oledw_ssd1306_glib/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
     - Open the .slcp file in the project.
@@ -52,20 +52,18 @@ To test this application, you should connect the BMG220 Explorer Kit Board to th
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
+        - [Services] → [Timers] → [Sleep Timer]
         - [Platform] → [Driver]→ [Button] → [Simple Button] → default instance name: **btn0**.
-        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - OLED W Click (Mikroe) - SPI]
+        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - OLED W Click (Mikroe) - SPI]  → use default config
         - [Third Party Hardware Drivers] → [Services] → [GLIB - OLED Graphics Library]
 
 4. Build and flash the project to your device.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "SSD1306 - OLED W Click (Mikroe) - SPI" component. Selecting this component will also include the "SPIDRV" and "I2CSPM" components with default configurated instances: mikroe.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "SSD1306 - OLED W Click (Mikroe) - SPI" component will include the "SPIDRV" and "I2CSPM" component with unconfigured instance: inst0. These instances should be configurated by users.
+- SDK Extension must be enabled for the project to install "SSD1306 - OLED W Click (Mikroe) - SPI" component.
 
 ## How It Works ##
 
@@ -73,7 +71,7 @@ After initialization, the OLED displays the text with the font 6x8. If Button 0 
 
 The OLED display will look something like the GIF below.
 
-![testing](testing.gif)
+![testing](image/testing_result.gif)
 
 ## Report Bugs & Get Support ##
 

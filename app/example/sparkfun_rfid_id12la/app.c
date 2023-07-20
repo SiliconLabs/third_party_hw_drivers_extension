@@ -33,10 +33,10 @@
  * maintained and there may be no bug maintenance planned for these resources.
  * Silicon Labs may update projects from time to time.
  ******************************************************************************/
+#include "sl_i2cspm_instances.h"
 #include "app_log.h"
 #include "app_assert.h"
-#include "sl_i2cspm_instances.h"
-#include "sl_sleeptimer.h"
+
 #include "sparkfun_rfid_id12la.h"
 
 static id12la_tag_list_t id12la_all_tag_data;
@@ -52,13 +52,13 @@ void app_init(void)
   ret = sparkfun_id12la_init(sl_i2cspm_rfid);
 
   if (ret != SL_STATUS_OK) {
-    app_log("i2c address has been changed before\n");
+    app_log("I2C address has been changed before\n");
     ret = sparkfun_id12la_scan_address();
     app_assert_status(ret);
     app_log("I2C address is: 0x%02X\n", sparkfun_id12la_get_i2c_address());
-    app_log("rfid begins successfully, ready to scan some tags\n");
+    app_log("RFID begins successfully, ready to scan some tags\n");
   } else {
-    app_log("rfid inits successfully, ready scans some tags\n");
+    app_log("RFID inits successfully, ready scans some tags\n");
   }
 }
 

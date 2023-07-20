@@ -43,21 +43,6 @@
 extern "C" {
 #endif
 
-/** @defgroup ak9753_config AK9753 Configuration */
-
-/***************************************************************************//**
- * @addtogroup ak9753_config
- * @brief  AK9753 Configuration
- * @details
- * @{
- ******************************************************************************/
-
-/************************************************/
-/**\name    I2C ADDRESS DEFINITION              */
-/************************************************/
-#define Address1    0x64
-#define Address2    0x65
-#define Address3    0x66
 
 /************************************************/
 /* Address is changeable via CAD0/CAD1          */
@@ -73,14 +58,13 @@ extern "C" {
 // <h>Address settings
 
 // <o SPARKFUN_AK9753_ADDR> Address of AK9753 sensor.
-// <Address1=> 0x64
-// <Address2=> 0x65
-// <Address3=> 0x66
-// <i> Default: Address1
-#define SPARKFUN_AK9753_ADDR             Address1
+// <0x64=> Address1 (0x64)
+// <0x65=> Address2 (0x65)
+// <0x66=> Address3 (0x66)
+// <i> Default: 0x64
+#define SPARKFUN_AK9753_ADDR             0x64
 
 // </h>
-
 // <<< end of configuration section >>>
 
 // <<< sl:start pin_tool >>>
@@ -92,23 +76,21 @@ extern "C" {
  * then a port C/D pin can be used.
  */
 // <gpio optional=true> SPARKFUN_AK9753_CONFIG_INT
-// $[SPARKFUN_AK9753_CONFIG_INT]
-#define SPARKFUN_AK9753_CONFIG_INT_PORT   gpioPortB
-#define SPARKFUN_AK9753_CONFIG_INT_PIN    0
-// [SPARKFUN_AK9753_CONFIG_INT]$
+// $[GPIO_SPARKFUN_AK9753_CONFIG_INT]
+// #define SPARKFUN_AK9753_CONFIG_INT_PORT   gpioPortB
+// #define SPARKFUN_AK9753_CONFIG_INT_PIN    0
+// [GPIO_SPARKFUN_AK9753_CONFIG_INT]$
 
 /*
  * GPIO port/pin used for PDN power down output pin.
  */
 // <gpio optional=true> SPARKFUN_AK9753_CONFIG_PDN
-// $[SPARKFUN_AK9753_CONFIG_PDN]
-#define SPARKFUN_AK9753_CONFIG_PDN_PORT   gpioPortB
-#define SPARKFUN_AK9753_CONFIG_PDN_PIN    1
-// [SPARKFUN_AK9753_CONFIG_PDN]$
+// $[GPIO_SPARKFUN_AK9753_CONFIG_PDN]
+// #define SPARKFUN_AK9753_CONFIG_PDN_PORT   gpioPortB
+// #define SPARKFUN_AK9753_CONFIG_PDN_PIN    1
+// [GPIO_SPARKFUN_AK9753_CONFIG_PDN]$
 
 // <<< sl:end pin_tool >>>
-
-/** @} (end addtogroup ak9753_config) */
 
 #ifdef __cplusplus
 }

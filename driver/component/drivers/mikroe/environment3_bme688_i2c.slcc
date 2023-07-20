@@ -1,0 +1,35 @@
+id: mikroe_environment3_i2c
+package: third_party_hw_drivers
+label: BME688 - Environment 3 Click (Mikroe) - I2C
+description: >
+  Driver for the Environment 3 Click board. This board features BME688, a first gas sensor with Artificial Intelligence (AI), and integrated high-linearity/high-accuracy pressure, humidity, and temperature sensors from Bosch Sensortec.
+quality: evaluation
+ui_hints:
+  visibility: basic
+category: Sensors
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_spi
+
+provides:
+  - name: mikroe_environment3_i2c
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_environment3_i2c
+config_file:
+  - path: public/mikroe/environment3_bme688/config/mikroe_bme688_config_i2c.h
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/environment3/lib/include
+    file_list:
+      - path: environment3.h
+  - path: public/mikroe/environment3_bme688/inc
+    file_list:
+      - path: mikroe_bme688_i2c.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/environment3/lib/src/environment3.c
+  - path: public/mikroe/environment3_bme688/src/mikroe_bme688_i2c.c

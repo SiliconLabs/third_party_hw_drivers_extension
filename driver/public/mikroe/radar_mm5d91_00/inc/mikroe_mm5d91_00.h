@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file mikroe_mm5d91_00.h
- * @brief mikroSDK 2.0 Radar Click driver public API
+ * @brief SCL MM5D91_00 Prototypes
  * @version 1.0.0
  *******************************************************************************
  * # License
@@ -92,9 +92,9 @@ int32_t mikroe_radar_generic_write (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-int32_t mikroe_radar_generic_read (mikroe_radar_t *ctx,
-                                   uint8_t *data_buf,
-                                   uint16_t max_len);
+int32_t mikroe_radar_generic_read(mikroe_radar_t *ctx,
+                                  uint8_t *data_buf,
+                                  uint16_t max_len);
 
 /***************************************************************************//**
  * @brief Radar enable device function.
@@ -106,7 +106,7 @@ int32_t mikroe_radar_generic_read (mikroe_radar_t *ctx,
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_enable_device (mikroe_radar_t *ctx);
+sl_status_t mikroe_radar_enable_device(mikroe_radar_t *ctx);
 
 /***************************************************************************//**
  * @brief Radar disable device function.
@@ -118,7 +118,7 @@ sl_status_t mikroe_radar_enable_device (mikroe_radar_t *ctx);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_disable_device (mikroe_radar_t *ctx);
+sl_status_t mikroe_radar_disable_device(mikroe_radar_t *ctx);
 
 /***************************************************************************//**
  * @brief Radar get gpio 2 pin function.
@@ -130,7 +130,7 @@ sl_status_t mikroe_radar_disable_device (mikroe_radar_t *ctx);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_gpio2_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
+sl_status_t mikroe_radar_get_gpio2_pin(mikroe_radar_t *ctx, uint8_t *gpio_val);
 
 /***************************************************************************//**
  * @brief Radar get gpio 1 pin function.
@@ -142,7 +142,7 @@ sl_status_t mikroe_radar_get_gpio2_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_gpio1_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
+sl_status_t mikroe_radar_get_gpio1_pin(mikroe_radar_t *ctx, uint8_t *gpio_val);
 
 /***************************************************************************//**
  * @brief Radar get gpio 0 pin function.
@@ -154,7 +154,7 @@ sl_status_t mikroe_radar_get_gpio1_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_gpio0_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
+sl_status_t mikroe_radar_get_gpio0_pin(mikroe_radar_t *ctx, uint8_t *gpio_val);
 
 /***************************************************************************//**
  * @brief Radar set command function.
@@ -171,10 +171,10 @@ sl_status_t mikroe_radar_get_gpio0_pin (mikroe_radar_t *ctx, uint8_t *gpio_val);
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_set_command (mikroe_radar_t *ctx,
-                                      uint8_t cmd_id,
-                                      uint8_t *payload,
-                                      uint8_t payload_size);
+sl_status_t mikroe_radar_set_command(mikroe_radar_t *ctx,
+                                     uint8_t cmd_id,
+                                     uint8_t *payload,
+                                     uint8_t payload_size);
 
 /***************************************************************************//**
  * @brief Radar get command function.
@@ -190,10 +190,10 @@ sl_status_t mikroe_radar_set_command (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_command (mikroe_radar_t *ctx,
-                                      uint8_t cmd_id,
-                                      uint8_t *payload,
-                                      uint8_t *payload_size);
+sl_status_t mikroe_radar_get_command(mikroe_radar_t *ctx,
+                                     uint8_t cmd_id,
+                                     uint8_t *payload,
+                                     uint8_t *payload_size);
 
 /***************************************************************************//**
  * @brief Radar get event function.
@@ -208,10 +208,10 @@ sl_status_t mikroe_radar_get_command (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_event (mikroe_radar_t *ctx,
-                                    uint8_t *evt_id,
-                                    uint8_t *payload,
-                                    uint8_t *payload_size);
+sl_status_t mikroe_radar_get_event(mikroe_radar_t *ctx,
+                                   uint8_t *evt_id,
+                                   uint8_t *payload,
+                                   uint8_t *payload_size);
 
 /***************************************************************************//**
  * @brief Radar get temperature function.
@@ -224,8 +224,8 @@ sl_status_t mikroe_radar_get_event (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_get_temperature (mikroe_radar_t *ctx,
-                                          float *temperature);
+sl_status_t mikroe_radar_get_temperature(mikroe_radar_t *ctx,
+                                         float *temperature);
 
 /***************************************************************************//**
  * @brief Radar set detection range function.
@@ -240,9 +240,9 @@ sl_status_t mikroe_radar_get_temperature (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_set_detection_range (mikroe_radar_t *ctx,
-                                              float min,
-                                              float max);
+sl_status_t mikroe_radar_set_detection_range(mikroe_radar_t *ctx,
+                                             float min,
+                                             float max);
 
 /***************************************************************************//**
  * @brief Radar reset config function.
@@ -255,7 +255,7 @@ sl_status_t mikroe_radar_set_detection_range (mikroe_radar_t *ctx,
  * See #err_t definition for detailed explanation.
  * @note None.
  ******************************************************************************/
-sl_status_t mikroe_radar_reset_config (mikroe_radar_t *ctx);
+sl_status_t mikroe_radar_reset_config(mikroe_radar_t *ctx);
 
 /***************************************************************************//**
  * @brief Radar float ieee to mchip function.
@@ -265,7 +265,7 @@ sl_status_t mikroe_radar_reset_config (mikroe_radar_t *ctx);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note This is an empty function unless AI for PIC compiler is selected.
  ******************************************************************************/
-sl_status_t mikroe_radar_float_ieee_to_mchip (float *f_data);
+sl_status_t mikroe_radar_float_ieee_to_mchip(float *f_data);
 
 /***************************************************************************//**
  * @brief Radar float ieee to mchip function.
@@ -275,6 +275,6 @@ sl_status_t mikroe_radar_float_ieee_to_mchip (float *f_data);
  *         @li @c SL_STATUS_INVALID_PARAMETER - Invalid parameter.
  * @note This is an empty function unless AI for PIC compiler is selected.
  ******************************************************************************/
-sl_status_t mikroe_radar_float_mchip_to_ieee (float *f_data);
+sl_status_t mikroe_radar_float_mchip_to_ieee(float *f_data);
 
 #endif // MIKROE_MM5D91_00

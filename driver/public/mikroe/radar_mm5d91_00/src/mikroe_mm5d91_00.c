@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file mikroe_mm5d91_00.c
- * @brief mikroSDK 2.0 Radar Click driver public API
+ * @brief SCL MM5D91_00 Source File
  * @version 1.0.0
  *******************************************************************************
  * # License
@@ -159,7 +159,8 @@ sl_status_t mikroe_radar_set_command(mikroe_radar_t *ctx,
     return SL_STATUS_INVALID_PARAMETER;
   }
 
-  return RADAR_OK == radar_set_command(ctx, cmd_id, payload, payload_size) ? SL_STATUS_OK : SL_STATUS_FAIL;
+  return (RADAR_OK == radar_set_command(ctx, cmd_id, payload, payload_size))
+         ? SL_STATUS_OK : SL_STATUS_FAIL;
 }
 
 sl_status_t mikroe_radar_get_command(mikroe_radar_t *ctx,
@@ -197,7 +198,8 @@ sl_status_t mikroe_radar_get_temperature(mikroe_radar_t *ctx,
     return SL_STATUS_INVALID_PARAMETER;
   }
 
-  return RADAR_OK == radar_get_temperature(ctx, temperature) ? SL_STATUS_OK : SL_STATUS_FAIL;
+  return (RADAR_OK == radar_get_temperature(ctx, temperature))
+         ? SL_STATUS_OK : SL_STATUS_FAIL;
 }
 
 sl_status_t mikroe_radar_set_detection_range(mikroe_radar_t *ctx,
@@ -208,7 +210,8 @@ sl_status_t mikroe_radar_set_detection_range(mikroe_radar_t *ctx,
     return SL_STATUS_INVALID_PARAMETER;
   }
 
-  return RADAR_OK == radar_set_detection_range(ctx, min, max) ? SL_STATUS_OK : SL_STATUS_FAIL;
+  return (RADAR_OK == radar_set_detection_range(ctx, min, max))
+         ? SL_STATUS_OK : SL_STATUS_FAIL;
 }
 
 sl_status_t mikroe_radar_reset_config(mikroe_radar_t *ctx)
@@ -217,7 +220,8 @@ sl_status_t mikroe_radar_reset_config(mikroe_radar_t *ctx)
     return SL_STATUS_INVALID_PARAMETER;
   }
 
-  return RADAR_OK == radar_reset_config(ctx) ? SL_STATUS_OK : SL_STATUS_FAIL;
+  return (RADAR_OK == radar_reset_config(ctx))
+         ? SL_STATUS_OK : SL_STATUS_FAIL;
 }
 
 sl_status_t mikroe_radar_float_ieee_to_mchip(float *f_data)

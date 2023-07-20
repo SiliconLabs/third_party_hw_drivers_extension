@@ -21,7 +21,7 @@
 #include <string.h>
 
 #include "sl_status.h"
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 #include "sl_iostream_init_usart_instances.h"
 #include "sl_iostream_init_eusart_instances.h"
 
@@ -31,11 +31,13 @@
 #include "mikroe_a172mrq.h"
 
 #define PROCESS_COUTER                100
+#define READING_INTERVAL_MSEC         5000
 
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
 static uint8_t flag;
-static sl_simple_timer_t a172mrq_timer;
 
-static void app_a172mrq_timer_handle(sl_simple_timer_t *timer, void *data);
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 static void app_a172mrq_process(void);
 static void app_a172mrq_reg_one(uint8_t fngr_number);
 static void app_a172mrq_compare(void);
@@ -64,11 +66,12 @@ void app_init(void)
   app_a172mrq_reg_one(0);
   sl_sleeptimer_delay_millisecond(1000);
 
-  ret_code = sl_simple_timer_start(&a172mrq_timer,
-                                   5000,
-                                   app_a172mrq_timer_handle,
-                                   NULL,
-                                   true);
+  ret_code = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                                   READING_INTERVAL_MSEC,
+                                                   app_timer_cb,
+                                                   (void *) NULL,
+                                                   0,
+                                                   0);
   app_assert_status(ret_code);
 }
 
@@ -77,6 +80,12 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+
+  app_a172mrq_compare();
 }
 
 static void app_a172mrq_process(void)
@@ -154,10 +163,10 @@ static void app_a172mrq_compare(void)
   }
 }
 
-static void app_a172mrq_timer_handle(sl_simple_timer_t *timer, void *data)
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
-  (void)timer;
-  (void)data;
+  (void) handle;
+  (void) data;
 
-  app_a172mrq_compare();
+  app_timer_expire = true;
 }

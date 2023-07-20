@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.4.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.5.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -14,6 +14,7 @@ A full list of all drivers in this repository is defined below:
 | heartrate2_maxm86161 | [Click Here](./driver/public/mikroe/heartrate2_maxm86161) | [Click Here](./app/example/mikroe_heartrate2_maxm86161) | [Click Here](./app/documentation/example/mikroe_heartrate2_maxm86161) |
 | temphum9_shtc3 | [Click Here](./driver/public/mikroe/temphum9_shtc3) | [Click Here](./app/example/mikroe_temphum9_shtc3) | [Click Here](./app/documentation/example/mikroe_temphum9_shtc3) |
 | oledw_ssd1306 | [Click Here](./driver/public/mikroe/oledw_ssd1306) | [Click Here](./app/example/mikroe_oledw_ssd1306) | [Click Here](./app/documentation/example/mikroe_oledw_ssd1306) |
+| mikroe_oledw_ssd1306_glib | [Click Here](./driver/public/silabs/services_tphd_glib) | [Click Here](./app/example/mikroe_oledw_ssd1306_glib) | [Click Here](./app/documentation/example/mikroe_oledw_ssd1306_glib) |
 | buzz2_cmt_8540s_smt | [Click Here](./driver/public/mikroe/buzz2_cmt_8540s_smt) | [Click Here](./app/example/mikroe_buzz2_cmt_8540s_smt) | [Click Here](./app/documentation/example/mikroe_buzz2_cmt_8540s_smt) |
 | brushless16_lb11685av | [Click Here](./driver/public/mikroe/brushless16_lb11685av) | [Click Here](./app/example/mikroe_brushless16_lb11685av) | [Click Here](./app/documentation/example/mikroe_brushless16_lb11685av) |
 | accel5_bma400 | [Click Here](./driver/public/silabs/accel5_bma400) | [Click Here](./app/example/mikroe_accel5_bma400) | [Click Here](./app/documentation/example/mikroe_accel5_bma400) |
@@ -53,7 +54,7 @@ A full list of all drivers in this repository is defined below:
 | oledc_ssd1351 | [Click Here](./driver/public/mikroe/oledc_ssd1351) | [Click Here](./app/example/mikroe_oledc_ssd1351) | [Click Here](./app/documentation/example/mikroe_oledc_ssd1351) |
 | pressure_dps310 | [Click Here](./driver/public/mikroe/pressure3_dps310) | [Click Here](./app/example/mikroe_pressure3_dps310) | [Click Here](./app/documentation/example/mikroe_pressure3_dps310) |
 | lte_iot_2 | [Click Here](./driver/public/mikroe/lte_iot2_bg96) | [Click Here](./app/example/mikroe_lte_iot2_bg96) | [Click Here](./app/documentation/example/mikroe_lte_iot2_bg96) |
-| e_paper | [Click Here](./driver/public/mikroe/e_paper) | [Click Here](./app/example/mikroe_e_paper) | [Click Here](./app/documentation/example/mikroe_e_paper) |
+| e_paper_154_inch | [Click Here](./driver/public/mikroe/e_paper_154_inch) | [Click Here](./app/example/mikroe_e_paper_154_inch) | [Click Here](./app/documentation/example/mikroe_e_paper_154_inch) |
 | ir_array_amg88xx | [Click Here](./driver/public/silabs/ir_array_amg88xx) | [Click Here](./app/example/sparkfun_ir_array_amg88xx) | [Click Here](./app/documentation/example/sparkfun_ir_array_amg88xx) |
 | nfc2_pn7150 | [Click Here](./driver/public/mikroe/nfc2_pn7150) | [Click Here](./app/example/mikroe_nfc2_pn7150) | [Click Here](./app/documentation/example/mikroe_nfc2_pn7150) |
 | nfc2_pn7150_t2t_read | [Click Here](./driver/public/silabs/services_nfc) | [Click Here](./app/example/mikroe_nfc2_pn7150_nci_t2t_read) | [Click Here](./app/documentation/example/mikroe_nfc2_pn7150_nci_t2t_read) |
@@ -64,7 +65,13 @@ A full list of all drivers in this repository is defined below:
 | pir_ira_s210st01 | [Click Here](./driver/public/silabs/pir_ira_s210st01) | [Click Here](./app/example/silabs_pir_ira_s210st01) | [Click Here](./app/documentation/example/silabs_pir_ira_s210st01) |
 | rf_meter_ad8318 | [Click Here](./driver/public/mikroe/rf_meter_ad8318) | [Click Here](./app/example/mikroe_rf_meter_ad8318) | [Click Here](./app/documentation/example/mikroe_rf_meter_ad8318) |
 | nfctag2_nt3h2111 | [Click Here](./driver/public/silabs/nfctag2_nt3h2111) | [Click Here](./app/example/mikroe_nfctag2_nt3h2111) | [Click Here](./app/documentation/example/mikroe_nfctag2_nt3h2111) |
-| pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) |
+| pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) | 
+| mikroe_mic2 | [Click Here](./driver/public/mikroe/mic2) | [Click Here](./app/example/mikroe_mic2) | [Click Here](./app/documentation/example/mikroe_mic2) |
+| turbidity_tsd10 | [Click Here](./driver/public/mikroe/turbidity_tsd10) | [Click Here](./app/example/mikroe_turbidity_tsd10) | [Click Here](./app/documentation/example/mikroe_turbidity_tsd10) | 
+| environment3_bme688 | [Click Here](./driver/public/mikroe/environment3_bme688) | [Click Here](./app/example/mikroe_environment3_bme688) | [Click Here](./app/documentation/example/mikroe_environment3_bme688) |
+| ozone2_mq131 | [Click Here](./driver/public/mikroe/ozone2_mq131) | [Click Here](./app/example/mikroe_ozone2_mq131) | [Click Here](./app/documentation/example/mikroe_ozone2_mq131) |
+| uv_ml8511a | [Click Here](./driver/public/mikroe/uv_ml8511a) | [Click Here](./app/example/mikroe_uv_ml8511a) | [Click Here](./app/documentation/example/mikroe_uv_ml8511a) |
+
 
 ## Requirements ##
 

@@ -60,7 +60,7 @@
 #define HEIGHT                                  9
 
 #elif (IS31FL3741_DISPLAY_LAYOUT == 3)
-#define WIDTH                                   42
+#define WIDTH                                   52
 #define HEIGHT                                  9
 
 #elif (IS31FL3741_DISPLAY_LAYOUT == 4)

@@ -1,10 +1,10 @@
-# Relay 2 Click #
+# LCA717 - Relay 2 Click (Mikroe) #
 
 ## Summary ##
 
 This project shows the implementation of a two single-pole solid state relays (SSR) IC that is integrated on the Relay 2 Click board.
 
-Relay 2 click is a dual relay click board™, equipped with two single-pole solid state relays (SSR), built with the patented OptoMOS® technology. These SSR devices allow reasonably high current, up to 2A and voltage up to 30V (peak-to-peak). It can be used as a MCU controlled switch for the instrumentation and sensor circuitry power control, various I/O subsystems, control of various embedded electronic applications, and similar cases where reliable and clean power supply control is required.
+Relay 2 click is a dual relay click board™, equipped with two single-pole solid state relays (SSR), built with the patented OptoMOS® technology. These SSR devices allow reasonably high current, up to 2A and voltage up to 30V (peak-to-peak). It can be used as an MCU controlled switch for the instrumentation and sensor circuitry power control, various I/O subsystems, control of various embedded electronic applications, and similar cases where reliable and clean power supply control is required.
 
 ## Required Hardware ##
 
@@ -16,18 +16,18 @@ Relay 2 click is a dual relay click board™, equipped with two single-pole soli
 
 The Relay 2 Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **relay**.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **relay**.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - LCA717 - Single-pole Solid State Relays (Relay 2 Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - LCA717 - Relay 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -35,7 +35,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/feature/master/app/example/mikroe_relay2_lca717/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_relay2_lca717/app.c` into the project root folder  (overwriting existing file).
 
 3. Install the software components:
 
@@ -45,19 +45,17 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Third Party Hardware Drivers] → [Miscellaneous] → [Relay 2 Click (Mikroe)] → use default configuration.
-        ![config](configuration.png)
+        - [Services] → [Timers] → [Sleep Timer]
+        - [Third Party Hardware Drivers] → [Miscellaneous] → [LCA717 - Relay 2 Click (Mikroe)] → use default configuration.
+        ![config](image/configuration.png)
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "Relay 2 Click (Mikroe)" component.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "Relay 2 Click (Mikroe)" component. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "LCA717 - Relay 2 Click (Mikroe)" component.
 
 ## How It Works ##
 

@@ -1,4 +1,4 @@
-# Fingerprint 2 Click #
+# A-172-MRQ - Fingerprint 2 Click (Mikroe) #
 
 ## Summary ##
 
@@ -6,7 +6,7 @@ This example project shows an example for Mikroe Fingerprint 2 Click board drive
 
 The Mikroe Fingerprint 2 Click board is a fingerprint sensor module that allows for easy integration of fingerprint recognition functionality into a wide range of projects. It uses a high-quality A-172-MRQ fingerprint sensor that can quickly and accurately capture and compare fingerprints. The board includes an onboard microcontroller that handles all of the necessary processing, and it communicates with the host controller through an easy-to-use UART interface.
 
-The board also includes a number of features such as the ability to store and match up to 24 fingerprints. It also includes two onboard LED to indicate the status of the sensor. This Click board can be used in various projects like security systems, attendance systems, access control etc and is a cost-effective solution for adding fingerprint recognition to your project.
+The board also includes some features such as the ability to store and match up to 24 fingerprints. It also includes two onboard LEDs to indicate the status of the sensor. This Click board can be used in various projects like security systems, attendance systems, access control etc and is a cost-effective solution for adding fingerprint recognition to your project.
 
 ## Required Hardware ##
 
@@ -19,24 +19,24 @@ The Fingerprint 2 Click supports MikroBus, so it can connect easily to EFR32xG24
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **fingerprint**.
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **fingerprint**.
 2. Click **Create** button on the **Third Party Hardware Drivers - A-172-MRQ - Fingerprint 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 ### Start with an empty example project ###
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_fingerprint2_m2351siaae) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_fingerprint2_a172mrq/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -46,9 +46,9 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Application] → [Service] → [Simple timer service]
+        - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: EUSART] → default instance name: **vcom**
+        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: **mikroe**
         - [Third Party Hardware Drivers] → [Human Machine Interface] → [A-172-MRQ - Fingerprint 2 Click (Mikroe)] → use default configuration
 
             | Mikroe pin  | BRD2703A pin |
@@ -66,25 +66,23 @@ You can either create a project based on a example project or start with an empt
 
 **Note :**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "A-172-MRQ - Fingerprint 2 Click (Mikroe)" component. Selecting this component will also include the "USART" component with configurated instance: **mikroe**.
-
-- The example project are built on the BRD2703A board. For another boards, selecting the "A-172-MRQ - Fingerprint 2 Click (Mikroe)" component will include the "USART" component with unconfigured instance: **inst0**. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "A-172-MRQ - Fingerprint 2 Click (Mikroe)" component.
 
 ## How It Works ##
 
 ### Driver Layer Diagram ###
 
-![software layer](sw_layers.png)
+![software layer](image/sw_layers.png)
 
 ### Testing ###
 
-The example compares a fingerprint on input to the registered fingerprint and shows message on logging screen on which input fingerprint is identified or on which input fingerprint is not identified.
+The example compares a fingerprint on input to the registered fingerprint and shows a message on the console screen on which input fingerprint is identified or on which input fingerprint is not identified.
 
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

@@ -1,0 +1,53 @@
+id: mic2
+package: third_party_hw_drivers
+label: MIC 2 Click (Mikroe)
+description: >
+  Driver for the Mikroe MIC 2 Click board.
+category: Audio & Voice
+quality: evaluation
+
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_adc
+
+config_file:
+  - path: public/mikroe/mic2/config/brd2703a/mikroe_mic2_config.h
+    file_id: driver_config_mic2
+    condition: [brd2703a]
+  - path: public/mikroe/mic2/config/brd4108a/mikroe_mic2_config.h
+    file_id: driver_config_mic2
+    condition: [brd4108a]
+  - path: public/mikroe/mic2/config/brd4314a/mikroe_mic2_config.h
+    file_id: driver_config_mic2
+    condition: [brd4314a]
+  - path: public/mikroe/mic2/config/other/mikroe_mic2_config.h
+    file_id: driver_config_mic2
+    unless: [brd2703a, brd4108a, brd4314a]
+
+provides:
+  - name: mic2
+  - allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+  - value: mic2
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/mic2/lib_mic2/include
+    file_list:
+      - path: mic2.h
+  - path: public/mikroe/mic2/inc
+    file_list:
+      - path: mikroe_mic2.h
+
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/mic2/lib_mic2/src/mic2.c
+  - path: public/mikroe/mic2/src/mikroe_mic2.c

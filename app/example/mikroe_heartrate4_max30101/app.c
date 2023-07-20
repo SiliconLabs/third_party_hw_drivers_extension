@@ -35,53 +35,40 @@
  * This code will be maintained at the sole discretion of Silicon Labs.
  *
  ******************************************************************************/
-#include "mikroe_max30101.h"
+
 #include "sl_i2cspm_instances.h"
-#include "app_log.h"
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 #include "gpiointerrupt.h"
+#include "app_log.h"
+
 #include "mikroe_max30101_config.h"
+#include "mikroe_max30101.h"
 
 // #define MIKROE_HEARTRATE4_MODE_INTERRUPT
 #define MIKROE_HEARTRATE4_MODE_POLLING
 
 #define READING_INTERVAL_MSEC 3000
-volatile bool new_data_flag;
-static uint32_t red_samp = 0;
+
+static volatile bool data_ready = false;
 
 #ifdef MIKROE_HEARTRATE4_MODE_INTERRUPT
 static void heartrate4_int_callback(uint8_t intNo)
 {
-  new_data_flag = true;
   (void) intNo;
 
-  // Only get data if MAX30101 is available on the bus
-  if (SL_STATUS_OK != mikroe_max30101_present()) {
-    return;
-  }
-  if (mikroe_max30101_get_intrrupt(1) & 0x40) {
-    red_samp = mikroe_max30101_get_red_val( );
-  }
+  data_ready = true;
 }
 
 #endif
 
 #ifdef MIKROE_HEARTRATE4_MODE_POLLING
-static sl_simple_timer_t heartrate4_timer_handle;
-static void heartrate4_timer_callback(sl_simple_timer_t *handle, void *data)
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
   (void) handle;
   (void) data;
 
-  // Only get data if MAX30101 is available on the bus
-  if (SL_STATUS_OK != mikroe_max30101_present()) {
-    return;
-  }
-
-  if (mikroe_max30101_get_intrrupt(1) & 0x40) {
-    red_samp = mikroe_max30101_get_red_val( );
-    new_data_flag = true;
-  }
+  data_ready = true;
 }
 
 #endif
@@ -104,7 +91,7 @@ void app_init(void)
 #endif
 
   if (mikroe_max30101_init(sl_i2cspm_mikroe) == SL_STATUS_OK) {
-    app_log("max 30101 init successfully\n");
+    app_log("MAX30101 init successfully\n");
   }
   sl_sleeptimer_delay_millisecond(2000);
 
@@ -117,16 +104,17 @@ void app_init(void)
    */
   mikroe_max30101_get_intrrupt(1);
 
-  // to clear interrupt flag of FIFO almost full flag
+  // Clear interrupt flag of FIFO almost full flag
   mikroe_max30101_get_red_val();
 #endif
 
 #ifdef MIKROE_HEARTRATE4_MODE_POLLING
-  sl_simple_timer_start(&heartrate4_timer_handle,
-                        READING_INTERVAL_MSEC,
-                        heartrate4_timer_callback,
-                        (void *) NULL,
-                        true);
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        app_timer_cb,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 #endif
 }
 
@@ -135,14 +123,26 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  if (new_data_flag == true) {
+  static uint32_t red_samp;
+
+  if (data_ready == false) {
+    return;
+  }
+
+  data_ready = false;
+  // Only get data if MAX30101 is available on the bus
+  if (SL_STATUS_OK != mikroe_max30101_present()) {
+    app_log("Error: Unable to check MAX30101 is present on the bus.\r\n");
+    return;
+  }
+
+  if (mikroe_max30101_get_intrrupt(1) & 0x40) {
+    red_samp = mikroe_max30101_get_red_val();
     // If sample pulse amplitude is not under threshold value 0x8000
     if (red_samp > 0x8000) {
       app_log("%lu\r\n", red_samp);
     } else {
       app_log("Place Finger On Sensor\r\n");
     }
-
-    new_data_flag = false;
   }
 }

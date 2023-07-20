@@ -36,8 +36,9 @@
  * This code will be maintained at the sole discretion of Silicon Labs.
  *
  ******************************************************************************/
+
+#include <stddef.h>
 #include "mikroe_si8711cc.h"
-#include "stddef.h"
 #include "third_party_hw_drivers_helpers.h"
 #include "pwmdriver.h"
 

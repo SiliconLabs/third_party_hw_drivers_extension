@@ -56,12 +56,12 @@ void app_init(void)
   mikroe_water_detect_init();
 
 #ifdef MIKROE_WATER_DETECT_MODE_POLLING
-  sl_sleeptimer_start_periodic_timer(&wd_timer_handle,
-                                     READING_INTERVAL_MSEC,
-                                     wd_timer_callback,
-                                     (void *) NULL,
-                                     0,
-                                     0);
+  sl_sleeptimer_start_periodic_timer_ms(&wd_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        wd_timer_callback,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 #endif
 #ifdef MIKROE_WATER_DETECT_MODE_INTERRUPT
   GPIO_ExtIntConfig(WATER_DETECT_INT_PORT,

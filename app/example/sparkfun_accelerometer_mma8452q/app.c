@@ -34,9 +34,9 @@
  * Silicon Labs may update projects from time to time.
  ******************************************************************************/
 
+#include "sl_i2cspm_instances.h"
 #include "app_assert.h"
 #include "app_log.h"
-#include "sl_i2cspm_instances.h"
 #include "mma8452q.h"
 
 #define TEST_BASIC_READING

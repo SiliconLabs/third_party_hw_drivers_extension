@@ -1228,6 +1228,9 @@ glib_status_t glib_write_char(glib_context_t *g_context, unsigned char c)
                                   c,
                                   g_context->text_color, g_context->bg_color,
                                   g_context->textsize_x, g_context->textsize_y);
+        } else {
+          // Glyph is whitespace character, just leave it blank
+          status = GLIB_OK;
         }
         g_context->cursor_x +=
           (uint8_t)glyph->x_advance * (int16_t)g_context->textsize_x;

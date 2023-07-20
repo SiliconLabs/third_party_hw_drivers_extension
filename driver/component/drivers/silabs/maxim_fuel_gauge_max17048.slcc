@@ -16,13 +16,18 @@ recommends:
   - id: i2cspm
     instance: [fuel_gauge]
 config_file:
-  - path: public/silabs/fuel_gauge_max17048/config/maxim_max17048_config.h
+  - path: public/silabs/fuel_gauge_max17048/config/brd4181b/maxim_max17048_config.h
     file_id: maxim_max17048_config
+    condition: [brd4181b]
+  - path: public/silabs/fuel_gauge_max17048/config/other/maxim_max17048_config.h
+    file_id: maxim_max17048_config
+    unless: [brd4181b]
   - override:
       component: i2cspm
       file_id: i2cspm_config
       instance: fuel_gauge
-    path: public/silabs/fuel_gauge_max17048/config/sl_i2cspm_fuel_gauge_config.h
+    path: public/silabs/fuel_gauge_max17048/config/brd4181b/sl_i2cspm_fuel_gauge_config.h
+    condition: [brd4181b]
 provides:
   - name: maxim_fuel_gauge_max17048
 template_contribution:

@@ -1,6 +1,6 @@
 /***************************************************************************//**
- * @file
- * @brief IOSTREAM_USART Config.
+ * @file mikroe_mm5d91_00_config.h
+ * @brief SCL MM5D91_00 Configuration
  *******************************************************************************
  * # License
  * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>

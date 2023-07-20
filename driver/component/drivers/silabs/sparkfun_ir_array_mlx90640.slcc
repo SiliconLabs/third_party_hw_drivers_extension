@@ -15,6 +15,9 @@ requires:
 recommends:
   - id: i2cspm
     instance: [qwiic]
+config_file:
+  - path: public/silabs/ir_array_mlx90640/config/sparkfun_mlx90640_config.h
+    file_id: sparkfun_mlx90640_config
 provides:
   - name: sparkfun_ir_array
 template_contribution:

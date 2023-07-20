@@ -18,24 +18,24 @@ The goal is to provide a hardware driver that supports the basic accelerometer m
 
 An MMA8452Q sensor board can be easily connected up with two I2C wires (SDA and SCL) along with 3v3 and GND. For the designated boards, SparkFun Qwiic compatible STEMMA QT connectors can be used.
 
-![hardware_connection](hardware_connection.png)
+![hardware_connection](image/hardware_connection.png)
 
 **Note:** There are several jumpers on SparkFun Triple Axis Accelerometer Breakout - MMA8452Q that can be changed to facilitate several different functions. The first of which is the Address jumper. The Address jumper can be used to change the I2C address of the board. The default jumper is open by default, pulling the address pin high and giving us an I2C address of 0X1D. Closing this jumper will ground the address pin, giving us an I2C address of 0X1C.
 
 The second of which is the I2C pull-up jumper. If multiple boards are connected to the I2C bus, the equivalent resistance goes down, increasing your pull-up strength. If multiple boards are connected on the same bus, make sure only one board has the pull-up resistors connected.
 
-![hardware_jumper](hardware_jumper.png)
+![hardware_jumper](image/hardware_jumper.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter MMA8452Q.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter MMA8452Q.
 
 2. Click **Create** button on the **Third Party Hardware Drivers - MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_example](create_example.png)
+![create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -43,7 +43,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create a "Platform - Empty C Project" project for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
-2. Copy the files from app/example/sparkfun_accelerometer_mma8452q folder into the project root folder (overwriting existing app.c).
+2. Copy the file `app/example/sparkfun_accelerometer_mma8452q/app.c` into the project root folder (overwriting existing file).
 
 3. Set the test mode in the *app.c* file.
 
@@ -65,15 +65,13 @@ You can either create a project based on a example project or start with an empt
 
 - Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/platform_hardware_drivers_sdk_extensions/blob/master/README.md).
 
-- SDK Extension must be enabled for the project to install "MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)" component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)" component.
 
 ## How It Works ##
 
 The device can be in either Standby Mode or Active Mode. Most of the settings are changed in Standby Mode but the data does not update and is not enabled until the device is in Active Mode. The device changes from Standby to Active Mode via bit 0 in the CTRL_REG1 register. The sleep and wake modes are active modes. In wake mode, the system uses a higher sample rate (higher current consumption) than in Sleep mode(lower current consumption). The interrupts that can wake the device from sleep are the following: pulse detection, orientation detection, motion freefall, and transient detection.
 
-![power_mode](power_mode.png)
+![power_mode](image/power_mode.png)
 
 Some functionality of MMA8452Q includes the following:
 
@@ -109,8 +107,7 @@ The MMA8452Q can be optimized for lower power modes or higher resolution of the 
 - Auto-wake/sleep mode: Auto-wake/sleep mode allows the system can automatically transition to a higher sample rate (higher current consumption) when needed but spends the majority of the time in the sleep mode (lower current) when the device does not require higher sampling rates. Auto-wake refers to the device being triggered by one of the interrupt functions to transition to a higher sample rate. This may also interrupt the processor to transition from a sleep mode to a higher power mode. Sleep mode occurs after the accelerometer has not detected an interrupt for longer than the user-definable time-out period. The device will transition to the specified lower sample rate. It may also alert the processor to go into a lower power mode to save on current during this period of inactivity. You can choose interrupts that can wake the device from sleep by the function below:
 
   ```c
-  sl_status_t mma8452q_config_interrupt(
-  mma8452q_interrupt_config_t interrupt_cfg);
+  sl_status_t mma8452q_config_interrupt(mma8452q_interrupt_config_t interrupt_cfg);
   ```
 
   And you can configure the minimum period to transition to sleep, sleep output data rate, and sleep power mode scheme by the function below:
@@ -127,7 +124,7 @@ The MMA8452Q can be optimized for lower power modes or higher resolution of the 
   sl_status_t mma8452q_config_ff_mt(mma8452q_ff_mt_config_t ff_mt_cfg);
   ```
 
-- Transient detection: Similar to motion detection in that the detection function triggers an interrupt when acceleration magnitude is above a user-specified threshold, however, uses high-pass filtered data by default (can be configured to bypass); added flexibility. The interrupt can be routed to either interrupt pin via configuration. You can configure the transient function settings of the MMA8452Q through the funtion.
+- Transient detection: Similar to motion detection in that the detection function triggers an interrupt when acceleration magnitude is above a user-specified threshold, however, uses high-pass filtered data by default (can be configured to bypass); added flexibility. The interrupt can be routed to either interrupt pin via configuration. You can configure the transient function settings of the MMA8452Q through the function.
 
   ```c
   sl_status_t mma8452q_config_trans(mma8452q_trans_config_t trans_cfg);
@@ -136,8 +133,7 @@ The MMA8452Q can be optimized for lower power modes or higher resolution of the 
 - Orientation detection: The MMA8452Q has an orientation detection algorithm with the ability to detect all six orientations. The transition from portrait to landscape is fixed with a 45° threshold angle and a ±14° hysteresis angle. This allows for a smooth transition from portrait to landscape at approximately 30° and then from landscape to portrait at approximately 60°. You can configure the orientation function settings of the MMA8452Q through the function.
 
   ```c
-  sl_status_t mma8452q_config_orientation(
-  mma8452q_orientation_config_t orient_cfg);
+  sl_status_t mma8452q_config_orientation(mma8452q_orientation_config_t orient_cfg);
   ```
 
 - Pulse detection(single/double tap): The MMA8452Q has embedded single/double and directional pulse detection. This function has various customizing timers for setting the pulse time width and the latency time between pulses. There are programmable thresholds for all three axes. The pulse detection can be configured to run through the high-pass filter and also through a low-pass filter, which provides more customizing and tunable pulse-detection schemes. You can configure the pulse function settings of the MMA8452Q through the function.
@@ -148,9 +144,9 @@ The MMA8452Q can be optimized for lower power modes or higher resolution of the 
 
 ### API Overview ###
 
-![api_overview](api_overview.png)
+![api_overview](image/api_overview.png)
 
-[mma8452q.c](src/bma400.c): implements APIs for application.
+`mma8452q.c`: implements APIs for application.
 
 - Initialization and configuration API: specific register read/write to get and set settings for MMA8452Q.
 
@@ -176,27 +172,27 @@ Please follow the below steps to test the example:
 
 1. Open a terminal program on your PC, such as the Console that is integrated into Simplicity Studio or a third-party tool terminal like TeraTerm to receive the logs from the virtual COM port.
 
-2. Depending on the test mode defined in the app.c file, the code application can operate in the different modes.
+2. Depending on the test mode defined in the app.c file, the code application can operate in different modes.
 
 - If using **TEST_BASIC_READING** for testing, this example initializes the accelerometer and stream calculated x, y, z, and acceleration values from it (in g units).
 
-![basic reading](basic_reading.png "Basic Reading Result")
+![basic reading](image/basic_reading.png "Basic Reading Result")
 
 - If using **TEST_RAW_DATA_READING** for testing, this example initializes the accelerometer and streams raw x, y, and z, acceleration values from it.
 
-![raw data reading](raw_data_reading.png "Raw Data Reading Result")
+![raw data reading](image/raw_data_reading.png "Raw Data Reading Result")
 
 - If using **TEST_ORIENTATION** for testing, this example initializes the accelerometer and streams its orientation.
 
-![orientation reading](orientation_reading.png "Orientation Reading")
+![orientation reading](image/orientation_reading.png "Orientation Reading")
 
 - If using **TEST_READ_TAPS** for testing, this example initializes the accelerometer and print a message each time it is tape.
 
-![tap reading](tap_reading.png "Tap Reading")
+![tap reading](image/tap_reading.png "Tap Reading")
 
 - If use **TEST_FF_MT** for testing, this example initializes the accelerometer and prints a message each time it moves or freefall. The message shows which axis the sensor moves and in the positive or negative direction.
 
-![motion and freefall](motion_freefall.png "Motion and FreeFall")
+![motion and freefall](image/motion_freefall.png "Motion and FreeFall")
 
 ## Report Bugs & Get Support ##
 

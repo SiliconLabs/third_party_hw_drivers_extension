@@ -1,8 +1,11 @@
 project_name: sparkfun_proximity_vcnl4040
-label: sparkfun_proximity_vcnl4040
+label: Third Party Hardware Drivers - VCNL4040 - Proximity Sensor (Sparkfun)
+package: platform
 description: |
   This example project shows an example for Sparkfun Proximity VCNL4040 board driver integration.
 category: Example|Platform
+quality: evaluation
+
 filter:
 - name: Device Type
   value: [SoC]
@@ -10,42 +13,59 @@ filter:
   value: [32-bit MCU]
 - name: Project Difficulty
   value: [Beginner]
-package: platform
-quality: evaluation
+
 readme:
 - path: ../../documentation/example/sparkfun_proximity_vcnl4040/README.md
+
 source:
 - path: app.c
 - path: main.c
+
 include:
 - path: ''
   file_list:
   - path: app.h
+
 component:
-- id: BGM220PC22HNA
 - id: sl_system
+- id: device_init
 - id: sparkfun_proximity
   from: third_party_hw_drivers
 - id: iostream_usart
   instance: [vcom]
 - id: i2cspm
   instance: [qwiic]
-- id: device_init
-- id: simple_timer
+- id: sleeptimer
 - id: app_assert
 - id: app_log
-- id: brd4314a
+
+config_file:
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: qwiic
+    path: brd2601b/sl_i2cspm_qwiic_config.h
+    condition: [brd2601b]
+
 define:
 - name: DEBUG_EFM
+
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
+
 other_file:
-  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/connection.png
-  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/create_example.png
-  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/flowchart.png
-  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/config.png
-  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/test.png
+  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/image/flowchart.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/image/config.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_proximity_vcnl4040/image/test.png
+    directory: "image"
+
 ui_hints:
   highlight:
     - path: README.md

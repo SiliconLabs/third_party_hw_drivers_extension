@@ -1,0 +1,41 @@
+id: mikroe_uv
+package: third_party_hw_drivers
+label: ML8511A - UV Click (Mikroe)
+description: >
+  Driver for the Mikroe UV Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_adc
+  - name: mikroe_peripheral_driver_spi
+config_file:
+  - path: public/mikroe/uv_ml8511a/config/brd2703a/mikroe_ml8511a_config.h
+    file_id: mikroe_ml8511a_config
+    condition: [brd2703a]
+  - path: public/mikroe/uv_ml8511a/config/brd4108a/mikroe_ml8511a_config.h
+    file_id: mikroe_ml8511a_config
+    condition: [brd4108a]
+  - path: public/mikroe/uv_ml8511a/config/brd4314a/mikroe_ml8511a_config.h
+    file_id: mikroe_ml8511a_config
+    condition: [brd4314a]
+    
+template_contribution:
+  - name: component_catalog
+    value: mikroe_uv
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/uv/lib/include
+    file_list:
+      - path: uv.h
+  - path: public/mikroe/uv_ml8511a/inc
+    file_list:
+      - path: mikroe_ml8511a.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/uv/lib/src/uv.c
+  - path: public/mikroe/uv_ml8511a/src/mikroe_ml8511a.c

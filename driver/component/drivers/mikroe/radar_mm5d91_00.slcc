@@ -9,10 +9,11 @@ ui_hints:
   visibility: basic
 root_path: driver
 requires:
+  - name: sleeptimer
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_uart
 config_file:
-  - path: public/mikroe/radar_mm5d91_00/config/mikroe_mm5d91_00_config.h
+  - path: public/mikroe/radar_mm5d91_00/config/other/mikroe_mm5d91_00_config.h
     file_id: driver_config_radar
     unless: [brd2703a, brd4108a, brd4314a]
   - path: "public/mikroe/radar_mm5d91_00/config/brd4108a/mikroe_mm5d91_00_config.h"

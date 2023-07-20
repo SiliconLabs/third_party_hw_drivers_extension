@@ -36,11 +36,13 @@
  *
  ******************************************************************************/
 
-#include "app_assert.h"
-#include "app_log.h"
-#include "sparkfun_as7265x.h"
 #include "sl_sleeptimer.h"
 #include "sl_i2cspm_instances.h"
+
+#include "app_assert.h"
+#include "app_log.h"
+
+#include "sparkfun_as7265x.h"
 
 // Choose which type of test you want by uncommenting the #define
 

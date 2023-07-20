@@ -1,4 +1,4 @@
-# Brushless 16 Click #
+# LB11685AV - Brushless 16 Click (Mikroe) #
 
 ## Summary ##
 
@@ -14,22 +14,22 @@ Brushless 16 Click as its foundation uses the LB11685AV, a three-phase full-wave
 
 ## Hardware Connection ##
 
-The Brushless 16 board support MikroBus, so it can connect easily to BGM220P Explorer Kit via MikroBus header. Assure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
+The Brushless 16 board supports MikroBus, so it can connect easily to BGM220P Explorer Kit via MikroBus header. Assure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png "Hardware connection")
+![board](image/hardware_connection.png "Hardware connection")
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter brushless.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter brushless.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - LB11685AV (Brushless 16 Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - LB11685AV - Brushless 16 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_brushless16_lb11685av) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_brushless16_lb11685av/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -47,27 +47,26 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
+        - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
         - [Application] → [Utility] → [Assert]
-        - [Third Party Hardware Drivers] → [Motor Control] → [LB11685AV - Brushless 16 Click (Mikroe)]
+        - [Third Party Hardware Drivers] → [Motor Control] → [LB11685AV - Brushless 16 Click (Mikroe)] → use default config
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install "LB11685AV - Brushless 16 Click (Mikroe)" component.
 
-- The example project are built on the BRD4314A board. So users should add the BRD4314A to MyProducts to able be see them on the Launcher Home of Simplicity Studio IDE.
-
 ## How It Works ##
 
-Workflow of this example as folowing image:
+The application checks the state of information pins, and stops and starts motor output every second.
+The workflow of this example is the following image:
 
-![workflow](workflow.png "Workflow")
+![workflow](image/workflow.png "Workflow")
 
 ## Report Bugs & Get Support ##
 

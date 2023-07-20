@@ -18,19 +18,20 @@
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
-#include "app_log.h"
-#include "sl_simple_timer.h"
-#include "sparkfun_vcnl4040.h"
-#include "app_assert.h"
 #include "sl_i2cspm_instances.h"
+#include "sl_sleeptimer.h"
 
-// simple timer handle variable
-static sl_simple_timer_t my_timer;
+#include "app_assert.h"
+#include "app_log.h"
 
-/**************************************************************************//**
- *  Simple timer callback function.
- *****************************************************************************/
-static void timer_callback(sl_simple_timer_t *timer, void *data);
+#include "sparkfun_vcnl4040.h"
+
+#define READING_INTERVAL_MSEC    1000
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 /***************************************************************************//**
  * Initialize application.
@@ -48,8 +49,13 @@ void app_init(void)
   sparkfun_vcnl4040_get_id(&id);
   app_log("\rDevice ID: 0x%X\n", id);
   app_log("\r\t==================================\n");
-//
-  sc = sl_simple_timer_start(&my_timer, 1000, timer_callback, NULL, true);
+
+  sc = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                             READING_INTERVAL_MSEC,
+                                             app_timer_cb,
+                                             (void *) NULL,
+                                             0,
+                                             0);
 
   if (sc != SL_STATUS_OK) {
     app_log("\r > Start Periodic Measurement Fail\n");
@@ -63,21 +69,17 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  /* This functin is empty because we use a simple timer to handle periodic
-   *    action of the sensor */
-}
-
-static void timer_callback(sl_simple_timer_t *timer, void *data)
-{
-  sl_status_t sc = SL_STATUS_OK;
-  (void)&timer;
-  (void)&data;
-
+  sl_status_t sc;
   uint16_t prox;
   uint16_t ambient;
   uint16_t white;
 
-  sc |= sparkfun_vcnl4040_get_proximity(&prox);
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+
+  sc = sparkfun_vcnl4040_get_proximity(&prox);
   sc |= sparkfun_vcnl4040_get_ambient(&ambient);
   sc |= sparkfun_vcnl4040_get_white(&white);
 
@@ -90,4 +92,12 @@ static void timer_callback(sl_simple_timer_t *timer, void *data)
       ambient,
       white);
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

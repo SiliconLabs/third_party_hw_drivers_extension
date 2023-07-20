@@ -39,7 +39,6 @@
 
 #include "third_party_hw_drivers_helpers.h"
 #include "mikroe_shtc3.h"
-#include "mikroe_shtc3_config.h"
 #include "temphum9.h"
 
 static temphum9_t temphum9;

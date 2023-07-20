@@ -1,10 +1,10 @@
-# Cap Touch 2 Click #
+# CAP1166 - Cap Touch 2 Click (Mikroe) #
 
 ## Summary ##
 
-This project shows the driver implementation of a SPI capacitive touch sensor using the CAP1166 sensor with Silicon Labs Platform.
+This project shows the driver implementation of an SPI capacitive touch sensor using the CAP1166 sensor with Silicon Labs Platform.
 
-Cap Touch 2 click is a capacitive touch sensing Click board™ which features the CAP1166 chip, which is an advanced touch/proximity sensor IC. It packs a range of different touch/proximity functionalities allowing the development of robust and aesthetically pleasing touch interfaces. It can be used for desktop computer or notebook control, LCD/TFT monitors, various types of consumer electronic, home appliances, and other applications that can benefit of having a reliable and feature-rich touch activated user interface.
+Cap Touch 2 click is a capacitive touch sensing Click board™ which features the CAP1166 chip, which is an advanced touch/proximity sensor IC. It packs a range of different touch/proximity functionalities allowing the development of robust and aesthetically pleasing touch interfaces. It can be used for desktop computer or notebook control, LCD/TFT monitors, various types of consumer electronics, home appliances, and other applications that can benefit of having a reliable and feature-rich touch activated user interface.
 
 ## Required Hardware ##
 
@@ -14,22 +14,22 @@ Cap Touch 2 click is a capacitive touch sensing Click board™ which features th
 
 ## Hardware Connection ##
 
-The CAP1166 MikroE board support MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
+The CAP1166 MikroE board supports MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter cap1166.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter cap1166.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - CAP1166 (Cap Touch 2 Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - CAP1166 - Cap Touch 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_captouch2_cap1166) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_captouch2_cap1166/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -47,8 +47,8 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
+        - [Services] → [Timers] → [Sleep Timer]
+        - [Services] → [IO Stream] → [IO Stream: EUSART] → default instance name: vcom
         - [Application] → [Utility] → [Assert]
         - [Application] → [Utility] → [log]
         - [Third Party Hardware Drivers] → [Human Machine Interface] → [CAP1166 - Capacitive Touch 2 Click (Mikroe)]
@@ -57,19 +57,17 @@ You can either create a project based on a example project or start with an empt
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "CAP1166 - Capacitive Touch 2 Click (Mikroe)" component. Selecting this component will also include the "SPIDRV" component with default configurated instance: mikroe.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "CAP1166 - Capacitive Touch 2 Click (Mikroe)" component will include the "SPIDRV" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "CAP1166 - Capacitive Touch 2 Click (Mikroe)" component.
 
 ## How It Works ##
 
-The example checks touch detection (is interrupt occured) and shows message on logging screen on which input touch is detected or on which input touch is released. Also turns on LED on which linked input interrupt occured.
+The example checks touch detection (is interrupt occured) and shows a message on the logging screen on which input touch is detected or on which input touch is released. Also turns on LED on which linked input interrupt occured.
 
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

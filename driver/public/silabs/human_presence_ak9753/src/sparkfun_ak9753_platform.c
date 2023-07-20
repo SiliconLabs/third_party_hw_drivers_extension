@@ -36,9 +36,9 @@
  *
  ******************************************************************************/
 
+#include <string.h>
 #include "sparkfun_ak9753_config.h"
 #include "sparkfun_ak9753_platform.h"
-#include <string.h>
 
 extern sl_i2cspm_t *sparkfun_ak9753_i2cpsm_instance;
 
@@ -59,11 +59,11 @@ sl_status_t sparkfun_ak9753_platform_read_register(uint8_t addr,
 
     i2c_write_data = addr;
 
-    /*Write buffer*/
+    /* Write buffer */
     seq.buf[0].data = &i2c_write_data;
     seq.buf[0].len = 1;
 
-    /*Read buffer*/
+    /* Read buffer */
     seq.buf[1].data = pdata;
     seq.buf[1].len = 1;
 
@@ -94,7 +94,7 @@ sl_status_t sparkfun_ak9753_platform_write_register(uint8_t addr,
   i2c_write_data[0] = addr;
   i2c_write_data[1] = data;
 
-  /*Write buffer*/
+  /* Write buffer */
   seq.buf[0].data = i2c_write_data;
   seq.buf[0].len = 2;
 
@@ -123,11 +123,11 @@ sl_status_t sparkfun_ak9753_platform_read_blocking_register(uint8_t addr,
 
     i2c_write_data = addr;
 
-    /*Write buffer*/
+    /* Write buffer */
     seq.buf[0].data = &i2c_write_data;
     seq.buf[0].len = 1;
 
-    /*Read buffer*/
+    /* Read buffer */
     seq.buf[1].data = pdata;
     seq.buf[1].len = len;
 

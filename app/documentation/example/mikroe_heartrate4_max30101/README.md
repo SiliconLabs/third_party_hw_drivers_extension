@@ -1,4 +1,4 @@
-# Heart rate 4 Click Driver #
+# MAX30101 - Heart Rate 4 Click (Mikroe) #
 
 ## Summary ##
 
@@ -18,18 +18,18 @@ The Heart Rate 4 Click board support MikroBus, so it can connect easily to EFR32
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png "Hardware connection")
+![board](image/hardware_connection.png "Hardware connection")
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter max30101
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter max30101
 
 2. Click **Create** button on the **Third Party Hardware Drivers - MAX30101 - Heart Rate 4 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_heartrate4_max30101/app.c (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_heartrate4_max30101/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -47,29 +47,28 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
+        - **[Platform] → [Driver] → [GPIOINT]**
         - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
+        - **[Services] → [Timers] → [Sleep Timer]**
         - **[Application] → [Utility] → [Log]**
-        - **[Application] → [Service] → [Sleep Timer]**
         - **[Third Party Hardware Drivers] → [Sensors] → [MAX30101 - Heart Rate 4 Click (Mikroe)]** -> use default configuration.
-        ![config](default_config.png)
+        ![config](image/default_config.png)
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "MAX30101 - Heart Rate 4 Click (Mikroe)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: mikroe.
-
-- The example project are built on the BRD2703A board. For another boards, selecting the "MAX30101 - Heart Rate 4 Click (Mikroe)" component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "MAX30101 - Heart Rate 4 Click (Mikroe)" component.
 
 ## How It Works ##
 
 You can choose the mode of operation by selecting the corresponding macro MIKROE_HEARTRATE4_MODE_INTERRUPT or MIKROE_HEARTRATE4_MODE_POLLING.
 
-You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output and  an actual test image are shown in the figure below.
+You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output and an actual test image are shown in the figure below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

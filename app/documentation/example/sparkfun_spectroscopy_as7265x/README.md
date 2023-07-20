@@ -1,4 +1,4 @@
-# Sparkfun Triad Spectroscopy Sensor - AS7265x Driver #
+# AS7265x - Sparkfun Triad Spectroscopy Sensor #
 
 ## Summary ##
 
@@ -18,18 +18,18 @@ For more information about the Triad Spectroscopy Sensor-AS7265x, see the [speci
 
 A Triad Spectroscopy Sensor - AS7265x can be easily connected up with two I2C wires (SDA and SCL) along with 3v3 and GND. For the designated boards, SparkFun qwiic compatible STEMMA QT connectors can be used.
 
-![board](connection.png "BGM220 Explorer Kit Board and Triad Spectroscopy Sensor - AS7265x Board")
+![board](image/connection.png "BGM220 Explorer Kit Board and Triad Spectroscopy Sensor - AS7265x Board")
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "AS7265X".
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "AS7265X".
 
 2. Click **Create** button on the **Third Party Hardware Drivers - AS7265X - Triad Spectroscopy Sensor (SparkFun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -61,21 +61,19 @@ You can either create a project based on a example project or start with an empt
 
 - Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
 
-- SDK Extension must be enabled for the project to install **AS7265x - Triad Spectroscopy Sensor (Sparkfun) - I2C** component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the **AS7265x - Triad Spectroscopy Sensor (Sparkfun) - I2C** component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install **AS7265x - Triad Spectroscopy Sensor (Sparkfun) - I2C** component.
 
 ## How It Works ##
 
 ### API Overview ###
 
-[sparkfun_as7265x.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/driver/public/silabs/spectroscopy_as7265x/sparkfun_as7265x.c): implements APIs for application.
+`sparkfun_as7265x.c`: implements APIs for application.
 
 - Initialization and configuration API: specific register read/write to get and set settings for AS7265X.
 
 - Read Sensor Data/Status: specific register read to get acceleration data and status.
 
-[sparkfun_as7265x_platform.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/driver/public/silabs/spectroscopy_as7265x/sparkfun_as7265x_platform.c): implements APIs for low level.
+`sparkfun_as7265x_platform.c`: implements APIs for low level.
 
 - Low-level functions: initialize I2C communication, read/write a memory block via I2C, given memory address, and read/write a register via I2C, given register address.
 
@@ -87,23 +85,23 @@ You can choose which type of test you want by uncommenting the #define, follow t
 
 1. Open a terminal program on your PC, such as the Console that is integrated into Simplicity Studio or a third-party tool terminal like TeraTerm to receive the logs from the virtual COM port.
 
-2. Depending on the test mode defined in the app.c file, the code application can operate in the different modes.
+2. Depending on the test mode defined in the `app.c` file, the code application can operate in different modes.
 
 - If you use **TEST_BASIC_READING** for testing, this example takes all 18 readings, 372nm to 966nm, over I2C and outputs them to the serial port.
 
-![basic reading](basic_reading.png "Basic Reading Result")
+![basic reading](image/basic_reading.png "Basic Reading Result")
 
 - If you use **TEST_BASIC_READING_WITH_LED** for testing, this example takes all 18 readings and blinks the illumination LEDs as it goes, resets the device, and observes the log messages.
 
-![basic reading with led](basic_reading_with_led.png "Basic Reading With LED Result")
+![basic reading with led](image/basic_reading_with_led.png "Basic Reading With LED Result")
 
 - If you use **TEST_READ_RAW_VALUE** for testing, this example shows how to output the raw sensor values.
 
-![raw data reading](raw_data_reading.png "Raw Data Reading Result")
+![raw data reading](image/raw_data_reading.png "Raw Data Reading Result")
 
 - If you use **TEST_MAX_READ_RATE** for testing, this example shows how to set up the sensor for max, calibrated read rate.
 
-![max rate reading](max_data_rate_reading.png "Max Data Rate Reading Result")
+![max rate reading](image/max_data_rate_reading.png "Max Data Rate Reading Result")
 
 ## Report Bugs & Get Support ##
 

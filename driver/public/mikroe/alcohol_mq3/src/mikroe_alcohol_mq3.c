@@ -37,12 +37,10 @@
  *
  ******************************************************************************/
 
-#include "alcohol.h"
+#include <stddef.h>
 #include "mikroe_alcohol_mq3.h"
 #include "third_party_hw_drivers_helpers.h"
 #include "mikroe_alcohol_mq3_config.h"
-#include "drv_digital_out.h"
-#include "drv_digital_in.h"
 #include "alcohol.h"
 
 static alcohol_t alcohol;
@@ -53,7 +51,7 @@ void mikroe_mq3_setup(void)
   alcohol_cfg_setup(&alcohol_cfg);
 }
 
-sl_status_t mikroe_mq3_init(IADC_TypeDef *handle)
+sl_status_t mikroe_mq3_init(adc_t *handle)
 {
   if (NULL == handle) {
     return SL_STATUS_INVALID_HANDLE;

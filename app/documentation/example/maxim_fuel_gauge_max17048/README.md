@@ -1,4 +1,4 @@
-# Maxim Battery Fuel Gauge MAX17048 #
+# MAX17048 - Maxim Battery Fuel Gauge #
 
 ## Overview ##
 
@@ -6,7 +6,7 @@ This project shows the implementation of an I2C Fuel Gauge driver using the MAX1
 
 The block diagram of this example is shown in the image below:
 
-![overview](overview.png)
+![overview](image/overview.png)
 
 ## Hardware Required ##
 
@@ -18,13 +18,13 @@ The block diagram of this example is shown in the image below:
 
 - [Lithium Ion Battery](https://www.sparkfun.com/products/13851)
 
-- A high power resistor (e.g 220Ω/5W) is as the load of the battery.
+- A high power resistor (e.g. 220Ω/5W) is as the load of the battery.
 
 ## Connections Required ##
 
 We can use some [Wire Jumpers Female to Female](https://www.mikroe.com/wire-jumpers-female-to-female-30cm-10pcs) to connect between the EFR32xG21 Wireless Starter Kit and the MAX17048XEVKIT Evalue Kit, and between the MAX17048XEVKIT Evalue Kit to the Lithium Ion Battery and the load as shown below.
 
-![connection](connection.png)
+![connection](image/connection.png)
 
 | WSTK markings             |  MAX17048XEVKIT Evalue Kit markings |
 |---------------------------|:-----------------------------------:|
@@ -42,14 +42,14 @@ We can use some [Wire Jumpers Female to Female](https://www.mikroe.com/wire-jump
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4181B to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter max17048evkit.
+1. From the Launcher Home, add the BRD4181B to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter max17048evkit.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - Maxim MAX17048EVKIT Evalue Kit** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - MAX17048 - MAX17048EVKIT Evaluation Kits (Maxim)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -70,19 +70,19 @@ You can either create a project based on a example project or start with an empt
       - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
       - Set **Enable Virtual COM UART** in **[Platform] > [Board Control]** component.
 
-        ![enable_vcom](vcom.png)
+        ![enable_vcom](image/vcom.png)
 
       - [Application] → [Utility] → [Log]
       - [Third Party Hardware Drivers] → [Power Management] → [MAX17048 - MAX17048EVKIT Evaluation Kits (Maxim)] → use default configuaration
 
-        ![max17048_config](max17048_config.png)
+        ![max17048_config](image/max17048_config.png)
 
     - Install printf float
 
       - Open Properties of the project.
       - Select **C/C++ Build > Settings > Tool Settings >GNU ARM C Linker > General**. Check **Printf float**.
 
-        ![enable_print_float](float.png)
+        ![enable_print_float](image/float.png)
 
 4. Build and flash this example to the board.
 
@@ -96,7 +96,7 @@ You can either create a project based on a example project or start with an empt
 
 ### API overview ###
 
-**Note:** When Power Manager is used, I2C transfers to and from the MAX17048 always complete because the driver adds a Power Manager requirement that prevents EM2 or EM3 entry. In cases where Power Manager is not used, it may be desirable to mark sections of code that call driver functions as atomic or critical if an interrupt can cause entry into EM2 or EM3.
+**Note:** When Power Manager is used, I2C transfers to and from the MAX17048 are always complete because the driver adds a Power Manager requirement that prevents EM2 or EM3 entry. In cases where Power Manager is not used, it may be desirable to mark sections of code that call driver functions as atomic or critical if an interrupt can cause entry into EM2 or EM3.
 
 The APIs of the driver can be grouped into as follows:
 
@@ -423,14 +423,14 @@ The APIs of the driver can be grouped into as follows:
 
 The following diagram shows the program flow as implemented in the app.c file:
 
-![API](workflow.png)
+![API](image/workflow.png)
 
 Below is the console output of the example application. The message is sent to the console every time SOC changes by at least 1%.
 
-![log](log.png)
+![log](image/log.png)
 
 ## Report Bugs & Get Support ##
 
-To report bugs in the Application Examples projects, please create a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension_staging](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging) repo. Please reference the board, project, and source files associated with the bug, and reference line numbers. If you are proposing a fix, also include information on the proposed fix. Since these examples are provided as-is, there is no guarantee that these examples will be updated to fix these issues.
+To report bugs in the Application Examples projects, please create a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension](https://github.com/SiliconLabs/third_party_hw_drivers_extension) repo. Please reference the board, project, and source files associated with the bug, and reference line numbers. If you are proposing a fix, also include information on the proposed fix. Since these examples are provided as-is, there is no guarantee that these examples will be updated to fix these issues.
 
-Questions and comments related to these examples should be made by creating a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension_staging](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging) repo.
+Questions and comments related to these examples should be made by creating a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension](https://github.com/SiliconLabs/third_party_hw_drivers_extension) repo.

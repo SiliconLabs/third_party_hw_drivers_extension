@@ -1,4 +1,4 @@
-# CO Click Driver #
+# MQ7 - CO Click (Mikroe) #
 
 ## Summary ##
 
@@ -16,18 +16,18 @@ CO Click is a compact add-on board that can detect the presence of carbon monoxi
 
 The CO Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter CO Click.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter mq7.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - MQ7 (CO Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - MQ7 - CO Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -35,7 +35,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](../../../example/mikroe_co_mq7/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_co_mq7/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -45,12 +45,11 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - **[Services] → [Sleep Timer]**
+        - **[Services] → [Timers] → [Sleep Timer]**
         - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
         - **[Application] → [Utility] → [Log]**
-        - **[Application] → [Service] → [Simple timer service]**
         - **[Third Party Hardware Drivers] → [Sensors] → [MQ7 - CO Click (Mikroe)]** → use default configuaration
-        ![Default Configuration](default_configuration.png)
+        ![Default Configuration](image/default_configuration.png)
 
 4. Install printf float
 
@@ -58,23 +57,23 @@ You can either create a project based on a example project or start with an empt
 
     - Select C/C++ Build > Settings > Tool Settings >GNU ARM C Linker > General. Check Printf float.
 
-        ![float](float.png)
+        ![float](image/float.png)
 
 5. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install **MQ7 - CO Click (Mikroe)** component.
 
-- The example project are built on the BRD4314A board. So users should add the BRD4314A to MyProducts to able be see them on the Launcher Home of Simplicity Studio IDE.
-
 ## How It Works ##
+
+The application shows the reading of the ADC values given by the sensors and prints in two forms (DEC and HEX).
 
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

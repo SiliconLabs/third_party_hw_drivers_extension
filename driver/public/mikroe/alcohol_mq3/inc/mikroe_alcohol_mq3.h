@@ -39,11 +39,23 @@
 #ifndef MIKROE_ALCOHOL_MQ3_H_
 #define MIKROE_ALCOHOL_MQ3_H_
 
+#include "em_cmu.h"
 #include "sl_status.h"
-#include "drv_uart.h"
+
+#if defined(_SILICON_LABS_32B_SERIES_1)
+#include "em_adc.h"
+#elif defined(_SILICON_LABS_32B_SERIES_2)
+#include "em_iadc.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#if defined(_SILICON_LABS_32B_SERIES_1)
+typedef ADC_TypeDef adc_t;
+#elif defined(_SILICON_LABS_32B_SERIES_2)
+typedef IADC_TypeDef adc_t;
 #endif
 
 /**
@@ -65,7 +77,7 @@ void mikroe_mq3_setup(void);
  * See #err_t definition for detailed explanation.
  * @note None.
  */
-sl_status_t mikroe_mq3_init(IADC_TypeDef *handle);
+sl_status_t mikroe_mq3_init(adc_t *handle);
 
 /**
  * @brief Alcohol read AN pin value function.

@@ -19,24 +19,31 @@
  * Initialize application.
  ******************************************************************************/
 #include "sl_status.h"
-#include "sl_simple_timer.h"
-#include "mikroe_mq7.h"
+#include "sl_sleeptimer.h"
 #include "app_log.h"
 
-static float value;
-static uint16_t data_out;
-static sl_simple_timer_t co_timer;
+#include "mikroe_mq7.h"
 
-static void app_co_timer_handle(
-  sl_simple_timer_t *timer, void *data);
+#define READING_INTERVAL_MSEC 3000
+
+static bool timer_is_expire = false;
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 void app_init(void)
 {
   if (mikroe_mq7_init(IADC0) == SL_STATUS_OK) {
     app_log("Initialize CO sensor successfully\n");
-  }
 
-  sl_simple_timer_start(&co_timer, 3000, app_co_timer_handle, NULL, true);
+    sl_sleeptimer_start_periodic_timer(&app_timer_handle,
+                                       READING_INTERVAL_MSEC,
+                                       app_timer_cb,
+                                       (void *) NULL,
+                                       0,
+                                       0);
+  }
 }
 
 /***************************************************************************//**
@@ -44,21 +51,30 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  float value;
+  uint16_t data_out;
+
+  if (timer_is_expire == true) {
+    timer_is_expire = false;
+
+    if (mikroe_mq7_read_an_pin_voltage(&value) == SL_STATUS_OK) {
+      app_log("AN Voltage: %f V\n", value);
+    } else {
+      app_log("Fail to read\n");
+    }
+
+    if (mikroe_mq7_read_an_pin_value(&data_out) == SL_STATUS_OK) {
+      app_log("ADC Value: %d\n", data_out);
+    } else {
+      app_log("Fail to read\n");
+    }
+  }
 }
 
-static void app_co_timer_handle(sl_simple_timer_t *timer, void *data)
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
-  (void)timer;
-  (void)data;
-  if (mikroe_mq7_read_an_pin_voltage(&value) == SL_STATUS_OK) {
-    app_log("Value is: %f\n", value);
-  } else {
-    app_log("Fail to read\n");
-  }
+  (void) handle;
+  (void) data;
 
-  if (mikroe_mq7_read_an_pin_value(&data_out) == SL_STATUS_OK) {
-    app_log("Value is: %d\n", data_out);
-  } else {
-    app_log("Fail to read\n");
-  }
+  timer_is_expire = true;
 }

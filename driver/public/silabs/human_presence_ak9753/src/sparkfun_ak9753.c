@@ -36,11 +36,11 @@
  *
  ******************************************************************************/
 
+#include <string.h>
+#include "sl_udelay.h"
 #include "sparkfun_ak9753.h"
 #include "sparkfun_ak9753_config.h"
 #include "sparkfun_ak9753_platform.h"
-#include "sl_udelay.h"
-#include "string.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -121,8 +121,9 @@ sl_status_t sparkfun_ak9753_power_down(void)
   && (defined SPARKFUN_AK9753_CONFIG_PDN_PIN)
   GPIO_PinOutClear(SPARKFUN_AK9753_CONFIG_PDN_PORT,
                    SPARKFUN_AK9753_CONFIG_PDN_PIN);
-#endif
   return SL_STATUS_OK;
+#endif
+  return SL_STATUS_NOT_INITIALIZED;
 }
 
 /***************************************************************************//**
@@ -134,8 +135,9 @@ sl_status_t sparkfun_ak9753_power_up(void)
   && (defined SPARKFUN_AK9753_CONFIG_PDN_PIN)
   GPIO_PinOutSet(SPARKFUN_AK9753_CONFIG_PDN_PORT,
                  SPARKFUN_AK9753_CONFIG_PDN_PIN);
-#endif
   return SL_STATUS_OK;
+#endif
+  return SL_STATUS_NOT_INITIALIZED;
 }
 
 /***************************************************************************//**

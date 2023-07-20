@@ -7,7 +7,10 @@ category: Services|mikroSDK 2.0 SDK - Peripheral Drivers
 quality: evaluation
 root_path: driver
 requires:
+  - name: emlib_adc
+    condition: [device_series_1]
   - name: emlib_iadc
+    condition: [device_series_2]
 provides:
   - name: mikroe_peripheral_driver_adc
     allow_multiple: false

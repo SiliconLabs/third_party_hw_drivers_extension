@@ -64,7 +64,10 @@ sl_status_t mikroe_ssd1306_init(SPIDRV_Handle_t spi_instance)
   // Call basic setup functions
   oledw_cfg_setup(&oledw_cfg);
   oledw_cfg.sel = OLEDW_MASTER_SPI;
+
+#if defined(SSD1306_DC_PORT) && defined(SSD1306_DC_PIN)
   oledw_cfg.dc = hal_gpio_pin_name(SSD1306_DC_PORT, SSD1306_DC_PIN);
+#endif
 
 #if defined(SSD1306_RST_PORT) && defined(SSD1306_RST_PIN)
   oledw_cfg.rst = hal_gpio_pin_name(SSD1306_RST_PORT, SSD1306_RST_PIN);

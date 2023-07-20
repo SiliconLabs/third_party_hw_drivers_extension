@@ -1,0 +1,33 @@
+id: turbidity_tsd10
+package: third_party_hw_drivers
+label: TSD-10 - Turbidity Click (Mikroe)
+description: >
+  Driver for the Mikroe Turbidity Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_digital_io
+provides:
+  - name: turbidity_tsd10
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: turbidity_tsd10
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/turbidity/lib_turbidity/include
+    file_list:
+      - path: turbidity.h
+  - path: public/mikroe/turbidity_tsd10/inc
+    file_list:
+      - path: mikroe_tsd10.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/turbidity/lib_turbidity/src/turbidity.c
+  - path: public/mikroe/turbidity_tsd10/src/mikroe_tsd10.c

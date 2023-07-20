@@ -1,0 +1,45 @@
+id: mikroe_ozone2
+package: third_party_hw_drivers
+label: MQ131 - Ozone 2 Click (Mikroe)
+description: >
+  Driver for the Ozone 2 Click board, this board relies on the MQ131 gas sensor and MCP3551 A/D converters using SPI interface. This gas sensor has a sensitive layer made of SnO2, which changes its resistance when exposed to ozone.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: udelay
+  - name: mikroe_peripheral_driver_spi
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_adc
+provides:
+  - name: mikroe_ozone2
+config_file:
+  - path: public/mikroe/ozone2_mq131/config/brd2703a/mikroe_mq131_config.h
+    file_id: driver_config_mq131
+    condition: [brd2703a]
+  - path: public/mikroe/ozone2_mq131/config/brd4108a/mikroe_mq131_config.h
+    file_id: driver_config_mq131
+    condition: [brd4108a]
+  - path: public/mikroe/ozone2_mq131/config/brd4314a/mikroe_mq131_config.h
+    file_id: driver_config_mq131
+    condition: [brd4314a]
+  - path: public/mikroe/ozone2_mq131/config/other/mikroe_mq131_config.h
+    file_id: driver_config_mq131
+    unless: [brd2703a, brd4108a, brd4314a]
+template_contribution:
+  - name: component_catalog
+    value: mikroe_ozone2
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/ozone2/lib_ozone2/include
+    file_list:
+      - path: ozone2.h
+  - path: public/mikroe/ozone2_mq131/inc
+    file_list:
+      - path: mikroe_mq131.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/ozone2/lib_ozone2/src/ozone2.c
+  - path: public/mikroe/ozone2_mq131/src/mikroe_mq131.c

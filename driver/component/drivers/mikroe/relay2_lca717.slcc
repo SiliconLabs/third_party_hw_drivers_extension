@@ -11,8 +11,18 @@ root_path: driver
 requires:
   - name: mikroe_peripheral_driver_digital_io
 config_file:
-  - path: public/mikroe/relay2_lca717/config/mikroe_relay2_config.h
+  - path: public/mikroe/relay2_lca717/config/brd2703a/mikroe_relay2_config.h
     file_id: driver_config_relay2
+    condition: [brd2703a]
+  - path: public/mikroe/relay2_lca717/config/brd4108a/mikroe_relay2_config.h
+    file_id: driver_config_relay2
+    condition: [brd4108a]
+  - path: public/mikroe/relay2_lca717/config/brd4314a/mikroe_relay2_config.h
+    file_id: driver_config_relay2
+    condition: [brd4314a]
+  - path: public/mikroe/relay2_lca717/config/other/mikroe_relay2_config.h
+    file_id: driver_config_relay2
+    unless: [brd4314a, brd4108a, brd2703a]
 provides:
   - name: mikroe_relay2
     allow_multiple: false

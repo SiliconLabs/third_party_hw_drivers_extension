@@ -9,7 +9,6 @@ ui_hints:
   visibility: basic
 root_path: driver
 requires:
-  - name: sleeptimer
   - name: mikroe_peripheral_driver_pwm
 provides:
   - name: mikroe_buzz2

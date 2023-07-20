@@ -12,8 +12,18 @@ requires:
   - name: status
   - name: mikroe_peripheral_driver_adc
 config_file:
-  - path: public/mikroe/co_mq7/config/mikroe_mq7_config.h
+  - path: public/mikroe/co_mq7/config/brd2703a/mikroe_mq7_config.h
     file_id: driver_config_co
+    condition: [brd2703a]
+  - path: public/mikroe/co_mq7/config/brd4108a/mikroe_mq7_config.h
+    file_id: driver_config_co
+    condition: [brd4108a]
+  - path: public/mikroe/co_mq7/config/brd4314a/mikroe_mq7_config.h
+    file_id: driver_config_co
+    condition: [brd4314a]
+  - path: public/mikroe/co_mq7/config/other/mikroe_mq7_config.h
+    file_id: driver_config_co
+    unless: [brd4314a, brd4108a, brd2703a]
 template_contribution:
   - name: component_catalog
     value: mikroe_co

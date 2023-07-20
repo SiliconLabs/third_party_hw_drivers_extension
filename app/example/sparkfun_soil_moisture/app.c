@@ -36,7 +36,7 @@
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 #include "sl_i2cspm_instances.h"
 
 #include "app_log.h"
@@ -45,14 +45,12 @@
 #include "sparkfun_soil_moisture.h"
 
 #define MOISTURE_THRESHOLD          70
+#define READING_INTERVAL_MSEC       1000
 
-// simple timer handle variable
-static sl_simple_timer_t my_timer;
+static volatile bool app_timer_expire = false;
+static sl_sleeptimer_timer_handle_t app_timer_handle;
 
-/**************************************************************************//**
- *  Simple timer callback function.
- *****************************************************************************/
-static void timer_callback(sl_simple_timer_t *timer, void *data);
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 void app_init(void)
 {
@@ -78,8 +76,12 @@ void app_init(void)
   sparkfun_soil_moisture_set_wet_value(1023);
   app_log("\rCalibrating done...\n");
 
-  sc = sl_simple_timer_start(&my_timer, 1000, timer_callback, NULL, true);
-
+  sc = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                             READING_INTERVAL_MSEC,
+                                             app_timer_cb,
+                                             NULL,
+                                             0,
+                                             1);
   if (sc != SL_STATUS_OK) {
     app_log("\r\n > Start periodic measuring soil moisture Fail\n");
   } else {
@@ -92,17 +94,14 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  /* This functin is empty because we use a simple timer to handle periodic
-   *    action of the sensor */
-}
-
-static void timer_callback(sl_simple_timer_t *timer, void *data)
-{
   uint8_t moisture;
   sl_status_t sc;
 
-  (void)&timer;
-  (void)&data;
+  if (app_timer_expire == false) {
+    return;
+  }
+
+  app_timer_expire = false;
   sc = sparkfun_soil_moisture_get_moisture(&moisture);
 
   if (sc != SL_STATUS_OK) {
@@ -115,4 +114,12 @@ static void timer_callback(sl_simple_timer_t *timer, void *data)
       sparkfun_soil_moisture_led_off();
     }
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

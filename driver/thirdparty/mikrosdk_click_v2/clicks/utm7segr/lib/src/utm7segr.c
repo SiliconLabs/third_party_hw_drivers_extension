@@ -122,8 +122,8 @@ void utm7segr_default_cfg ( utm7segr_t *ctx ) {
 }
 
 err_t utm7segr_generic_write ( utm7segr_t *ctx, uint8_t *data_in ) {
-    uint8_t tx_buf[ 257 ];
-    uint8_t cnt;
+    // uint8_t tx_buf[ 257 ];
+    // uint8_t cnt;
 
     spi_master_select_device( ctx->chip_select );
     err_t error_flag = spi_master_write( &ctx->spi, data_in, 2 );

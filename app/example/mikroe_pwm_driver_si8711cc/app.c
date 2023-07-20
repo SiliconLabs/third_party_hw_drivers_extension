@@ -32,22 +32,24 @@ static volatile bool timer_trigger = false;
 static uint8_t step_count = 1;
 static float duty_cycle;
 
-void app_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data);
+static void app_timer_callback(sl_sleeptimer_timer_handle_t *handle,
+                               void *data);
 
 void app_init(void)
 {
+  sl_status_t stt;
+
   app_log("Hello World - PWM Driver Click !!!\r\n");
 
   if (mikroe_si8711cc_init(&sl_pwm_mikroe) == SL_STATUS_OK) {
     app_log("PWM Driver Click board driver init successfully\r\n");
 
-    sl_status_t stt = sl_sleeptimer_restart_periodic_timer_ms(
-      &app_timer_handle,
-      TIMER_PERIOD,
-      app_timer_callback,
-      NULL,
-      0,
-      0);
+    stt = sl_sleeptimer_restart_periodic_timer_ms(&app_timer_handle,
+                                                  TIMER_PERIOD,
+                                                  app_timer_callback,
+                                                  NULL,
+                                                  0,
+                                                  0);
 
     app_log("sl_sleeptimer_restart_periodic_timer = 0x%lx\r\n", stt);
     duty_cycle = step_count * DUTY_CYCLE_STEP;
@@ -82,7 +84,7 @@ void app_process_action(void)
   }
 }
 
-void app_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
+static void app_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
   (void)handle;
   (void)data;

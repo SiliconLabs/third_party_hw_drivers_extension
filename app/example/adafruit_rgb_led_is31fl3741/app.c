@@ -36,38 +36,15 @@ char *str = "Silicon Labs - Third Party Hardware Drivers Extension";
 static glib_context_t glib_context;
 static uint16_t color[] = { 0xf800, 0xffe0, 0x07e0, 0x07ff, 0x001f, 0xf81f,
                             0xffff, 0x73c0 };
-static sl_sleeptimer_timer_handle_t my_timer;
+static volatile bool app_timer_expire = false;
+static sl_sleeptimer_timer_handle_t app_timer;
 
 // -----------------------------------------------------------------------------
 //                       Local Functions
 // -----------------------------------------------------------------------------
 
-static void timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
-{
-  char *ptr = str;
-  static int16_t cursor_x = 0;
-  int length = (int)strlen(str) * 6 - 1;
-  int i = 0;
-
-  (void)data;
-  (void)handle;
-
-  glib_set_cursor(&glib_context, cursor_x, 1);
-  glib_fill(&glib_context, 0);
-  while (*ptr) {
-    glib_set_text_color(&glib_context, color[i++]);
-    glib_write_char(&glib_context, *ptr++);
-    if (i == 8) {
-      i = 0;
-    }
-  }
-  glib_update_display();
-  if (cursor_x > -length) {
-    cursor_x--;
-  } else {
-    cursor_x = glib_context.width;
-  }
-}
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
+static void app_task(void);
 
 /***************************************************************************//**
  * Initialize application.
@@ -89,9 +66,9 @@ void app_init(void)
   glib_enable_display(true);
   app_log("\rGLIB Initialization done\n");
 
-  ret = sl_sleeptimer_start_periodic_timer_ms(&my_timer,
+  ret = sl_sleeptimer_start_periodic_timer_ms(&app_timer,
                                               50,
-                                              timer_callback,
+                                              app_timer_cb,
                                               NULL,
                                               0,
                                               0);
@@ -104,4 +81,41 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+  app_task();
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void)data;
+  (void)handle;
+
+  app_timer_expire = true;
+}
+
+static void app_task(void)
+{
+  char *ptr = str;
+  static int16_t cursor_x = 0;
+  int length = (int)strlen(str) * 6 - 1;
+  int i = 0;
+
+  glib_set_cursor(&glib_context, cursor_x, 1);
+  glib_fill(&glib_context, 0);
+  while (*ptr) {
+    glib_set_text_color(&glib_context, color[i++]);
+    glib_write_char(&glib_context, *ptr++);
+    if (i == 8) {
+      i = 0;
+    }
+  }
+  glib_update_display();
+  if (cursor_x > -length) {
+    cursor_x--;
+  } else {
+    cursor_x = glib_context.width;
+  }
 }

@@ -1,4 +1,4 @@
-# PWM Driver Click #
+# Si8711CC - PWM Driver Click (Mikroe) #
 
 ## Summary ##
 
@@ -39,9 +39,9 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A  to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter 'pwm driver'.
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter 'si8711cc'.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - SI8711CC - PWM Driver Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+2. Click **Create** button on the **Third Party Hardware Drivers - Si8711CC - PWM Driver Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 ![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
@@ -50,7 +50,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file "app/example/mikroe_pwm_driver_si8711cc/app.c" into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_pwm_driver_si8711cc/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -60,7 +60,7 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
+        - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
         - [Third-Party Hardware Drivers] → [Motor Control] → [Si8711CC - PWM Driver Click (Mikroe)]
@@ -69,13 +69,13 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure the Third-party Hardware Drivers Extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_Drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - Third-party Hardware Drivers Extension must be enabled for the project to install "Si8711CC - PWM Driver Click (Mikroe)" component.
 
 ## How It Works ##
 
-- You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Tera Term to receive the data from the USB. In this example, we build a simple application that generate a PWM signal with frequency = 1000Hz, and duty level = 10% at startup. This duty level will be increased by 10% each 2000ms. If duty level >= 100% then duty level will be set to 10%.
+- You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Tera Term to receive the data from the USB. In this example, we build a simple application that generates a PWM signal with frequency = 1000Hz, and duty level = 10% at startup. This duty level will be increased by 10% each 2000ms. If the duty level >= 100% then the duty level will be set to 10%.
 - A screenshot of the console output is shown in the figure below:
 
   ![usb_debug](image/log.png "USB Debug Output Data")

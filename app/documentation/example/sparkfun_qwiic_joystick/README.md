@@ -18,18 +18,18 @@ For more information about the SparkFun Qwiic Joystick, see the [specification p
 
 The Sparkfun Qwiic Joystick board can be easily connected by using a [Qwiic cable](https://www.sparkfun.com/products/17259).
 
-![hardware_connection](hardware_connection.png)
+![hardware_connection](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "Joystick".
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "joystick".
 
 2. Click **Create** button on the **Third Party Hardware Drivers - Qwiic Joystick (SparkFun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging/tree/master/app/example/sparkfun_qwiic_joystick/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file app/example/sparkfun_qwiic_joystick/app.c (overwriting existing file), into the project root folder.
 
 3. Install the software components:
 
@@ -56,11 +56,9 @@ You can either create a project based on a example project or start with an empt
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging/blob/master/README.md).
+- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
 
-- SDK Extension must be enabled for the project to install "Qwiic Joystick (Sparkfun)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the "Qwiic Joystick (Sparkfun)" component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "Qwiic Joystick (Sparkfun)" component.
 
 ## How It Works ##
 
@@ -98,10 +96,10 @@ This example demonstrates some of the available features of the Joystick module.
 
 2. Try to move the Joystick in some direction and check the logs on the terminal.
 
-![logging_screen](logs.png)
+![logging_screen](image/logs.png)
 
 ## Report Bugs & Get Support ##
 
-To report bugs in the Application Examples projects, please create a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension_staging](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging) repo. Please reference the board, project, and source files associated with the bug, and reference line numbers. If you are proposing a fix, also include information on the proposed fix. Since these examples are provided as-is, there is no guarantee that these examples will be updated to fix these issues.
+To report bugs in the Application Examples projects, please create a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension](https://github.com/SiliconLabs/third_party_hw_drivers_extension) repo. Please reference the board, project, and source files associated with the bug, and reference line numbers. If you are proposing a fix, also include information on the proposed fix. Since these examples are provided as-is, there is no guarantee that these examples will be updated to fix these issues.
 
-Questions and comments related to these examples should be made by creating a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension_staging](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging) repo.
+Questions and comments related to these examples should be made by creating a new "Issue" in the "Issues" section of [third_party_hw_drivers_extension](https://github.com/SiliconLabs/third_party_hw_drivers_extension) repo.

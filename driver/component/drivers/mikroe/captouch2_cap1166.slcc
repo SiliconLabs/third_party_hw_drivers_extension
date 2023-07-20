@@ -12,8 +12,18 @@ requires:
   - name: status
   - name: mikroe_peripheral_driver_spi
 config_file:
-  - path: public/mikroe/captouch2_cap1166/config/mikroe_cap1166_config.h
+  - path: public/mikroe/captouch2_cap1166/config/brd2703a/mikroe_cap1166_config.h
     file_id: driver_config_captouch2
+    condition: [brd2703a]
+  - path: public/mikroe/captouch2_cap1166/config/brd4108a/mikroe_cap1166_config.h
+    file_id: driver_config_captouch2
+    condition: [brd4108a]
+  - path: public/mikroe/captouch2_cap1166/config/brd4314a/mikroe_cap1166_config.h
+    file_id: driver_config_captouch2
+    condition: [brd4314a]
+  - path: public/mikroe/captouch2_cap1166/config/other/mikroe_cap1166_config.h
+    file_id: driver_config_captouch2
+    unless: [brd4314a, brd4108a, brd2703a]
 template_contribution:
   - name: component_catalog
     value: mikroe_captouch2

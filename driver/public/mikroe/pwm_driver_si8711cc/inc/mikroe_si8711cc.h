@@ -83,7 +83,7 @@ sl_status_t mikroe_si8711cc_set_pwm_instance(
  *    SL_STATUS_OK if there are no errors.
  *    SL_STATUS_FAIL
  ******************************************************************************/
-sl_status_t mikroe_si8711cc_set_duty_cycle (float duty_cycle);
+sl_status_t mikroe_si8711cc_set_duty_cycle(float duty_cycle);
 
 /***************************************************************************//**
  * @brief
@@ -96,7 +96,7 @@ sl_status_t mikroe_si8711cc_set_duty_cycle (float duty_cycle);
  *    SL_STATUS_OK if there are no errors.
  *    SL_STATUS_FAIL
  ******************************************************************************/
-sl_status_t mikroe_si8711cc_set_frequency (uint16_t frequency);
+sl_status_t mikroe_si8711cc_set_frequency(uint16_t frequency);
 
 /***************************************************************************//**
  * @brief
@@ -106,7 +106,7 @@ sl_status_t mikroe_si8711cc_set_frequency (uint16_t frequency);
  *    SL_STATUS_OK if there are no errors.
  *    SL_STATUS_FAIL
  ******************************************************************************/
-sl_status_t mikroe_si8711cc_pwm_stop (void);
+sl_status_t mikroe_si8711cc_pwm_stop(void);
 
 /***************************************************************************//**
  * @brief
@@ -116,7 +116,7 @@ sl_status_t mikroe_si8711cc_pwm_stop (void);
  *    SL_STATUS_OK if there are no errors.
  *    SL_STATUS_FAIL
  ******************************************************************************/
-sl_status_t mikroe_si8711cc_pwm_start (void);
+sl_status_t mikroe_si8711cc_pwm_start(void);
 
 #ifdef __cplusplus
 }

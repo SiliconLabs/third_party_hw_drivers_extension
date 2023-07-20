@@ -21,15 +21,13 @@
 #include "app_log.h"
 
 #include "sparkfun_mlx90640.h"
+#include "sparkfun_mlx90640_config.h"
 
 static float mlx90640_image[SPARKFUN_MLX90640_NUM_OF_PIXELS];
-static sl_sleeptimer_timer_handle_t mlx90640_get_image_timer;
-static bool print_image = false;
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
 
-void print_mlx90640_temperature_array_cb()
-{
-  print_image = true;
-}
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 /***************************************************************************//**
  * Initialize application.
@@ -39,7 +37,7 @@ void app_init(void)
   sl_status_t sc;
   uint16_t refrate = 0;
   sc = sparkfun_mlx90640_init(sl_i2cspm_qwiic,
-                              SPARKFUN_MLX90640_DEFAULT_I2C_ADDR);
+                              MLX90640_I2C_ADDRESS);
 
   if (sc == SL_STATUS_OK) {
     app_log("\nMLX90640 initialized successfully\n");
@@ -51,9 +49,9 @@ void app_init(void)
 
     app_log("RefreshRate: %x\n", refrate);
 
-    sc = sl_sleeptimer_start_periodic_timer_ms(&mlx90640_get_image_timer,
+    sc = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
                                                250,
-                                               print_mlx90640_temperature_array_cb,
+                                               app_timer_cb,
                                                (void *) NULL,
                                                0,
                                                0);
@@ -68,8 +66,8 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  if (print_image) {
-    print_image = false;
+  if (app_timer_expire == true) {
+    app_timer_expire = false;
     sparkfun_mlx90640_get_image_array(mlx90640_image);
 
     for (int i = 0; i < SPARKFUN_MLX90640_NUM_OF_PIXELS; i++)
@@ -78,4 +76,12 @@ void app_process_action(void)
     }
     app_log("\n");
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

@@ -37,13 +37,15 @@
 //                                   Includes
 // -----------------------------------------------------------------------------
 
-#include "sparkfun_mlx90640.h"
-#include "sparkfun_mlx90640_i2c.h"
-#include "math.h"
+#include <math.h>
 #include "sl_sleeptimer.h"
 #include "app_assert.h"
 
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#include "sparkfun_mlx90640.h"
+#include "sparkfun_mlx90640_i2c.h"
+#include "sparkfun_mlx90640_config.h"
+
+#if MLX90640_CONFIG_ENABLE_LOG
 #include "app_log.h"
 #endif
 
@@ -102,7 +104,7 @@ sl_status_t sparkfun_mlx90640_init(sl_i2cspm_t *i2cspm_instance,
   status = sparkfun_mlx90640_dump_ee(eeMLX90640);
 
   if (status != 0) {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
     app_log("\nFailed to load system parameters of MLX90640\n");
 #endif
     return SL_STATUS_NOT_INITIALIZED;
@@ -111,7 +113,7 @@ sl_status_t sparkfun_mlx90640_init(sl_i2cspm_t *i2cspm_instance,
   bad_pixel_count = sparkfun_mlx90640_extract_parameters(eeMLX90640, &mlx90640);
 
   if (bad_pixel_count != 0) {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
     app_log("\nNumber of pixel errors: %d\n", bad_pixel_count);
 #endif
   }
@@ -135,7 +137,7 @@ sl_status_t sparkfun_mlx90640_get_image_array(float *pixel_array)
     uint16_t mlx90640Frame[834];
     int status = sparkfun_mlx90640_get_frame_data(mlx90640Frame);
     if (status < 0) {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
       app_log("GetFrame Error: %d", status);
 #endif
       return SL_STATUS_FAIL;
@@ -195,12 +197,12 @@ sl_status_t sparkfun_mlx90640_set_slave_addr(sl_i2cspm_t *i2cspm_instance,
       app_assert_status(status);
       status = sparkfun_mlx90640_i2c_read(0x240F, 1, &temp_address);
       if (status == SL_STATUS_OK) {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
         app_log("\nCurrent address is 0x%x\n", temp_address & 0xFF);
 #endif
         return status;
       } else {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
         app_log(
           "\nUnknown I2C address!\nPlease find out the current address of the device, then change the SPARKFUN_MLX90640_DEFAULT_I2C_ADDR macro to that address!\n");
 #endif
@@ -229,12 +231,12 @@ sl_status_t sparkfun_mlx90640_set_slave_addr(sl_i2cspm_t *i2cspm_instance,
         app_assert_status(status);
 
         if ((temp_address & 0xFF) == new_addr) {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
           app_log("\nAddress change succesful\nPower-reset the device!\n");
 #endif
           status = SL_STATUS_NOT_INITIALIZED;
         } else {
-#ifdef SPARKFUN_MLX90640_DRIVER_DEBUG_PRINT_ENABLED
+#if MLX90640_CONFIG_ENABLE_LOG
           app_log("\nAddress change failed\n");
 #endif
           status = SL_STATUS_NOT_INITIALIZED;

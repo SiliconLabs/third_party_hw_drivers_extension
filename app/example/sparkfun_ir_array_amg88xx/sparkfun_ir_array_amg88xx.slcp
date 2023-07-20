@@ -48,7 +48,7 @@ configuration:
     value: "6144"
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
 other_file:
   - path: ../../documentation/example/sparkfun_ir_array_amg88xx/images/create_example.png
     directory: images

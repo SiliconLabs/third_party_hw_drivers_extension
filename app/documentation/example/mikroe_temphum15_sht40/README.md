@@ -1,4 +1,4 @@
-# Temp&Hum 15 Click #
+# SHT40 - Temp&Hum 15 Click (Mikroe) #
 
 ## Summary ##
 
@@ -21,11 +21,11 @@ Tested boards for working with this example:
 
 ## Hardware Connection ##
 
-The Temp&Hum 15 Click board support MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the 45-degree corner of the Click Board™ matches the 45-degree white-line of the Silicon Labs Explorer Kit.
+The Temp&Hum 15 Click board supports MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the 45-degree corner of the Click Board™ matches the 45-degree white-line of the Silicon Labs Explorer Kit.
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
@@ -36,7 +36,7 @@ You can either create a project based on an example project or start with an emp
 1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter sht40.
 
 2. Click **Create** button on the **Third Party Hardware Drivers - SHT40 - Temp&Hump 15 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -44,7 +44,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_temphum15_sht40) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_temphum15_sht40/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -65,17 +65,15 @@ You can either create a project based on an example project or start with an emp
 
     - Select C/C++ Build > Settings > Tool Settings >GNU ARM C Linker > General. Check Printf float.
 
-        ![float](float.png)
+        ![float](image/float.png)
 
 5. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure that the Third-party Drivers Extension has already been installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- Third-party Drivers Extension must be enabled for the project to install "SHT40 - Temp&Hump 15 Click (Mikroe)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: mikroe.
-
-- The example project is built on the BRD4314A board. For other boards, selecting the "SHT40 - Temp&Hump 15 Click (Mikroe)" component will include the "I2CSPM" component with the unconfigured instance: inst0. This instance should be configurated by users.
+- Third-party Drivers Extension must be enabled for the project to install "SHT40 - Temp&Hump 15 Click (Mikroe)" component.
 
 ## How It Works ##
 
@@ -85,7 +83,7 @@ In the below image, you can see an example of how the output is displayed. The a
 
 There is a timer in the code, which determines the sampling intervals; the default sensor sampling rate is 1 second. If you need more frequent sampling, it is possible to change the corresponding timer value of the app.c file.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

@@ -36,9 +36,8 @@
 #include <string.h>
 #include "sl_iostream_init_usart_instances.h"
 #include "sl_iostream_init_eusart_instances.h"
-#include "sl_sleeptimer.h"
-#include "mikroe_mm5d91_00.h"
 #include "app_log.h"
+#include "mikroe_mm5d91_00.h"
 
 static mikroe_radar_t mikroe_radar;
 
@@ -49,9 +48,9 @@ void app_init(void)
 {
   sl_iostream_set_default(sl_iostream_vcom_handle);
   app_log_iostream_set(sl_iostream_vcom_handle);
-  if (SL_STATUS_OK
-      == mikroe_radar_usart_init(&mikroe_radar, sl_iostream_uart_mikroe_handle,
-                                 0)) {
+  if (SL_STATUS_OK == mikroe_radar_usart_init(&mikroe_radar,
+                                              sl_iostream_uart_mikroe_handle,
+                                              0)) {
     app_log("Init: Success\r\n");
   } else {
     app_log("Init: Failed\r\n");
@@ -63,10 +62,14 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  uint8_t evt_id, evt_payload_size, evt_payload[16];
-  if (SL_STATUS_OK
-      == mikroe_radar_get_event(&mikroe_radar, &evt_id, evt_payload,
-                                &evt_payload_size)) {
+  uint8_t evt_id;
+  uint8_t evt_payload_size;
+  uint8_t evt_payload[16];
+
+  if (SL_STATUS_OK == mikroe_radar_get_event(&mikroe_radar,
+                                             &evt_id,
+                                             evt_payload,
+                                             &evt_payload_size)) {
     if (RADAR_CMD_ID_DETECT_IN_EVT == evt_id) {
       app_log(" EVENT: IN\r\n");
       radar_float_bytes_t distance;
@@ -79,9 +82,10 @@ void app_process_action(void)
     } else {
       app_log(" EVENT: OUT\r\n");
     }
-    uint32_t evt_time =
-      (( uint32_t ) evt_payload[3] << 24) | (( uint32_t ) evt_payload[2] << 16)
-      | (( uint16_t ) evt_payload[1] << 8) | evt_payload[0];
+    uint32_t evt_time = (( uint32_t ) evt_payload[3] << 24)
+                        | (( uint32_t ) evt_payload[2] << 16)
+                        | (( uint16_t ) evt_payload[1] << 8)
+                        | evt_payload[0];
     app_log(" Elapsed time: %.2f s\r\n",
             evt_time / 1000.0);
     float temperature;

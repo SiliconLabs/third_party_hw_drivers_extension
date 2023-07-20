@@ -1,4 +1,4 @@
-# IrThermo 3 Click #
+# MLX90632 - IrThermo 3 Click (Mikroe) #
 
 ## Summary ##
 
@@ -27,7 +27,7 @@ The IrThermo 3 Click board support MikroBus, so it can connect easily to EFR32xG
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png "Hardware connection")
+![board](image/hardware_connection.png "Hardware connection")
 
 ## Setup ##
 
@@ -35,10 +35,10 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter mlx90632
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter mlx90632
 
 2. Click **Create** button on the **Third Party Hardware Drivers - MLX90632 - IrThermo 3 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -46,7 +46,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_irthermo3_mlx90632/app.c (overwriting the existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_irthermo3_mlx90632/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -56,27 +56,33 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
+        - **[Services] → [Timer] → [Sleep Timer]**
         - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
         - **[Application] → [Utility] → [Log]**
-        - **[Application] → [Service] → [Simple timer service]**
         - **[Third Party Hardware Drivers] → [Sensors] → [MLX90632 - IrThermo 3 Click (Mikroe)]**  -> use default configuration.
-        ![config](default_config.png)
+        ![config](image/default_config.png)
 
-4. Build and flash this example to the board.
+4. Install printf float
+
+    - Open Properties of the Project.
+
+    - Select C/C++ Build → Settings → Tool Settings → GNU ARM C Linker → General. Check Printf float.
+    ![install_float](image/float.png)
+
+5. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "MLX90632 - IrThermo 3 Click (Mikroe)" component. Selecting this component will also include the "I2CSPM" component with the default configurated instance: Mikroe.
-
-- The example project is built on the BRD2703A board. For other boards, selecting the "MLX90632 - IrThermo 3 Click (Mikroe)" component will include the "I2CSPM" component with the unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "MLX90632 - IrThermo 3 Click (Mikroe)" component.
 
 ## How It Works ##
 
+The application measures ambient and object temperatures and displays data in degree centigrade every second.
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output and an actual test image are shown in the figure below.
 
-![logging_screen](log.png)
+![logging_screen](image/log.png)
 
 ## Report Bugs & Get Support ##
 

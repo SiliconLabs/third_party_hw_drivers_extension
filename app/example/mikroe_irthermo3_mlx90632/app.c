@@ -15,15 +15,20 @@
  *
  ******************************************************************************/
 
-#include "mikroe_mlx90632.h"
 #include "sl_i2cspm_instances.h"
+#include "sl_sleeptimer.h"
+
 #include "app_log.h"
-#include "sl_simple_timer.h"
 
-static sl_simple_timer_t irthermo3_timer;
+#include "mikroe_mlx90632.h"
 
-static void app_irthermo3_timer_handle(
-  sl_simple_timer_t *timer, void *data);
+#define READING_INTERVAL_MSEC         1000
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
+static void application_task(void);
 
 /***************************************************************************//**
  * Initialize application.
@@ -32,14 +37,18 @@ void app_init(void)
 {
   if (mikroe_mlx90632_init(sl_i2cspm_mikroe) == SL_STATUS_OK) {
     app_log("IrThermo 3 Click initializes successfully\n");
+  } else {
+    app_log("IrThermo 3 Click initializes fail\n");
   }
 
   mikroe_mlx90632_default_config();
-  sl_simple_timer_start(&irthermo3_timer,
-                        3000,
-                        app_irthermo3_timer_handle,
-                        NULL,
-                        true);
+
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        app_timer_cb,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 }
 
 /***************************************************************************//**
@@ -47,17 +56,28 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  if (app_timer_expire == false) {
+    return;
+  }
+
+  app_timer_expire = false;
+  application_task();
 }
 
-static void app_irthermo3_timer_handle(sl_simple_timer_t *timer, void *data)
+static void application_task(void)
 {
-  (void)timer;
-  (void)data;
-
   if (mikroe_mlx90632_present() == SL_STATUS_OK) {
     app_log("Ambient temp: %.2f\n", mikroe_mlx90632_get_ambient_temperature());
     app_log("Object temp: %.2f\n", mikroe_mlx90632_get_object_temperature());
   } else {
     app_log("IrThermo 3 Click is not present on the bus\n");
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

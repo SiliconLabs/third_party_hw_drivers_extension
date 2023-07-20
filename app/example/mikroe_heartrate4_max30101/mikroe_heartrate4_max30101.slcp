@@ -1,9 +1,11 @@
-# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
 project_name: mikroe_heartrate4_max30101
-label: mikroe_heartrate4_max30101
+label: Third Party Hardware Drivers - MAX30101 - Heart Rate 4 Click (Mikroe)
+package: platform
 description: |
   This example project shows an example for Mikroe Heart rate 4 click board driver integration.
 category: Example|Platform
+quality: evaluation
+
 filter:
 - name: Device Type
   value: [SoC]
@@ -11,42 +13,49 @@ filter:
   value: [32-bit MCU]
 - name: Project Difficulty
   value: [Beginner]
-package: platform
-quality: evaluation
+
 readme:
 - path: ../../documentation/example/mikroe_heartrate4_max30101/README.md
+
 source:
 - path: app.c
 - path: main.c
+
 include:
 - path: ''
   file_list:
   - path: app.h
+
 component:
-- id: brd4314a
-- id: app_log
 - id: sl_system
+- id: device_init
+- id: gpiointerrupt
 - id: mikroe_heartrate4
   from: third_party_hw_drivers
-- id: device_init
 - id: iostream_usart
   instance: [vcom]
 - id: i2cspm
   instance: [mikroe]
 - id: sleeptimer
-- id: simple_timer
+- id: app_log
 
 other_file:
-- path: ../../documentation/example/mikroe_heartrate4_max30101/create_example.png
-- path: ../../documentation/example/mikroe_heartrate4_max30101/log.png
-- path: ../../documentation/example/mikroe_heartrate4_max30101/default_config.png
-- path: ../../documentation/example/mikroe_heartrate4_max30101/hardware_connection.png
+  - path: ../../documentation/example/mikroe_heartrate4_max30101/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_heartrate4_max30101/image/log.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_heartrate4_max30101/image/default_config.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_heartrate4_max30101/image/hardware_connection.png
+    directory: "image"
 
 define:
 - name: DEBUG_EFM
+
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
+
 ui_hints:
   highlight:
     - path: README.md

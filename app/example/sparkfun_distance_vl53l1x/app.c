@@ -28,8 +28,6 @@
  *
  ******************************************************************************/
 
-#include "em_common.h"
-#include "app.h"
 #include "sl_sleeptimer.h"
 #include "sl_i2cspm_instances.h"
 #include "app_log.h"

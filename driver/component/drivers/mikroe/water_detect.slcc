@@ -1,6 +1,6 @@
 id: mikroe_water_detect
 package: third_party_hw_drivers
-label: Water Detect Click (Mikroe)
+label: MCP606 - Water Detect Click (Mikroe)
 description: >
   Driver for the Mikroe Water Detect Click water and other electroconductive liquids detector board.
 category: Sensors
@@ -12,12 +12,18 @@ requires:
   - name: status
   - name: mikroe_peripheral_driver_digital_io
 config_file:
-  - path: public/mikroe/water_detect/config/mikroe_water_detect_config.h
-    file_id: driver_config_waterdetect
-    unless: [brd2703a]
   - path: public/mikroe/water_detect/config/brd2703a/mikroe_water_detect_config.h
     file_id: driver_config_waterdetect
     condition: [brd2703a]
+  - path: public/mikroe/water_detect/config/brd4314a/mikroe_water_detect_config.h
+    file_id: driver_config_waterdetect
+    condition: [brd4314a]
+  - path: public/mikroe/water_detect/config/brd4108a/mikroe_water_detect_config.h
+    file_id: driver_config_waterdetect
+    condition: [brd4108a]
+  - path: public/mikroe/water_detect/config/other/mikroe_water_detect_config.h
+    file_id: driver_config_waterdetect
+    unless: [brd4314a, brd2703a, brd4108a]
 provides:
   - name: mikroe_water_detect
     allow_multiple: false

@@ -15,17 +15,16 @@
  *
  ******************************************************************************/
 
+#include "em_iadc.h"
 #include "sl_status.h"
 #include "app_log.h"
-#include "app_assert.h"
-#include "mikroe_alcohol_mq3.h"
-#include "em_iadc.h"
 #include "sl_sleeptimer.h"
-#include "alcohol.h"
 
+#include "mikroe_alcohol_mq3.h"
+
+static volatile bool alcohol_timer_expire = false;
 static sl_sleeptimer_timer_handle_t alcohol_timer;
 
-static void application_task(void);
 static void alcohol_sleeptimer_callback(sl_sleeptimer_timer_handle_t *timer,
                                         void *data);
 
@@ -54,19 +53,22 @@ void app_init(void)
 }
 
 /***************************************************************************//**
- * Initialize application.
+ * App ticking function.
  ******************************************************************************/
-static void application_task(void)
+void app_process_action(void)
 {
   uint16_t alcohol_an_value = 0;
-
-  if (mikroe_mq3_read_an_pin_value(&alcohol_an_value) == SL_STATUS_OK) {
-    app_log("ADC Value: %u\r\n", alcohol_an_value);
-  }
-
   float alcohol_an_voltage = 0;
-  if (mikroe_mq3_read_an_pin_voltage(&alcohol_an_voltage) == SL_STATUS_OK) {
-    app_log("AN Voltage: %.3f[V]\r\n", alcohol_an_voltage);
+
+  if (alcohol_timer_expire == true) {
+    alcohol_timer_expire = false;
+    if (mikroe_mq3_read_an_pin_value(&alcohol_an_value) == SL_STATUS_OK) {
+      app_log("ADC Value: %u\r\n", alcohol_an_value);
+    }
+
+    if (mikroe_mq3_read_an_pin_voltage(&alcohol_an_voltage) == SL_STATUS_OK) {
+      app_log("AN Voltage: %.3f[V]\r\n", alcohol_an_voltage);
+    }
   }
 }
 
@@ -78,12 +80,6 @@ static void alcohol_sleeptimer_callback(sl_sleeptimer_timer_handle_t *timer,
 {
   (void)timer;
   (void)data;
-  application_task();
-}
 
-/***************************************************************************//**
- * App ticking function.
- ******************************************************************************/
-void app_process_action(void)
-{
+  alcohol_timer_expire = true;
 }

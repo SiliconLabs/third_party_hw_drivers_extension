@@ -1,8 +1,11 @@
 project_name: sparkfun_soil_moisture
-label: empty
+label: Third Party Hardware Drivers - Qwiic Soil Moisture Sensor (Sparkfun) - I2C
+package: platform
 description: |
   This example project shows an example for Sparkfun Soil Moisture Sensor board driver integration.
 category: Example|Platform
+quality: evaluation
+
 filter:
 - name: Device Type
   value: [SoC]
@@ -10,42 +13,57 @@ filter:
   value: [32-bit MCU]
 - name: Project Difficulty
   value: [Beginner]
-package: platform
-quality: evaluation
+
 readme:
 - path: ../../documentation/example/sparkfun_soil_moisture/README.md
+
 source:
 - path: app.c
 - path: main.c
+
 include:
 - path: ''
   file_list:
   - path: app.h
+
 component:
-- id: BGM220PC22HNA
 - id: sl_system
+- id: device_init
 - id: sparkfun_soil_moisture
   from: third_party_hw_drivers
 - id: iostream_usart
   instance: [vcom]
 - id: i2cspm
   instance: [qwiic]
-- id: device_init
-- id: simple_timer
+- id: sleeptimer
 - id: app_assert
 - id: app_log
-- id: brd4314a
-define:
-- name: DEBUG_EFM
+
+config_file:
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: qwiic
+    path: brd2601b/sl_i2cspm_qwiic_config.h
+    condition: [brd2601b]
+
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
+
+define:
+- name: DEBUG_EFM
+
 other_file:
-  - path: ../../documentation/example/sparkfun_soil_moisture/components.png
-  - path: ../../documentation/example/sparkfun_soil_moisture/connection.png
-  - path: ../../documentation/example/sparkfun_soil_moisture/flowchart.png
-  - path: ../../documentation/example/sparkfun_soil_moisture/result.png
-  - path: ../../documentation/example/sparkfun_soil_moisture/create_example.png
+  - path: ../../documentation/example/sparkfun_soil_moisture/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_soil_moisture/image/flowchart.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_soil_moisture/image/result.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_soil_moisture/image/create_example.png
+    directory: "image"
+
 ui_hints:
   highlight:
     - path: README.md

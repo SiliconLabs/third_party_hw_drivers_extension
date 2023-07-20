@@ -41,7 +41,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.4.0
+  version: 1.5.0
 other_file:
   - path: ../../documentation/example/mikroe_environment2_sht40_sgp40/create_example.png
   - path: ../../documentation/example/mikroe_environment2_sht40_sgp40/hardware_connection.png

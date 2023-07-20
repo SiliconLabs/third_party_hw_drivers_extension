@@ -35,28 +35,32 @@
  * This code will be maintained at the sole discretion of Silicon Labs.
  *
  ******************************************************************************/
-#include "mikroe_max6969.h"
+
 #include "sl_spidrv_instances.h"
 #include "sl_pwm_instances.h"
-#include "sl_simple_timer.h"
-#include "app_log.h"
+#include "sl_sleeptimer.h"
 
-static sl_simple_timer_t display_timer;
+#include "mikroe_max6969.h"
 
-static void app_led_timer_handle(
-  sl_simple_timer_t *timer, void *data);
+#define TIMEOUT_MS    1000
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
-  if (mikroe_max6969_init(sl_spidrv_mikroe_handle,
-                          &sl_pwm_mikroe) == SL_STATUS_OK) {
-    app_log("led init ok\n");
-  }
-
-  sl_simple_timer_start(&display_timer, 1000, app_led_timer_handle, NULL, true);
+  mikroe_max6969_init(sl_spidrv_mikroe_handle, &sl_pwm_mikroe);
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        TIMEOUT_MS,
+                                        app_timer_cb,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 }
 
 /***************************************************************************//**
@@ -64,17 +68,24 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-}
-
-static void app_led_timer_handle(sl_simple_timer_t *timer, void *data)
-{
-  (void)timer;
-  (void)data;
-
   static uint8_t cnt = 0;
+
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+
   mikroe_max6969_display_number(cnt, MIKROE_UTM7SEGR_DOT_LEFT);
   cnt++;
   if (cnt >= 100) {
     cnt = 0;
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

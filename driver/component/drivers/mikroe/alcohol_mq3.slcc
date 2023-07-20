@@ -9,11 +9,22 @@ ui_hints:
   visibility: basic
 root_path: driver
 requires:
+  - name: status
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_adc
 config_file:
-  - path: public/mikroe/alcohol_mq3/config/mikroe_alcohol_mq3_config.h
+  - path: public/mikroe/alcohol_mq3/config/brd2703a/mikroe_alcohol_mq3_config.h
     file_id: driver_config_alcohol
+    condition: [brd2703a]
+  - path: public/mikroe/alcohol_mq3/config/brd4108a/mikroe_alcohol_mq3_config.h
+    file_id: driver_config_alcohol
+    condition: [brd4108a]
+  - path: public/mikroe/alcohol_mq3/config/brd4314a/mikroe_alcohol_mq3_config.h
+    file_id: driver_config_alcohol
+    condition: [brd4314a]
+  - path: public/mikroe/alcohol_mq3/config/other/mikroe_alcohol_mq3_config.h
+    file_id: driver_config_alcohol
+    unless: [brd4314a, brd4108a, brd2703a]
 provides:
   - name: mikroe_alcohol_mq3
     allow_multiple: false

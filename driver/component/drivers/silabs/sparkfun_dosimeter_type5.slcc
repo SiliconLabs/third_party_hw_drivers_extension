@@ -1,8 +1,8 @@
 id: sparkfun_dosimeter_type5
 package: third_party_hw_drivers
-label: Type 5 - Pocket Geiger Radiation (Sparkfun)
+label: Pocket Geiger Radiation - Type 5 (Sparkfun)
 description: >
-  Driver for the Type 5 - Pocket Geiger Radiation sensor board.
+  Driver for the Pocket Geiger Radiation - Type 5 sensor board.
 category: Sensors
 quality: evaluation
 ui_hints:
@@ -12,8 +12,24 @@ requires:
   - name: sleeptimer
   - name: gpiointerrupt
 config_file:
-  - path: public/silabs/dosimeter_type5/config/sparkfun_type5_config.h
+  - path: public/silabs/dosimeter_type5/config/brd2601b/sparkfun_type5_config.h
     file_id: sparkfun_dosimeter_type5_config
+    condition: [brd2601b]
+  - path: public/silabs/dosimeter_type5/config/brd2703a/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+    condition: [brd2703a]
+  - path: public/silabs/dosimeter_type5/config/brd2704a/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+    condition: [brd2704a]
+  - path: public/silabs/dosimeter_type5/config/brd4314a/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+    condition: [brd4314a]
+  - path: public/silabs/dosimeter_type5/config/brd4108a/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+    condition: [brd4108a]
+  - path: public/silabs/dosimeter_type5/config/other/sparkfun_type5_config.h
+    file_id: sparkfun_dosimeter_type5_config
+    unless: [brd2601b, brd2703a, brd2704a, brd4108a, brd4314a]
 provides:
   - name: sparkfun_dosimeter_type5
     allow_multiple: false

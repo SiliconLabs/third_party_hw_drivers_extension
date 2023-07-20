@@ -1,4 +1,4 @@
-# IS31FL3741 Adafruit 13x9 PWM RGB LED Matrix Driver #
+# IS31FL3741 - 13x9 PWM RGB LED Matrix (Adafruit) #
 
 ## Summary ##
 
@@ -15,18 +15,18 @@ Adafruit RGB LED Matrix is a 13x9 RGB LED matrix breakout. It features 117 RGB L
 
 Adafruit RGB LED Matrix can connect with the BGM220 Explorer Kit easily via two STEMMA QT connectors which are compatible with Qwiic. Qwiic is a special connector that includes two I2C wires (SDA and SCL), 3v3, and GND. All of these wires are combined into 1 connection port so that it makes the connection between 2 devices become easier and more convenient.
 
-![connection](connection.png)
+![connection](image/connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "rgb led".
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "rgb led".
 
 2. Click **Create** button on the **Third Party Hardware Drivers - IS31FL3741 - 13x9 PWM RGB LED Matrix (Adafruit)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -34,7 +34,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/adafruit_rgb_led_is31fl3741/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/adafruit_rgb_led_is31fl3741/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -44,7 +44,7 @@ You can either create a project based on a example project or start with an empt
 
    - Install the following components:
 
-      - [Services] → [Sleep Timer]
+      - [Services] → [Timers] → [Sleep Timer]
       - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
       - [Application] → [Utility] → [Log]
       - [Application] → [Utility] → [Assert]
@@ -55,11 +55,9 @@ You can either create a project based on a example project or start with an empt
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install **IS31FL3741 - 13x9 PWM RGB LED Matrix (Adafruit) - I2C** component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
-
-- The example project are built on the BRD4314A board. For another boards, selecting the **IS31FL3741 - 13x9 PWM RGB LED Matrix (Adafruit) - I2C** component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install **IS31FL3741 - 13x9 PWM RGB LED Matrix (Adafruit) - I2C** component.
 
 ### Display Configuration ###
 
@@ -87,7 +85,7 @@ All of this can be done in the configuration part of **IS31FL3741 - 13x9 PWM RGB
 
 - **Note**: The address of the display which is not used should be set to "None". For example, if the layout configuration is set to **1x2** and users want to use Display 1 and Display 2, They should set the address of two others display to None.
 
-![config](config.png)
+![config](image/config.png)
 
 ## How It Works ##
 
@@ -109,14 +107,14 @@ All of this can be done in the configuration part of **IS31FL3741 - 13x9 PWM RGB
 
 The Adafruit IS31FL3741 driver is implemented to be compatible with the GLIB service. Hence, the application can use the APIs of the GLIB service driver instead of calling the APIs from Adafruit IS31FL3741 driver.
 
-- [adafruit_is31fl3741.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/driver/public/silabs/rgb_led_is31fl3741/src/adafruit_is31fl3741.c): Use to handle display features of the Adafruit IS31FL3741 module.
-- [adafruit_is31fl3741_i2c.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/driver/public/silabs/rgb_led_is31fl3741/src/adafruit_is31fl3741_i2c.c): Use to communicate with the Microcontroller via emlib of GSDK.
+- `adafruit_is31fl3741.c`: Use to handle display features of the Adafruit IS31FL3741 module.
+- `adafruit_is31fl3741_i2c.c`: Use to communicate with the Microcontroller via emlib of GSDK.
 
 ### Testing ###
 
 - The testing program will try to display the following text "Silicon Labs - Third Party Hardware Drivers Extension".
 
-   ![result](test.GIF)
+   ![result](image/result_test.gif)
 
 ## Report Bugs & Get Support ##
 
