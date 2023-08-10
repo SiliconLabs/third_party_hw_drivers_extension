@@ -1,7 +1,7 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.5.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.2.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.6.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -44,7 +44,7 @@ A full list of all drivers in this repository is defined below:
 | heartrate4_max30101 | [Click Here](./driver/public/mikroe/heartrate4_max30101) | [Click Here](./app/example/mikroe_heartrate4_max30101) | [Click Here](./app/documentation/example/mikroe_heartrate4_max30101) |
 | hr_po_max30101_max32664 | [Click Here](./driver/public/silabs/hr_po_max30101_max32664) | [Click Here](./app/example/sparkfun_hr_po_max30101_max32664) | [Click Here](./app/documentation/example/sparkfun_hr_po_max30101_max32664) |
 | alcohol_mq3 | [Click Here](./driver/public/mikroe/alcohol_mq3) | [Click Here](./app/example/mikroe_alcohol_mq3) | [Click Here](./app/documentation/example/mikroe_alcohol_mq3) |
-| gpsclick_lea6s | [Click Here](./driver/public/mikroe/gpsclick_lea6s) | [Click Here](./app/example/mikroe_gpsclick_lea6s) | [Click Here](./app/documentation/example/mikroe_gpsclick_lea6s) |
+| gps_lea6s | [Click Here](./driver/public/mikroe/gps_lea6s) | [Click Here](./app/example/mikroe_gps_lea6s) | [Click Here](./app/documentation/example/mikroe_gps_lea6s) |
 | temphum15_sht40 | [Click Here](./driver/public/mikroe/temphum15_sht40) | [Click Here](./app/example/mikroe_temphum15_sht40) | [Click Here](./app/documentation/example/mikroe_temphum15_sht40) |
 | irthermo3_mlx90632 | [Click Here](./driver/public/mikroe/irthermo3_mlx90632) | [Click Here](./app/example/mikroe_irthermo3_mlx90632) | [Click Here](./app/documentation/example/mikroe_irthermo3_mlx90632) |
 | stepper_a3967 | [Click Here](./driver/public/silabs/stepper_a3967) | [Click Here](./app/example/mikroe_stepper_a3967) | [Click Here](./app/documentation/example/mikroe_stepper_a3967) |
@@ -52,7 +52,7 @@ A full list of all drivers in this repository is defined below:
 | dcmotor3_tb6549fg | [Click Here](./driver/public/mikroe/dcmotor3_tb6549fg) | [Click Here](./app/example/mikroe_dcmotor3_tb6549fg) | [Click Here](./app/documentation/example/mikroe_dcmotor3_tb6549fg) |
 | environmental_bme280_ccs811 | [Click Here](./driver/public/silabs/environmental_bme280_ccs811) | [Click Here](./app/example/sparkfun_environmental_bme280_ccs811) | [Click Here](./app/documentation/example/sparkfun_environmental_bme280_ccs811) |
 | oledc_ssd1351 | [Click Here](./driver/public/mikroe/oledc_ssd1351) | [Click Here](./app/example/mikroe_oledc_ssd1351) | [Click Here](./app/documentation/example/mikroe_oledc_ssd1351) |
-| pressure_dps310 | [Click Here](./driver/public/mikroe/pressure3_dps310) | [Click Here](./app/example/mikroe_pressure3_dps310) | [Click Here](./app/documentation/example/mikroe_pressure3_dps310) |
+| pressure3_dps310 | [Click Here](./driver/public/mikroe/pressure3_dps310) | [Click Here](./app/example/mikroe_pressure3_dps310) | [Click Here](./app/documentation/example/mikroe_pressure3_dps310) |
 | lte_iot_2 | [Click Here](./driver/public/mikroe/lte_iot2_bg96) | [Click Here](./app/example/mikroe_lte_iot2_bg96) | [Click Here](./app/documentation/example/mikroe_lte_iot2_bg96) |
 | e_paper_154_inch | [Click Here](./driver/public/mikroe/e_paper_154_inch) | [Click Here](./app/example/mikroe_e_paper_154_inch) | [Click Here](./app/documentation/example/mikroe_e_paper_154_inch) |
 | ir_array_amg88xx | [Click Here](./driver/public/silabs/ir_array_amg88xx) | [Click Here](./app/example/sparkfun_ir_array_amg88xx) | [Click Here](./app/documentation/example/sparkfun_ir_array_amg88xx) |
@@ -65,13 +65,14 @@ A full list of all drivers in this repository is defined below:
 | pir_ira_s210st01 | [Click Here](./driver/public/silabs/pir_ira_s210st01) | [Click Here](./app/example/silabs_pir_ira_s210st01) | [Click Here](./app/documentation/example/silabs_pir_ira_s210st01) |
 | rf_meter_ad8318 | [Click Here](./driver/public/mikroe/rf_meter_ad8318) | [Click Here](./app/example/mikroe_rf_meter_ad8318) | [Click Here](./app/documentation/example/mikroe_rf_meter_ad8318) |
 | nfctag2_nt3h2111 | [Click Here](./driver/public/silabs/nfctag2_nt3h2111) | [Click Here](./app/example/mikroe_nfctag2_nt3h2111) | [Click Here](./app/documentation/example/mikroe_nfctag2_nt3h2111) |
-| pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) | 
+| pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) |
 | mikroe_mic2 | [Click Here](./driver/public/mikroe/mic2) | [Click Here](./app/example/mikroe_mic2) | [Click Here](./app/documentation/example/mikroe_mic2) |
-| turbidity_tsd10 | [Click Here](./driver/public/mikroe/turbidity_tsd10) | [Click Here](./app/example/mikroe_turbidity_tsd10) | [Click Here](./app/documentation/example/mikroe_turbidity_tsd10) | 
+| turbidity_tsd10 | [Click Here](./driver/public/mikroe/turbidity_tsd10) | [Click Here](./app/example/mikroe_turbidity_tsd10) | [Click Here](./app/documentation/example/mikroe_turbidity_tsd10) |
 | environment3_bme688 | [Click Here](./driver/public/mikroe/environment3_bme688) | [Click Here](./app/example/mikroe_environment3_bme688) | [Click Here](./app/documentation/example/mikroe_environment3_bme688) |
 | ozone2_mq131 | [Click Here](./driver/public/mikroe/ozone2_mq131) | [Click Here](./app/example/mikroe_ozone2_mq131) | [Click Here](./app/documentation/example/mikroe_ozone2_mq131) |
 | uv_ml8511a | [Click Here](./driver/public/mikroe/uv_ml8511a) | [Click Here](./app/example/mikroe_uv_ml8511a) | [Click Here](./app/documentation/example/mikroe_uv_ml8511a) |
-
+| servo_pca9685 | [Click Here](./driver/public/mikroe/servo_pca9685) | [Click Here](./app/example/mikroe_servo_pca9685) | [Click Here](./app/documentation/example/mikroe_servo_pca9685) |
+| force3_fsr400 | [Click Here](./driver/public/mikroe/force3_fsr400) | [Click Here](./app/example/mikroe_force3_fsr400) | [Click Here](./app/documentation/example/mikroe_force3_fsr400) |
 
 ## Requirements ##
 
@@ -83,7 +84,6 @@ A full list of all drivers in this repository is defined below:
 ## How to add to Simplicity Studio IDE ##
 
 > **Detailed documentation available on [https://docs.silabs.com](https://docs.silabs.com/application-examples/1.0.0/ae-getting-started/how-do-you-use-it#adding-sdk-extensions-for-hardware-drivers) or [here](doc/readme.md)**.
-
 
 - Clone the repository somewhere on your PC
 
@@ -97,7 +97,6 @@ A full list of all drivers in this repository is defined below:
   - Restart Simplicity Studio
 
 > Make sure that **Evaluation** quality software components are enabled in the Software Component view.
-
 
 ## SDK Outline ##
 

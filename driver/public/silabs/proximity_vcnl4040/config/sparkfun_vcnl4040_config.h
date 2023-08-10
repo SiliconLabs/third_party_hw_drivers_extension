@@ -46,7 +46,7 @@ extern "C" {
 // <gpio optional=true> SPARKFUN_VCNL4040_INT
 // $[GPIO_SPARKFUN_VCNL4040_INT]
 #define SPARKFUN_VCNL4040_INT_PORT     gpioPortB
-#define SPARKFUN_VCNL4040_INT_PIN      1
+#define SPARKFUN_VCNL4040_INT_PIN      0
 // [GPIO_SPARKFUN_VCNL4040_INT]$
 
 // <<< sl:end pin_tool >>>

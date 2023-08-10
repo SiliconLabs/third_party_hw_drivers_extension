@@ -12,15 +12,7 @@ requires:
   - name: i2cspm
 recommends:
   - id: i2cspm
-    instance: [qwiic]
-config_file:
-  - path: "public/silabs/ir_array_amg88xx/config/brd2601b/sl_i2cspm_qwiic_config.h"
-    condition: [brd2601b]
-    override:
-      component: i2cspm
-      file_id: i2cspm_config
-      instance: qwiic
-    
+    instance: [qwiic] 
 provides:
   - name: sparkfun_ir_array_amg88xx
 template_contribution:

@@ -59,6 +59,7 @@ sl_status_t mikroe_mic2_init(sl_i2cspm_t *i2cspm_instance, adc_t *adc)
   THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
   mic2.i2c.handle = i2cspm_instance;
+  mic2.slave_address = MIC2_I2C_ADDRESS;
   mic2.adc.handle = adc;
 
   mic2_cfg_setup(&mic2_cfg);

@@ -2,7 +2,7 @@ id: mikroe_pressure3_i2c
 package: third_party_hw_drivers
 label: DPS310 - Pressure 3 Click (Mikroe) - I2C
 description: >
-  Driver for the Pressure 3 Click CLICK board. Pressure 3 click is a mikroBUS add-on board that carries an Infineon DPS310 digital barometric pressure sensor on I2C communication.
+  Driver for the Pressure 3 Click board. This board carries an Infineon DPS310 digital barometric pressure sensor using I2C communication.
 quality: evaluation
 ui_hints:
   visibility: basic

@@ -49,7 +49,6 @@ void app_init(void)
 {
   sl_status_t ret_code;
 
-  sl_iostream_set_default(sl_iostream_vcom_handle);
   app_log_iostream_set(sl_iostream_vcom_handle);
 
   // Initialize Fingerprint 2 Click

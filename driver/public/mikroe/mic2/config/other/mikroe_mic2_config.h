@@ -44,6 +44,16 @@
 extern "C" {
 #endif
 
+// <<< Use Configuration Wizard in Context Menu >>>
+
+// <o MIC2_I2C_ADDRESS> MIC 2 I2C ADDRESS
+// <0x2C=> AD0_LOW
+// <0x2D=> AD0_HIGH
+// <i> Default: 0x2C
+#define MIC2_I2C_ADDRESS                          0x2C
+
+// <<< end of configuration section >>>
+
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> MIC2_ANALOG_OUTPUT

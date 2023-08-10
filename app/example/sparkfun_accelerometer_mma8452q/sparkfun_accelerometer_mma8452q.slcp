@@ -2,7 +2,7 @@ project_name: sparkfun_accelerometer_mma8452q
 label: Third Party Hardware Drivers - MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)
 package: platform
 description: |
-  This example project shows an example for SparkFun Triple Axis Accelerometer Breakout - MMA8452Q board driver integration.
+  This example project shows an example for Sparkfun Triple Axis Accelerometer Breakout board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -52,7 +52,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/sparkfun_accelerometer_mma8452q/image/api_overview.png

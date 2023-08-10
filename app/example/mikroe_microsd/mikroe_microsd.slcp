@@ -24,6 +24,7 @@ include:
   - path: app.h
 component:
 - id: sl_system
+- id: device_init
 - id: app_log
 - id: app_assert
 - id: iostream_usart
@@ -32,32 +33,31 @@ component:
   from: third_party_hw_drivers
 - id: mikroe_microsd
   from: third_party_hw_drivers
-- id: device_init
 - id: sleeptimer
 define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 other_file:
-  - path: ../../documentation/example/mikroe_microsd/images/create_example.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/board.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/content_file.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/create_example.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/mikrobus.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/structure_overview.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/system_overview.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/testing.png
-    directory: images
-  - path: ../../documentation/example/mikroe_microsd/images/workflow.png
-    directory: images
+  - path: ../../documentation/example/mikroe_microsd/image/create_example.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/board.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/content_file.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/create_example.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/mikrobus.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/structure_overview.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/system_overview.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/testing.png
+    directory: image
+  - path: ../../documentation/example/mikroe_microsd/image/workflow.png
+    directory: image
 ui_hints:
   highlight:
     - path: README.md

@@ -1,0 +1,53 @@
+id: servo_pca9685
+package: third_party_hw_drivers
+label: PCA9685 - Servo Click (Mikroe)
+description: >
+  Driver for the Mikroe Servo Click board.
+category: Motor Control
+quality: evaluation
+
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_digital_io
+  - name: status
+
+config_file:
+  - path: public/mikroe/servo_pca9685/config/brd2703a/mikroe_servo_config.h
+    file_id: driver_config_servo
+    condition: [brd2703a]
+  - path: public/mikroe/servo_pca9685/config/brd4108a/mikroe_servo_config.h
+    file_id: driver_config_servo
+    condition: [brd4108a]
+  - path: public/mikroe/servo_pca9685/config/brd4314a/mikroe_servo_config.h
+    file_id: driver_config_servo
+    condition: [brd4314a]
+  - path: public/mikroe/servo_pca9685/config/other/mikroe_servo_config.h
+    file_id: driver_config_servo
+    unless: [brd2703a, brd4108a, brd4314a]
+
+provides:
+  - name: servo_pca9685
+  - allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+  - value: servo_pca9685
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/servo/lib_servo/include
+    file_list:
+      - path: servo.h
+  - path: public/mikroe/servo_pca9685/inc
+    file_list:
+      - path: mikroe_pca9685.h
+
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/servo/lib_servo/src/servo.c
+  - path: public/mikroe/servo_pca9685/src/mikroe_pca9685.c

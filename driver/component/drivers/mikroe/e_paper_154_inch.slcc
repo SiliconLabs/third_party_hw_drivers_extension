@@ -23,6 +23,9 @@ config_file:
   - path: public/mikroe/e_paper_154_inch/config/brd4314a/mikroe_e_paper_154_inch_config.h
     file_id: mikroe_e_paper_154_inch_config
     condition: [brd4314a]
+  - path: public/mikroe/e_paper_154_inch/config/other/mikroe_e_paper_154_inch_config.h
+    file_id: mikroe_e_paper_154_inch_config
+    unless: [brd4314a, brd4108a, brd2703a]
     
 template_contribution:
   - name: component_catalog

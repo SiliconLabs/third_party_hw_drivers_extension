@@ -1,8 +1,8 @@
 id: mikroe_buzz2
 package: third_party_hw_drivers
-label: CMT_8540S_SMT - Buzz 2 Click (Mikroe)
+label: CMT-8540S-SMT - Buzz 2 Click (Mikroe)
 description: >
-  Driver for the BUZZ 2 CLICK board, Buzz 2 Click is an add-on board based on CMT_8540S_SMT using PWM
+  Driver for the Buzz 2 Click board. This board is an add-on board based on CMT-8540S-SMT using PWM.
 category: Audio & Voice
 quality: evaluation
 ui_hints:

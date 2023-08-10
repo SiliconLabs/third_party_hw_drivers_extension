@@ -33,18 +33,22 @@
  * maintained and there may be no bug maintenance planned for these resources.
  * Silicon Labs may update projects from time to time.
  ******************************************************************************/
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 #include "sl_i2cspm_instances.h"
 
 #include "app_log.h"
 
 #include "sparkfun_max30101_max32664.h"
 
-static bio_hub_data_t libBpm;
-static sl_simple_timer_t app_bio_hub_timer;
+#define READING_INTERVAL_MSEC    250
 
-static void app_bio_hub_timer_handle(sl_simple_timer_t *timer, void *data);
+static bio_hub_data_t libBpm;
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
 static void app_bio_hub_init(void);
+static void app_bio_hub_process(void);
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 /***************************************************************************//**
  * Initialize application.
@@ -59,6 +63,12 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+
+  app_bio_hub_process();
 }
 
 static void app_bio_hub_init(void)
@@ -115,17 +125,16 @@ static void app_bio_hub_init(void)
   sl_sleeptimer_delay_millisecond(4000);
 
   // starts a periodic timer to get data from sensor
-  sl_simple_timer_start(&app_bio_hub_timer,
-                        250,
-                        app_bio_hub_timer_handle,
-                        NULL,
-                        true);
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        app_timer_cb,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 }
 
-static void app_bio_hub_timer_handle(sl_simple_timer_t *timer, void *data)
+static void app_bio_hub_process(void)
 {
-  (void)timer;
-  (void)data;
   static uint32_t count = 0;
 
   // Information from the bio_hub_read_bpm function will be saved to our "body"
@@ -141,4 +150,12 @@ static void app_bio_hub_timer_handle(sl_simple_timer_t *timer, void *data)
   } else {
     app_log("Read failed\r\n");
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

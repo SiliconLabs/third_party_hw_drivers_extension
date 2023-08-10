@@ -1,4 +1,4 @@
-# AK9753 - Human Presence Sensor #
+# AK9753 - Human Presence Sensor (Sparkfun) #
 
 ## Summary ##
 
@@ -52,7 +52,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/sparkfun_human_presence_ak9753/app.c` (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/sparkfun_human_presence_ak9753/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 

@@ -37,7 +37,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/mikroe_utm7segr_max6969/app.c` into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_utm7segr_max6969/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 

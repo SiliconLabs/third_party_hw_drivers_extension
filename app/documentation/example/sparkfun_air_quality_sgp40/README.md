@@ -2,9 +2,9 @@
 
 ## Summary ##
 
-This project shows the implementation of a SGP40 that is new digital VOC (volatile organic compounds) sensor designed for easy integration into air purifiers or demand-controlled ventilation, integrated on the Air Quality Sensor.
+This project shows the implementation of an SGP40 that is new digital VOC (volatile organic compounds) sensor designed for easy integration into air purifiers or demand-controlled ventilation, integrated on the Air Quality Sensor.
 
-You can use this example as reference for creating your own indoor air quality monitoring application. You can visualize the measured volatile organic compound (VOC) level by a display or you can transfer the measurements to a data center or mobile phone, which can trigger warning messages or start air freshener devices.
+You can use this example as a reference for creating your own indoor air quality monitoring application. You can visualize the measured volatile organic compound (VOC) level by a display or you can transfer the measurements to a data center or mobile phone, which can trigger warning messages or start air freshener devices.
 
 ## Required Hardware ##
 
@@ -18,18 +18,18 @@ The Air Quality Sensor support Qwiic, so it can connect easily to EFR32xG24 Expl
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png "Hardware connection")
+![board](image/hardware_connection.png "Hardware connection")
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter sgp40
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter sgp40
 
 2. Click **Create** button on the **Third Party Hardware Drivers - SGP40 - Air Quality Sensor (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -37,7 +37,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_waterdetect_mcp606/app.c (overwriting existing file) into the project root folder.
+2. Copy the file `app/example/sparkfun_air_quality_sgp40/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -47,6 +47,7 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
+        - **[Services] → [Timers] → [Sleep Timer]**
         - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
         - **[Application] → [Utility] → [Log]**
         - **[Third Party Hardware Drivers] → [Sensors] → [SGP40 - Air Quality Sensor (Sparkfun)]**
@@ -55,26 +56,25 @@ You can either create a project based on a example project or start with an empt
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "SGP40 - Air Quality Sensor (Sparkfun)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
-
-- The example project are built on the BRD2703A board. For another boards, selecting the "SGP40 - Air Quality Sensor (Sparkfun)" component will include the "I2CSPM" component with unconfigured instance: inst0. This instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "SGP40 - Air Quality Sensor (Sparkfun)" component.
 
 ## How It Works ##
 
-You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output and  an actual test image are shown in the figure below.
-- Test the sensor and start to measure.
+You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Tera Term to receive the data from the USB. A screenshot of the console output and an actual test image are shown in the figure below.
 
-![logging_screen](log1.png)
+- Test the sensor and start to measure
 
-- After put the sensor near a lighter.
+![logging_screen](image/log1.png)
 
-![logging_screen](log2.png)
+- After trying to put the sensor near a source of Volatile Organic Compounds (VOCs)
 
-- After put the sensor away from lighter.
+![logging_screen](image/log2.png)
 
-![logging_screen](log3.png)
+- After trying to put the sensor away a source of Volatile Organic Compounds (VOCs)
+
+![logging_screen](image/log3.png)
 
 ## Report Bugs & Get Support ##
 

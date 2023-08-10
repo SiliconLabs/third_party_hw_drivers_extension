@@ -26,16 +26,16 @@ template_contribution:
 
 config_file:
   - path: public/silabs/accel5_bma400/config/brd2703a/mikroe_bma400_spi_config.h
-    file_id: driver_config_bma400_i2c
+    file_id: driver_config_bma400_spi
     condition: [brd2703a]
   - path: public/silabs/accel5_bma400/config/brd4108a/mikroe_bma400_spi_config.h
-    file_id: driver_config_bma400_i2c
+    file_id: driver_config_bma400_spi
     condition: [brd4108a]
   - path: public/silabs/accel5_bma400/config/brd4314a/mikroe_bma400_spi_config.h
-    file_id: driver_config_bma400_i2c
+    file_id: driver_config_bma400_spi
     condition: [brd4314a]
   - path: public/silabs/accel5_bma400/config/other/mikroe_bma400_spi_config.h
-    file_id: driver_config_bma400_i2c
+    file_id: driver_config_bma400_spi
     unless: [brd4314a, brd4108a, brd2703a]
 
 include:

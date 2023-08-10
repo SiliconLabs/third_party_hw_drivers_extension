@@ -15,12 +15,6 @@ recommends:
 config_file:
   - path: public/silabs/hr_po_max30101_max32664/config/sparkfun_max30101_max32664_config.h
     file_id: driver_config_sparkfun_hr_po_max30101_max32664
-  - path: "public/silabs/hr_po_max30101_max32664/config/brd2601b/sl_i2cspm_qwiic_config.h"
-    condition: [brd2601b]
-    override:
-      component: i2cspm
-      file_id: i2cspm_config
-      instance: qwiic
 provides:
   - name: sparkfun_hr_po_max30101_max32664
 template_contribution:

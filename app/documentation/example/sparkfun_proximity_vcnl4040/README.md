@@ -1,4 +1,4 @@
-# VCNL4040 - Proximity Sensor Driver #
+# VCNL4040 - Proximity Sensor (Sparkfun) #
 
 ## Summary ##
 
@@ -36,7 +36,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/sparkfun_proximity_vcnl4040/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/sparkfun_proximity_vcnl4040/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -49,14 +49,13 @@ You can either create a project based on an example project or start with an emp
       - [Services] →  [IO Stream] → [IO Stream: USART] → instance name: **vcom**
       - [Application] →  [Utility] → [Log]
       - [Third Party Hardware Drivers] -> [Sensors] -> [VCNL4040 - Proximity Sensor (Sparkfun)] → use default configuration
-
-   ![config](image/config.png)
+      ![config](image/config.png)
 
 4. Build and flash the project to your device
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install "VCNL4040 - Proximity Sensor (Sparkfun)" component.
 
@@ -74,11 +73,11 @@ The driver is divided into two layers: platform and interface layer. The platfor
 
 ### Testing ###
 
-The below chart represents the workflow of a simple testing program. The left chart shows the initialization steps that needed before reading data and the right chart shows the periodic measuring process.
+The below chart represents the workflow of a simple testing program. The left chart shows the initialization steps that are needed before reading data and the right chart shows the periodic measuring process.
 
 ![flowchart](image/flowchart.png)
 
-Use Putty or other program to read the serial output.
+Use Putty or another program to read the serial output.
 The BGM220P uses by default a baudrate of 115200. You should expect a similar output to the one below.
 
 ![console](image/test.png)

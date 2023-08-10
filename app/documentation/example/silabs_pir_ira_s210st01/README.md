@@ -1,14 +1,10 @@
-# PIR Sensor Driver #
+# PIRA-S210ST01 - PIR Sensor (Silabs) #
 
 ## Summary ##
 
 This project shows the implementation of PIR sensor driver using the PIR sensor on the occupancy sensor EXP board.
 
-The target application of the PIR sensor would be smart lighting or alarm systems in home automation. Whenever certain motion of the human body is detected, the system will either turn on the light or the alarm.
-
-## Gecko SDK version ##
-
-GSDK v4.2.2
+The target application of the PIR sensor would be smart lighting or alarm systems in home automation. Whenever a certain motion of the human body is detected, the system will either turn on the light or the alarm.
 
 ## Required Hardware ##
 
@@ -31,7 +27,7 @@ Tested boards for working with this example:
 
 Connect the occupancy sensor EXP board to the WSTK board through the expansion header.
 
-![hardware_connection](hardware_connection.png)
+![hardware_connection](image/hardware_connection.png)
 
 ## Setup ##
 
@@ -42,7 +38,7 @@ You can either create a project based on an example project or start with an emp
 1. From the Launcher Home, add the BRD4162A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter s210st01.
 
 2. Click **Create** button on the **Third Party Hardware Drivers - IRA-S210ST01 - PIR sensor (Silabs)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_example](create_example.png)
+![create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -50,11 +46,11 @@ You can either create a project based on an example project or start with an emp
 
 1. Create a "Platform - Empty C Project" project for the "EFR32MG12 Radio Board (BRD4162A)" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the "EFR32MG12 Radio Board (BRD4162A)" from the "Debug Adapters" on the left before creating a project.
 
-2. Copy the files from app/example/silabs_pir_ira_s210st01 folder into the project root folder (overwriting existing app.c).
+2. Copy the file `app/example/silabs_pir_ira_s210st01/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
   
-    - Open the .slcp file in the project. 
+    - Open the .slcp file in the project.
     - Select the *SOFTWARE COMPONENTS* tab.
     - Install the following components:
       - **[Third Party Hardware Drivers] → [Sensor] → [IRA-S210ST01 - PIR Sensor (Silabs)]**.
@@ -62,11 +58,11 @@ You can either create a project based on an example project or start with an emp
 
 ## How It Works ##
 
-Wheverever motion is detected, the LED0 on the WSTK Mainboard will be turned on. If no motion is detected for 4 seconds, the LED0 will be turned off.
+Whenever motion is detected, the LED0 on the WSTK Mainboard will be turned on. If no motion is detected for 4 seconds, the LED0 will be turned off.
 
 ### API Documentation ###
 
-![api](api.png)
+![api](image/api.png)
 
 Based on the operation, the PIR sensor driver API can be broken into 4 categories:
 
@@ -75,7 +71,7 @@ Based on the operation, the PIR sensor driver API can be broken into 4 categorie
   - pir_configure() function is not currently implemented yet. The PIR sensor we used is an analog sensor which doesn't have internal registers to program.
 - Running the Motion Detection
   - pir_start() and pir_stop() functions are used to start/stop ADC measurements.
-  - pir_detect_motion() is a simple algorithm that tells if motion is detected. It also adaptively update the ADC threshold to trigger interrupts.
+  - pir_detect_motion() is a simple algorithm that tells if motion is detected. It also adaptively updates the ADC threshold to trigger interrupts.
 - Callbacks
   - pir_adc_irq_callback() function is called in ADC IRQ. It's up to the application layer to decide how to set up flags/events to call the motion detection algorithm.
   - pir_motion_detection_callback() function is called in the motion detection algorithm to notify the application layer whenever motion on/off is detected.
@@ -84,7 +80,7 @@ Based on the operation, the PIR sensor driver API can be broken into 4 categorie
 
 ### Peripherals Usage ###
 
-![peripherals](peripherals.png)
+![peripherals](image/peripherals.png)
 
 The figure above shows an overview of all peripherals used in the PIR sensor driver.
 
@@ -97,9 +93,9 @@ The figure above shows an overview of all peripherals used in the PIR sensor dri
 
 ### Software Workflow ###
 
-![workflow](workflow.png)
+![workflow](image/workflow.png)
 
-After initialization, users can call pir_start() function to start ADC measurements (32Hz). If an ADC interrupt is received, host MCU will be waken up to buffer ADC samples and call the pir_adc_irq_callback function. Users should run the motion detection algorithm on the latest ADC sample to detect motions.
+After initialization, users can call `pir_start()` function to start ADC measurements (32Hz). If an ADC interrupt is received, MCU will be wakened up to buffer ADC samples and call the `pir_adc_irq_callback()` function. Users should run the motion detection algorithm on the latest ADC sample to detect motions.
 
 ## Report Bugs & Get Support ##
 

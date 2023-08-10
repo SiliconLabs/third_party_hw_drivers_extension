@@ -1,4 +1,4 @@
-# Stepper 2 Click #
+# A4988 - Stepper 2 Click (Mikroe) #
 
 ## Summary ##
 
@@ -23,7 +23,7 @@ Tested boards for working with this example:
 
 The Stepper 2 Click Board™ supports MikroBus, so it can connect easily to BGM220P Explorer Kit's MikroBus header. Be sure that the 45-degree corner of the Click Board™ matches the 45-degree white line of the Silicon Labs Explorer Kit. In this example, we use a 28BYJ-48 12V stepper motor, so the +12V power supply and GND are connected to the Stepper 2 Click Board™. Also, four control signals for the stepper motor are connected to pins 1A, 1B, 2A, and 2B respectively. The hardware connection is shown in the image below:
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
@@ -31,10 +31,10 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter "stepper 2".
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter "stepper2".
 
 2. Click **Create** button on the **Third Party Hardware Drivers - A4988 - Stepper 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -42,7 +42,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_stepper2_a4988) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_stepper2_a4988/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -54,24 +54,22 @@ You can either create a project based on an example project or start with an emp
 
         - [Services] → [Timer] → [Sleep Timer]
         - [Application] → [Utility] → [Log]
-        - [Platform] → [Driver] → [PWM] → [mikroe]
-        - [Platform] → [Driver] → [Button] → [Simple Button]
-        - [Third-Party Hardware Drivers] → [A4988 - Stepper 2 Click (Mikroe)]
+        - [Platform] → [Driver] → [Button] → [Simple Button] → default instance name: btn0
+        - [Third-Party Hardware Drivers] → [Motor Control] → [A4988 - Stepper 2 Click (Mikroe)]
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure that the Third-party Drivers Extension has already been installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - Third-party Drivers Extension must be enabled for the project to install "A4988 - Stepper 2 Click (Mikroe)" component.
-- The example project is built on the BRD4314A board. For other boards, selecting the "A4988 - Stepper 2 Click (Mikroe)" component will include the components with unconfigured instances. This instance should be configurated by users.
 
 ## How It Works ##
 
 Use Putty/Tera Term or other programs to read the serial output. The BGM220P uses by default a baudrate of 115200. You should expect a similar output to the one below. After the main program is executed, the stepper motor will start to rotate. When the user press button0, it will change the active state.
 
-![logging_screen](log.png)
-![pwm_signal](pwm.png)
+![logging_screen](image/log.png)
+![pwm_signal](image/pwm.png)
 
 ## Report Bugs & Get Support ##
 

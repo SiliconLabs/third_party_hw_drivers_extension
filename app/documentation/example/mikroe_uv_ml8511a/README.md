@@ -37,7 +37,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_uv_ml8511a/app.c (overwriting the existing file) into the project root folder.
+2. Copy the file `app/example/mikroe_uv_ml8511a/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -47,6 +47,7 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
+        - **[Services] → [Timers] → [Sleep Timer]**
         - **[Services] → [IO Stream] → [IO Stream: EUSART]** → default instance name: vcom
         - [Application] → [Utility] → [Log]
         - **[Third Party Hardware Drivers] → [Sensors] → [ML8511A - UV Click (Mikroe)]**

@@ -1,6 +1,6 @@
 /***************************************************************************//**
- * @file mikroe_alcohol_mq3_config.h
- * @brief Mikroe Alcohol MQ3 Configuration
+ * @file mikroe_mic2_config.h
+ * @brief Mikroe Mic 2 Configuration
  * @version 1.2.0
  *******************************************************************************
  * # License
@@ -43,6 +43,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// <<< Use Configuration Wizard in Context Menu >>>
+
+// <o MIC2_I2C_ADDRESS> MIC 2 I2C ADDRESS
+// <0x2C=> AD0_LOW
+// <0x2D=> AD0_HIGH
+// <i> Default: 0x2C
+#define MIC2_I2C_ADDRESS                          0x2C
+
+// <<< end of configuration section >>>
 
 // <<< sl:start pin_tool >>>
 

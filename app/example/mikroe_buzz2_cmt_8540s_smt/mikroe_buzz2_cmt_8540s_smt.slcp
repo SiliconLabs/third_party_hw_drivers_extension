@@ -1,8 +1,8 @@
 project_name: mikroe_buzz2_cmt_8540s_smt
 package: platform
-label: Third Party Hardware Drivers - CMT_8540S_SMT - Buzz 2 Click (Mikroe)
+label: Third Party Hardware Drivers - CMT-8540S-SMT - Buzz 2 Click (Mikroe)
 description: |
-  This example project shows an example for Mikroe Buzz 2 click board driver integration.
+  This example project shows an example for Mikroe Buzz 2 Click board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -44,7 +44,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/mikroe_buzz2_cmt_8540s_smt/image/create_example.png

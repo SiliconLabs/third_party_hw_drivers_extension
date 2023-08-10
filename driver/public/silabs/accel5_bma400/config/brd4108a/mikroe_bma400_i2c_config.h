@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file mikroe_bma400_i2c_config.h
- * @brief Configuration file for Sparkfun VLX53L1X
+ * @brief Configuration file for BMA400
  * @version 1.0.0
  *******************************************************************************
  * # License

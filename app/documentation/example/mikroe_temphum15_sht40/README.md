@@ -44,7 +44,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/mikroe_temphum15_sht40/app.c` into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_temphum15_sht40/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -54,7 +54,7 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
+        - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
         - [Third Party Hardware Drivers] → [Sensors] → [SHT40 - Temp&Hump 15 Click (Mikroe)]

@@ -1,9 +1,8 @@
-# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
 project_name: mikroe_relay2
 package: platform
 label: Third Party Hardware Drivers - LCA717 - Relay 2 Click (Mikroe)
 description: |
-  This example project shows an example for Mikroe Relay 2 board driver integration.
+  This example project shows an example for Mikroe Relay 2 Click board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -39,7 +38,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/mikroe_relay2_lca717/image/hardware_connection.png

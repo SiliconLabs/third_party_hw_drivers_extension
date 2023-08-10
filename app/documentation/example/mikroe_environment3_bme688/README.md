@@ -39,9 +39,9 @@ You can either create a project based on an example project or start with an emp
 
 2. Click **Create** button on the example:
 
-    - **Third Party Hardware Drivers - BME688 - Environment 3 click (Mikroe) - I2C** if using the I2C interface.  
+    - **Third Party Hardware Drivers - BME688 - Environment 3 Click (Mikroe) - I2C** if using the I2C interface.  
 
-    - **Third Party Hardware Drivers - BME688 - Environment 3 click (Mikroe) - SPI** if using the SPI interface.
+    - **Third Party Hardware Drivers - BME688 - Environment 3 Click (Mikroe) - SPI** if using the SPI interface.
 
     Example project creation dialog pops up -> click Create and Finish and Project should be generated.
     ![Create_example](image/create_example.png)

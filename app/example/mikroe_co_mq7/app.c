@@ -26,8 +26,7 @@
 
 #define READING_INTERVAL_MSEC 3000
 
-static bool timer_is_expire = false;
-
+static volatile bool timer_is_expire = false;
 static sl_sleeptimer_timer_handle_t app_timer_handle;
 
 static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);

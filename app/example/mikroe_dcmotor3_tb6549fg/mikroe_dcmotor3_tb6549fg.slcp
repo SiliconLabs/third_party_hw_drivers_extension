@@ -35,7 +35,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 other_file:
   - path: ../../documentation/example/mikroe_dcmotor3_tb6549fg/create_example.png
   - path: ../../documentation/example/mikroe_dcmotor3_tb6549fg/hardware_connection.png

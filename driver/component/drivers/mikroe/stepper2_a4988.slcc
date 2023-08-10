@@ -11,14 +11,24 @@ root_path: driver
 requires:
   - name: status
   - name: mikroe_peripheral_driver_digital_io
+  - name: sleeptimer
+  - name: pwm
+recommends:
+  - id: pwm
+    instance: [mikroe]
 config_file:
-  - path: public/mikroe/stepper2_a4988/config/stepper2_config_a4988.h
+  - path: public/mikroe/stepper2_a4988/config/brd2703a/stepper2_config_a4988.h
     file_id: driver_config_stepper2
-  - override:
-      component: pwm
-      file_id: pwm_config
-      instance: mikroe
-    path: public/mikroe/stepper2_a4988/config/sl_pwm_init_mikroe_config.h
+    condition: [brd2703a]
+  - path: public/mikroe/stepper2_a4988/config/brd4108a/stepper2_config_a4988.h
+    file_id: driver_config_stepper2
+    condition: [brd4108a]
+  - path: public/mikroe/stepper2_a4988/config/brd4314a/stepper2_config_a4988.h
+    file_id: driver_config_stepper2
+    condition: [brd4314a]
+  - path: public/mikroe/stepper2_a4988/config/other/stepper2_config_a4988.h
+    file_id: driver_config_stepper2
+    unless: [brd4314a, brd4108a, brd2703a]  
 provides:
   - name: mikroe_stepper2
     allow_multiple: false

@@ -35,7 +35,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_nfc2_pn7150_nci_t2t_write/app.c into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_nfc2_pn7150_nci_t2t_write/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -60,7 +60,7 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - Third-party Hardware Drivers Extension must be enabled for the project to install any extension components.
 

@@ -1,5 +1,5 @@
-# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
 project_name: mikroe_water_detect
+package: platform
 label: Third Party Hardware Drivers - MCP606 - Water Detect Click (Mikroe)
 description: |
   This example project shows an example for Mikroe Water Detect Click board driver integration.
@@ -42,7 +42,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/mikroe_water_detect/image/create_example.png

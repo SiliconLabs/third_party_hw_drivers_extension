@@ -1,4 +1,4 @@
-# Stepper Click #
+# A3967 - Stepper Click (Mikroe) #
 
 ## Summary ##
 
@@ -49,7 +49,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file *app/example/mikroe_stepper_a3967/app.c* (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_stepper_a3967/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 
@@ -60,12 +60,12 @@ You can either create a project based on an example project or start with an emp
     - Install the following components:
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
-        - [Third-Party Hardware Drivers] → [A3967 - Stepper Click (Mikroe)]
+        - [Third-Party Hardware Drivers] → [Motor Control] → [A3967 - Stepper Click (Mikroe)]
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure that the Third-party Drivers Extension has already been installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - Third-party Drivers Extension must be enabled for the project to install "A3967 - Stepper Click (Mikroe)" component.
 
@@ -79,7 +79,7 @@ After the main program is executed, the stepper motor will start to run like the
 
 ![test](image/test.gif)
 
-You also can check the output of PWM and it look like the picture below:
+You also can check the output of PWM and it looks like the picture below:
 
 ![pwm_signal](image/pwm.png)
 

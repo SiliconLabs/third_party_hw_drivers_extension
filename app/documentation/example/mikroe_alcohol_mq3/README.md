@@ -36,7 +36,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/mikroe_alcohol_mq3/app.c` (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_alcohol_mq3/app.c` into the project root folder (overwriting existing file).
 
 3. Install the software components:
 

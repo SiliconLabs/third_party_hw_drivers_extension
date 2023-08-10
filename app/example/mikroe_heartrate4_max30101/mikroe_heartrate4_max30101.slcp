@@ -2,7 +2,7 @@ project_name: mikroe_heartrate4_max30101
 label: Third Party Hardware Drivers - MAX30101 - Heart Rate 4 Click (Mikroe)
 package: platform
 description: |
-  This example project shows an example for Mikroe Heart rate 4 click board driver integration.
+  This example project shows an example for Mikroe Heart Rate 4 Click board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -54,7 +54,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 ui_hints:
   highlight:

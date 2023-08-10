@@ -1,4 +1,4 @@
-# MIC 2 Click #
+# MIC 2 Click (Mikroe) #
 
 ## Summary ##
 
@@ -44,7 +44,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file app/example/mikroe_mic2/app.c (overwriting the existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_mic2/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -55,11 +55,8 @@ You can either create a project based on an example project or start with an emp
     - Install the following components:
 
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: **vcom**
-
         - [Application] → [Utility] → [Log]
-
         - [Services] → [Timers] → [Sleep Timer]
-
         - [Third Party Hardware Drivers] → [Audio & Voice] → [MIC 2 Click (Mikroe)] → use the default configuration.
 
 4. Install printf float
@@ -73,7 +70,7 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install the "MIC 2 Click (Mikroe)" component. Selecting this component will also include the "I2CSPM" component with instance "mikroe" and "IADC" component.
 
@@ -94,7 +91,6 @@ You can launch Console that's integrated into Simplicity Studio or use a third-p
 This example uses the I2CSPM diver with the "Mikroe" instance and IADC0 to read the analog signal. After the sensor is initialed successfully, the application reads the analog signal every 500 milliseconds. Right after getting this value, it will be converted to a Decibel value.
 
 To test the functionality, you can change the sound intensity surrounding the sensor in many ways. You can talk louder or applaud near the sensor. Then you will see the Decibel value change on the console in Simplicity Studio or other third-party terminal tools.
-
 
 ## Report Bugs & Get Support ##
 

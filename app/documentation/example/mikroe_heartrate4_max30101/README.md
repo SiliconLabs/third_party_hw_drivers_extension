@@ -37,7 +37,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/mikroe_heartrate4_max30101/app.c` into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_heartrate4_max30101/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -63,6 +63,8 @@ You can either create a project based on an example project or start with an emp
 - SDK Extension must be enabled for the project to install "MAX30101 - Heart Rate 4 Click (Mikroe)" component.
 
 ## How It Works ##
+
+This is an example that demonstrates the use of the Heart Rate 4 Click board. After resetting, the application reads data from the Red diode and displays the results on USB UART if the measured data is above defined threshold.
 
 You can choose the mode of operation by selecting the corresponding macro MIKROE_HEARTRATE4_MODE_INTERRUPT or MIKROE_HEARTRATE4_MODE_POLLING.
 

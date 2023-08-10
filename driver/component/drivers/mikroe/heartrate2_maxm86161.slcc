@@ -2,7 +2,7 @@ id: mikroe_heartrate2
 package: third_party_hw_drivers
 label: MAXM86161 - Heart Rate 2 Click (Mikroe)
 description: >
-  Driver for the Heart Rate 2 CLICK board, Heart Rate 2 Click is an add-on board based on MAXM86161 from Maxim Integrated a complete, integrated, optical data acquisition system, ideal for optical pulse oximetry and heart-rate detection applications.
+  Driver for the Heart Rate 2 Click board that is an add-on board based on MAXM86161 from Maxim Integrated a complete, integrated, optical data acquisition system, ideal for optical pulse oximetry and heart-rate detection applications.
 category: Sensors
 quality: evaluation
 ui_hints:
@@ -12,8 +12,18 @@ requires:
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_i2c
 config_file:
-  - path: public/mikroe/heartrate2_maxm86161/config/mikroe_maxm86161_config.h
+  - path: public/mikroe/heartrate2_maxm86161/config/brd2703a/mikroe_maxm86161_config.h
     file_id: driver_config_heartrate2
+    condition: [brd2703a]
+  - path: public/mikroe/heartrate2_maxm86161/config/brd4108a/mikroe_maxm86161_config.h
+    file_id: driver_config_heartrate2
+    condition: [brd4108a]
+  - path: public/mikroe/heartrate2_maxm86161/config/brd4314a/mikroe_maxm86161_config.h
+    file_id: driver_config_heartrate2
+    condition: [brd4314a]
+  - path: public/mikroe/heartrate2_maxm86161/config/other/mikroe_maxm86161_config.h
+    file_id: driver_config_heartrate2
+    unless: [brd4314a, brd4108a, brd2703a]
 provides:
   - name: mikroe_heartrate2
     allow_multiple: false

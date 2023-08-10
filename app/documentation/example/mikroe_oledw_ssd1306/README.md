@@ -47,8 +47,7 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
+        - [Services] → [Timers] → [Sleep Timer]
         - [Application] → [Utility] → [Assert]
         - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - OLED W Click (Mikroe) - SPI] → use default config
 

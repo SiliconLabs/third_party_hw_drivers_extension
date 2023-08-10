@@ -2,7 +2,7 @@ project_name: mikroe_utm7segr_max6969
 label: Third Party Hardware Drivers - MAX6969 - UT-M 7-SEG R Click (Mikroe)
 package: platform
 description: |
-  This example project shows an example for Mikroe UT-M 7-SEG R click board driver integration.
+  This example project shows an example for Mikroe UT-M 7-SEG R Click board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -42,7 +42,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/mikroe_utm7segr_max6969/image/create_example.png

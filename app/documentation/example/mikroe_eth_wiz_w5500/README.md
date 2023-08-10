@@ -1,4 +1,4 @@
-# ETH Wiz Click #
+# W5500 - ETH WIZ Click (Mikroe) #
 
 ## Summary ##
 
@@ -10,7 +10,7 @@ The board can be used for industrial automation systems, IP set-top boxes, VoIP/
 
 ETH Wiz Click board™ communicates with the target microcontroller over SPI interface that corresponds to the pinout on the mikroBUS™ socket as shown below.
 
-![mikroBus](mikrobus.png)
+![mikroBus](image/mikrobus.png)
 
 ## Required Hardware ##
 
@@ -24,18 +24,18 @@ ETH Wiz Click board™ communicates with the target microcontroller over SPI int
 
 The ETH Wiz click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
-![board](board.png)
+![board](image/board.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter W5500.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter W5500.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - W5500 (Mikroe ETH Wiz Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - W5500 - ETH Wiz Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -43,7 +43,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create a "Platform - Empty C Project" project for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
-2. Copy the files from app/example/mikroe_eth_wiz_w5500 folder into the project root folder (overwriting existing app.c).
+2. Copy the file `app/example/mikroe_eth_wiz_w5500/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -53,73 +53,70 @@ You can either create a project based on a example project or start with an empt
 
    - Install the following components:
 
-     - [Services] → [IO Stream] → [IO Stream: USART] with the default instance name: **vcom**.
-     - [Services] → [Sleep Timer].
-     - [Services] → [Microsecond Delay].
+     - [Services] → [IO Stream] → [IO Stream: EUSART] with the default instance name: **vcom**.
+     - [Services] → [Timers] → [Sleep Timer].
      - [Application] → [Utility] → [Log].
      - [Application] → [Utility] → [Assert].
-     - [Third Party Hardware Drivers] → [Interface] → [W5500 - ETH WIZ Click (Mikroe)] → use default configuration.
-     ![config](w5500_config.png)
+     - [Third Party Hardware Drivers] → [Interface] → [W5500 - ETH WIZ Click (Mikroe)] → use the default configuration.
+     ![config](image/w5500_config.png)
 
 4. Build and flash the project to your device.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension_staging/tree/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install **W5500 - ETH WIZ Click (Mikroe)** component. Selecting this component will also include the "SPIDRV" component with configurated instance: **w5500**.
-
-- The example project are built on the BRD4314A board. For another boards, the **w5500** instance should be configurated by users.
+- SDK Extension must be enabled for the project to install **W5500 - ETH WIZ Click (Mikroe)** component.
 
 ## How It Works ##
 
 ### API Overview ###
 
-A detailed description of each function can be found in [doc/doxygen](doc/doxygen/html/modules.html).
+A detailed description of each function can be found in doc/doxygen.
 
-The driver diveded into a Application layer, a TCP/IP stack and a Physical layer.
+The driver is divided into an Application layer, a TCP/IP stack and a Physical layer.
 The Application layer is where applications requiring network communications live. Examples of these applications include email clients and web browsers. These applications use the TCP/IP stack to send requests to connect to remote hosts.
 
 The TCP/IP stack establishes the connection between applications running on different hosts. It uses TCP for reliable connections and UDP for fast connections. It keeps track of the processes running in the applications above it by assigning port numbers to them and uses the Network layer to access the TCP/IP network.
 
 The physical layer provides integration to the host microcontroller hardware-dependent codes.
 
-![software_layers](software_layers.png)
+![software_layers](image/software_layers.png)
 
-[dhcp.c](src/dhcp.c): DHCP library. The dynamic host configuration protocol (DHCP) is the application responsible for requesting and offering IP addresses.
+`dhcp.c`: DHCP library. The dynamic host configuration protocol (DHCP) is the application responsible for requesting and offering IP addresses.
 
-[dns.c](src/dns.c): DNS library. A Domain Name System (DNS) enables to browse to a website by providing the website or domain name instead of the website’s IP address.
+`dns.c`: DNS library. A Domain Name System (DNS) enables to browse a website by providing the website or domain name instead of the website’s IP address.
 
-[sntp.c](src/sntp.c): SNTP library. SNTP stands for Simple Network Time Protocol, which is a service that provides the time of day to network devices. Typical accuracy is in the range of hundreds of milliseconds.
+`sntp.c`: SNTP library. SNTP stands for Simple Network Time Protocol, which is a service that provides the time of day to network devices. Typical accuracy is in the range of hundreds of milliseconds.
 
-[http_server.c](src/http_server.c): HTTP server library. The Hypertext Transfer Protocol (HTTP) is the most commonly used TCP/IP application as it transfers web pages from a web server to a web browser.
+`http_server.c`: HTTP server library. The Hypertext Transfer Protocol (HTTP) is the most commonly used TCP/IP application as it transfers web pages from a web server to a web browser.
 
-[socket.c](src/socket.c): Enables applications to connect to a Transmission Control Protocol/Internet Protocol (TCP/IP) network.
+`socket.c`: Enables applications to connect to a Transmission Control Protocol/Internet Protocol (TCP/IP) network.
 
-[ethernet_udp.c](src/ethernet_udp.c): Library to send/receive UDP packets.
+`ethernet_udp.c`: Library to send/receive UDP packets.
 
-[ethernet_server.c](src/ethernet_server.c): Library is for all Ethernet server based calls. It is not called directly, but invoked whenever you use a function that relies on it.
+`ethernet_server.c`: Library is for all Ethernet server based calls. It is not called directly but invoked whenever you use a function that relies on it.
 
-[ethernet_client.c](src/ethernet_client.c): Library is for all Ethernet client based calls. It is not called directly, but invoked whenever you use a function that relies on it.
+`ethernet_client.c`: Library is for all Ethernet client based calls. It is not called directly but invoked whenever you use a function that relies on it.
 
-[w5x00.c](src/w5x00.c): Implements public interfaces to interact with W5500 chip.
+`w5x00.c`: Implements public interfaces to interact with the W5500 chip.
 
-[w5x00_platform.c](src/w5x00_platform.c): Integrates the Silabs SPI driver for SPI communication.
+`w5x00_platform.c`: Integrates the Silabs SPI driver for SPI communication.
 
 ### Testing ###
 
-This example demonstrates the http client features of the driver.
+This example demonstrates the HTTP client features of the driver.
 The connection diagram of this example is shown in the image below:
 
-![diagram](diagram.png)
+![diagram](image/diagram.png)
 
-The following diagram shows the program flow as implemented in the app.c file:
+The following diagram shows the program flow as implemented in the file `app.c`:
 
-![Work Flow](flow.png)
+![Work Flow](image/flow.png)
 
 Use a terminal program, such as the Console that is integrated in Simplicity Studio or a third-party tool terminal like PuTTY to receive the logs from the virtual COM port. You should expect a similar output to the one below.
 
-![log](log.png)
+![log](image/log.png)
 
 ## Report Bugs & Get Support ##
 

@@ -1,4 +1,4 @@
-# E-Paper Display 1.54" 200x200 dots #
+# E-Paper display 1.54" 200x200 dots (Mikroe) #
 
 ## Summary ##
 
@@ -37,7 +37,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_e_paper_154_inch) (overwriting the existing file) into the project root folder.
+2. Copy the file `app/example/mikroe_e_paper_154_inch/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -47,7 +47,6 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
-        - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
         - **[Third Party Hardware Drivers] → [Display & LED] → [E-Paper display 1.54" 200x200 dots (Mikroe)]**
         - **[Third Party Hardware Drivers] → [Services] → [GLIB - OLED Graphics Library]**
 
@@ -55,9 +54,9 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure that the Third-party drivers extension has already been installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- Third-party drivers extension must be enabled for the project to install "E-Paper Display (Mikroe)" component. Selecting this component will also include the "SPIDRV" component with the default configurated instance: Mikroe.
+- Third-party drivers extension must be enabled for the project to install "E-Paper Display (Mikroe)" component.
 
 ## How It Works ##
 

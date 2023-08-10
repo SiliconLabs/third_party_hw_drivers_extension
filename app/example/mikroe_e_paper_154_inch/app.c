@@ -21,8 +21,8 @@
 #include <string.h>
 #include "sl_spidrv_instances.h"
 #include "mikroe_e_paper_154_inch_config.h"
-#include "glib.h"
 #include "mikroe_e_paper_154_inch.h"
+#include "glib.h"
 
 const char *str1 = "SILICON LABS";
 const char *str2 = "APPLICATION EXAMPLES";

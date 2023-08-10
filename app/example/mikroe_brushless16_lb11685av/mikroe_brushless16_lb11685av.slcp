@@ -2,7 +2,7 @@ project_name: mikroe_brushless16_lv11685av
 package: platform
 label: Third Party Hardware Drivers - LB11685AV - Brushless 16 Click (Mikroe)
 description: |
-  This example project shows an example for Mikroe Brushless 16 click board driver integration.
+  This example project shows an example for Mikroe Brushless 16 Click board driver integration.
 category: Example|Platform
 quality: evaluation
 
@@ -42,7 +42,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.5.0
+  version: 1.6.0
 
 other_file:
   - path: ../../documentation/example/mikroe_brushless16_lb11685av/image/create_example.png

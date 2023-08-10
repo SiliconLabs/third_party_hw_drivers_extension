@@ -53,10 +53,10 @@
 //                                   Includes
 // -----------------------------------------------------------------------------
 #include <stdbool.h>
-#include <stepper2_config_a4988.h>
 #include "sl_status.h"
 #include "sl_pwm.h"
 #include "sl_sleeptimer.h"
+#include "stepper2_config_a4988.h"
 
 // -----------------------------------------------------------------------------
 //                              Macros and Typedefs

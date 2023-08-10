@@ -1,4 +1,4 @@
-# AMG8833 Grid-EYE Infrared Array Breakout Driver #
+# AMG8833 Grid-EYE Infrared Array Breakout (Sparkfun) #
 
 ## Summary ##
 
@@ -25,7 +25,7 @@ Tested boards for working with this example:
 
 The breakout board is connected to the dev kit with a Qwiic connector
 
-![Dev kit connection diagram](images/dev_kit.jpg)
+![Dev kit connection diagram](image/dev_kit.jpg)
 
 ## Setup ##
 
@@ -36,7 +36,7 @@ You can either create a project based on an example project or start with an emp
 1. From the Launcher Home, add the BRD2601B to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter "amg88xx".
 
 2. Click **Create** button on the **Third Party Hardware Drivers - AMG88XX - Grid-EYE Infrared Array Breakout (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](images/create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -44,13 +44,13 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" project for the EFR32xG24 Dev Kit using SimplicityStudio 5. Use the default project settings. Be sure to connect and select the EFR32xG24 Dev Kit from the "Debug Adapters" on the left before creating a project.
 
-2. Then copy the files [app.c](../../../example/sparkfun_ir_array_amg88xx/app.c), [app_cli_command_table.c](../../../example/sparkfun_ir_array_amg88xx/app_cli_command_table.c), [app_ir_array_cli_cmds.c](../../../example/sparkfun_ir_array_amg88xx/app_ir_array_cli_cmds.c) into the project root folder and overwriting existing file.
+2. Copy the files `app/example/sparkfun_ir_array_amg88xx/app.c`, `app/example/sparkfun_ir_array_amg88xx/app_cli_command_table.c`, `app/example/sparkfun_ir_array_amg88xx/app_ir_array_cli_cmds.c` into the project root folder (overwriting the existing file).
 
 3. Install software components in the .slcp
 
     - **[Services] → [IO Stream] → [IO Stream: USART]** → default instance name: vcom
     - **[Services] → [Command Line interface] → [CLI Instance(s)]** → new instance name: vcom
-    - **[Third Party Hardware Drivers] → [Sensors] → [AMG88XX - Grid-EYE Infrared Array Breakout (Sparkfun)] → use default configuration**
+    - **[Third Party Hardware Drivers] → [Sensors] → [AMG88XX - Grid-EYE Infrared Array Breakout (Sparkfun)]** → use default configuration
 
 4. Save the files, build and ready to flash or debug.
 
@@ -62,9 +62,9 @@ You can either create a project based on an example project or start with an emp
 
 The following diagram presents the operation of the driver.
 
-![Usage example](images/IR_array_struct.png)
+![Usage example](image/IR_array_struct.png)
 
-Application only needs to call amg88xx_init() function once at startup. With amg88xx_get_sensor_array_temperatures() function, it is possible to request an array of temperatures for all 64 pixels. For more features or possibilities, please refer to the API function descriptions found in amg88xx_get_sensor_array_temperatures.h.
+The application only needs to call `amg88xx_init()` function once at startup. With `amg88xx_get_sensor_array_temperatures()` function, it is possible to request an array of temperatures for all 64 pixels. For more features or possibilities, please refer to the API function descriptions found in amg88xx_get_sensor_array_temperatures.h.
 
 The amg88xx_init() requires 2 parameters: an I2CSPM instance and an I2C server address.
 The I2CSPM instance is created by adding the I2CSPM software component. The I2C address for the AMG8833 module is 0x69, so it's recommended to use the AMG88XX_ADDRESS_OPEN macro. You have to select the temperature scale (either Celsius, or Fahrenheit) to display the temperature.
@@ -73,7 +73,7 @@ However, it's possible to change the server address by entering a custom address
 
 ## File and API Documentation ##
 
-ir_array_amg88xx_driver - This is the top-level API implementation.
+`ir_array_amg88xx_driver.c` - This is the top-level API implementation.
 
 - `amg88xx_init` : Initialise the driver.
 - `amg88xx_get_thermistor_temperature` : Gets the thermistor temperature.
@@ -87,12 +87,12 @@ ir_array_amg88xx_driver - This is the top-level API implementation.
 
 ## Generating image with Python ##
 
-There is a python script included in the repository [temperatue_array_visualiser.py](temperatue_array_visualiser.py) which could control the device over serial port and print out the actual temperature array. In the script you can setup your serial port number.
-The required python package for the app: numpy, seaborn, matplotlib.pylab, pyserial.
+There is a Python script included in the repository `temperatue_array_visualiser.py` which could control the device over serial port and print out the actual temperature array. In the script, you can setup your serial port number.
+The required Python package for the app: numpy, seaborn, matplotlib.pylab, pyserial.
 
 Below is the thermal image which is generated by the [temperatue_array_visualiser.py](temperatue_array_visualiser.py) script.
 
-![thermal_image](images/thermal_image.png)
+![thermal_image](image/thermal_image.png)
 
 ## Report Bugs & Get Support ##
 

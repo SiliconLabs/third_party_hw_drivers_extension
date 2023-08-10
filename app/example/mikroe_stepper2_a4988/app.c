@@ -17,8 +17,8 @@
 
 #include "sl_pwm_instances.h"
 #include "sl_simple_button_instances.h"
-#include "stepper2_a4988.h"
 #include "app_log.h"
+#include "stepper2_a4988.h"
 
 #define APP_STEPPER_RPM (64)
 

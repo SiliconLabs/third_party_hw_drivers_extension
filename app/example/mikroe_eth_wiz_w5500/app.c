@@ -18,7 +18,11 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "sl_spidrv_instances.h"
+#include "sl_sleeptimer.h"
+#include "app_log.h"
 #include "app_assert.h"
+
 #include "w5x00_utils.h"
 #include "ethernet.h"
 #include "ethernet_client.h"
@@ -28,16 +32,14 @@
 #include "http_server.h"
 #include "w5x00.h"
 #include "w5x00_utils.h"
-#include "sl_spidrv_instances.h"
-#include "app_log.h"
 
 #define USE_DHCP
 
-#define app_log_print_ip(ip)                                   \
-        app_log("%d.%d.%d.%d", w5x00_ip4_addr_get_byte(ip, 0), \
-                w5x00_ip4_addr_get_byte(ip, 1),                \
-                w5x00_ip4_addr_get_byte(ip, 2),                \
-                w5x00_ip4_addr_get_byte(ip, 3))
+#define app_log_print_ip(ip)                             \
+  app_log("%d.%d.%d.%d", w5x00_ip4_addr_get_byte(ip, 0), \
+          w5x00_ip4_addr_get_byte(ip, 1),                \
+          w5x00_ip4_addr_get_byte(ip, 2),                \
+          w5x00_ip4_addr_get_byte(ip, 3))
 
 uint8_t mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 w5x00_ip4_addr_t ip = { WIZNET_IP4_DATA(127, 0, 0, 1) };
@@ -57,8 +59,9 @@ static const char *get_content_body(const char *uri)
 
   start = end = uri;
   while (*uri) {
+    // line ending with <cr><lf>
     if (((uri[0] == '\r') && (uri[1] == '\n'))
-        || ((uri[0] == '\n') && (uri[1] == '\r'))) { // line ending with <cr><lf>
+        || ((uri[0] == '\n') && (uri[1] == '\r'))) {
       if (end == start) { // checking for empty line
         if (uri[2]) {
           return &uri[2]; // body is the next line
@@ -112,7 +115,7 @@ void http_client_get_device_public_ip(const char *host,
     w5x00_ethernet_client_write(&client,
                                 (uint8_t *)message,
                                 strlen(message));
-//    sl_sleeptimer_delay_millisecond(500);
+    // sl_sleeptimer_delay_millisecond(500);
     while (w5x00_ethernet_client_connected(&client)) {
       int length = w5x00_ethernet_client_read(&client,
                                               (uint8_t *)message,
@@ -125,7 +128,7 @@ void http_client_get_device_public_ip(const char *host,
         app_log("HTTP Response:\r\n\r\n%s\r\n\r\n", message);
 
         body = get_content_body(message);
-//        printf("%.*s", length, message);
+        // app_log("%.*s", length, message);
         app_log("HTTP Response body (public ip address): %s\r\n", body);
         if (body
             && w5x00_ip4addr_aton(body, &ip)) {
@@ -182,7 +185,7 @@ void app_init(void)
   }
 
   w5x00_ethernet_set_dns_server(&eth, dns_server1);
-//  w5x00_ethernet_set_dns_server(&eth, dns_server2);
+  // w5x00_ethernet_set_dns_server(&eth, dns_server2);
 
   memset(&local_ip, 0, sizeof(local_ip));
   w5x00_ethernet_get_local_ip(&eth, &local_ip);

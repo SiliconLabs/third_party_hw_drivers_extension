@@ -57,7 +57,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG21 2.4 GHz 10 dBm Radio Board (BRD4181B)" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/maxim_fuel_gauge_max17048) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/maxim_fuel_gauge_max17048/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 

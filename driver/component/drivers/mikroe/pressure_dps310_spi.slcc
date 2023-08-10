@@ -2,7 +2,7 @@ id: mikroe_pressure3_spi
 package: third_party_hw_drivers
 label: DPS310 - Pressure 3 Click (Mikroe) - SPI
 description: >
-  Driver for the Pressure 3 Click CLICK board. Pressure 3 click is a mikroBUS add-on board that carries an Infineon DPS310 digital barometric pressure sensor on SPI communication.
+  Driver for the Pressure 3 Click board. This board carries an Infineon DPS310 digital barometric pressure sensor using SPI communication.
 quality: evaluation
 ui_hints:
   visibility: basic

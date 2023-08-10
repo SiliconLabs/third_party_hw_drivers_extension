@@ -18,6 +18,6 @@ template_contribution:
 include:
   - path: public/silabs/services_nfc/tag/inc
     file_list:
-      - path: nfc_t2t.h
-      - path: nfc_t4t.h
-      - path: nfc_tag_dbg.h
+      - path: t2t.h
+      - path: t4t.h
+      - path: tag_dbg.h

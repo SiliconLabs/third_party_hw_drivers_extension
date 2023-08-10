@@ -48,9 +48,9 @@ static SPIDRV_Handle_t spi_handle = NULL;
  ******************************************************************************/
 void w5x00_reset(void)
 {
-  GPIO_PinOutClear(W5x00_RESET_PORT, W5x00_RESET_PIN);
+  GPIO_PinOutClear(W5500_RESET_PORT, W5500_RESET_PIN);
   w5x00_delay_ms(100);
-  GPIO_PinOutSet(W5x00_RESET_PORT, W5x00_RESET_PIN);
+  GPIO_PinOutSet(W5500_RESET_PORT, W5500_RESET_PIN);
 }
 
 /***************************************************************************//**
@@ -59,8 +59,8 @@ void w5x00_reset(void)
 void w5x00_bus_init(SPIDRV_Handle_t handle)
 {
   spi_handle = handle;
-  GPIO_PinModeSet(W5x00_RESET_PORT,
-                  W5x00_RESET_PIN,
+  GPIO_PinModeSet(W5500_RESET_PORT,
+                  W5500_RESET_PIN,
                   gpioModePushPull,
                   0);
   GPIO_PinModeSet((GPIO_Port_TypeDef)spi_handle->portCs,

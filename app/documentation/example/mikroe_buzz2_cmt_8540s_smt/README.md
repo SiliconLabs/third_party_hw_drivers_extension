@@ -1,4 +1,4 @@
-# CMT-8540s - Buzz 2 Click (Mikroe) #
+# CMT-8540s-SMT - Buzz 2 Click (Mikroe) #
 
 ## Summary ##
 
@@ -26,7 +26,7 @@ You can either create a project based on n example project or start with an empt
 
 1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter buzz.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - CMT_8540S_SMT - Buzz 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+2. Click **Create** button on the **Third Party Hardware Drivers - CMT-8540S-SMT - Buzz 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 ![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
@@ -35,7 +35,7 @@ You can either create a project based on n example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file `app/example/mikroe_buzz2_cmt_8540s_smt/app.c` into the project root folder (overwriting existing file).
+2. Copy the file `app/example/mikroe_buzz2_cmt_8540s_smt/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -48,7 +48,7 @@ You can either create a project based on n example project or start with an empt
         - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
-        - [Third Party Hardware Drivers] → [Mikroe Click] → [Audio & Voice] → [CMT_8540S_SMT-Buzz 2 Click (Mikroe)]
+        - [Third Party Hardware Drivers] → [Mikroe Click] → [Audio & Voice] → [CMT-8540S-SMT - Buzz 2 Click (Mikroe)]
 
 4. Build and flash this example to the board.
 
@@ -56,7 +56,7 @@ You can either create a project based on n example project or start with an empt
 
 - Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "CMT_8540S_SMT-Buzz 2 Click (Mikroe)" component.
+- SDK Extension must be enabled for the project to install "CMT-8540S-SMT - Buzz 2 Click (Mikroe)" component.
 
 ## How It Works ##
 

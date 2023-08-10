@@ -14,17 +14,20 @@
  * sections of the MSLA applicable to Source Code.
  *
  ******************************************************************************/
-#include "sparkfun_sgp40.h"
 
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 #include "sl_i2cspm_instances.h"
 
 #include "app_log.h"
-// Global variables for measure
-static uint16_t air_quality;
-static int32_t voc_index;
-static sl_simple_timer_t app_sgp40_timer_handle;
-static void app_sgp40_timer_callback(sl_simple_timer_t *handle, void *data);
+
+#include "sparkfun_sgp40.h"
+
+#define READING_INTERVAL_MSEC    1000
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 static sl_status_t app_sgp40_init(void);
 
 /// ***************************************************************************//**
@@ -54,20 +57,29 @@ void app_init(void)
 // ******************************************************************************/
 void app_process_action(void)
 {
+  uint16_t air_quality;
+  int32_t voc_index;
+
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
+
+  sparkfun_sgp40_measure_raw(&air_quality, 50, 25);
+  app_log(" RAW data   : %d  \r\n", air_quality);
+  app_log("-----------------------\r\n");
+
+  sparkfun_sgp40_get_voc_index(&voc_index, 50, 25);
+  app_log(" VOC Index   : %ld  \r\n", voc_index);
+  app_log("-----------------------\r\n");
 }
 
-static void app_sgp40_timer_callback(sl_simple_timer_t *handle, void *data)
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
   (void) handle;
   (void) data;
 
-  sparkfun_sgp40_measure_raw(&air_quality, 50, 25);
-  app_log(" RAW data   : %d  \r\n", (uint16_t)air_quality);
-  app_log("-----------------------\r\n");
-
-  sparkfun_sgp40_get_voc_index(&voc_index, 50, 25);
-  app_log(" VOC Index   : %d  \r\n", (uint16_t)voc_index);
-  app_log("-----------------------\r\n");
+  app_timer_expire = true;
 }
 
 static sl_status_t app_sgp40_init(void)
@@ -91,11 +103,12 @@ static sl_status_t app_sgp40_init(void)
   sparkfun_sgp40_voc_algorithm_init();
 
   // Start a periodic timer 200 ms to read data from the sensor
-  ret = sl_simple_timer_start(&app_sgp40_timer_handle,
-                              200,
-                              app_sgp40_timer_callback,
-                              (void *)NULL,
-                              true);
+  ret = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                              READING_INTERVAL_MSEC,
+                                              app_timer_cb,
+                                              (void *) NULL,
+                                              0,
+                                              0);
 
   return ret;
 }

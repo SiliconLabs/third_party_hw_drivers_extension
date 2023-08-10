@@ -1,4 +1,4 @@
-# Sparkfun Soil Moisture Sensor Driver #
+# Qwiic Soil Moisture Sensor (Sparkfun) #
 
 ## Summary ##
 
@@ -36,7 +36,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/sparkfun_soil_moisture/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/sparkfun_soil_moisture/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -46,7 +46,7 @@ You can either create a project based on an example project or start with an emp
 
    - Install the following components:
 
-      - [Services] → [Sleep Timer]
+      - [Services] → [Timers] → [Sleep Timer]
       - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
       - [Application] → [Utility] → [Log]
       - [Application] → [Utility] → [Assert]
@@ -56,7 +56,7 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install **Qwiic Soil Moisture Sensor (Sparkfun) - I2C** component.
 

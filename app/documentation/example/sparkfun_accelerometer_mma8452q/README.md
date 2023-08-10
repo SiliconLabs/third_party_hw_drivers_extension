@@ -1,4 +1,4 @@
-# Accelerometer MMA8452Q #
+# MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun) #
 
 ## Summary ##
 
@@ -43,7 +43,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create a "Platform - Empty C Project" project for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
-2. Copy the file `app/example/sparkfun_accelerometer_mma8452q/app.c` into the project root folder (overwriting existing file).
+2. Copy the file `app/example/sparkfun_accelerometer_mma8452q/app.c` into the project root folder (overwriting the existing file).
 
 3. Set the test mode in the *app.c* file.
 
@@ -54,7 +54,7 @@ You can either create a project based on an example project or start with an emp
     - Select the SOFTWARE COMPONENTS tab.
 
     - Install the following components:
-      - [Platform] → [Driver] → [I2CSPM] → [qwiic] with the default instance name: qwiic.
+
       - [Services] → [IO Stream] → [IO Stream: USART] with the default instance name: vcom.
       - [Application] → [Utility] → [Log].
       - [Third Party Hardware Drivers] → [Sensors] → [MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)]
@@ -63,7 +63,7 @@ You can either create a project based on an example project or start with an emp
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/platform_hardware_drivers_sdk_extensions/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - SDK Extension must be enabled for the project to install "MMA8452Q - Triple Axis Accelerometer Breakout (Sparkfun)" component.
 
