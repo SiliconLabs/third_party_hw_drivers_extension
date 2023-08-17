@@ -19,18 +19,15 @@
  * Initialize application.
  ******************************************************************************/
 #include "app_log.h"
-#include "sl_sleeptimer.h"
-#include <string.h>
-#include <stdint.h>
+#include "app_iostream_cli.h"
 #include "at_parser_events.h"
 #include "mikroe_bg96.h"
-#include "app_iostream_cli.h"
 
 void app_init(void)
 {
   app_log_iostream_set(sl_iostream_vcom_handle);
   app_log("Hello World LTE IoT 2 Click !!!\r\n");
-  bg96_nb_init();
+  bg96_nb_init(sl_iostream_mikroe_handle);
   app_log("BG96 init done !!!\r\n");
   app_log("Type your command to execute the function !!!\r\n");
 }

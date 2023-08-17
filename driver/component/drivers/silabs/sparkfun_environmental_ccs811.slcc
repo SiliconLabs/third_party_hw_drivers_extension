@@ -20,18 +20,24 @@ template_contribution:
   - name: component_catalog
     value: sparkfun_air_quality_ccs811
 config_file:
+  - path: public/silabs/environmental_bme280_ccs811/config/brd2601b/sparkfun_ccs811_config.h
+    file_id: sparkfun_ccs811_config
+    condition: [brd2601b]
   - path: public/silabs/environmental_bme280_ccs811/config/brd2703a/sparkfun_ccs811_config.h
     file_id: sparkfun_ccs811_config
     condition: [brd2703a]
-  - path: public/silabs/environmental_bme280_ccs811/config/brd4314a_brd4108a/sparkfun_ccs811_config.h
+  - path: public/silabs/environmental_bme280_ccs811/config/brd2704a/sparkfun_ccs811_config.h
     file_id: sparkfun_ccs811_config
-    condition: [brd4314a]
-  - path: public/silabs/environmental_bme280_ccs811/config/brd4314a_brd4108a/sparkfun_ccs811_config.h
+    condition: [brd2704a]
+  - path: public/silabs/environmental_bme280_ccs811/config/brd4108a/sparkfun_ccs811_config.h
     file_id: sparkfun_ccs811_config
     condition: [brd4108a]
+  - path: public/silabs/environmental_bme280_ccs811/config/brd4314a/sparkfun_ccs811_config.h
+    file_id: sparkfun_ccs811_config
+    condition: [brd4314a]
   - path: public/silabs/environmental_bme280_ccs811/config/other/sparkfun_ccs811_config.h
     file_id: sparkfun_ccs811_config
-    unless: [brd2703a, brd4108a, brd4314a]
+    unless: [brd2601b, brd2703a, brd2704a, brd4108a, brd4314a]
 include:
   - path: public/silabs/environmental_bme280_ccs811/inc
     file_list:

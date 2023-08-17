@@ -34,6 +34,7 @@
  ******************************************************************************/
 #ifndef AT_PARSER_CORE_H_
 #define AT_PARSER_CORE_H_
+
 #include "sl_status.h"
 #include "at_parser_platform.h"
 
@@ -62,7 +63,7 @@ typedef struct {
  * @brief
  *    AT parser core initialization
  *****************************************************************************/
-void at_parser_init(void);
+void at_parser_init(sl_iostream_t *iostream_handle);
 
 /**************************************************************************//**
  * @brief

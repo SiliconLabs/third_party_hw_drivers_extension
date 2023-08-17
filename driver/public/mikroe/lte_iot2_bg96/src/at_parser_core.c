@@ -32,11 +32,13 @@
  * as a demonstration for evaluation purposes only. This code will be maintained
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
-#include "at_parser_core.h"
+
 #include <string.h>
-#include "app_queue.h"
 #include <stdlib.h>
 #include <sl_string.h>
+#include "app_queue.h"
+#include "at_parser_core.h"
+#include "at_parser_platform.h"
 
 /******************************************************************************
  **********************   MACRO UTILITY FUNCTIONS   ***************************
@@ -58,10 +60,10 @@ static void at_parser_get_ip(uint8_t *response, uint8_t *ip_output);
  * @brief
  *    AT parser core initialization
  *****************************************************************************/
-void at_parser_init()
+void at_parser_init(sl_iostream_t *iostream_handle)
 {
   APP_QUEUE_INIT(&cmd_q, at_cmd_desc_t, CMD_Q_SIZE);
-  at_platform_init(general_platform_cb);
+  at_platform_init(iostream_handle, general_platform_cb);
 }
 
 /**************************************************************************//**

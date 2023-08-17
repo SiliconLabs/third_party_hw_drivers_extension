@@ -35,6 +35,19 @@
 #include "sl_sdc_sd_card.h"
 #include "mikroe_microsd_config.h"
 
+typedef struct {
+  uint8_t mosiPort;
+  uint8_t mosiPin;
+  uint8_t misoPort;
+  uint8_t misoPin;
+  uint8_t clkPort;
+  uint8_t clkPin;
+  uint8_t csPort;
+  uint8_t csPin;
+} SPI_Pins_t;
+
+static Ecode_t GetSpiPins(SPIDRV_Handle_t handle, SPI_Pins_t *pins);
+
 // SPI bit rate controls
 // Set slow clock for card initialization (100k-400k)
 #define FCLK_SLOW() \
@@ -658,8 +671,10 @@ dresult_t sd_card_disk_ioctl(BYTE cmd, void *buff)
 sl_status_t sd_card_spi_init(SPIDRV_Handle_t spi_handle)
 {
   bool timer_is_running = false;
-
   sdc_spi_handle = spi_handle;
+
+  SPI_Pins_t pins;
+  Ecode_t ret;
 
 #if defined(MIKROE_MICROSD_MMC_CD_PORT) && defined(MIKROE_MICROSD_MMC_CD_PORT)
   GPIO_PinModeSet(MIKROE_MICROSD_MMC_CD_PORT,
@@ -670,8 +685,12 @@ sl_status_t sd_card_spi_init(SPIDRV_Handle_t spi_handle)
 
   // MISO pin is not pulled-up by SDcard click board side with a resistor.
   // This pin should be reconfigured in gpioModeInputPull mode.
-  GPIO_PinModeSet(spi_handle->initData.portRx,
-                  spi_handle->initData.pinRx,
+  ret = GetSpiPins(spi_handle, &pins);
+  if (ret != ECODE_EMDRV_SPIDRV_OK) {
+    return ret;
+  }
+  GPIO_PinModeSet(pins.misoPort,
+                  pins.misoPin,
                   gpioModeInputPull,
                   1);
 
@@ -736,3 +755,203 @@ void disk_timerproc(void)
 #endif
   sd_card_status = s;
 }
+
+#if defined(_SILICON_LABS_32B_SERIES_0)
+
+/***************************************************************************//**
+ * @brief Get SPI pins for Series 0 devices.
+ ******************************************************************************/
+static Ecode_t GetSpiPins(SPIDRV_Handle_t handle, SPI_Pins_t *pins)
+{
+  uint32_t location;
+
+  location = handle->initData.portLocation;
+
+  if (0) {
+#if defined(USART0)
+  } else if (handle->peripheral.usartPort == USART0) {
+    pins->mosiPort = AF_USART0_TX_PORT(location);
+    pins->misoPort = AF_USART0_RX_PORT(location);
+    pins->clkPort = AF_USART0_CLK_PORT(location);
+    pins->csPort = AF_USART0_CS_PORT(location);
+    pins->mosiPin = AF_USART0_TX_PIN(location);
+    pins->misoPin = AF_USART0_RX_PIN(location);
+    pins->clkPin = AF_USART0_CLK_PIN(location);
+    pins->csPin = AF_USART0_CS_PIN(location);
+#endif
+#if defined(USART1)
+  } else if (handle->peripheral.usartPort == USART1) {
+    pins->mosiPort = AF_USART1_TX_PORT(location);
+    pins->misoPort = AF_USART1_RX_PORT(location);
+    pins->clkPort = AF_USART1_CLK_PORT(location);
+    pins->csPort = AF_USART1_CS_PORT(location);
+    pins->mosiPin = AF_USART1_TX_PIN(location);
+    pins->misoPin = AF_USART1_RX_PIN(location);
+    pins->clkPin = AF_USART1_CLK_PIN(location);
+    pins->csPin = AF_USART1_CS_PIN(location);
+#endif
+#if defined(USART2)
+  } else if (handle->peripheral.usartPort == USART2) {
+    pins->mosiPort = AF_USART2_TX_PORT(location);
+    pins->misoPort = AF_USART2_RX_PORT(location);
+    pins->clkPort = AF_USART2_CLK_PORT(location);
+    pins->csPort = AF_USART2_CS_PORT(location);
+    pins->mosiPin = AF_USART2_TX_PIN(location);
+    pins->misoPin = AF_USART2_RX_PIN(location);
+    pins->clkPin = AF_USART2_CLK_PIN(location);
+    pins->csPin = AF_USART2_CS_PIN(location);
+#endif
+#if defined(USARTRF0)
+  } else if (handle->peripheral.usartPort == USARTRF0) {
+    pins->mosiPort = AF_USARTRF0_TX_PORT(location);
+    pins->misoPort = AF_USARTRF0_RX_PORT(location);
+    pins->clkPort = AF_USARTRF0_CLK_PORT(location);
+    pins->csPort = AF_USARTRF0_CS_PORT(location);
+    pins->mosiPin = AF_USARTRF0_TX_PIN(location);
+    pins->misoPin = AF_USARTRF0_RX_PIN(location);
+    pins->clkPin = AF_USARTRF0_CLK_PIN(location);
+    pins->csPin = AF_USARTRF0_CS_PIN(location);
+#endif
+#if defined(USARTRF1)
+  } else if (handle->peripheral.usartPort == USARTRF1) {
+    pins->mosiPort = AF_USARTRF1_TX_PORT(location);
+    pins->misoPort = AF_USARTRF1_RX_PORT(location);
+    pins->clkPort = AF_USARTRF1_CLK_PORT(location);
+    pins->csPort = AF_USARTRF1_CS_PORT(location);
+    pins->mosiPin = AF_USARTRF1_TX_PIN(location);
+    pins->misoPin = AF_USARTRF1_RX_PIN(location);
+    pins->clkPin = AF_USARTRF1_CLK_PIN(location);
+    pins->csPin = AF_USARTRF1_CS_PIN(location);
+#endif
+  } else {
+    return ECODE_EMDRV_SPIDRV_PARAM_ERROR;
+  }
+  return ECODE_EMDRV_SPIDRV_OK;
+}
+
+#endif
+
+#if defined(_SILICON_LABS_32B_SERIES_1)
+
+/***************************************************************************//**
+ * @brief Get SPI pins for Series 1 devices.
+ ******************************************************************************/
+static Ecode_t GetSpiPins(SPIDRV_Handle_t handle, SPI_Pins_t *pins)
+{
+  if (0) {
+#if defined(USART0)
+  } else if (handle->peripheral.usartPort == USART0) {
+    pins->mosiPort = AF_USART0_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART0_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART0_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART0_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART0_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART0_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART0_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART0_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USART1)
+  } else if (handle->peripheral.usartPort == USART1) {
+    pins->mosiPort = AF_USART1_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART1_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART1_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART1_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART1_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART1_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART1_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART1_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USART2)
+  } else if (handle->peripheral.usartPort == USART2) {
+    pins->mosiPort = AF_USART2_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART2_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART2_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART2_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART2_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART2_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART2_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART2_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USART3)
+  } else if (handle->peripheral.usartPort == USART3) {
+    pins->mosiPort = AF_USART3_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART3_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART3_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART3_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART3_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART3_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART3_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART3_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USART4)
+  } else if (handle->peripheral.usartPort == USART4) {
+    pins->mosiPort = AF_USART4_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART4_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART4_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART4_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART4_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART4_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART4_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART4_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USART5)
+  } else if (handle->peripheral.usartPort == USART5) {
+    pins->mosiPort = AF_USART5_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USART5_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USART5_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USART5_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USART5_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USART5_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USART5_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USART5_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USARTRF0)
+  } else if (handle->peripheral.usartPort == USARTRF0) {
+    pins->mosiPort = AF_USARTRF0_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USARTRF0_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USARTRF0_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USARTRF0_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USARTRF0_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USARTRF0_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USARTRF0_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USARTRF0_CS_PIN(handle->initData.portLocationCs);
+#endif
+#if defined(USARTRF1)
+  } else if (handle->peripheral.usartPort == USARTRF1) {
+    pins->mosiPort = AF_USARTRF1_TX_PORT(handle->initData.portLocationTx);
+    pins->misoPort = AF_USARTRF1_RX_PORT(handle->initData.portLocationRx);
+    pins->clkPort = AF_USARTRF1_CLK_PORT(handle->initData.portLocationClk);
+    pins->csPort = AF_USARTRF1_CS_PORT(handle->initData.portLocationCs);
+    pins->mosiPin = AF_USARTRF1_TX_PIN(handle->initData.portLocationTx);
+    pins->misoPin = AF_USARTRF1_RX_PIN(handle->initData.portLocationRx);
+    pins->clkPin = AF_USARTRF1_CLK_PIN(handle->initData.portLocationClk);
+    pins->csPin = AF_USARTRF1_CS_PIN(handle->initData.portLocationCs);
+#endif
+  } else {
+    return ECODE_EMDRV_SPIDRV_PARAM_ERROR;
+  }
+  return ECODE_EMDRV_SPIDRV_OK;
+}
+
+#endif
+
+#if defined(_SILICON_LABS_32B_SERIES_2)
+
+/***************************************************************************//**
+ * @brief Get SPI pins for Series 2 devices.
+ ******************************************************************************/
+static Ecode_t GetSpiPins(SPIDRV_Handle_t handle, SPI_Pins_t *pins)
+{
+  pins->mosiPort = handle->initData.portTx;
+  pins->misoPort = handle->initData.portRx;
+  pins->clkPort = handle->initData.portClk;
+  pins->csPort = handle->initData.portCs;
+  pins->mosiPin = handle->initData.pinTx;
+  pins->misoPin = handle->initData.pinRx;
+  pins->clkPin = handle->initData.pinClk;
+  pins->csPin = handle->initData.pinCs;
+
+  return ECODE_EMDRV_SPIDRV_OK;
+}
+
+#endif

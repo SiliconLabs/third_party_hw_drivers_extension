@@ -35,10 +35,12 @@
 
 #ifndef AT_PARSER_PLATFORM_H_
 #define AT_PARSER_PLATFORM_H_
-#include "sl_status.h"
-#include "mikroe_lte_iot2_bg96_config.h"
+
 #include "em_cmu.h"
 #include "em_eusart.h"
+#include "sl_status.h"
+#include "sl_iostream_handles.h"
+#include "mikroe_lte_iot2_bg96_config.h"
 
 /*******************************************************************************
  ********************************   MACROS   ***********************************
@@ -79,14 +81,14 @@ void initGPIO(void);
  *   Callback function for new line (and ">" character for special commands).
  *
  *****************************************************************************/
-void at_platform_init(ln_cb_t line_callback);
+void at_platform_init(sl_iostream_t *iostream_handle, ln_cb_t line_callback);
 
 /**************************************************************************//**
  * @brief
  *   Check ready status of platform driver.
  *
  *****************************************************************************/
-sl_status_t at_platform_check_device_ready();
+sl_status_t at_platform_check_device_ready(void);
 
 /**************************************************************************//**
 * @brief

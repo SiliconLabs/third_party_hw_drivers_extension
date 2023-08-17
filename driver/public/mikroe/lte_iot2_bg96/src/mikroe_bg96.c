@@ -36,13 +36,16 @@
  * This code will be maintained at the sole discretion of Silicon Labs.
  *
  ******************************************************************************/
-#include "mikroe_bg96.h"
-#include "mikroe_lte_iot2_bg96_config.h"
+#include <sl_string.h>
+
 #include "em_gpio.h"
 #include "sl_sleeptimer.h"
+
 #include "at_parser_core.h"
 #include "at_parser_utility.h"
-#include <sl_string.h>
+
+#include "mikroe_bg96.h"
+#include "mikroe_lte_iot2_bg96_config.h"
 
 #define BITMASK_7BITS                       0x7F
 #define BITMASK_8BITS                       0xFF
@@ -96,9 +99,9 @@ static void uint8_to_str(uint8_t input, uint8_t *output);
  *   BG96 module initialize function.
  *
  *****************************************************************************/
-void bg96_init(void)
+void bg96_init(sl_iostream_t *iostream_handle)
 {
-  at_parser_init();
+  at_parser_init(iostream_handle);
   sl_sleeptimer_start_periodic_timer_ms(&bg96_timer_process_handler,
                                         200,
                                         bg96_timer_process_callback,
@@ -304,9 +307,9 @@ sl_status_t bg96_gnss_stop(at_scheduler_status_t *output_object)
  *    BG96 NB IoT initialization.
  *
  *****************************************************************************/
-void bg96_nb_init(void)
+void bg96_nb_init(sl_iostream_t *iostream_handle)
 {
-  bg96_init();
+  bg96_init(iostream_handle);
 }
 
 /**************************************************************************//**

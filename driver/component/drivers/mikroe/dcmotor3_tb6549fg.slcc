@@ -13,12 +13,18 @@ requires:
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_pwm
 config_file:
-  - path: public/mikroe/dcmotor3_tb6549fg/config/mikroe_tb6549fg_config.h
-    file_id: driver_config_dcmotor3
-    unless: [brd2703a]
   - path: public/mikroe/dcmotor3_tb6549fg/config/brd2703a/mikroe_tb6549fg_config.h
     file_id: driver_config_dcmotor3
     condition: [brd2703a]
+  - path: public/mikroe/dcmotor3_tb6549fg/config/brd4108a/mikroe_tb6549fg_config.h
+    file_id: driver_config_dcmotor3
+    condition: [brd4108a]
+  - path: public/mikroe/dcmotor3_tb6549fg/config/brd4314a/mikroe_tb6549fg_config.h
+    file_id: driver_config_dcmotor3
+    condition: [brd4314a]
+  - path: public/mikroe/dcmotor3_tb6549fg/config/other/mikroe_tb6549fg_config.h
+    file_id: driver_config_dcmotor3
+    unless: [brd4314a, brd4108a, brd2703a]
 template_contribution:
   - name: component_catalog
     value: mikroe_dcmotor3

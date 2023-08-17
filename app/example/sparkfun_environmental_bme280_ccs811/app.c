@@ -19,22 +19,30 @@
  * Include.
  ******************************************************************************/
 
-#include "sparkfun_bme280.h"
-#include "app_log.h"
 #include "sl_i2cspm_instances.h"
-#include "sparkfun_ccs811.h"
-#include "sl_simple_timer.h"
+#include "sl_sleeptimer.h"
 
-static sl_simple_timer_t bme280_ccs811_timer;
-static void bme280_ccs811_callback(sl_simple_timer_t *timer, void *data);
+#include "app_log.h"
+
+#include "sparkfun_bme280.h"
+#include "sparkfun_ccs811.h"
+
+#define READING_INTERVAL_MSEC    1000
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool app_timer_expire = false;
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
-  app_log("Application Initialization.\n");
   sparkfun_bme280_i2c_t bme280_init_default;
+
+  app_log("Application Initialization.\n");
+
   bme280_init_default = (sparkfun_bme280_i2c_t) BME280_I2C_DEFAULT;
   sparkfun_bme280_i2c(&bme280_init_default);
   if (sparkfun_bme280_init() == SL_STATUS_OK) {
@@ -64,11 +72,12 @@ void app_init(void)
     }
   }
 
-  sl_simple_timer_start(&bme280_ccs811_timer,
-                        1000,
-                        bme280_ccs811_callback,
-                        NULL,
-                        true);
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        app_timer_cb,
+                                        (void *) NULL,
+                                        0,
+                                        0);
 }
 
 /***************************************************************************//**
@@ -76,38 +85,40 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Put your additional application code here!                              //
-  // This is called infinitely.                                              //
-  // Do not call blocking functions from here!                               //
-  /////////////////////////////////////////////////////////////////////////////
-}
+  uint16_t eco2, tvoc;
+  int32_t temp = 0;
+  uint32_t hum = 0;
+  uint32_t press = 0;
 
-static void bme280_ccs811_callback(sl_simple_timer_t *timer, void *data)
-{
-  (void)timer;
-  (void)data;
+  if (app_timer_expire == false) {
+    return;
+  }
+  app_timer_expire = false;
 
   sparkfun_bme280_ctrl_measure_set_to_work();
 
-  int32_t temp = 0;
   if (SL_STATUS_OK == sparkfun_bme280_read_temperature(&temp)) {
     app_log("Temperature: %ld %cC\n", (temp / 100), 0XF8);
   }
 
-  uint32_t hum = 0;
   if (SL_STATUS_OK == sparkfun_bme280_read_humidity(&hum)) {
     app_log("Humidity: %ld%%\n", hum / 1000);
   }
 
-  uint32_t press = 0;
   if (SL_STATUS_OK == sparkfun_bme280_read_pressure(&press)) {
     app_log("Presure: %ld mBar\n", press);
   }
 
-  uint16_t eco2, tvoc;
   if (!sparkfun_ccs811_get_measurement(sl_i2cspm_qwiic, &eco2, &tvoc)) {
     app_log("CO2: %d ppm\n", eco2);
     app_log("TVOC: %d ppb\n", tvoc);
   }
+}
+
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) handle;
+  (void) data;
+
+  app_timer_expire = true;
 }

@@ -1,4 +1,4 @@
-# BME280 - CCS811 Environmental Sensor Combo Breakout #
+# BME280 & CCS811 - Environmental Sensor Combo Breakout #
 
 ## Summary ##
 
@@ -22,13 +22,11 @@ The Environmental Sensor support Qwiic, so it can connect easily to EFR32xG24 Ex
 
 The hardware connection is shown in the image below:
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 **Note:**
 
-- If you want to conserve power, you should connect the **PD2** pin on the EFR32MG24 board to the **WAK** pin on the Environmental Combo Breakout board to change the sensor's active and sleep states. The hardware connection is shown in the image below:
-
-![hardware_connection](hardware_connection_2.png)
+- If you want to conserve power, you should connect the **PB0** pin on the EFR32MG24 board to the **WAK** pin on the Environmental Combo Breakout board to change the sensor's active and sleep states.
 
 ## Setup ##
 
@@ -36,10 +34,10 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **environmental**
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **bme280, ccs811**
 
 2. Click **Create** button on the **Third Party Hardware Drivers - BME280 & CCS811 - Environmental Sensor Combo Breakout (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -58,11 +56,8 @@ You can either create a project based on an example project or start with an emp
     - Install the following components:
 
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
-  
         - [Application] → [Utility] → [Log]
-  
-        - [Application] → [Service] → [Simple timer service]
-  
+        - [Services] → [Timers] → [Sleep Timer]
         - [Third Party Hardware Drivers] → [Sensors] → [BME28 - Atmospheric Sensor (Sparkfun)]
         - [Third Party Hardware Drivers] → [Sensors] → [CCS811 - Air Quality Sensor (Sparkfun)]
 
@@ -72,7 +67,7 @@ You can either create a project based on an example project or start with an emp
 
 - Make sure that the **Third-party Drivers Extensions** is installed. To install the extension, follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
 
-- **Third-party Drivers Extensions** must be enabled for the project to install "BME280 - Atmospheric Sensor (Sparkfun)" or "CCS811 - Air Quality Sensor (Sparkfun)" component. Selecting this component will also include the "I2CSPM" component with default configurated instance: qwiic.
+- **Third-party Drivers Extensions** must be enabled for the project to install "BME280 - Atmospheric Sensor (Sparkfun)" or "CCS811 - Air Quality Sensor (Sparkfun)" component.
 
 ## How It Works ##
 
@@ -84,7 +79,7 @@ This example is used to measure environmental parameters: temperature, humidity,
 
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
-![console_log](console_log.png)
+![console_log](image/console_log.png)
 
 ## Report Bugs & Get Support ##
 

@@ -33,9 +33,9 @@
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
 
-#include "at_parser_events.h"
 #include <stdbool.h>
 #include <stddef.h>
+#include "at_parser_events.h"
 
 static void (*global_handle)();
 static uint8_t global_ok_value;

@@ -33,17 +33,14 @@
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
 
+#include <string.h>
+#include <sl_string.h>
+#include "em_eusart.h"
 #include "at_parser_platform.h"
-#include "sl_iostream.h"
-#include "sl_iostream_init_instances.h"
 #include "sl_iostream_handles.h"
 #include "sl_sleeptimer.h"
-#include <string.h>
-#include "mikroe_lte_iot2_bg96_config.h"
-#include "em_eusart.h"
 #include "app_queue.h"
-#include <sl_string.h>
-#include "sl_iostream.h"
+#include "mikroe_lte_iot2_bg96_config.h"
 
 at_platform_status_t status = NOT_INITIALIZED;
 ln_cb_t global_cb = 0;
@@ -51,6 +48,7 @@ sl_sleeptimer_timer_handle_t my_timer;
 static uint8_t line_counter = 0;
 static uint8_t input_buffer[IN_BUFFER_SIZE];
 static uint16_t input_buffer_index = 0;
+static sl_iostream_t *bg96_iostream_handle = NULL;
 
 static void timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
 
@@ -90,8 +88,9 @@ void initGPIO(void)
  *   Callback function for new line (and ">" character for special commands).
  *
  *****************************************************************************/
-void at_platform_init(ln_cb_t line_callback)
+void at_platform_init(sl_iostream_t *iostream_handle, ln_cb_t line_callback)
 {
+  bg96_iostream_handle = iostream_handle;
   global_cb = line_callback;
   initCMU();
   initGPIO();
@@ -148,7 +147,7 @@ sl_status_t at_platform_send_cmd(volatile uint8_t *cmd,
     size_t cmd_length = sl_strlen((char *) cmd);
     if (cmd_length < CMD_MAX_SIZE - 1) {
       sl_strcat_s((char *) cmd, CMD_MAX_SIZE, "\r");
-      sl_iostream_write(sl_iostream_bg96_handle, (const void *)cmd,
+      sl_iostream_write(bg96_iostream_handle, (const void *)cmd,
                         sl_strlen((char *) cmd));
 
       line_counter = 0;
@@ -184,7 +183,7 @@ void at_platform_process(void)
 {
   static uint8_t tempdata;
 
-  while (SL_STATUS_OK == sl_iostream_getchar(sl_iostream_bg96_handle,
+  while (SL_STATUS_OK == sl_iostream_getchar(bg96_iostream_handle,
                                              ( char *)&tempdata)) {
     input_buffer[input_buffer_index] = tempdata;
 

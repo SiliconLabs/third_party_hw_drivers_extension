@@ -44,12 +44,13 @@ extern "C" {
 #endif
 
 #include <stdbool.h>
-#include "sl_status.h"
-#include "at_parser_core.h"
 #include <string.h>
 #include <stdio.h>
 #include "em_cmu.h"
 #include "em_usart.h"
+#include "sl_iostream_handles.h"
+#include "sl_status.h"
+#include "at_parser_core.h"
 
 /*******************************************************************************
  ********************************   MACROS   ***********************************
@@ -94,14 +95,14 @@ typedef struct {
  *   BG96 module initialize function.
  *
  *****************************************************************************/
-void bg96_init (void);
+void bg96_init(sl_iostream_t *iostream_handle);
 
 /**************************************************************************//**
  * @brief
  *   BG96 is alive status getter function.
  *
  *****************************************************************************/
-bool bg96_is_alive (void);
+bool bg96_is_alive(void);
 
 /**************************************************************************//**
  * @brief
@@ -117,7 +118,7 @@ bool bg96_is_alive (void);
  *    SL_SLEEPTIMER_NO_HIGH_PRECISION_HF_CLOCKS_REQUIRED_FLAG timer error.
  *    SL_STATUS_INVALID_PARAMETER timer related error.
  *****************************************************************************/
-sl_status_t bg96_sleep (at_scheduler_status_t *output_object);
+sl_status_t bg96_sleep(at_scheduler_status_t *output_object);
 
 /**************************************************************************//**
  * @brief
@@ -133,7 +134,7 @@ sl_status_t bg96_sleep (at_scheduler_status_t *output_object);
  *    SL_SLEEPTIMER_NO_HIGH_PRECISION_HF_CLOCKS_REQUIRED_FLAG timer error.
  *    SL_STATUS_INVALID_PARAMETER timer related error.
  *****************************************************************************/
-sl_status_t bg96_wake_up (at_scheduler_status_t *output_object);
+sl_status_t bg96_wake_up(at_scheduler_status_t *output_object);
 
 /**************************************************************************//**
  * @brief
@@ -182,7 +183,7 @@ sl_status_t bg96_gnss_stop(at_scheduler_status_t *output_object);
  *    BG96 NB IoT initialization.
  *
  *****************************************************************************/
-void bg96_nb_init(void);
+void bg96_nb_init(sl_iostream_t *iostream_handle);
 
 /**************************************************************************//**
  * @brief
@@ -323,7 +324,7 @@ sl_status_t bg96_read_imei(at_scheduler_status_t *output_object);
  *    SL_STATUS_OK if command successfully added to the command queue.
  *    SL_STATUS_FAIL if scheduler is busy or command queue is full.
  *****************************************************************************/
-sl_status_t bg96_read_infor (at_scheduler_status_t *output_object);
+sl_status_t bg96_read_infor(at_scheduler_status_t *output_object);
 
 /**************************************************************************//**
  * @brief

@@ -40,8 +40,6 @@
 //                                 Includes
 // -----------------------------------------------------------------------------
 
-#include "em_device.h"
-#include "em_gpio.h"
 #include "sl_status.h"
 #include "sl_i2cspm.h"
 

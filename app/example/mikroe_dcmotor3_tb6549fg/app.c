@@ -24,7 +24,8 @@
  * Initialize application.
  ******************************************************************************/
 
-uint8_t dcmotor3_direction = 1;
+static uint8_t dcmotor3_direction = 1;
+
 void app_init(void)
 {
   if (mikroe_tb6549fg_init(&sl_pwm_mikroe) == SL_STATUS_OK) {

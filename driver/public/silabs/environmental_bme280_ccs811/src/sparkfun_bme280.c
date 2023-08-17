@@ -37,9 +37,9 @@
 //                                   Includes
 // -----------------------------------------------------------------------------
 
-#include <sparkfun_bme280.h>
-#include "sl_sleeptimer.h"
 #include "sl_status.h"
+#include "sl_sleeptimer.h"
+#include "sparkfun_bme280.h"
 
 // Create an I2C Instance for BME280
 static sparkfun_bme280_i2c_t sparkfun_bme280;

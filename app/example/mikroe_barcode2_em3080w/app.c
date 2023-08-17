@@ -35,6 +35,7 @@
 
 #include <string.h>
 #include "sl_iostream_init_usart_instances.h"
+#include "sl_iostream_init_eusart_instances.h"
 #include "sl_sleeptimer.h"
 #include "app_log.h"
 
@@ -49,6 +50,7 @@ enum SCAN_MODE {
   SCAN_DISABLE,
   SCAN_WAIT
 };
+
 static uint32_t last_tick = 0;
 static enum SCAN_MODE scan_mode = SCAN_ENABLE;
 
@@ -60,7 +62,8 @@ static char current_parser_buf[PROCESS_PARSER_BUFFER_SIZE];
  ******************************************************************************/
 void app_init(void)
 {
-  mikroe_barcode2_init(&barcode2, sl_iostream_uart_barcode_handle, 0);
+  app_log_iostream_set(sl_iostream_vcom_handle);
+  mikroe_barcode2_init(&barcode2, sl_iostream_uart_mikroe_handle, 0);
   mikroe_barcode2_enable_reset(&barcode2, MIKROE_BARCODE2_ENABLE);
   sl_sleeptimer_delay_millisecond(100);
   mikroe_barcode2_enable_reset(&barcode2, MIKROE_BARCODE2_DISABLE);
@@ -143,7 +146,8 @@ void app_process_action(void)
 
     default:
     case SCAN_WAIT:
-      if (sl_sleeptimer_tick_to_ms(sl_sleeptimer_get_tick_count() - last_tick) > 1000) {
+      if (sl_sleeptimer_tick_to_ms(sl_sleeptimer_get_tick_count() - last_tick)
+          > 1000) {
         scan_mode = SCAN_ENABLE;
       }
       break;

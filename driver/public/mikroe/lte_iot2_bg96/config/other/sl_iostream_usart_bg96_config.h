@@ -28,8 +28,8 @@
  *
  ******************************************************************************/
 
-#ifndef SL_IOSTREAM_USART_BARCODE_CONFIG_H
-#define SL_IOSTREAM_USART_BARCODE_CONFIG_H
+#ifndef SL_IOSTREAM_USART_BG96_CONFIG_H
+#define SL_IOSTREAM_USART_BG96_CONFIG_H
 
 #ifdef __cplusplus
 extern "C"
@@ -40,67 +40,71 @@ extern "C"
 
 // <h>USART settings
 
-// <o SL_IOSTREAM_USART_BARCODE_BAUDRATE> Baud rate
+// <o SL_IOSTREAM_USART_BG96_BAUDRATE> Baud rate
 // <i> Default: 115200
-#define SL_IOSTREAM_USART_BARCODE_BAUDRATE              9600
+#define SL_IOSTREAM_USART_BG96_BAUDRATE                 115200
 
-// <o SL_IOSTREAM_USART_BARCODE_PARITY> Parity mode to use
+// <o SL_IOSTREAM_USART_BG96_PARITY> Parity mode to use
 // <usartNoParity=> No Parity
 // <usartEvenParity=> Even parity
 // <usartOddParity=> Odd parity
 // <i> Default: usartNoParity
-#define SL_IOSTREAM_USART_BARCODE_PARITY                usartNoParity
+#define SL_IOSTREAM_USART_BG96_PARITY                   usartNoParity
 
-// <o SL_IOSTREAM_USART_BARCODE_STOP_BITS> Number of stop bits to use.
+// <o SL_IOSTREAM_USART_BG96_STOP_BITS> Number of stop bits to use.
 // <usartStopbits0p5=> 0.5 stop bits
 // <usartStopbits1=> 1 stop bits
 // <usartStopbits1p5=> 1.5 stop bits
 // <usartStopbits2=> 2 stop bits
 // <i> Default: usartStopbits1
-#define SL_IOSTREAM_USART_BARCODE_STOP_BITS             usartStopbits1
+#define SL_IOSTREAM_USART_BG96_STOP_BITS                usartStopbits1
 
-// <o SL_IOSTREAM_USART_BARCODE_FLOW_CONTROL_TYPE> Flow control
+// <o SL_IOSTREAM_USART_BG96_FLOW_CONTROL_TYPE> Flow control
 // <usartHwFlowControlNone=> None
 // <usartHwFlowControlCts=> CTS
 // <usartHwFlowControlRts=> RTS
 // <usartHwFlowControlCtsAndRts=> CTS/RTS
 // <uartFlowControlSoftware=> Software Flow control (XON/XOFF)
 // <i> Default: usartHwFlowControlNone
-#define SL_IOSTREAM_USART_BARCODE_FLOW_CONTROL_TYPE     usartHwFlowControlNone
+#define SL_IOSTREAM_USART_BG96_FLOW_CONTROL_TYPE        usartHwFlowControlNone
 
-// <o SL_IOSTREAM_USART_BARCODE_RX_BUFFER_SIZE> Receive buffer size
+// <o SL_IOSTREAM_USART_BG96_RX_BUFFER_SIZE> Receive buffer size
 // <i> Default: 32
-#define SL_IOSTREAM_USART_BARCODE_RX_BUFFER_SIZE                             256
+#define SL_IOSTREAM_USART_BG96_RX_BUFFER_SIZE                             300
 
-// <q SL_IOSTREAM_USART_BARCODE_CONVERT_BY_DEFAULT_LF_TO_CRLF> Convert \n to \r\n
+// <q SL_IOSTREAM_USART_BG96_CONVERT_BY_DEFAULT_LF_TO_CRLF> Convert \n to \r\n
 // <i> It can be changed at runtime using the C API.
 // <i> Default: 0
-#define SL_IOSTREAM_USART_BARCODE_CONVERT_BY_DEFAULT_LF_TO_CRLF              0
+#define SL_IOSTREAM_USART_BG96_CONVERT_BY_DEFAULT_LF_TO_CRLF              0
 
-// <q SL_IOSTREAM_USART_BARCODE_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION> Restrict the energy mode to allow the reception.
+// <q SL_IOSTREAM_USART_BG96_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION> Restrict
+//   the energy mode to allow the reception.
 // <i> Default: 1
-// <i> Limits the lowest energy mode the system can sleep to in order to keep the reception on. May cause higher power consumption.
-#define SL_IOSTREAM_USART_BARCODE_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION    1
+// <i> Limits the lowest energy mode the system can sleep to in order to keep
+//   the reception on. May cause higher power consumption.
+#define SL_IOSTREAM_USART_BG96_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION    1
 
 // </h>
 
 // <<< end of configuration section >>>
 
 // <<< sl:start pin_tool >>>
-// <usart signal=TX,RX,(CTS),(RTS)> SL_IOSTREAM_USART_BARCODE
-// $[USART_SL_IOSTREAM_USART_BARCODE]
-#define SL_IOSTREAM_USART_BARCODE_PERIPHERAL     USART0
-#define SL_IOSTREAM_USART_BARCODE_PERIPHERAL_NO  0
+// <usart signal=TX,RX,(CTS),(RTS)> SL_IOSTREAM_USART_BG96
+// $[USART_SL_IOSTREAM_USART_BG96]
+#define SL_IOSTREAM_USART_BG96_PERIPHERAL     USART1
+#define SL_IOSTREAM_USART_BG96_PERIPHERAL_NO  1
 
-// USART0 TX on PB01
-#define SL_IOSTREAM_USART_BARCODE_TX_PORT        gpioPortB
-#define SL_IOSTREAM_USART_BARCODE_TX_PIN         1
+// USART0 TX 
+#warning "USART_BG96_TX is not configured"
+// #define SL_IOSTREAM_USART_BG96_TX_PORT        gpioPortB
+// #define SL_IOSTREAM_USART_BG96_TX_PIN         1
 
-// USART0 RX on PB02
-#define SL_IOSTREAM_USART_BARCODE_RX_PORT        gpioPortB
-#define SL_IOSTREAM_USART_BARCODE_RX_PIN         2
+// USART0 RX 
+#warning "USART_BG96_RX is not configured"
+// #define SL_IOSTREAM_USART_BG96_RX_PORT        gpioPortB
+// #define SL_IOSTREAM_USART_BG96_RX_PIN         2
 
-// [USART_SL_IOSTREAM_USART_BARCODE]$
+// [USART_SL_IOSTREAM_USART_BG96]$
 // <<< sl:end pin_tool >>>
 
 #ifdef __cplusplus

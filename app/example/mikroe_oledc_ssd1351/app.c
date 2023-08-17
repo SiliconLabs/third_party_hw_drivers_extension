@@ -15,27 +15,28 @@
  *
  ******************************************************************************/
 #include "sl_spidrv_instances.h"
-#include "sl_simple_timer.h"
-
-#include "oledc_font.h"
-#include "mikroe_ssd1351_image.h"
-#include "mikroe_ssd1351.h"
-#include "glib.h"
+#include "sl_sleeptimer.h"
 
 #include "app_log.h"
 #include "app_assert.h"
+
+#include "mikroe_ssd1351_image.h"
+#include "mikroe_ssd1351.h"
+#include "glib.h"
 
 #define APP_STATE_DISPLAY_RECTANGLE   0
 #define APP_STATE_DISPLAY_LINE        1
 #define APP_STATE_DISPLAY_IMAGE       2
 
-static sl_simple_timer_t display_timer_handle;
+#define TIMEOUT_MSEC                  500
+
 static glib_context_t glib_context;
 static volatile uint8_t state = APP_STATE_DISPLAY_RECTANGLE;
+static volatile bool timer_is_expire = false;
+static sl_sleeptimer_timer_handle_t app_timer_handle;
 
-// Timer callback function
-static void display_timer_callback(sl_simple_timer_t *handle,
-                                   void *data);
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data);
+static void app_task(void);
 
 /***************************************************************************//**
  * Initialize application.
@@ -65,12 +66,29 @@ void app_init(void)
   glib_draw_string(&glib_context, "DEMO", 35, 45);
   glib_draw_string(&glib_context, "OLED C CLICK", 10, 65);
   glib_update_display();
+
+  sl_sleeptimer_start_periodic_timer(&app_timer_handle,
+                                     TIMEOUT_MSEC,
+                                     app_timer_cb,
+                                     (void *) NULL,
+                                     0,
+                                     0);
 }
 
 /***************************************************************************//**
  * App ticking function.
  ******************************************************************************/
 void app_process_action(void)
+{
+  if (timer_is_expire == false) {
+    return;
+  }
+  timer_is_expire = false;
+  app_task();
+}
+
+// Timer callback function
+static void app_task(void)
 {
   switch (state)
   {
@@ -81,6 +99,7 @@ void app_process_action(void)
       mikroe_ssd1351_rectangle(15, 15, 81, 81, 0x0F0F);
       mikroe_ssd1351_rectangle(20, 20, 76, 76, 0xF000);
       mikroe_ssd1351_rectangle(25, 25, 71, 71, 0xFF00);
+      state = APP_STATE_DISPLAY_LINE;
       break;
 
     case APP_STATE_DISPLAY_LINE:
@@ -88,46 +107,22 @@ void app_process_action(void)
       mikroe_ssd1351_rectangle(25, 71, 71, 73, 0);
       mikroe_ssd1351_rectangle(25, 25, 27, 71, 0);
       mikroe_ssd1351_rectangle(68, 25, 71, 71, 0);
+      state = APP_STATE_DISPLAY_IMAGE;
       break;
 
     case APP_STATE_DISPLAY_IMAGE:
       mikroe_ssd1351_fill_screen(0xFFFF);
       mikroe_ssd1351_image(aclogo, 0, 0);
       mikroe_ssd1351_image(mikroe_with_slogan, 0, 62);
-      break;
-
-    default:
+      state = APP_STATE_DISPLAY_RECTANGLE;
       break;
   }
-  sl_simple_timer_start(&display_timer_handle,
-                        500,
-                        display_timer_callback,
-                        NULL,
-                        0);
 }
 
-// Timer callback function
-static void display_timer_callback(sl_simple_timer_t *handle,
-                                   void *data)
+static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
   (void) handle;
   (void) data;
 
-  switch (state)
-  {
-    case APP_STATE_DISPLAY_RECTANGLE:
-      state = APP_STATE_DISPLAY_LINE;
-      break;
-
-    case APP_STATE_DISPLAY_LINE:
-      state = APP_STATE_DISPLAY_IMAGE;
-      break;
-
-    case APP_STATE_DISPLAY_IMAGE:
-      state = APP_STATE_DISPLAY_RECTANGLE;
-      break;
-
-    default:
-      break;
-  }
+  timer_is_expire = true;
 }

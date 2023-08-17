@@ -25,8 +25,9 @@
 
 // <gpio> SPARKFUN_CCS811_WAKE
 // $[GPIO_SPARKFUN_CCS811_WAKE]
-#define SPARKFUN_CCS811_WAKE_PORT            gpioPortA
-#define SPARKFUN_CCS811_WAKE_PIN             0
+#warning "WAKE pin for CCS811 is not configured"
+// #define SPARKFUN_CCS811_WAKE_PORT            gpioPortB
+// #define SPARKFUN_CCS811_WAKE_PIN             0
 // [GPIO_SPARKFUN_CCS811_WAKE]$
 
 // <<< sl:end pin_tool >>>

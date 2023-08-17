@@ -1,10 +1,10 @@
-# Barcode 2 Click #
+# EM3080-W - Barcode 2 Click (Mikroe) #
 
 ## Summary ##
 
 This project shows the implementation of a Barcode reader using Barcode 2 Click board.
 
-Barcode 2 Click is an adapter add-on board that contains a computerized image recognition system that is compliant with a wide range of different 1D and 2D barcode protocols. Barcode 2 Click can be used for a for both emerging mobile phone-based barcode applications, like coupons, e-tickets and boarding passes, and traditional applications.
+Barcode 2 Click is an adapter add-on board that contains a computerized image recognition system that is compliant with a wide range of different 1D and 2D barcode protocols. Barcode 2 Click can be used for both emerging mobile phone-based barcode applications, like coupons, e-tickets and boarding passes, and traditional applications.
 
 ## Required Hardware ##
 
@@ -16,18 +16,18 @@ Barcode 2 Click is an adapter add-on board that contains a computerized image re
 
 The Barcode 2 Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
-![board](hardware_connection.png)
+![board](image/hardware_connection.png)
 
 ## Setup ##
 
-You can either create a project based on a example project or start with an empty example project.
+You can either create a project based on an example project or start with an empty example project.
 
-### Create a project based on a example project ###
+### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to MyProducts, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter EM3080-W.
+1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter EM3080-W.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - EM3080-W (Barcode 2 Click Board)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![Create_example](create_example.png)
+2. Click **Create** button on the **Third Party Hardware Drivers - EM3080-W - Barcode 2 Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
+![Create_example](image/create_example.png)
 
 3. Build and flash this example to the board.
 
@@ -35,7 +35,7 @@ You can either create a project based on a example project or start with an empt
 
 1. Create an "Empty C Project" for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_barcode2_em3080w/app.c) (overwriting existing file), into the project root folder.
+2. Copy the file `app/example/mikroe_barcode2_em3080w/app.c` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -45,28 +45,34 @@ You can either create a project based on a example project or start with an empt
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
-        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: vcom
+        - [Services] → [Timers] → [Sleep Timer]
+        - [Services] → [IO Stream] → [IO Stream: EUSART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
-        - [Services] → [mikroSDK 2.0 SDK - Peripheral Drivers] → [UART]
+        - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: mikroe -> Set Baud rate to 9600 and Receiver buffer size to 256 as below
+        ![UART config](image/uart_config.png)
         - [Third Party Hardware Drivers] → [Sensors] → [EM3080-W - Barcode 2 Click (Mikroe)] → use default configuration
-        ![Barcode 2 config](barcode2_config.png)
+        ![Barcode 2 config](image/barcode2_config.png)
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
-- SDK Extension must be enabled for the project to install "EM3080-W - Barcode 2 Click (Mikroe)" component. Selecting this component will also include the "UART" component with configurated instance: **barcode**.
-
-- The example project are built on the BRD4314A board. For another boards, the **barcode** instance should be configurated by users.
+- SDK Extension must be enabled for the project to install "EM3080-W - Barcode 2 Click (Mikroe)" component.
 
 ## How It Works ##
 
-You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like puty to receive the data from the USB. A screenshot of the console output is shown in the figure below.
+This is an example that demonstrates the use of the Barcode 2 Click board:
 
-![usb_debug](log.png "USB Debug Output Data")
+- First, it enables scanning and waits for the barcode to be detected.
+- If the barcode or QR Code is detected, it displays its content to the USB UART.
+- After that, disables scanning for 1 second.
+- Results are being sent to the USART Terminal where you can track their changes.
+
+You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Putty to receive the data from the USB. A screenshot of the console output is shown in the figure below.
+
+![usb_debug](image/log.png "USB Debug Output Data")
 
 ## Report Bugs & Get Support ##
 

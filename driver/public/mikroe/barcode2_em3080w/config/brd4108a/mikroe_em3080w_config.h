@@ -1,6 +1,6 @@
 /***************************************************************************//**
- * @file micro_oled_ssd1306_config.h
- * @brief Micro OLED SSD1306 Configuration
+ * @file mikroe_em3080w_config.h
+ * @brief Micro EM3080W Configuration
  * @version 1.0.0
  *******************************************************************************
  * # License

@@ -2,7 +2,7 @@ id: mikroe_barcode2
 package: third_party_hw_drivers
 label: EM3080-W - Barcode 2 Click (Mikroe)
 description: >
-  Driver for the Barcode 2 Click CLICK board, Barcode 2 Click is an add-on board based on EM3080-W for barcode reader applications.
+  Driver for the Barcode 2 Click board that is an add-on board based on EM3080-W for barcode reader applications.
 category: Sensors
 quality: evaluation
 ui_hints:
@@ -11,18 +11,19 @@ root_path: driver
 requires:
   - name: mikroe_peripheral_driver_digital_io
   - name: mikroe_peripheral_driver_uart
-  - name: iostream_usart
-recommends:
-  - id: iostream_usart
-    instance: [barcode]
 config_file:
-  - path: public/mikroe/barcode2_em3080w/config/mikroe_em3080w_config.h
+  - path: public/mikroe/barcode2_em3080w/config/brd2703a/mikroe_em3080w_config.h
     file_id: driver_config_barcode2
-  - override:
-      component: iostream_usart
-      file_id: iostream_usart_config
-      instance: barcode
-    path: public/mikroe/barcode2_em3080w/config/sl_iostream_usart_barcode_config.h
+    condition: [brd2703a]
+  - path: public/mikroe/barcode2_em3080w/config/brd4108a/mikroe_em3080w_config.h
+    file_id: driver_config_barcode2
+    condition: [brd4108a]
+  - path: public/mikroe/barcode2_em3080w/config/brd4314a/mikroe_em3080w_config.h
+    file_id: driver_config_barcode2
+    condition: [brd4314a]
+  - path: public/mikroe/barcode2_em3080w/config/other/mikroe_em3080w_config.h
+    file_id: driver_config_barcode2
+    unless: [brd4314a, brd4108a, brd2703a]
 provides:
   - name: mikroe_barcode2
     allow_multiple: false

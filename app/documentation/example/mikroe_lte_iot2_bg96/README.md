@@ -1,4 +1,4 @@
-# LTE IoT 2 Click #
+# BG96 - LTE IoT 2 Click (Mikroe) #
 
 ## Summary ##
 
@@ -16,7 +16,7 @@ Tested boards for working with this example:
 
 | Board ID | Description  |
 | ---------------------- | ------ |
-| BRD2703A | [EFR32xG24 Explorer Kit - XG24-EK2703A ](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview)    |
+| BRD2703A | [EFR32xG24 Explorer Kit - XG24-EK2703A](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview)    |
 | BRD4314A | [BGM220 Bluetooth Module Explorer Kit - BGM220-EK4314A](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit?tab=overview)  |
 | BRD4108A | [EFR32BG22 Explorer Kit Board](https://www.silabs.com/development-tools/wireless/bluetooth/bg22-explorer-kit?tab=overview)  |
 
@@ -34,7 +34,7 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A  to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter 'lte iot 2'.
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with the filter 'bg96'.
 
 2. Click **Create** button on the **Third Party Hardware Drivers - BG96 - LTE IoT 2 CLick (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 ![Create_example](image/create_example.png)
@@ -45,7 +45,7 @@ You can either create a project based on an example project or start with an emp
 
 1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
 
-2. Copy the file [app.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_lte_iot2_bg96) (overwriting existing file), [app_iostream_cli.c](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_lte_iot2_bg96) and [app_iostream_cli.h](https://github.com/SiliconLabs/third_party_hw_drivers_extension/tree/master/app/example/mikroe_lte_iot2_bg96) into the project root folder.
+2. Copy the files `app/example/mikroe_lte_iot2_bg96/app.c`, `app/example/mikroe_lte_iot2_bg96/app_iostream_cli.c`, `app/example/mikroe_lte_iot2_bg96/app_iostream_cli.h` into the project root folder (overwriting the existing file).
 
 3. Install the software components:
 
@@ -55,20 +55,17 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
-        - [Services] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: EUSART] → default instance name: vcom
         - [Application] → [Utility] → [Log]
-        - [Application] → [Utility] → [Application Queue]
         - [Third-Party Hardware Drivers] → [Sensors] → [BG96 - LTE IoT 2 Click (Mikroe)]
 
 4. Build and flash this example to the board.
 
 **Note:**
 
-- Make sure the Third-party Hardware Drivers Extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md).
+- Make sure that the SDK extension already be installed. If not please follow [this documentation](https://github.com/SiliconLabs/third_party_hw_drivers_extension/blob/master/README.md#how-to-add-to-simplicity-studio-ide).
 
 - Third-party Hardware Drivers Extension must be enabled for the project to install "BG96- LTE IoT 2 Click (Mikroe)" component.
-- The example project is built on the BRD2703A board. For other boards, selecting the "BG96 - LTE IoT 2 Click (Mikroe)" component will include the "UART" component with an unconfigured instance. This instance should be configurated by users.
 
 ## How It Works ##
 
@@ -85,7 +82,7 @@ You can either create a project based on an example project or start with an emp
 
 ### BG96 - LTE IoT 2 Click functional high-level functions ###
 
-- *bg96_nb_init(void)*
+- *bg96_nb_init()*
 - *bg96_nb_open_connection()*
 - *bg96_network_registration()*
 - *bg96_nb_close_connection()*
