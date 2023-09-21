@@ -1,0 +1,54 @@
+id: services_enocean_switch_proxy_server
+label: EnOcean Switch Proxy Server
+package: third_party_hw_drivers
+description: >
+    This component implements a proxy server that translates the BLE telegrams
+    sent from an EnOcean PTM 215B switch to standardized Bluetooth Mesh messages.
+
+category: Services
+quality: evaluation
+root_path: driver
+conflicts:
+  - name: "device_series_1"
+    
+source:
+  - path: "public/silabs/services_enocean_switch_proxy_server/src/enocean_proxy.c"
+  - path: "public/silabs/services_enocean_switch_proxy_server/src/press_length_timer_callbacks.c"
+include:
+  - path: "public/silabs/services_enocean_switch_proxy_server/inc"
+    file_list:
+      - path: "enocean_proxy.h"
+      - path: "enocean_proxy_api.h"
+      - path: "press_length_timer_callbacks.h"
+      - path: "psa_status_to_sl_status.h"
+
+requires:
+  - name: "app_log"
+  - name: "bluetooth_feature_legacy_scanner"
+  - name: "btmesh_stack_vendor_model"
+  - name: "btmesh_stack_generic_client"
+  - name: "app_assert"
+  - name: "app_timer"
+  - name: "sleeptimer"
+  - name: "btmesh_proxy"
+  - name: "status_string"
+  - name: "psa_crypto_ccm"
+
+template_file:
+- path: public/silabs/services_enocean_switch_proxy_server/init/enocean_proxy_template.h.jinja
+- path: public/silabs/services_enocean_switch_proxy_server/init/enocean_proxy_template.c.jinja
+
+template_contribution:
+  - name: "bluetooth_on_event"
+    value:
+      include: "enocean_proxy.h"
+      function: "enocean_proxy_bt_on_event"
+  - name: "btmesh_on_event"
+    value:
+      include: "enocean_proxy.h"
+      function: "enocean_proxy_btmesh_on_event"
+
+config_file:
+  - path: public/silabs/services_enocean_switch_proxy_server/config/btmeshconf/enocean_proxy.dcd
+    directory: btmeshconf
+    file_id: enocean_proxy_dcd

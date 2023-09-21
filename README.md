@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.7.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.8.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -71,8 +71,16 @@ A full list of all drivers in this repository is defined below:
 | environment3_bme688 | [Click Here](./driver/public/mikroe/environment3_bme688) | [Click Here](./app/example/mikroe_environment3_bme688) | [Click Here](./app/documentation/example/mikroe_environment3_bme688) |
 | ozone2_mq131 | [Click Here](./driver/public/mikroe/ozone2_mq131) | [Click Here](./app/example/mikroe_ozone2_mq131) | [Click Here](./app/documentation/example/mikroe_ozone2_mq131) |
 | uv_ml8511a | [Click Here](./driver/public/mikroe/uv_ml8511a) | [Click Here](./app/example/mikroe_uv_ml8511a) | [Click Here](./app/documentation/example/mikroe_uv_ml8511a) |
+| tft_lcd_ili9341 | [Click Here](./driver/public/silabs/tft_lcd_ili9341) | [Click Here](./app/example/adafruit_tft_lcd_ili9341) | [Click Here](./app/documentation/example/adafruit_tft_lcd_ili9341) |
+| tft_lcd_ili9341_lvgl | [Click Here](./driver/public/silabs/services_lvgl) | [Click Here](./app/example/adafruit_tft_lcd_ili9341_lvgl) | [Click Here](./app/documentation/example/adafruit_tft_lcd_ili9341_lvgl) |
 | servo_pca9685 | [Click Here](./driver/public/mikroe/servo_pca9685) | [Click Here](./app/example/mikroe_servo_pca9685) | [Click Here](./app/documentation/example/mikroe_servo_pca9685) |
 | force3_fsr400 | [Click Here](./driver/public/mikroe/force3_fsr400) | [Click Here](./app/example/mikroe_force3_fsr400) | [Click Here](./app/documentation/example/mikroe_force3_fsr400) |
+| emg | [Click Here](./driver/public/mikroe/emg) | [Click Here](./app/example/mikroe_emg) | [Click Here](./app/documentation/example/mikroe_emg) |
+| bthome_v2 | [Click Here](./driver/public/silabs/bthome_v2) | [Click Here](./app/example/bthome_v2) | [Click Here](./app/documentation/example/bthome_v2) |
+| bthome_v2_server | [Click Here](./driver/public/silabs/bthome_v2_server) | [Click Here](./app/example/bthome_v2_server) | [Click Here](./app/documentation/example/bthome_v2_server) |
+| services_enocean_switch_proxy_server | [Click Here](./driver/public/silabs/services_enocean_switch_proxy_server) | N/A | N/A |
+| services_lin_bus_slave | [Click Here](./driver/public/silabs/services_lin_bus_slave) | [Click Here](./app/example/silabs_lin_bus) | [Click Here](./app/documentation/example/silabs_lin_bus) |
+
 
 ## Requirements ##
 

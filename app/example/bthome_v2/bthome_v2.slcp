@@ -1,0 +1,82 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: bthome_v2
+label: Third Party Hardware Drivers - BTHome v2
+description: |
+  This example project shows an example using BTHome V2 format to send BLE advertisement packets.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/bthome_v2/README.md  
+
+source:
+- path: app.c
+- path: main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: services_bthome_v2
+  from: third_party_hw_drivers
+- id: iostream_usart
+  instance: [vcom]
+- id: simple_button  
+  instance: [btn0]
+- id: bt_post_build
+- id: bluetooth_stack
+- id: bluetooth_feature_gatt_server
+- id: bluetooth_feature_sm
+- id: bluetooth_feature_legacy_advertiser
+- id: bluetooth_feature_gatt
+- id: bluetooth_feature_legacy_scanner
+- id: bluetooth_feature_connection
+- id: bluetooth_feature_system
+- id: gatt_configuration
+- id: gatt_service_device_information
+- id: app_log
+
+config_file:
+  - override:
+      component: gatt_configuration
+      file_id: gatt_configuration_file_id
+    path: btconf/gatt_configuration.btconf
+    directory: btconf
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.8.0
+
+other_file:
+  - path: ../../documentation/example/bthome_v2/image/app1.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2/image/app2.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2/image/create_project.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2/image/logo.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2/image/overview.png
+    directory: "image"
+  
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

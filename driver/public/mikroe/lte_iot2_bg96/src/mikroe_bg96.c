@@ -237,8 +237,8 @@ sl_status_t bg96_gnss_start(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_qgps = { "AT+QGPS=1", at_gps_start_stop_cb,
-                                     AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_qgps = { "AT+QGPS=1", at_gps_start_stop_cb,
+                                           AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_qgps));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -264,8 +264,8 @@ sl_status_t bg96_gnss_get_position(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_gpsloc = { "AT+QGPSLOC?", at_gpsloc_cb,
-                                       AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_gpsloc = { "AT+QGPSLOC?", at_gpsloc_cb,
+                                             AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_gpsloc));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -292,8 +292,8 @@ sl_status_t bg96_gnss_stop(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_imei = { "AT+QGPSEND", at_gps_start_stop_cb,
-                                     AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_imei = { "AT+QGPSEND", at_gps_start_stop_cb,
+                                           AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_imei));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -339,8 +339,8 @@ sl_status_t bg96_nb_open_connection(bg96_nb_connection_t *connection,
     uint8_t conn_string[50];
     uint8_t base_cmd[] = "AT+QIOPEN=1,";
     static at_cmd_desc_t at_open = { "", at_open_cb, AT_OPEN_TIMEOUT };
-    static at_cmd_desc_t at_qstate = { "AT+QISTATE=0,1", at_qistate_cb,
-                                       AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_qstate = { "AT+QISTATE=0,1", at_qistate_cb,
+                                             AT_DEFAULT_TIMEOUT };
 
     at_parser_clear_cmd(&at_open);
     validate(cmd_status,
@@ -389,70 +389,74 @@ sl_status_t bg96_network_registration(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_cmds[] = { { "AT+CFUN=0", at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT },
-                                       {
-                                         "AT+QCFG=\"nbsibscramble\",0",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"nwscanmode\",0,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"roamservice\",2,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"nwscanseq\",020103,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"band\",0,0,80,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"iotopmode\",1,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QCFG=\"servicedomain\",1,1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+CGDCONT=1,\"IP\",\"hologram\"",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       { "AT+CFUN=1", at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT },
-                                       {
-                                         "AT+COPS?",
-                                         at_cops_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+CREG=1;+CGREG=1;+CEREG=1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+COPS=0",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       },
-                                       {
-                                         "AT+QICSGP=1,1,\"hologram\",\"\",\"\",1",
-                                         at_ok_error_cb,
-                                         AT_DEFAULT_TIMEOUT
-                                       }, };
+    static const at_cmd_desc_t at_cmds[] =
+    {
+      { "AT+CFUN=0",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT },
+      {
+        "AT+QCFG=\"nbsibscramble\",0",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"nwscanmode\",0,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"roamservice\",2,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"nwscanseq\",020103,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"band\",0,0,80,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"iotopmode\",1,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QCFG=\"servicedomain\",1,1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+CGDCONT=1,\"IP\",\"hologram\"",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      { "AT+CFUN=1", at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT },
+      {
+        "AT+COPS?",
+        at_cops_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+CREG=1;+CGREG=1;+CEREG=1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+COPS=0",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+      {
+        "AT+QICSGP=1,1,\"hologram\",\"\",\"\",1",
+        at_ok_error_cb,
+        AT_DEFAULT_TIMEOUT
+      },
+    };
 
     uint8_t at_cmd_size = sizeof(at_cmds) / sizeof(at_cmd_desc_t);
     uint8_t i;
@@ -571,8 +575,8 @@ sl_status_t bg96_nb_receive_data(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_qird = { "AT+QIRD=11,100", at_recv_cb,
-                                     AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_qird = { "AT+QIRD=11,100", at_recv_cb,
+                                           AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_qird));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -599,7 +603,8 @@ sl_status_t bg96_read_ip(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_ip = { "AT+QIACT?", at_ip_cb, AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_ip = { "AT+QIACT?", at_ip_cb,
+                                         AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_ip));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -625,7 +630,7 @@ sl_status_t bg96_get_operator(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_cops =
+    static const at_cmd_desc_t at_cops =
     { "AT+COPS?", at_cops_cb, AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_cops));
@@ -652,7 +657,8 @@ sl_status_t bg96_read_imei(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_imei = { "AT+GSN", at_imei_cb, AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_imei = { "AT+GSN", at_imei_cb,
+                                           AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_imei));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -678,7 +684,8 @@ sl_status_t bg96_read_infor(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_infor = { "ATI", at_infor_cb, AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_infor = { "ATI", at_infor_cb,
+                                            AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_infor));
     validate(cmd_status, at_parser_start_scheduler(output_object));
@@ -704,8 +711,8 @@ sl_status_t bg96_set_te_gsm(at_scheduler_status_t *output_object)
 {
   if (NULL != output_object) {
     sl_status_t cmd_status = SL_STATUS_OK;
-    static at_cmd_desc_t at_te_gsm = { "AT+CSCS=\"GSM\"", at_te_gsm_cb,
-                                       AT_DEFAULT_TIMEOUT };
+    static const at_cmd_desc_t at_te_gsm = { "AT+CSCS=\"GSM\"", at_te_gsm_cb,
+                                             AT_DEFAULT_TIMEOUT };
 
     validate(cmd_status, at_parser_add_cmd_to_q(&at_te_gsm));
     validate(cmd_status, at_parser_start_scheduler(output_object));

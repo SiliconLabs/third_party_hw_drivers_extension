@@ -1,0 +1,61 @@
+project_name: mikroe_emg
+package: platform
+label: Third Party Hardware Drivers - EMG Click (Mikroe)
+description: |
+  This example project shows an example for Mikroe EMG Click board driver integration.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/mikroe_emg/README.md
+
+source:
+- path: app.c
+- path: main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: sleeptimer
+- id: emg
+  from: third_party_hw_drivers
+- id: iostream_usart
+  instance: [vcom]
+- id: app_log
+
+define:
+  - name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.8.0
+
+other_file:
+  - path: ../../documentation/example/mikroe_emg/image/create_example.png
+    directory: image
+  - path: ../../documentation/example/mikroe_emg/image/emg_plot.png
+    directory: image
+  - path: ../../documentation/example/mikroe_emg/image/emg_setup.png
+    directory: image
+  - path: ../../documentation/example/mikroe_emg/image/hardware_connection.png
+    directory: image
+  - path: ../../documentation/example/mikroe_emg/image/software_layer.png
+    directory: image
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

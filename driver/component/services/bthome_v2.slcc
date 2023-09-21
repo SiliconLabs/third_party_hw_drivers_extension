@@ -1,0 +1,27 @@
+id: services_bthome_v2
+package: third_party_hw_drivers
+label: BTHome v2
+description: >
+  APIs for the BTHome v2. BTHome is an open standard for broadcasting sensor data and button presses over Bluetooth LE.
+category: Services
+quality: evaluation
+root_path: driver
+provides:
+  - name: services_bthome_v2
+    allow_multiple: false
+requires:
+  - name: status
+  - name: bluetooth_stack
+  - name: bluetooth_feature_legacy_advertiser
+  - name: bluetooth_feature_connection
+  - name: mbedtls_ccm
+  - name: sl_string
+template_contribution:
+  - name: component_catalog
+    value: services_bthome_v2
+include:
+  - path: public/silabs/bthome_v2/inc
+    file_list:
+      - path: bthome_v2.h
+source:
+  - path: public/silabs/bthome_v2/src/bthome_v2.c

@@ -36,7 +36,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.7.0
+  version: 1.8.0
 other_file:
   - path: ../../documentation/example/mikroe_nfc2_pn7150/image/hardware_connection.png
     directory: image

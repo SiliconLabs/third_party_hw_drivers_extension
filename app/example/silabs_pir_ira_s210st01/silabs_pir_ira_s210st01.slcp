@@ -43,7 +43,7 @@ define:
 - name: DEBUG_EFM
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.7.0
+  version: 1.8.0
 ui_hints:
   highlight:
     - path: README.md

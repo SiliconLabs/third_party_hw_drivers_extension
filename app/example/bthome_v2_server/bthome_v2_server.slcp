@@ -1,0 +1,92 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: bthome_v2_server
+label: Third Party Hardware Drivers - BTHome v2 - Server
+description: |
+  This example project shows an example using APIs for the BTHome v2 - Server to detect and read data of BTHome v2 - Device
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/bthome_v2_server/README.md  
+
+source:
+- path: app.c
+- path: cli.c
+- path: main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+  - path: cli.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: services_bthome_v2_server
+  from: third_party_hw_drivers
+- id: iostream_usart
+  instance: [vcom]
+- id: cli
+  instance: [inst]
+- id: bt_post_build
+- id: bluetooth_stack
+- id: bluetooth_feature_gatt_server
+- id: bluetooth_feature_sm
+- id: bluetooth_feature_legacy_advertiser
+- id: bluetooth_feature_gatt
+- id: bluetooth_feature_legacy_scanner
+- id: bluetooth_feature_connection
+- id: bluetooth_feature_system
+- id: gatt_configuration
+- id: gatt_service_device_information
+- id: app_log
+
+config_file:
+  - override:
+      component: gatt_configuration
+      file_id: gatt_configuration_file_id
+    path: btconf/gatt_configuration.btconf
+    directory: btconf
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.8.0
+
+other_file:
+  - path: ../../documentation/example/bthome_v2_server/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/create_project.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/enable_printf_floating_point.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/help.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/interested_list.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/key.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/logo.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/monitor.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/overview.png
+    directory: "image"
+  - path: ../../documentation/example/bthome_v2_server/image/scan_start.png
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

@@ -1,0 +1,17 @@
+#ifndef ENOCEAN_PROXY_TEMPLATE_H
+#define ENOCEAN_PROXY_TEMPLATE_H
+
+#include "sl_btmesh_api.h"
+#include "sl_btmesh_dcd.h"
+
+#define SILABS_VENDOR_ID 0x02ff
+
+{% if max_num_switches is defined %}
+#define MAX_NUM_SWITCHES {{max_num_switches[0]}}
+{% else %}
+#define MAX_NUM_SWITCHES 10
+{% endif %}
+
+uint8_t* get_all_switch_element_indices();
+
+#endif /* ENOCEAN_PROXY_TEMPLATE_H */

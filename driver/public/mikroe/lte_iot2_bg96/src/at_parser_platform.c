@@ -183,8 +183,8 @@ void at_platform_process(void)
 {
   static uint8_t tempdata;
 
-  while (SL_STATUS_OK == sl_iostream_getchar(bg96_iostream_handle,
-                                             ( char *)&tempdata)) {
+  if (SL_STATUS_OK == sl_iostream_getchar(bg96_iostream_handle,
+                                          ( char *)&tempdata)) {
     input_buffer[input_buffer_index] = tempdata;
 
     if (input_buffer_index == 0) {

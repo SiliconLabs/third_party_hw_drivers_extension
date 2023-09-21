@@ -1,0 +1,54 @@
+id: adafruit_tft_lcd_ili9341
+package: third_party_hw_drivers
+label: ILI9341 - TFT LCD Display (Adafruit) - SPI
+description: >
+  Driver for displays using ILI9341 display controller.
+  Adafruit TFT LCD Board using SPI.
+category: Display & LED
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: emlib_usart
+  - name: sleeptimer
+provides:
+  - name: oled_display
+  - name: lvgl_display
+config_file:
+  - path: public/silabs/tft_lcd_ili9341/config/brd2601b/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    condition: [brd2601b]
+
+  - path: public/silabs/tft_lcd_ili9341/config/brd2703a/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    condition: [brd2703a]
+
+  - path: public/silabs/tft_lcd_ili9341/config/brd2704a/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    condition: [brd2704a]
+
+  - path: public/silabs/tft_lcd_ili9341/config/brd4314a/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    condition: [brd4314a]
+
+  - path: public/silabs/tft_lcd_ili9341/config/brd4108a/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    condition: [brd4108a]
+
+  - path: public/silabs/tft_lcd_ili9341/config/other/adafruit_ili9341_spi_usart_config.h
+    file_id: adafruit_ili9341_config
+    unless: [brd2601b, brd2703a, brd2704a, brd4314a, brd4108a]
+
+template_contribution:
+  - name: component_catalog
+    value: adafruit_tft_lcd_ili9341
+include:
+  - path: public/silabs/tft_lcd_ili9341/inc
+    file_list:
+      - path: adafruit_ili9341.h
+      - path: oled_display.h
+      - path: lvgl_display.h
+source:
+  - path: public/silabs/tft_lcd_ili9341/src/adafruit_ili9341.c
+  - path: public/silabs/tft_lcd_ili9341/src/oled_display.c
+  - path: public/silabs/tft_lcd_ili9341/src/lvgl_display.c

@@ -136,7 +136,7 @@ at_cmd_scheduler_state_t at_parser_get_scheduler_state(void);
  *    SL_STATUS_INVALID_PARAMETER if at_cmd_descriptor == NULL
  *
  *****************************************************************************/
-sl_status_t at_parser_add_cmd_to_q(at_cmd_desc_t *at_cmd_descriptor);
+sl_status_t at_parser_add_cmd_to_q(const at_cmd_desc_t *at_cmd_descriptor);
 
 /**************************************************************************//**
  * @brief

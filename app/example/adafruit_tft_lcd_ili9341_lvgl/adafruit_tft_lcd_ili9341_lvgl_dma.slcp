@@ -1,0 +1,88 @@
+project_name: adafruit_tft_lcd_ili9341_lvgl
+package: platform
+label: Third Party Hardware Drivers - ILI9341 - TFT LCD with Touchscreen (Adafruit) with LVGL + DMA
+description: |
+  This examples shows an example for integrating the ILI9341 display with the LVGL library using the double buffered DMA mode.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/README.md
+
+source:
+- path: app.c
+- path: main.c
+- path: app_ui/brd2703a/double_buffered_dma/ui_events.c
+- path: app_ui/brd2703a/double_buffered_dma/ui_helpers.c
+- path: app_ui/brd2703a/double_buffered_dma/ui.c
+- path: app_ui/brd2703a/double_buffered_dma/components/ui_comp_hook.c
+- path: app_ui/brd2703a/double_buffered_dma/images/ui_img_1802009198.c
+- path: app_ui/brd2703a/double_buffered_dma/images/ui_img_2106501360.c
+- path: app_ui/brd2703a/double_buffered_dma/screens/ui_loader.c
+- path: app_ui/brd2703a/double_buffered_dma/screens/ui_main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+- path: app_ui/brd2703a/double_buffered_dma
+  file_list:
+  - path: ui_events.h
+  - path: ui_helpers.h
+  - path: ui.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: sleeptimer
+- id: spidrv
+  instance: [ili9341]
+- id: simple_led
+  instance: [led0, led1]
+- id: simple_button
+  instance: [btn0, btn1]
+- id: adafruit_tft_lcd_ili9341_dma
+  from: third_party_hw_drivers
+- id: services_lvgl
+  from: third_party_hw_drivers
+- id: touch_screen_analog
+  from: third_party_hw_drivers
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.8.0
+
+configuration:
+  - name: LV_BUFFER_MODE
+    value: "1"
+  - name: LV_DISPLAY_ROTATION
+    value: "LV_DISP_ROT_90"
+  - name: LV_ENABLE_SOFTWARE_ROTATION
+    value: "1"
+
+other_file:
+  - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/single_buffered_lvgl_settings.png
+    directory: "image"
+  - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/double_buffered_lvgl_settings.png
+    directory: "image"
+  - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/double_buffer_lvgl.gif
+    directory: "image"
+  - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/single_buffer_lvgl.gif
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

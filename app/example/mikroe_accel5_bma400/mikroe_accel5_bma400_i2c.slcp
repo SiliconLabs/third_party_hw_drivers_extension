@@ -45,7 +45,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.7.0
+  version: 1.8.0
 
 other_file:
   - path: ../../documentation/example/mikroe_accel5_bma400/image/hardware_connection.png

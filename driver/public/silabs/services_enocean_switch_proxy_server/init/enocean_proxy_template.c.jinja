@@ -1,0 +1,18 @@
+#include "enocean_proxy_template.h"
+
+{% if max_num_switches is defined %}
+{% set upper_limit = max_num_switches[0] %}
+{% else %}
+{% set upper_limit = 10 %}
+{% endif %}
+
+uint8_t switch_element_indices[] = {
+{% for i in range(1, upper_limit + 1) %}
+    ENOCEAN_PROXY_SWITCH_{{i}},
+{% endfor %}
+};
+
+uint8_t* get_all_switch_element_indices()
+{
+    return switch_element_indices;
+}

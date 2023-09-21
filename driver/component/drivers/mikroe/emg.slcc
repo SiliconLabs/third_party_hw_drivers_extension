@@ -1,0 +1,53 @@
+id: emg
+package: third_party_hw_drivers
+label: EMG Click (Mikroe)
+description: >
+  Driver for the EMG Click board.
+category: Sensors
+quality: evaluation
+
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_adc
+  - name: mikroe_peripheral_driver_digital_io
+
+config_file:
+  - path: public/mikroe/emg/config/brd2703a/mikroe_emg_config.h
+    file_id: driver_config_emg
+    condition: [brd2703a]
+  - path: public/mikroe/emg/config/brd4108a/mikroe_emg_config.h
+    file_id: driver_config_emg
+    condition: [brd4108a]
+  - path: public/mikroe/emg/config/brd4314a/mikroe_emg_config.h
+    file_id: driver_config_emg
+    condition: [brd4314a]
+  - path: public/mikroe/emg/config/other/mikroe_emg_config.h
+    file_id: driver_config_emg
+    unless: [brd2703a, brd4108a, brd4314a]
+
+provides:
+  - name: emg
+  - allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+  - value: emg
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/emg/lib_emg/include
+    file_list:
+      - path: emg.h
+  - path: public/mikroe/emg/inc
+    file_list:
+      - path: mikroe_emg.h
+
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/emg/lib_emg/src/emg.c
+  - path: public/mikroe/emg/src/mikroe_emg.c

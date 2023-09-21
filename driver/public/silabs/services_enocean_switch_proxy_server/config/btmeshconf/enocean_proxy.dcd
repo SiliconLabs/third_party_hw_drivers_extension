@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Switch 1",
+    "location": "0x0000",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 2",
+    "location": "0x0001",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 3",
+    "location": "0x0002",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 4",
+    "location": "0x0003",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 5",
+    "location": "0x0004",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 6",
+    "location": "0x0005",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 7",
+    "location": "0x0006",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 8",
+    "location": "0x0007",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 9",
+    "location": "0x0008",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  },
+  {
+    "name": "Switch 10",
+    "location": "0x0009",
+    "sig_models": [
+      { "mid": "0x1001", "name" : "Generic On/Off Client" },
+      { "mid": "0x1003", "name": "Generic Level Client" }
+    ],
+    "vendor_models": [
+      { "name": "EcOcean Switch Proxy Config Server", "mid": "0xfffb", "cid": "0x02ff" }
+    ]
+  }
+]
