@@ -1,0 +1,33 @@
+id: rng
+package: third_party_hw_drivers
+label: RNG Click (Mikroe)
+description: Driver for the RNG Click board.
+category: Miscellaneous
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_i2c
+config_file:
+provides:
+  - name: rng
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: rng
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/rng/lib_rng/include
+    file_list:
+      - path: rng.h
+  - path: public/mikroe/rng/inc
+    file_list:
+      - path: mikroe_rng.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/rng/lib_rng/src/rng.c
+  - path: public/mikroe/rng/src/mikroe_rng.c

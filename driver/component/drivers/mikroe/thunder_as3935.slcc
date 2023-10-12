@@ -1,0 +1,45 @@
+id: mikroe_thunder
+package: third_party_hw_drivers
+label: AS3935 - Thunder Click (Mikroe)
+description: >
+  Driver for the Thunder Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_spi
+config_file:
+  - path: public/mikroe/thunder_as3935/config/brd2703a/mikroe_thunder_as3935_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd2703a]
+  - path: public/mikroe/thunder_as3935/config/brd4108a/mikroe_thunder_as3935_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd4108a]
+  - path: public/mikroe/thunder_as3935/config/brd4314a/mikroe_thunder_as3935_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd4314a]
+  - path: public/mikroe/thunder_as3935/config/other/mikroe_thunder_as3935_config.h
+    file_id: mikroe_thunder_config
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: mikroe_thunder
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_thunder
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/thunder/lib_thunder/include
+    file_list:
+      - path: thunder.h
+  - path: public/mikroe/thunder_as3935/inc
+    file_list:
+      - path: mikroe_thunder_as3935.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/thunder/lib_thunder/src/thunder.c
+  - path: public/mikroe/thunder_as3935/src/mikroe_thunder_as3935.c

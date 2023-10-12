@@ -66,27 +66,27 @@ void lv_port_disp_init(void)
 
 #if LV_BUFFER_MODE == 0
   static lv_disp_draw_buf_t draw_buf_dsc_1;
-  static lv_color_t buf_1[LVGL_TFT_WIDTH * 20];   /* A buffer for 10 rows */
+  static lv_color_t buf_1[LVGL_TFT_WIDTH * 20];   /* A buffer for 20 rows */
   /* Initialize the display buffer */
   lv_disp_draw_buf_init(&draw_buf_dsc_1,
                         buf_1,
                         NULL,
-                        LVGL_TFT_WIDTH * 10);
+                        LVGL_TFT_WIDTH * 20);
 
 #elif LV_BUFFER_MODE == 1
   static lv_disp_draw_buf_t draw_buf_dsc_2;
 
-  /* A buffer for 10 rows */
+  /* A buffer for 20 rows */
   static lv_color_t buf_2_1[LVGL_TFT_WIDTH * 20];
 
-  /* An other buffer for 10 rows */
+  /* An other buffer for 20 rows */
   static lv_color_t buf_2_2[LVGL_TFT_WIDTH * 20];
 
   /* Initialize the display buffer */
   lv_disp_draw_buf_init(&draw_buf_dsc_2,
                         buf_2_1,
                         buf_2_2,
-                        LVGL_TFT_WIDTH * 10);
+                        LVGL_TFT_WIDTH * 20);
 
 #elif LV_BUFFER_MODE == 2
 
@@ -101,7 +101,7 @@ void lv_port_disp_init(void)
 
   /* Initialize the display buffer */
   lv_disp_draw_buf_init(&draw_buf_dsc_3, buf_3_1, buf_3_2,
-                        LVGL_TFT_HEIGHT * LV_VER_RES_MAX);
+                        LVGL_TFT_HEIGHT * LVGL_TFT_WIDTH);
 #endif
 
   /*-----------------------------------
@@ -114,8 +114,8 @@ void lv_port_disp_init(void)
   /* Set up the functions to access to your display */
 
   /* Set the resolution of the display */
-  disp_drv.hor_res = LVGL_TFT_WIDTH;
-  disp_drv.ver_res = LVGL_TFT_HEIGHT;
+  disp_drv.hor_res = disp->width;
+  disp_drv.ver_res = disp->height;
 
   /* Used to copy the buffer's content to the display */
   disp_drv.flush_cb = disp_flush;
@@ -125,7 +125,10 @@ void lv_port_disp_init(void)
   disp_drv.draw_buf = &draw_buf_dsc_1;
 #elif LV_BUFFER_MODE == 1
   disp_drv.draw_buf = &draw_buf_dsc_2;
+#elif LV_BUFFER_MODE == 2
+  disp_drv.draw_buf = &draw_buf_dsc_3;
 #endif
+
   disp_drv.rotated = LV_DISPLAY_ROTATION;
   disp_drv.sw_rotate = LV_ENABLE_SOFTWARE_ROTATION;
 
@@ -191,10 +194,6 @@ static void disp_flush(lv_disp_drv_t *disp_drv,
                                       disp_drv);
     }
   }
-
-#if LV_BUFFER_MODE == 0
-  lv_disp_flush_ready(disp_drv);
-#endif
 }
 
 static void flush_area_complete_callback(void *arg)

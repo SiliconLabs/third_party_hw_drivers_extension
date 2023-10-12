@@ -7,6 +7,10 @@
  * to enable content */
 #if 1
 
+#include "sl_component_catalog.h"
+
+#if defined (SL_CATALOG_SERVICES_TOUCH_SCREEN_PRESENT)
+
 #include "lv_port_indev.h"
 #include "touch_screen.h"
 
@@ -16,6 +20,7 @@ static void touchpad_init(void);
 static void touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data);
 static bool touchpad_is_pressed(void);
 static void touchpad_get_xy(lv_coord_t *x, lv_coord_t *y);
+#endif
 
 #if 0
 static void mouse_init(void);
@@ -38,8 +43,10 @@ static bool button_is_pressed(uint8_t id);
 
 #endif
 
+#if defined (SL_CATALOG_SERVICES_TOUCH_SCREEN_PRESENT)
 lv_indev_t *indev_touchpad;
 static touch_point_t g_touch_point;
+#endif
 
 #if 0
 lv_indev_t *indev_mouse;
@@ -65,7 +72,7 @@ void lv_port_indev_init(void)
    *  The `..._read()` function are only examples.
    *  You should shape them according to your hardware
    */
-
+#if defined (SL_CATALOG_SERVICES_TOUCH_SCREEN_PRESENT)
   static lv_indev_drv_t indev_drv;
 
   /*------------------
@@ -80,6 +87,7 @@ void lv_port_indev_init(void)
   indev_drv.type = LV_INDEV_TYPE_POINTER;
   indev_drv.read_cb = touchpad_read;
   indev_touchpad = lv_indev_drv_register(&indev_drv);
+#endif
 
 #if 0
 
@@ -161,6 +169,7 @@ void lv_port_indev_init(void)
 #endif
 }
 
+#if defined (SL_CATALOG_SERVICES_TOUCH_SCREEN_PRESENT)
 /*------------------
  * Touchpad
  * -----------------*/
@@ -211,6 +220,7 @@ static void touchpad_get_xy(lv_coord_t *x, lv_coord_t *y)
   (*x) = g_touch_point.x;
   (*y) = g_touch_point.y;
 }
+#endif
 
 #if 0
 
@@ -402,3 +412,4 @@ static bool button_is_pressed(uint8_t id)
 /* This dummy typedef exists purely to silence -Wpedantic. */
 typedef int keep_pedantic_happy;
 #endif
+

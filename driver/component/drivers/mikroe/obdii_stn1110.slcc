@@ -1,0 +1,45 @@
+id: obdii_stn1110
+package: third_party_hw_drivers
+label: STN1110 - OBDII Click (Mikroe)
+description: >
+  Driver for the OBD II Click board.
+category: Interface
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_uart
+config_file:
+  - path: public/mikroe/obdii_stn1110/config/brd2703a/mikroe_stn1110_config.h
+    file_id: driver_config_obdii
+    condition: [brd2703a]
+  - path: public/mikroe/obdii_stn1110/config/brd4108a/mikroe_stn1110_config.h
+    file_id: driver_config_obdii
+    condition: [brd4108a]
+  - path: public/mikroe/obdii_stn1110/config/brd4314a/mikroe_stn1110_config.h
+    file_id: driver_config_obdii
+    condition: [brd4314a]
+  - path: public/mikroe/obdii_stn1110/config/other/mikroe_stn1110_config.h
+    file_id: driver_config_obdii
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: obdii_stn1110
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: obdii_stn1110
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/obdii/lib_obdii/include
+    file_list:
+      - path: obdii.h
+  - path: public/mikroe/obdii_stn1110/inc
+    file_list:
+      - path: mikroe_stn1110.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/obdii/lib_obdii/src/obdii.c
+  - path: public/mikroe/obdii_stn1110/src/mikroe_stn1110.c

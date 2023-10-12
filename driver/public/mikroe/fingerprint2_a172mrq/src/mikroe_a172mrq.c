@@ -62,7 +62,7 @@ sl_status_t mikroe_a172mrq_init(sl_iostream_uart_t *handle)
   fingerprint2.uart.handle = handle;
   fingerprint2_cfg_setup(&fingerprint2_cfg);
 
-#if defined (a172mrq_RESET_PORT) && defined(A172MRQ_RESET_PIN)
+#if defined (A172MRQ_RESET_PORT) && defined(A172MRQ_RESET_PIN)
   fingerprint2_cfg.rst = hal_gpio_pin_name(A172MRQ_RESET_PORT,
                                            A172MRQ_RESET_PIN);
 #endif

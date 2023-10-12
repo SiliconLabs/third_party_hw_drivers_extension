@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.8.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.9.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -80,6 +80,9 @@ A full list of all drivers in this repository is defined below:
 | bthome_v2_server | [Click Here](./driver/public/silabs/bthome_v2_server) | [Click Here](./app/example/bthome_v2_server) | [Click Here](./app/documentation/example/bthome_v2_server) |
 | services_enocean_switch_proxy_server | [Click Here](./driver/public/silabs/services_enocean_switch_proxy_server) | N/A | N/A |
 | services_lin_bus_slave | [Click Here](./driver/public/silabs/services_lin_bus_slave) | [Click Here](./app/example/silabs_lin_bus) | [Click Here](./app/documentation/example/silabs_lin_bus) |
+| obdii_stn1110 | [Click Here](./driver/public/mikroe/obdii_stn1110) | [Click Here](./app/example/mikroe_obdii_stn1110) | [Click Here](./app/documentation/example/mikroe_obdii_stn1110) |
+| thunder_as3935 | [Click Here](./driver/public/mikroe/thunder_as3935) | [Click Here](./app/example/mikroe_thunder_as3935) | [Click Here](./app/documentation/example/mikroe_thunder_as3935) |
+
 
 
 ## Requirements ##

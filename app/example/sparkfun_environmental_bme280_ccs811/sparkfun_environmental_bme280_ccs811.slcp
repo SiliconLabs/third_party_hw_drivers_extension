@@ -53,7 +53,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.8.0
+  version: 1.9.0
 
 other_file:
   - path: ../../documentation/example/sparkfun_environmental_bme280_ccs811/image/console_log.png

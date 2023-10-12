@@ -230,13 +230,19 @@ void bthome_v2_build_packet(void)
     // UUID
     nonce[6] = UUID1;
     nonce[7] = UUID2;
-    // BTHome device data byte 41
-    nonce[8] = ENCRYPT;
+    // BTHome information flag
+    nonce[8] = service_data[service_count - 1];
     // Counter
     nonce[9] = p_count[0];
     nonce[10] = p_count[1];
     nonce[11] = p_count[2];
     nonce[12] = p_count[3];
+
+    // add some padding to the payload if needed
+    while (sensor_data_index < 5) {
+      sensor_data[sensor_data_index] = 0xFF;
+      sensor_data_index++;
+    }
 
     // encrypt sensorData
     mbedtls_ccm_encrypt_and_tag(&encrypt_ctx, sensor_data_index,
@@ -323,12 +329,12 @@ void bthome_v2_add_measurement_state(uint8_t sensor_id,
 {
   if ((sensor_data_index + 2 + ((steps > 0) ? 1 : 0))
       <= (MEASUREMENT_MAX_LEN - (b_encrypt_enable ? 8 : 0))) {
-    sensor_data[sensor_data_index] = (uint8_t)(sensor_id & 0xff);
+    sensor_data[sensor_data_index] = sensor_id & 0xff;
     sensor_data_index++;
-    sensor_data[sensor_data_index] = (uint8_t)(state & 0xff);
+    sensor_data[sensor_data_index] = state & 0xff;
     sensor_data_index++;
     if (steps > 0) {
-      sensor_data[sensor_data_index] = (uint8_t)(steps & 0xff);
+      sensor_data[sensor_data_index] = steps & 0xff;
       sensor_data_index++;
     }
     if (!b_sort_enable) {
@@ -352,7 +358,7 @@ void bthome_v2_add_measurement(uint8_t sensor_id, uint64_t value)
   uint16_t factor = get_factor(sensor_id);
   if ((sensor_data_index + size + 1)
       <= (MEASUREMENT_MAX_LEN - (b_encrypt_enable ? 8 : 0))) {
-    sensor_data[sensor_data_index] = (uint8_t)(sensor_id & 0xff);
+    sensor_data[sensor_data_index] = sensor_id & 0xff;
     sensor_data_index++;
     for (uint8_t i = 0; i < size; i++)
     {
@@ -382,7 +388,7 @@ void bthome_v2_add_measurement_float(uint8_t sensor_id, float value)
   if ((sensor_data_index + size + 1)
       <= (MEASUREMENT_MAX_LEN - (b_encrypt_enable ? 8 : 0))) {
     uint64_t value2 = (uint64_t)(value * factor);
-    sensor_data[sensor_data_index] = (uint8_t)(sensor_id & 0xff);
+    sensor_data[sensor_data_index] = sensor_id & 0xff;
     sensor_data_index++;
     for (uint8_t i = 0; i < size; i++)
     {
