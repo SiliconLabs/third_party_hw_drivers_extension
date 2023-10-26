@@ -61,6 +61,21 @@
 // <2=> Mode 2: Full refresh
 #define LV_BUFFER_MODE        0
 
+
+#define LV_INPUT_TYPE_NONE      0
+#define LV_INPUT_TYPE_POINTER   1
+#define LV_INPUT_TYPE_KEYPAD    2
+#define LV_INPUT_TYPE_BUTTON    3
+#define LV_INPUT_TYPE_ENCODER   4
+
+// <o LV_INPUT_TYPE> Type of input device
+// <LV_INPUT_TYPE_NONE=> Uninitialized state
+// <LV_INPUT_TYPE_POINTER=> Touch pad, mouse, external button
+// <LV_INPUT_TYPE_KEYPAD=> Keypad or keyboard
+// <LV_INPUT_TYPE_BUTTON=> External (hardware button) which is assigned to a specific point of the screen
+// <LV_INPUT_TYPE_ENCODER=> Encoder with only Left, Right turn and a Button
+#define LV_INPUT_TYPE   LV_INPUT_TYPE_NONE
+
 // </h>
 
 // <h> Color Settings
@@ -338,7 +353,7 @@
 // <Trace=> LV_LOG_LEVEL_TRACE
 // <Info=> LV_LOG_LEVEL_INFO
 // <Warn=> LV_LOG_LEVEL_WARN
-// <Error=> LV_LOG_LEVEL_ERROR
+// <Error=> LV_LOG_LEVEL_ERROR  
 // <User=> LV_LOG_LEVEL_USER
 // <None=> LV_LOG_LEVEL_NONE
 #define LV_LOG_LEVEL LV_LOG_LEVEL_WARN

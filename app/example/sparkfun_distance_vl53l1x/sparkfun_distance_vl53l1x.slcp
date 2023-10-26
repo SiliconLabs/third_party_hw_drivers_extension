@@ -52,7 +52,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.9.0
+  version: 1.10.0
 
 other_file:
   - path: ../../documentation/example/sparkfun_distance_vl53l1x/image/create_example.png

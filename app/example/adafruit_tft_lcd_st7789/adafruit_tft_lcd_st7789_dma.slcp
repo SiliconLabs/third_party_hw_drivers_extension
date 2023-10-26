@@ -1,0 +1,70 @@
+project_name: adafruit_tft_lcd_st7789_dma
+package: platform
+label: Third Party Hardware Drivers - ST7789 - TFT LCD (Adafruit) - SPI with DMA
+description: |
+  This example project shows an example for Adafruit TFT LCD using SPI with DMA support.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/adafruit_tft_lcd_st7789/README.md
+
+source:
+- path: app.c
+- path: main.c
+- path: bird_image.c
+- path: cactus_plants_image.c
+- path: cat_image.c
+- path: cute_image.c
+- path: nature_image.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: iostream_eusart
+  instance: [vcom]
+- id: app_assert
+- id: sleeptimer
+- id: app_log
+- id: tft_lcd_st7789_dma
+  from: third_party_hw_drivers
+- id: services_oled_glib
+  from: third_party_hw_drivers
+
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.10.0
+
+other_file:
+  - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/create_example.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/demo.gif
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/intro.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/st7789_display.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/log.png
+    directory: image
+    
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

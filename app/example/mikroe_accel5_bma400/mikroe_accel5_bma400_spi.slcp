@@ -35,7 +35,6 @@ component:
 - id: iostream_eusart
   instance: [vcom]
 - id: printf
-- id: app_assert
 - id: gpiointerrupt
 - id: mikroe_accel5_bma400_spi
   from: third_party_hw_drivers
@@ -45,7 +44,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.9.0
+  version: 1.10.0
 
 other_file:
   - path: ../../documentation/example/mikroe_accel5_bma400/image/hardware_connection.png

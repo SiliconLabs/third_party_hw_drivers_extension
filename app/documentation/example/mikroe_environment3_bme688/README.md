@@ -2,28 +2,20 @@
 
 ## Summary ##
 
-This project aims to show the hardware driver that is used to interface with the BME688  Sensor via APIs of GSDK.
+This project aims to show the hardware driver that is used to interface with the BME688 Sensor via APIs of GSDK. This driver is based on [BME68x Sensor API](https://github.com/BoschSensortec/BME68x-Sensor-API) from Bosch Sensortec.
 
-Environment 3 Click can be used for indoor and outdoor air quality measurement, detection of unusual gases and smells, and various temperature and humidity-related applications.
+BME688 is a first gas sensor with Artificial Intelligence (AI), and integrated high-linearity/high-accuracy pressure, humidity, and temperature sensors from Bosch Sensortec. The BME688 can be used for indoor and outdoor air quality measurement, detection of unusual gases and smells, and various temperature and humidity-related applications.
+For more information, see [Gas Sensor BME688](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme688/).
 
 ## Required Hardware ##
 
-- [**BRD4314A-BGM220** BGM220 Bluetooth Module Explorer Kit (BRD4314A-BGM220 Explorer Kit Board)](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit?tab=overview)
+- [**BRD2703A-EFR32xG24** EFR32xG24 Bluetooth Module Explorer Kit (BRD2703A-EFR32xG24 Explorer Kit Board)](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview)
 
 - [**Environment 3 Click** board based on BME688 from Mikroe Integrated](https://www.mikroe.com/environment-3-click).
 
-**NOTE:**
-Tested boards for working with this example:
-
-| Board ID | Description  |
-| ---------------------- | ------ |
-| BRD2703A | [EFR32xG24 Explorer Kit - XG24-EK2703A ](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview)    |
-| BRD4314A | [BGM220 Bluetooth Module Explorer Kit - BGM220-EK4314A](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit?tab=overview)  |
-| BRD4108A | [EFR32BG22 Explorer Kit Board](https://www.silabs.com/development-tools/wireless/bluetooth/bg22-explorer-kit?tab=overview)  |
-
 ## Hardware Connection ##
 
-The Environment 3 Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
+The Environment 3 Click board supports MikroBus; therefore, it can connect easily to the MikroBus header of the EFR32xG24 Explorer Kit. Be sure that the 45-degree corner of the board matches the 45-degree white line of the Explorer Kit.
 
 The hardware connection is shown in the image below:
 
@@ -35,7 +27,7 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter 'bme688'.
+1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter 'bme688'.
 
 2. Click **Create** button on the example:
 
@@ -67,9 +59,8 @@ You can either create a project based on an example project or start with an emp
         - [Application] → [Utility] → [Log]
         - If using the SPI interface:
             - [Third Party Hardware Drivers] → [Sensors] → [BME688 - Environment 3 Click (Mikroe) - SPI]
-            - [Platform] → [Driver] → [SPI] → [SPIDRV] → [mikroe]: change the configuration for [SPI master chip select (CS) control scheme] to "CS controlled by the application"
         - If using the I2C interface:
-            - [Third Party Hardware Drivers] → [Sensors] → [BME688 - Environment 3 Click (Mikroe) - I2C] → use default configuaration
+            - [Third Party Hardware Drivers] → [Sensors] → [BME688 - Environment 3 Click (Mikroe) - I2C]
 
 4. Install printf float
 
@@ -87,7 +78,7 @@ You can either create a project based on an example project or start with an emp
 
 ## How It Works ##
 
-The application reads the temperature, humidity, pressure, and gas resistance data from the sensor and displays all values on the USART approximately every second.
+The application reads the temperature, humidity, pressure, and gas resistance data from the sensor in the forced mode and displays all values on the USART every 2 seconds.
 You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Tera Term to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
 ![usb_debug](image/log.png "USB Debug Output Data")

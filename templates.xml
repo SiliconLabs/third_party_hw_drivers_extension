@@ -1184,4 +1184,94 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
    </descriptors>
+   <descriptors name="mikroe_smoke2_i2c" label="Third Party Hardware Drivers - Smoke 2 Click (Mikroe) - I2C"
+               description="This example project shows an example for Smoke 2 Click (Mikroe) using I2C Interface.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_smoke2_adpd188bi/mikroe_smoke2_adpd188bi_i2c.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_smoke2_adpd188bi/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_smoke2_spi" label="Third Party Hardware Drivers - Smoke 2 Click (Mikroe) - SPI"
+               description="This example project shows an example for Smoke 2 Click (Mikroe) using SPI Interface.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_smoke2_adpd188bi/mikroe_smoke2_adpd188bi_spi.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_smoke2_adpd188bi/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_qwiic_keypad" label="Third Party Hardware Drivers - Qwiic Keypad (Sparkfun)"
+               description="This project shows the implementation of a Keypad module that is integrated on the SparkFun Qwiic Keypad board.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_qwiic_keypad/sparkfun_qwiic_keypad.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_qwiic_keypad/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4108a brd4314a brd2601b brd2704a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*bgm22.* .*bg22.* .*efr32[bm]g24.* .*efr32[x]g24.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_st7789" label='Third Party Hardware Drivers - ST7789 - TFT LCD Display (Adafruit) - SPI'
+               description='This example project shows an example for Adafruit TFT LCD using ST7789 driver with SPI.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_st7789/adafruit_tft_lcd_st7789.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_st7789/README.md"/>
+    <properties key="boardCompatibility" value="brd2601b brd2703a brd4314a brd2704a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_st7789_dma" label='Third Party Hardware Drivers - ST7789 - TFT LCD Display (Adafruit) - SPI with DMA'
+               description='This example project shows an example for Adafruit TFT LCD using ST7789 driver with SPI DMA.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_st7789/adafruit_tft_lcd_st7789_dma.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_st7789/README.md"/>
+    <properties key="boardCompatibility" value="brd2601b brd2703a brd4314a brd2704a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_st7789_lvgl_dma" label='Third Party Hardware Drivers - ST7789 - TFT LCD Display (Adafruit) - with LVGL + DMA'
+               description='This example project shows an example for Adafruit TFT LCD using ST7789 driver with LVGL + SPI DMA.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_st7789_lvgl_dma/adafruit_tft_lcd_st7789_lvgl_dma.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_st7789_lvgl_dma/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* "/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
 </model:MDescriptors>

@@ -38,5 +38,7 @@ include:
   - path: public/silabs/services_touch_screen/inc
     file_list:
       - path: touch_screen.h
+      - path: lvgl_input.h
 source:
   - path: public/silabs/services_touch_screen/src/touch_screen.c
+  - path: public/silabs/services_touch_screen/src/lvgl_input.c

@@ -37,6 +37,8 @@
 
 #include "sl_status.h"
 #include "spidrv.h"
+#include "sl_udelay.h"
+
 #include "bma400.h"
 
 #ifdef __cplusplus

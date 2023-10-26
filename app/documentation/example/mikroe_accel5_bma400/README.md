@@ -2,9 +2,11 @@
 
 ## Summary ##
 
-This project shows the implementation of an accelerometer sensor that is integrated on the Accel 5 Click board.
+This project aims to show the hardware driver that is used to interface with the BMA400 Sensor via APIs of GSDK. This driver is based on [BMA400 Sensor API](https://github.com/BoschSensortec/BMA400-API) from Bosch Sensortec.
 
-With its ultra-low power consumption, onboard data processing, output data lowpass filtering, and ability to detect many different events, the Accel 5 click is a perfect solution for IoT applications. It can also be used to develop applications for wearables, where the BMA400 sensor shows its true potential, offering an ultra-low power always-on operation with no functionality compromises. In general, Accel 5 click can be used wherever a reliable detection of the acceleration-related events is needed: smart home applications, IoT applications, drop detection for warranty logging, power management based on motion, and similar.
+The BMA400 is the first real ultra-low power acceleration sensor that minimizes power consumption without compromise on performance.
+
+With its ultra-low power consumption, onboard data processing, output data lowpass filtering, and ability to detect many different events, the BMA400 is a perfect solution for IoT applications. It can also be used to develop applications for wearables, smart home applications, drop detection for warranty logging, power management based on motion, and similar.
 
 ## Required Hardware ##
 
@@ -23,7 +25,7 @@ Tested boards for working with this example:
 
 ## Hardware Connection ##
 
-The Accel 5 Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line. Just be sure that the click board is configured into SPI-mode by the resistors and not into I2C-mode.
+The Accel 5 Click board supports MikroBus; therefore, it can connect easily to the MikroBus header of the BGM220P Explorer Kit. Be sure that the 45-degree corner of the board matches the 45-degree white line of the Explorer Kit.
 
 ![board](image/hardware_connection.png)
 
@@ -64,7 +66,6 @@ You can either create a project based on an example project or start with an emp
         - [Services] → [Timers] → [Sleep Timer]
         - [Services] → [IO Stream] → [IO Stream: EUSART] → default instance name: vcom
         - [Third Party] → [Tiny printf]
-        - [Application] → [Utility] → [Assert]
         - If using the I2C interface: [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe) - I2C] → use default configuration
         - If using the SPI interface: [Third Party Hardware Drivers] → [Sensors] → [BMA400 - Accel 5 Click (Mikroe) - SPI] → use default configuration
 
@@ -78,7 +79,7 @@ You can either create a project based on an example project or start with an emp
 
 You can choose the mode of operation by selecting the corresponding macro MIKROE_BMA400_READ_MODE_INTERRUPT or MIKROE_BMA400_READ_MODE_POLLING.
 
-You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like TeraTerm to receive the data from the USB. A screenshot of the console output is shown in the figure below.
+The application reads the accelerometer xyz data and convert them to Gravity data in m/s^2. You can launch Console that's integrated into Simplicity Studio or use a third-party terminal tool like Tera Term to receive the data from the USB. A screenshot of the console output is shown in the figure below.
 
 ![usb_debug](image/log.png "USB Debug Output Data")
 

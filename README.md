@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.9.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.10.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -68,7 +68,7 @@ A full list of all drivers in this repository is defined below:
 | pwm_driver_si8711cc | [Click Here](./driver/public/mikroe/pwm_driver_si8711cc) | [Click Here](./app/example/mikroe_pwm_driver_si8711cc) | [Click Here](./app/documentation/example/mikroe_pwm_driver_si8711cc) |
 | mikroe_mic2 | [Click Here](./driver/public/mikroe/mic2) | [Click Here](./app/example/mikroe_mic2) | [Click Here](./app/documentation/example/mikroe_mic2) |
 | turbidity_tsd10 | [Click Here](./driver/public/mikroe/turbidity_tsd10) | [Click Here](./app/example/mikroe_turbidity_tsd10) | [Click Here](./app/documentation/example/mikroe_turbidity_tsd10) |
-| environment3_bme688 | [Click Here](./driver/public/mikroe/environment3_bme688) | [Click Here](./app/example/mikroe_environment3_bme688) | [Click Here](./app/documentation/example/mikroe_environment3_bme688) |
+| environment3_bme688 | [Click Here](./driver/public/silabs/environment3_bme688) | [Click Here](./app/example/mikroe_environment3_bme688) | [Click Here](./app/documentation/example/mikroe_environment3_bme688) |
 | ozone2_mq131 | [Click Here](./driver/public/mikroe/ozone2_mq131) | [Click Here](./app/example/mikroe_ozone2_mq131) | [Click Here](./app/documentation/example/mikroe_ozone2_mq131) |
 | uv_ml8511a | [Click Here](./driver/public/mikroe/uv_ml8511a) | [Click Here](./app/example/mikroe_uv_ml8511a) | [Click Here](./app/documentation/example/mikroe_uv_ml8511a) |
 | tft_lcd_ili9341 | [Click Here](./driver/public/silabs/tft_lcd_ili9341) | [Click Here](./app/example/adafruit_tft_lcd_ili9341) | [Click Here](./app/documentation/example/adafruit_tft_lcd_ili9341) |
@@ -82,8 +82,11 @@ A full list of all drivers in this repository is defined below:
 | services_lin_bus_slave | [Click Here](./driver/public/silabs/services_lin_bus_slave) | [Click Here](./app/example/silabs_lin_bus) | [Click Here](./app/documentation/example/silabs_lin_bus) |
 | obdii_stn1110 | [Click Here](./driver/public/mikroe/obdii_stn1110) | [Click Here](./app/example/mikroe_obdii_stn1110) | [Click Here](./app/documentation/example/mikroe_obdii_stn1110) |
 | thunder_as3935 | [Click Here](./driver/public/mikroe/thunder_as3935) | [Click Here](./app/example/mikroe_thunder_as3935) | [Click Here](./app/documentation/example/mikroe_thunder_as3935) |
-
-
+| mikroe_rng | [Click Here](./driver/public/mikroe/rng) | [Click Here](./app/example/mikroe_rng) | [Click Here](./app/documentation/example/mikroe_rng) |
+| smoke2_adpd188bi | [Click Here](./driver/public/mikroe/smoke2_adpd188bi) | [Click Here](./app/example/mikroe_smoke2_adpd188bi) | [Click Here](./app/documentation/example/mikroe_smoke2_adpd188bi) |
+| qwiic_keypad | [Click Here](./driver/public/silabs/qwiic_keypad) | [Click Here](./app/example/sparkfun_qwiic_keypad) | [Click Here](./app/documentation/example/sparkfun_qwiic_keypad) |
+| tft_lcd_st7789 | [Click Here](./driver/public/silabs/tft_lcd_st7789) | [Click Here](./app/example/adafruit_tft_lcd_st7789) | [Click Here](./app/documentation/example/adafruit_tft_lcd_st7789) |
+| tft_lcd_st7789_lvgl | [Click Here](./driver/public/silabs/services_lvgl) | [Click Here](./app/example/adafruit_tft_lcd_st7789_lvgl_dma) | [Click Here](./app/documentation/example/adafruit_tft_lcd_st7789_lvgl_dma) |
 
 ## Requirements ##
 

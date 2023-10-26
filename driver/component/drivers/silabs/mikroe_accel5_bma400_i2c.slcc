@@ -43,11 +43,11 @@ include:
     file_list:
       - path: mikroe_bma400_i2c.h
 
-  - path: thirdparty/boschsensortec/accelerometer_bma400
+  - path: thirdparty/boschsensortec/bma400
     file_list:
       - path: bma400_defs.h
       - path: bma400.h
 
 source:
-  - path: thirdparty/boschsensortec/accelerometer_bma400/bma400.c
+  - path: thirdparty/boschsensortec/bma400/bma400.c
   - path: public/silabs/accel5_bma400/src/mikroe_bma400_i2c.c

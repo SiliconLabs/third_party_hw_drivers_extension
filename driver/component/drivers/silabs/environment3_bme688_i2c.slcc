@@ -1,0 +1,38 @@
+id: environment3_bme688_i2c
+package: third_party_hw_drivers
+label: BME688 - Environment 3 Click (Mikroe) - I2C
+description: >
+  Driver for the gas sensor BME688 from Bosch Sensortec using I2C interface.
+quality: evaluation
+ui_hints:
+  visibility: basic
+category: Sensors
+root_path: driver
+requires:
+  - name: i2cspm
+  - name: udelay
+recommends:
+  - id: i2cspm
+    instance: [mikroe]
+
+provides:
+  - name: environment3_bme688_i2c
+    allow_multiple: false
+
+template_contribution:
+  - name: component_catalog
+    value: environment3_bme688_i2c
+
+include:
+  - path: public/silabs/environment3_bme688/inc
+    file_list:
+      - path: mikroe_bme688_i2c.h
+
+  - path: thirdparty/boschsensortec/bme68x
+    file_list:
+      - path: bme68x_defs.h
+      - path: bme68x.h
+
+source:
+  - path: thirdparty/boschsensortec/bme68x/bme68x.c
+  - path: public/silabs/environment3_bme688/src/mikroe_bme688_i2c.c

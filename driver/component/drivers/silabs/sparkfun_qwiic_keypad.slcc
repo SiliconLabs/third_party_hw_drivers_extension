@@ -1,0 +1,47 @@
+id: sparkfun_qwiic_keypad
+package: third_party_hw_drivers
+label: Qwiic Keypad (Sparkfun)
+description: >
+  Driver for the Sparkfun Qwiic keypad.
+category: Human Machine Interface
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+  - name: sleeptimer
+  - name: gpiointerrupt
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: sparkfun_qwiic_keypad
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_qwiic_keypad 
+config_file:    
+  - path: public/silabs/qwiic_keypad/config/brd2601b/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    condition: [brd2601b]
+  - path: public/silabs/qwiic_keypad/config/brd2703a/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    condition: [brd2703a]
+  - path: public/silabs/qwiic_keypad/config/brd2704a/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    condition: [brd2704a]
+  - path: public/silabs/qwiic_keypad/config/brd4108a/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    condition: [brd4108a]
+  - path: public/silabs/qwiic_keypad/config/brd4314a/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    condition: [brd4314a]
+  - path: public/silabs/qwiic_keypad/config/other/sparkfun_keypad_config.h
+    file_id: sparkfun_keypad_config
+    unless: [brd2601b, brd2703a, brd2704a, brd4108a, brd4314a]
+include:
+  - path: public/silabs/qwiic_keypad/inc
+    file_list:
+      - path: sparkfun_qwiic_keypad.h   
+source:
+  - path: public/silabs/qwiic_keypad/src/sparkfun_qwiic_keypad.c

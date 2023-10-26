@@ -37,6 +37,8 @@
 
 #include "sl_status.h"
 #include "sl_i2cspm.h"
+#include "sl_udelay.h"
+
 #include "bma400.h"
 
 #ifdef __cplusplus

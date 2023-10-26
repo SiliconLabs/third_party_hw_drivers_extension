@@ -34,7 +34,6 @@
  ******************************************************************************/
 #include "bma400.h"
 #include "printf.h"
-#include "app_assert.h"
 
 #define MIKROE_BMA400_READ_MODE_INTERRUPT
 // #define MIKROE_BMA400_READ_MODE_POLLING
@@ -81,7 +80,8 @@ static void app_periodic_timer_cb(sl_sleeptimer_timer_handle_t *timer,
 
 #endif
 
-static void app_process_data(void);
+static sl_status_t app_bma400_init(void);
+static sl_status_t app_bma400_read_data(void);
 static float lsb_to_ms2(int16_t accel_data, uint8_t g_range, uint8_t bit_width);
 
 /***************************************************************************//**
@@ -89,93 +89,9 @@ static float lsb_to_ms2(int16_t accel_data, uint8_t g_range, uint8_t bit_width);
  ******************************************************************************/
 void app_init(void)
 {
-  int8_t rslt;
-  struct bma400_sensor_conf conf;
-  struct bma400_int_enable int_en;
-
-#ifdef SL_CATALOG_MIKROE_ACCEL5_BMA400_SPI_PRESENT
-  rslt = bma400_spi_init(sl_spidrv_mikroe_handle, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-#endif
-
-#ifdef SL_CATALOG_MIKROE_ACCEL5_BMA400_I2C_PRESENT
-  rslt = bma400_i2c_init(sl_i2cspm_mikroe, MIKROE_BMA400_ADDR, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-#endif
-
-  rslt = bma400_soft_reset(&bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-  rslt = bma400_init(&bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-  // Select the type of configuration to be modified
-  conf.type = BMA400_ACCEL;
-
-  // Get the accelerometer configurations which are set in the sensor
-  rslt = bma400_get_sensor_conf(&conf, 1, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-
-  // Modify the desired configurations as per macros
-  // available in bma400_defs.h file
-#ifdef MIKROE_BMA400_READ_MODE_INTERRUPT
-  conf.param.accel.int_chan = BMA400_INT_CHANNEL_1;
-#endif
-  conf.param.accel.odr = BMA400_ODR_100HZ;
-  conf.param.accel.range = BMA400_RANGE_2G;
-  conf.param.accel.data_src = BMA400_DATA_SRC_ACCEL_FILT_1;
-  // Set the desired configurations to the sensor
-  rslt = bma400_set_sensor_conf(&conf, 1, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-
-  rslt = bma400_set_power_mode(BMA400_MODE_NORMAL, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-
-  int_en.type = BMA400_DRDY_INT_EN;
-  int_en.conf = BMA400_ENABLE;
-  rslt = bma400_enable_interrupt(&int_en, 1, &bma);
-  app_assert(rslt == BMA400_OK,
-             "[E: 0x%04x] Failed to init BMA400 interface\r\n",
-             (int)rslt);
-
-  printf("Accel Gravity data in m/s^2\r\n");
-
-#ifdef MIKROE_BMA400_READ_MODE_POLLING
-  // Start timer used for periodic indications.
-  sl_sleeptimer_start_periodic_timer(&app_periodic_timer,
-                                     READING_INTERVAL_MSEC,
-                                     app_periodic_timer_cb,
-                                     (void *) NULL,
-                                     0,
-                                     0);
-#endif
-
-#ifdef MIKROE_BMA400_READ_MODE_INTERRUPT
-  GPIO_PinModeSet(MIKROE_BMA400_INT1_PORT,
-                  MIKROE_BMA400_INT1_PIN,
-                  gpioModeInputPullFilter,
-                  1);
-  GPIO_ExtIntConfig(MIKROE_BMA400_INT1_PORT,
-                    MIKROE_BMA400_INT1_PIN,
-                    MIKROE_BMA400_INT1_PIN,
-                    1,
-                    0,
-                    1);
-  GPIOINT_CallbackRegister(MIKROE_BMA400_INT1_PIN, app_gpio_int_cb);
-  GPIO_IntEnable(MIKROE_BMA400_INT1_PIN);
-#endif
+  if (app_bma400_init() != SL_STATUS_OK) {
+    printf("Initialization error. Please check again ...\r\n");
+  }
 }
 
 /***************************************************************************//**
@@ -185,7 +101,9 @@ void app_process_action(void)
 {
   if (enable_reading_data) {
     enable_reading_data = false;
-    app_process_data();
+    if (app_bma400_read_data() != SL_STATUS_OK) {
+      printf("Reading error. Please check again ...\r\n");
+    }
   }
 }
 
@@ -221,7 +139,102 @@ static void app_gpio_int_cb(uint8_t intNo)
 
 #endif
 
-static void app_process_data(void)
+static sl_status_t app_bma400_init(void)
+{
+  int8_t rslt;
+  struct bma400_sensor_conf conf;
+  struct bma400_int_enable int_en;
+
+#ifdef SL_CATALOG_MIKROE_ACCEL5_BMA400_SPI_PRESENT
+  // Initialize an I2C interface for BMA400
+  rslt = bma400_spi_init(sl_spidrv_mikroe_handle, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+#endif
+
+#ifdef SL_CATALOG_MIKROE_ACCEL5_BMA400_I2C_PRESENT
+  // Initialize an I2C interface for BMA400
+  rslt = bma400_i2c_init(sl_i2cspm_mikroe, MIKROE_BMA400_ADDR, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+#endif
+
+  rslt = bma400_soft_reset(&bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+  rslt = bma400_init(&bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+  // Select the type of configuration to be modified
+  conf.type = BMA400_ACCEL;
+
+  // Get the accelerometer configurations which are set in the sensor
+  rslt = bma400_get_sensor_conf(&conf, 1, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+
+  // Modify the desired configurations as per macros
+  // available in bma400_defs.h file
+#ifdef MIKROE_BMA400_READ_MODE_INTERRUPT
+  conf.param.accel.int_chan = BMA400_INT_CHANNEL_1;
+#endif
+  conf.param.accel.odr = BMA400_ODR_100HZ;
+  conf.param.accel.range = BMA400_RANGE_2G;
+  conf.param.accel.data_src = BMA400_DATA_SRC_ACCEL_FILT_1;
+  // Set the desired configurations to the sensor
+  rslt = bma400_set_sensor_conf(&conf, 1, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+
+  rslt = bma400_set_power_mode(BMA400_MODE_NORMAL, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+
+  int_en.type = BMA400_DRDY_INT_EN;
+  int_en.conf = BMA400_ENABLE;
+  rslt = bma400_enable_interrupt(&int_en, 1, &bma);
+  if (rslt != BMA400_OK) {
+    return SL_STATUS_FAIL;
+  }
+
+  printf("Accel Gravity data in m/s^2\r\n");
+
+#ifdef MIKROE_BMA400_READ_MODE_POLLING
+  // Start timer used for periodic indications.
+  sl_sleeptimer_start_periodic_timer(&app_periodic_timer,
+                                     READING_INTERVAL_MSEC,
+                                     app_periodic_timer_cb,
+                                     (void *) NULL,
+                                     0,
+                                     0);
+#endif
+
+#ifdef MIKROE_BMA400_READ_MODE_INTERRUPT
+  GPIO_PinModeSet(MIKROE_BMA400_INT1_PORT,
+                  MIKROE_BMA400_INT1_PIN,
+                  gpioModeInputPullFilter,
+                  1);
+  GPIO_ExtIntConfig(MIKROE_BMA400_INT1_PORT,
+                    MIKROE_BMA400_INT1_PIN,
+                    MIKROE_BMA400_INT1_PIN,
+                    1,
+                    0,
+                    1);
+  GPIOINT_CallbackRegister(MIKROE_BMA400_INT1_PIN, app_gpio_int_cb);
+  GPIO_IntEnable(MIKROE_BMA400_INT1_PIN);
+#endif
+
+  return SL_STATUS_OK;
+}
+
+static sl_status_t app_bma400_read_data(void)
 {
   int8_t rslt;
   float t, x, y, z;
@@ -230,15 +243,13 @@ static void app_process_data(void)
 
   rslt = bma400_get_interrupt_status(&int_status, &bma);
   if (rslt != BMA400_OK) {
-    printf("[E: 0x%04x] Failed to get interrupt status\r\n", (int)rslt);
-    return;
+    return SL_STATUS_FAIL;
   }
 
   if (int_status & BMA400_ASSERTED_DRDY_INT) {
     rslt = bma400_get_accel_data(BMA400_DATA_SENSOR_TIME, &accel, &bma);
     if (rslt != BMA400_OK) {
-      printf("[E: 0x%04x] Failed to get accel data\r\n", (int)rslt);
-      return;
+      return SL_STATUS_FAIL;
     }
 
     /* 12-bit accelerometer at range 2G */
@@ -253,6 +264,8 @@ static void app_process_data(void)
       z,
       t);
   }
+
+  return SL_STATUS_OK;
 }
 
 static float lsb_to_ms2(int16_t accel_data, uint8_t g_range, uint8_t bit_width)

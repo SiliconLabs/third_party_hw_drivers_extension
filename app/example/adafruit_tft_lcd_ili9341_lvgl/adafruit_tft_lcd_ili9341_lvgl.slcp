@@ -88,7 +88,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.9.0
+  version: 1.10.0
 
 configuration:
   - name: LV_BUFFER_MODE
@@ -97,7 +97,8 @@ configuration:
     value: "LV_DISP_ROT_90"
   - name: LV_ENABLE_SOFTWARE_ROTATION
     value: "1"
-
+  - name: LV_INPUT_TYPE
+    value: "LV_INPUT_TYPE_POINTER"
 other_file:
   - path: ../../documentation/example/adafruit_tft_lcd_ili9341_lvgl/image/create_example.png
     directory: "image"
