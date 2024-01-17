@@ -28,10 +28,17 @@
  */
 
 #include "eink_154inch.h"
-
+#include "mikroe_e_paper_154_inch_config.h"
 // ------------------------------------------------------------- PRIVATE MACROS 
 
 #define EINK_154INCH_DUMMY      0
+//Macro for the ESL mode
+#if ESL_MODE == 1
+//Macro for the ESL display
+#define EINK154_BUFFER_SIZE      200
+#include "esl_tag_image_core.h"
+#include "esl_tag_core.h"
+#endif
 
 // ---------------------------------------------- PRIVATE FUNCTION DECLARATIONS 
 
@@ -191,12 +198,16 @@ void eink154_set_memory_area ( eink_154inch_t *ctx, eink_154_xy_t *xy )
 
 void eink154_update_display ( eink_154inch_t *ctx )
 {
+#if ESL_MODE == 0
     Delay_100ms( );
+#endif
     eink154_send_command( ctx, EINK154_CMD_DISPLAY_UPDATE_CONTROL_2 );
     eink154_send_data( ctx, 0xC4 );
     eink154_send_command( ctx, EINK154_CMD_MASTER_ACTIVATION );
     eink154_send_command( ctx, EINK154_CMD_TERMINATE_FRAME_READ_WRITE );
+#if ESL_MODE == 0
     wait_until_idle( ctx );
+#endif
 }
 
 void eink154_fill_screen ( eink_154inch_t *ctx, uint8_t color )               
@@ -224,28 +235,117 @@ void eink154_fill_screen ( eink_154inch_t *ctx, uint8_t color )
 
 void eink154_display_image ( eink_154inch_t *ctx, const uint8_t* image_buffer )
 {
-    uint16_t cnt;
+  uint16_t cnt;
 
-    eink_154_xy_t xy;
-    
-    xy.x_start = 0;
-    xy.y_start = 0; 
-    xy.x_end = EINK154_DISPLAY_WIDTH - 1;
-    xy.y_end = EINK154_DISPLAY_HEIGHT - 1;
-    
-    eink154_set_memory_area( ctx, &xy );
-    eink154_set_memory_pointer( ctx, 0, 0 );
+  eink_154_xy_t xy;
 
-    eink154_send_command( ctx, EINK154_CMD_WRITE_RAM );
+  xy.x_start = 0;
+  xy.y_start = 0;
+  xy.x_end = EINK154_DISPLAY_WIDTH - 1;
+  xy.y_end = EINK154_DISPLAY_HEIGHT - 1;
 
-    for ( cnt = 0; cnt < EINK154_DISPLAY_RESOLUTIONS; cnt++ )
-    {
-        eink154_send_data( ctx, image_buffer[ cnt ] );
-    }
+  eink154_set_memory_area( ctx, &xy );
+  eink154_set_memory_pointer( ctx, 0, 0 );
 
-    display_delay( );
-    eink154_update_display( ctx );
+  eink154_send_command( ctx, EINK154_CMD_WRITE_RAM );
+
+  for ( cnt = 0; cnt < EINK154_DISPLAY_RESOLUTIONS; cnt++ )
+  {
+      eink154_send_data( ctx, image_buffer[ cnt ] );
+  }
+
+  display_delay( );
+  eink154_update_display( ctx );
 }
+
+//Modification added:
+//New function got implemented (eink154_display_image_non_blocking) to support time critical BLE ESL operations
+//eink154_states state machine added
+//EINK154_BUFFER_SIZE macro created at the top of this file
+//2023.Q4.
+#if ESL_MODE == 1
+enum eink154_states {
+  EINK154_READY,
+  EINK154_INIT,
+  EINK154_WRITE,
+  EINK154_DISPLAY
+};
+
+static enum eink154_states eink154_machine = EINK154_READY;
+
+sl_status_t eink154_display_image_non_blocking ( eink_154inch_t *ctx,  const uint8_t image_index )
+{
+  static uint16_t section = 0;
+  static uint16_t offset = 0;
+  static eink_154_xy_t xy;
+  static uint16_t last_image = ESL_IMAGE_OBJECT_BASE;
+  sl_status_t report_status = SL_STATUS_IN_PROGRESS;
+  uint8_t buffer[EINK154_BUFFER_SIZE];
+
+  switch (eink154_machine) {
+    case EINK154_READY:
+        // Check if image is available at requested slot
+        report_status = esl_image_get_data(image_index,
+                                           &offset,
+                                           0,
+                                           buffer);
+
+        if (report_status == SL_STATUS_OK) {
+          // Start actual image transfer on next call only if image exists
+          eink154_machine = EINK154_INIT;
+          last_image = (uint16_t)image_index;
+          report_status = SL_STATUS_IN_PROGRESS;
+        }
+        break;
+
+    case EINK154_INIT:
+      xy.x_start = 0;
+      xy.y_start = 0;
+      xy.x_end = EINK154_DISPLAY_WIDTH - 1;
+      xy.y_end = EINK154_DISPLAY_HEIGHT - 1;
+
+      eink154_set_memory_area (ctx, &xy);
+      eink154_set_memory_pointer (ctx, 0, 0);
+
+      eink154_send_command (ctx, EINK154_CMD_WRITE_RAM);
+
+      offset = 0;
+      section = 0;
+
+
+      eink154_machine = EINK154_WRITE;
+      break;
+
+    case EINK154_WRITE:
+      report_status = esl_image_get_data(last_image, &offset, 200, buffer);
+      if(report_status == SL_STATUS_OK) {
+
+        for (uint8_t i = 0; i < 200; i++) {
+            eink154_send_data (ctx, buffer[i] ^ 0xFF);
+          }
+        report_status = SL_STATUS_IN_PROGRESS;
+        section++;
+        if(section >= 25) {
+            eink154_machine = EINK154_DISPLAY;
+        }
+      } else {
+          eink154_machine = EINK154_READY;
+      }
+
+      break;
+
+    case EINK154_DISPLAY:
+      report_status = SL_STATUS_OK;
+      eink154_update_display (ctx);
+      eink154_machine = EINK154_READY;
+
+      break;
+  }
+
+  return report_status;
+}
+#endif
+//End of the modification
 
 #ifndef IMAGE_MODE_ONLY
 void eink154_text ( eink_154inch_t *ctx, char *text, eink_154_text_set_t *text_set )
@@ -304,7 +404,9 @@ static void wait_until_idle ( eink_154inch_t *ctx )
     do
     {
         state = digital_in_read( &ctx->bsy );
+#if ESL_MODE == 0
         Delay_100ms( );
+#endif
     } 
     while ( state == 1 );
 }

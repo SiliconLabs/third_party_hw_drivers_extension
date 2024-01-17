@@ -49,7 +49,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.10.0
+  version: 1.11.0
 
 other_file:
   - path: ../../documentation/example/adafruit_tft_lcd_st7789/image/create_example.png

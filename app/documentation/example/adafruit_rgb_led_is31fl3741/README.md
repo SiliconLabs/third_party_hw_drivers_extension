@@ -6,6 +6,10 @@ This project aims to implement a hardware driver interacting with the [IS31FL374
 
 Adafruit RGB LED Matrix is a 13x9 RGB LED matrix breakout. It features 117 RGB LEDs, each one 2x2mm in size, in a 13x9 grid with 3mm pitch spacing. The IS31FL3741 communicates over I2C and can set each LED element to have 16-bit color by using an 8-bit PWM signal. There's an adjustable current driver, so you can brighten or dim the whole display without losing color resolution. The module can be tiled side-to-side with others if desired up to 4 boards on the I2C bus.
 
+## Quick Look Video
+
+[![IS31FL3741 Quick Look Video](image/yt_thumbnail.jpg)](https://youtu.be/eNGRJq4ZlzU "Dev Lab - Adafruit 13x9 RGB LED Matrix IS31FL3741 – Silicon Labs")
+
 ## Required Hardware ##
 
 - [BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

@@ -1,0 +1,115 @@
+project_name: adafruit_tft_lcd_hxd8357d_lvgl
+package: platform
+label: Third Party Hardware Drivers - HXD8357D - TFT LCD with Touchscreen (Adafruit) - LVGL
+description: |
+  This example project shows an example for Adafruit HXD8357D TFT LCD with Touchscreen driver integration.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/README.md
+
+source:
+- path: app.c
+- path: main.c
+- path: app_ui/ui_events.c
+- path: app_ui/ui_helpers.c
+- path: app_ui/ui.c
+- path: app_ui/components/ui_comp_hook.c
+- path: app_ui/screens/ui_loader.c
+- path: app_ui/screens/ui_main.c
+- path: app_ui/images/ui_img_buld_off_png.c
+- path: app_ui/images/ui_img_buld_on_png.c
+- path: app_ui/images/ui_img_button1_off_png.c
+- path: app_ui/images/ui_img_button1_on_png.c
+- path: app_ui/images/ui_img_842152610.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+- path: app_ui
+  file_list:
+  - path: ui_events.h
+  - path: ui_helpers.h
+  - path: ui.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: iostream_eusart
+  instance: [vcom]
+- id: app_assert
+- id: sleeptimer
+- id: app_log
+- id: simple_led
+  instance: [led0, led1]
+- id: simple_button
+  instance: [btn0]
+- id: adafruit_tft_lcd_hxd8357d
+  from: third_party_hw_drivers
+- id: services_lvgl
+  from: third_party_hw_drivers
+- id: touch_screen_analog
+  from: third_party_hw_drivers
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 1.11.0
+
+other_file:
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/create_example.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/result.GIF
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/enable_calib_printf.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/calib_point.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/hxd8357d_display.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/hardware_connect.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/double_buffered_lvgl_settings.png
+    directory: image
+  - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/image/single_buffered_lvgl_settings.png
+    directory: image
+
+configuration:
+- name: CALIB_X_MIN
+  value: '428'
+- name: CALIB_X_MAX
+  value: '3628'
+- name: CALIB_Y_MIN
+  value: '260'
+- name: CALIB_Y_MAX
+  value: '3776'
+- name: TOUCHSCREEN_WIDTH
+  value: '320'
+- name: TOUCHSCREEN_HEIGHT
+  value: '480'
+- name: LV_BUFFER_MODE
+  value: "0"
+- name: LV_DISPLAY_ROTATION
+  value: "LV_DISP_ROT_90"
+- name: LV_ENABLE_SOFTWARE_ROTATION
+  value: "1"
+- name: LV_INPUT_TYPE
+  value: "LV_INPUT_TYPE_POINTER"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true
+

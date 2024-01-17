@@ -1,0 +1,35 @@
+id: hvac_scd41
+package: third_party_hw_drivers
+label: SCD41 - HVAC Click (Mikroe)
+description: >
+  Driver for the HVAC Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_uart
+config_file:
+provides:
+  - name: hvac_scd41
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: hvac_scd41
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/hvac/lib_hvac/include
+    file_list:
+      - path: hvac.h
+  - path: public/mikroe/hvac_scd41/inc
+    file_list:
+      - path: mikroe_scd41.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/hvac/lib_hvac/src/hvac.c
+  - path: public/mikroe/hvac_scd41/src/mikroe_scd41.c

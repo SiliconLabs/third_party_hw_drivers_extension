@@ -6,6 +6,10 @@ This project shows the implementation of an SGP40 that is new digital VOC (volat
 
 You can use this example as a reference for creating your own indoor air quality monitoring application. You can visualize the measured volatile organic compound (VOC) level by a display or you can transfer the measurements to a data center or mobile phone, which can trigger warning messages or start air freshener devices.
 
+## Quick Look Video
+
+[![SGP 40 Quick Look Video](image/yt_thumbnail.jpg)](https://youtu.be/6eyTzxQM3K0 "Quick Look - SparkFun Air Quality Sensor SGP40 – Silicon Labs")
+
 ## Required Hardware ##
 
 - [EFR32xG24 Explorer Kit](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit).

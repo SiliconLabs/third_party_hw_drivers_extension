@@ -112,8 +112,10 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
 
           object_count = 0;
           bthome_v2_server_sensor_data_read(mac,
-                                            object, 5,
-                                            &object_count);
+                                            object,
+                                            5,
+                                            &object_count,
+                                            NULL);
 
           for (uint8_t j = 0; j < object_count; j++) {
             app_log("  Object ID: 0x%.2x    ", object[j].object_id);

@@ -1,0 +1,46 @@
+id: mikroe_stretch
+package: third_party_hw_drivers
+label: Stretch Click (Mikroe)
+description: >
+  Driver for the Stretch Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_digital_io
+  - name: mikroe_peripheral_driver_adc
+config_file:
+  - path: public/mikroe/stretch/config/brd2703a/mikroe_stretch_config.h
+    file_id: driver_config_stretch
+    condition: [brd2703a]
+  - path: public/mikroe/stretch/config/brd4108a/mikroe_stretch_config.h
+    file_id: driver_config_stretch
+    condition: [brd4108a]
+  - path: public/mikroe/stretch/config/brd4314a/mikroe_stretch_config.h
+    file_id: driver_config_stretch
+    condition: [brd4314a]
+  - path: public/mikroe/stretch/config/other/mikroe_stretch_config.h
+    file_id: driver_config_stretch
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: mikroe_stretch
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_stretch
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/stretch/lib_stretch/include
+    file_list:
+      - path: stretch.h
+  - path: public/mikroe/stretch/inc
+    file_list:
+      - path: mikroe_stretch.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/stretch/lib_stretch/src/stretch.c
+  - path: public/mikroe/stretch/src/mikroe_stretch.c

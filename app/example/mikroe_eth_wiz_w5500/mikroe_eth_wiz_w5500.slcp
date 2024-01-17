@@ -44,7 +44,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.10.0
+  version: 1.11.0
 
 other_file:
   - path: ../../documentation/example/mikroe_eth_wiz_w5500/image/board.png

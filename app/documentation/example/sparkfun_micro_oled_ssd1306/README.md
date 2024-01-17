@@ -10,6 +10,10 @@ For more information about the SSD1306 controller, see the [specification page](
 
 >Please note that this is a monochrome OLED driver.
 
+## Quick Look Video
+
+[![SSD1306 Quick Look Video](image/yt_thumbnail.jpg)](https://youtu.be/0QMDpJgDQd4 "Quick Look - SparkFun Micro OLED Display - Silicon Labs")
+
 ## Required Hardware ##
 
 - [A BGM220 Explorer Kit board.](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)

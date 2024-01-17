@@ -381,6 +381,16 @@ void eink154_fill_screen ( eink_154inch_t *ctx, uint8_t color );
 void eink154_display_image ( eink_154inch_t *ctx, const uint8_t* image_buffer );
 
 /**
+ * @brief Displays image in a non blocking way for BLE ESL
+ *
+ * @param ctx       Click object.
+ * @param image_index       ESL image index
+ *
+ * @description The image can be built from VTFT or image2lcd programs, and image type must be monochrome bmp.
+ */
+sl_status_t eink154_display_image_non_blocking ( eink_154inch_t *ctx,  const uint8_t image_index );
+
+/**
  * @brief Draw text on the screen
  *
  * @param ctx         Click object.

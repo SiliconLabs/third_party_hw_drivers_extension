@@ -710,8 +710,8 @@
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="app/example/mikroe_e_paper_154_inch/mikroe_e_paper_154_inch.slcp"/>
     <properties key="readmeFiles" value="app/documentation/example/mikroe_e_paper_154_inch/README.md"/>
-    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
-    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a brd4182a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.* .*efr32[bm]g22.* .*[bm]gm22.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
@@ -1267,6 +1267,141 @@
     <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_st7789_lvgl_dma/README.md"/>
     <properties key="boardCompatibility" value="brd2703a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*efr32mg24.* "/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+    <descriptors name="adafruit_tft_lcd_hxd8357d" label='Third Party Hardware Drivers - HXD8357D - TFT LCD with Touchscreen (Adafruit) - SPI'
+               description='This example project shows an example for Adafruit HXD8357D TFT LCD with Touchscreen driver integration.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_hxd8357d/adafruit_tft_lcd_hxd8357d.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_hxd8357d/README.md"/>
+    <properties key="boardCompatibility" value="brd2601b brd2703a brd4314a brd2704a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_hxd8357d_dma" label='Third Party Hardware Drivers - HXD8357D - TFT LCD with Touchscreen (Adafruit) - SPI with DMA'
+               description='This example project shows an example for Adafruit HXD8357D TFT LCD with Touchscreen driver integration.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_hxd8357d/adafruit_tft_lcd_hxd8357d_dma.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_hxd8357d/README.md"/>
+    <properties key="boardCompatibility" value="brd2601b brd2703a brd4314a brd2704a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.* .*mgm24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_hxd8357d_lvgl" label='Third Party Hardware Drivers - HXD8357D - TFT LCD with Touchscreen (Adafruit) with LVGL'
+               description='This example project shows an example for Adafruit HXD8357D TFT LCD with Touchscreen driver integration using the LVGL library configured to use the single buffer mode without DMA.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_hxd8357d_lvgl/adafruit_tft_lcd_hxd8357d_lvgl.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_tft_lcd_hxd8357d_lvgl_dma" label='Third Party Hardware Drivers - HXD8357D - TFT LCD with Touchscreen (Adafruit) with LVGL + DMA'
+               description='This example project shows an example for Adafruit HXD8357D TFT LCD with Touchscreen driver integration using the LVGL library configured to use the double-buffered DMA mode.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_tft_lcd_hxd8357d_lvgl/adafruit_tft_lcd_hxd8357d_lvgl_dma.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_stretch" label="Third Party Hardware Drivers - Stretch Click (Mikroe)"
+               description="This example project shows an example for Mikroe Stretch Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_stretch/mikroe_stretch.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_stretch/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="adafruit_touchscreen_tsc2007" label="Third Party Hardware Drivers - TSC2007 - Resistive Touch Screen Controller (Adafruit)"
+               description="This example project shows an example for Adafruit Resistive Touch Screen Controller driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/adafruit_touchscreen_tsc2007/adafruit_touchscreen_tsc2007.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/adafruit_touchscreen_tsc2007/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32[bm]g24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_dcmotor24_l9958" label='Third Party Hardware Drivers - L9958 - DC Motor 24 Click (Mikroe)'
+               description='This example project shows an example for Mikroe DC Motor 24 Click board driver integration.'>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_dcmotor24_l9958/mikroe_dcmotor24_l9958.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_dcmotor24_l9958/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_rtc10_ds3231m" label="Third Party Hardware Drivers - DS3231M - RTC 10 (Mikroe)"
+               description="This example project shows an example for Mikroe Real Time Clock Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_rtc10_ds3231m/mikroe_rtc10_ds3231m.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_rtc10_ds3231m/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>   
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_hvac_scd41" label="Third Party Hardware Drivers - SCD41 - HVAC Click (Mikroe)"
+               description="This example project shows an example for SCD41 - HVAC Click (Mikroe).">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_hvac_scd41/mikroe_hvac_scd41.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_hvac_scd41/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>

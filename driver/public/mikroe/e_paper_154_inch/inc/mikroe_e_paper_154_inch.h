@@ -263,6 +263,20 @@ sl_status_t mikroe_e_paper_154_inch_display_image(const uint8_t *image_buffer);
 
 /***************************************************************************//**
  * @brief
+ *    Displays image function for ESL.
+ *
+ * @param[in] image_index
+ *    Buffer containing the image index.
+ *
+ * @return
+ *    SL_STATUS_OK if Succeed .
+ *    SL_STATUS_FAIL if failed.
+ ******************************************************************************/
+sl_status_t mikroe_e_paper_154_inch_display_image_non_blocking(
+  const uint8_t image_index);
+
+/***************************************************************************//**
+ * @brief
  *    Displays image function.
  *
  * @param[in] text

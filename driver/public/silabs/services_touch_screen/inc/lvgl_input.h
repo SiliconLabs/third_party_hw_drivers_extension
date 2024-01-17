@@ -36,7 +36,6 @@
 #ifndef LVGL_INPUT_H_
 #define LVGL_INPUT_H_
 
-#include "adafruit_ili9341.h"
 #include "touch_screen.h"
 
 #ifdef __cplusplus

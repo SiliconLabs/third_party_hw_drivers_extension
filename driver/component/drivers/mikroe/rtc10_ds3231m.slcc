@@ -1,0 +1,46 @@
+id: rtc10_ds3231m
+package: third_party_hw_drivers
+label: DS3231M - RTC 10 Click (Mikroe)
+description: >
+  Driver for the RTC 10 Click board.
+category: Clock & Timing
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/rtc10_ds3231m/config/brd2703a/mikroe_ds3231m_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd2703a]
+  - path: public/mikroe/rtc10_ds3231m/config/brd4108a/mikroe_ds3231m_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd4108a]
+  - path: public/mikroe/rtc10_ds3231m/config/brd4314a/mikroe_ds3231m_config.h
+    file_id: mikroe_thunder_config
+    condition: [brd4314a]
+  - path: public/mikroe/rtc10_ds3231m/config/other/mikroe_ds3231m_config.h
+    file_id: mikroe_thunder_config
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: rtc10_ds3231m
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: rtc10_ds3231m
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/rtc10/lib_rtc10/include
+    file_list:
+      - path: rtc10.h
+  - path: public/mikroe/rtc10_ds3231m/inc
+    file_list:
+      - path: mikroe_ds3231m.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/rtc10/lib_rtc10/src/rtc10.c
+  - path: public/mikroe/rtc10_ds3231m/src/mikroe_ds3231m.c

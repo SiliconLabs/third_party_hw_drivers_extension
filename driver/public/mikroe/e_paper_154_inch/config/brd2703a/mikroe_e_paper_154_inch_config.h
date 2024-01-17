@@ -46,6 +46,19 @@ extern "C" {
 #define MIKROE_E_PAPER_WIDTH                   200
 #define MIKROE_E_PAPER_HEIGHT                  200
 
+// A CMSIS annotation block starts with the following line:
+// <<< Use Configuration Wizard in Context Menu >>>
+
+// <h> ESL MODE setting
+// <e> ESL_MODE> Enable Peripheral
+// <i> Macro for the ESL mode
+#define ESL_MODE 0
+// </e>
+// </h>
+
+// The block ends with the following line or at the end of the file:
+// <<< end of configuration section >>>
+
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> E_PAPER_154_INCH_DC

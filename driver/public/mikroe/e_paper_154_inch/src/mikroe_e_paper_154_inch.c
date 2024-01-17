@@ -197,6 +197,15 @@ sl_status_t mikroe_e_paper_154_inch_display_image(const uint8_t *image_buffer)
 }
 
 /**************************************************************************//**
+*  E-Paper display image for ESL.
+******************************************************************************/
+sl_status_t mikroe_e_paper_154_inch_display_image_non_blocking(
+  const uint8_t image_index)
+{
+  return eink154_display_image_non_blocking(&eink_ctx, image_index);
+}
+
+/**************************************************************************//**
 *  E-Paper text.
 ******************************************************************************/
 sl_status_t mikroe_e_paper_154_inch_text(char *text,

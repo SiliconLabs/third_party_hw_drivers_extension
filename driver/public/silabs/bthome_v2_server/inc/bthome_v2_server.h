@@ -173,7 +173,7 @@ typedef void (*bthome_v2_server_callback_ptr_t)(uint8_t *mac,
 typedef struct sensor_data
 {
   uint8_t object_id;
-  uint8_t data_lenth;
+  uint8_t data_length;
   uint16_t factor;
   uint32_t data;
 } bthome_v2_server_sensor_data_t;
@@ -187,6 +187,7 @@ typedef struct bthome_device
   uint8_t mac[6];
   uint8_t payload[PAYLOAD_MAX_LEN];
   uint8_t payload_lenth;
+  uint32_t last_update_time;
 } bthome_v2_server_device_t;
 
 /***************************************************************************//**
@@ -269,6 +270,8 @@ sl_status_t bthome_v2_server_check_device(uint8_t *mac,
  *    Number of max object data, get by user
  * @param[out] object_count
  *    Number of object data can parse
+ * @param[out] update_time
+ *    Get time when data is updated
  *
  * @return
  *    Error status
@@ -276,7 +279,8 @@ sl_status_t bthome_v2_server_check_device(uint8_t *mac,
 sl_status_t bthome_v2_server_sensor_data_read(uint8_t *mac,
                                               bthome_v2_server_sensor_data_t *object_data,
                                               uint8_t object_max,
-                                              uint8_t *object_count);
+                                              uint8_t *object_count,
+                                              uint32_t *update_time);
 
 /***************************************************************************//**
  * @brief

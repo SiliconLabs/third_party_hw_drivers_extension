@@ -11,6 +11,7 @@ root_path: driver
 requires:
   - name: status
   - name: mikroe_peripheral_driver_adc
+  - name: mikroe_peripheral_driver_digital_io
 config_file:
   - path: public/mikroe/co_mq7/config/brd2703a/mikroe_mq7_config.h
     file_id: driver_config_co

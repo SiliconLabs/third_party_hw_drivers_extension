@@ -68,7 +68,7 @@ static bool find_bthome_v2_device(
 
 static sl_status_t decrypt_device_data(uint8_t index,
                                        uint8_t *data,
-                                       uint8_t *data_lenth);
+                                       uint8_t *data_length);
 
 static int get_device_index(uint8_t *mac);
 static uint8_t get_byte_number(uint8_t id);
@@ -185,12 +185,9 @@ sl_status_t bthome_v2_server_check_device(uint8_t *mac,
   if (sc != SL_STATUS_OK) {
     return sc;
   }
-  if (key != NULL) {
-    *key_available = true;
-    return SL_STATUS_OK;
-  }
 
-  return SL_STATUS_NOT_FOUND;
+  *key_available = true;
+  return SL_STATUS_OK;
 }
 
 /***************************************************************************//**
@@ -199,7 +196,8 @@ sl_status_t bthome_v2_server_check_device(uint8_t *mac,
 sl_status_t bthome_v2_server_sensor_data_read(uint8_t *mac,
                                               bthome_v2_server_sensor_data_t *object_data,
                                               uint8_t object_max,
-                                              uint8_t *object_count)
+                                              uint8_t *object_count,
+                                              uint32_t *update_time)
 {
   sl_status_t sc = SL_STATUS_OK;
   int index;
@@ -231,20 +229,22 @@ sl_status_t bthome_v2_server_sensor_data_read(uint8_t *mac,
 
   while ((i < payload_length) && (count < object_max)) {
     object_data[count].object_id = payload[i];
-    object_data[count].data_lenth =
+    object_data[count].data_length =
       get_byte_number(object_data[count].object_id);
     object_data[count].factor =
       get_factor(object_data[count].object_id);
     object_data[count].data = 0;
-    for (uint8_t j = 0; j < object_data[count].data_lenth; j++) {
+    for (uint8_t j = 0; j < object_data[count].data_length; j++) {
       object_data[count].data |= (uint32_t)(payload[i + 1 + j] << (j * 8));
     }
-    i = i + object_data[count].data_lenth + 1;
+    i = i + object_data[count].data_length + 1;
     count++;
   }
 
   *object_count = count;
-
+  if (update_time != NULL) {
+    *update_time = device[index].last_update_time;
+  }
   return SL_STATUS_OK;
 }
 
@@ -307,6 +307,7 @@ void bthome_v2_server_on_event(sl_bt_msg_t *evt)
                    payload,
                    payload_length);
             device[i].payload_lenth = payload_length;
+            device[i].last_update_time = sl_sleeptimer_get_tick_count();
             new_device_found = false;
             break;
           }
@@ -319,6 +320,8 @@ void bthome_v2_server_on_event(sl_bt_msg_t *evt)
                  payload,
                  payload_length);
           device[device_count].payload_lenth = payload_length;
+          device[device_count].last_update_time =
+            sl_sleeptimer_get_tick_count();
           device_count++;
 
           // callback function call here
@@ -385,7 +388,7 @@ static int get_device_index(uint8_t *mac)
  ******************************************************************************/
 static sl_status_t decrypt_device_data(uint8_t index,
                                        uint8_t *data,
-                                       uint8_t *data_lenth)
+                                       uint8_t *data_length)
 {
   sl_status_t sc;
   uint8_t mic[MIC_LEN];
@@ -446,7 +449,7 @@ static sl_status_t decrypt_device_data(uint8_t index,
   if (sc != SL_STATUS_OK) {
     return SL_STATUS_INVALID_KEY;
   }
-  *data_lenth = len;
+  *data_length = len;
   memcpy(data, sensor_data, len);
 
   return SL_STATUS_OK;

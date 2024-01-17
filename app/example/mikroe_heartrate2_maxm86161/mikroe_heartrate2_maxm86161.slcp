@@ -43,7 +43,7 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 1.10.0
+  version: 1.11.0
 
 other_file:
   - path: ../../documentation/example/mikroe_heartrate2_maxm86161/image/create_example.png

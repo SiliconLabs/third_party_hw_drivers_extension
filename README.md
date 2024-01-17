@@ -1,7 +1,7 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.10.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.1-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v1.11.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.2-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -87,6 +87,13 @@ A full list of all drivers in this repository is defined below:
 | qwiic_keypad | [Click Here](./driver/public/silabs/qwiic_keypad) | [Click Here](./app/example/sparkfun_qwiic_keypad) | [Click Here](./app/documentation/example/sparkfun_qwiic_keypad) |
 | tft_lcd_st7789 | [Click Here](./driver/public/silabs/tft_lcd_st7789) | [Click Here](./app/example/adafruit_tft_lcd_st7789) | [Click Here](./app/documentation/example/adafruit_tft_lcd_st7789) |
 | tft_lcd_st7789_lvgl | [Click Here](./driver/public/silabs/services_lvgl) | [Click Here](./app/example/adafruit_tft_lcd_st7789_lvgl_dma) | [Click Here](./app/documentation/example/adafruit_tft_lcd_st7789_lvgl_dma) |
+| tft_lcd_hxd8357d | [Click Here](./driver/public/silabs/tft_lcd_hxd8357d) | [Click Here](./app/example/adafruit_tft_lcd_hxd8357d) | [Click Here](./app/documentation/example/adafruit_tft_lcd_hxd8357d) |
+| tft_lcd_hxd8357d_lvgl | [Click Here](./driver/public/silabs/tft_lcd_hxd8357d) | [Click Here](./app/example/adafruit_tft_lcd_hxd8357d_lvgl) | [Click Here](./app/documentation/example/adafruit_tft_lcd_hxd8357d_lvgl) |
+| mikroe_stretch | [Click Here](./driver/public/mikroe/stretch) | [Click Here](./app/example/mikroe_stretch) | [Click Here](./app/documentation/example/mikroe_stretch) |
+| adafruit_touchscreen_tsc2007 | [Click Here](./driver/public/silabs/touchscreen_tsc2007) | [Click Here](./app/example/adafruit_touchscreen_tsc2007) | [Click Here](./app/documentation/example/adafruit_touchscreen_tsc2007) |
+| mikroe_dcmotor24_l9958 | [Click Here](./driver/public/mikroe/dcmotor24_l9958) | [Click Here](./app/example/mikroe_dcmotor24_l9958) | [Click Here](./app/documentation/example/mikroe_dcmotor24_l9958) |
+| rtc10_ds3231m | [Click Here](./driver/public/mikroe/rtc10_ds3231m) | [Click Here](./app/example/mikroe_rtc10_ds3231m) | [Click Here](./app/documentation/example/mikroe_rtc10_ds3231m) |
+| mikroe_hvac | [Click Here](./driver/public/mikroe/hvac_scd41) | [Click Here](./app/example/mikroe_hvac_scd41) | [Click Here](./app/documentation/example/mikroe_hvac_scd41) |
 
 ## Requirements ##
 
@@ -96,6 +103,8 @@ A full list of all drivers in this repository is defined below:
 - Gecko SDK Suite 4.3.1, available via Simplicity Studio
 
 ## How to add to Simplicity Studio IDE ##
+
+[![TPHD Quick Look Video](doc/yt_thumbnail.jpg)](https://youtu.be/vjOGhZXcWGw "Quick Look - SparkFun Micro OLED Display - Silicon Labs")
 
 > **Detailed documentation available on [https://docs.silabs.com](https://docs.silabs.com/application-examples/1.0.0/ae-getting-started/how-do-you-use-it#adding-sdk-extensions-for-hardware-drivers) or [here](doc/readme.md)**.
 

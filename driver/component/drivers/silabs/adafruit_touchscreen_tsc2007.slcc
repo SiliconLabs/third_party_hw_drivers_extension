@@ -1,0 +1,32 @@
+id: adafruit_touchscreen_tsc2007
+package: third_party_hw_drivers
+label: TSC2007 - Resistive Touch Screen Controller (Adafruit)
+description: >
+  Driver for the Adafruit TSC2007 - Resistive Touch Screen Controller board.
+category: Human Machine Interface
+quality: evaluation
+root_path: driver
+requires:
+- name: status
+- name: i2cspm
+- name: gpiointerrupt 
+recommends:
+- id: i2cspm
+  instance: [qwiic]
+config_file:
+- path: public/silabs/touchscreen_tsc2007/config/adafruit_tsc2007_config.h
+  file_id: adafruit_tsc2007_config
+provides:
+- name: adafruit_touchscreen_tsc2007
+  allow_multiple: false
+template_contribution:
+- name: component_catalog
+  value: adafruit_touchscreen_tsc2007
+include:
+- path: public/silabs/touchscreen_tsc2007/inc
+  file_list:
+    - path: adafruit_tsc2007.h
+    - path: lvgl_input.h
+source:
+- path: public/silabs/touchscreen_tsc2007/src/adafruit_tsc2007.c
+- path: public/silabs/touchscreen_tsc2007/src/lvgl_input.c
