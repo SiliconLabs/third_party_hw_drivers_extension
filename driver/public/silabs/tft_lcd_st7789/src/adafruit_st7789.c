@@ -111,13 +111,13 @@ static sl_status_t adafruit_st7789_spi_send_command(uint8_t command,
 
   SPI_CS_LOW();
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, command);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, command);
   SPI_DC_HIGH();
 
   if (len != 0) {
     if (NULL != data) {
       while (len--) {
-        USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, *data);
+        USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, *data);
         data++;
       }
     } else {
@@ -143,7 +143,7 @@ static sl_status_t adafruit_st7789_spi_send_command(uint8_t command,
 static sl_status_t adafruit_st7789_spi_write_command(uint8_t cmd)
 {
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, cmd);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, cmd);
   SPI_DC_HIGH();
 
   return SL_STATUS_OK;
@@ -167,8 +167,8 @@ static sl_status_t adafruit_st7789_spi_write16(uint16_t data)
   bytes[0] = data >> 8;
   bytes[1] = data & 0x00FF;
 
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[0]);
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[1]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[0]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[1]);
 
   return SL_STATUS_OK;
 }
@@ -193,10 +193,10 @@ static sl_status_t adafruit_st7789_spi_write32(uint32_t data)
   bytes[2] = (data >> 8) & 0x0000FF;
   bytes[3] = data & 0x000000FF;
 
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[0]);
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[1]);
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[2]);
-  USART_Tx(ADAFRUIT_ST7789_PERIPHERAL, bytes[3]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[0]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[1]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[2]);
+  USART_SpiTransfer(ADAFRUIT_ST7789_PERIPHERAL, bytes[3]);
 
   return SL_STATUS_OK;
 }

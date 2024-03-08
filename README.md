@@ -1,7 +1,7 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v1.11.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.3.2-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v2.0.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -94,7 +94,10 @@ A full list of all drivers in this repository is defined below:
 | mikroe_dcmotor24_l9958 | [Click Here](./driver/public/mikroe/dcmotor24_l9958) | [Click Here](./app/example/mikroe_dcmotor24_l9958) | [Click Here](./app/documentation/example/mikroe_dcmotor24_l9958) |
 | rtc10_ds3231m | [Click Here](./driver/public/mikroe/rtc10_ds3231m) | [Click Here](./app/example/mikroe_rtc10_ds3231m) | [Click Here](./app/documentation/example/mikroe_rtc10_ds3231m) |
 | mikroe_hvac | [Click Here](./driver/public/mikroe/hvac_scd41) | [Click Here](./app/example/mikroe_hvac_scd41) | [Click Here](./app/documentation/example/mikroe_hvac_scd41) |
-
+| mikroe_dcmotor26_tb9053ftg | [Click Here](./driver/public/mikroe/dcmotor26_tb9053ftg) | [Click Here](./app/example/mikroe_dcmotor26_tb9053ftg) | [Click Here](./app/documentation/example/mikroe_dcmotor26_tb9053ftg) |
+| particulate_matter_sensor_sps30 | [Click Here](./driver/public/silabs/particulate_matter_sensor_sps30) | [Click Here](./app/example/sparkfun_particulate_matter_sensor_sps30) | [Click Here](./app/documentation/example/sparkfun_particulate_matter_sensor_sps30) |
+| adafruit_neotrellis_keypad_atsamd09 | [Click Here](./driver/public/silabs/adafruit_neotrellis_keypad_atsamd09) | [Click Here](./app/example/adafruit_neotrellis_keypad_atsamd09) | [Click Here](./app/documentation/example/adafruit_neotrellis_keypad_atsamd09) |
+| hvac_bundle_scd41_sps30 | [Click Here](./driver/public/mikroe/hvac_scd41) <br> [Click Here](./driver/public/silabs/particulate_matter_sensor_sps30)| [Click Here](./app/example/mikroe_hvac_bundle_scd41_sps30) | [Click Here](./app/documentation/example/mikroe_hvac_bundle_scd41_sps30) |
 ## Requirements ##
 
 - Desired Silicon Labs Starter Kit

@@ -1,0 +1,35 @@
+id: adafruit_neotrellis_keypad_atsamd09
+package: third_party_hw_drivers
+label: NeoTrellis 4x4 Keypad (Adafruit)
+description: >
+  Driver for the NeoTrellis 4x4 Keypad board.
+category: Human Machine Interface
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+  - name: sleeptimer
+recommends:
+  - id: i2cspm
+    instance: [qwiic]
+provides:
+  - name: adafruit_neotrellis_keypad_atsamd09
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: adafruit_neotrellis_keypad_atsamd09
+config_file:
+  - path: public/silabs/adafruit_neotrellis_keypad_atsamd09/config/adafruit_neotrellis_config.h
+    file_id: adafruit_neotrellis_keypad_atsamd09_config
+include:
+  - path: public/silabs/adafruit_neotrellis_keypad_atsamd09/inc
+    file_list:
+      - path: adafruit_neotrellis.h
+      - path: adafruit_neopixel.h
+      - path: adafruit_seesaw.h
+
+source:
+  - path: public/silabs/adafruit_neotrellis_keypad_atsamd09/src/adafruit_neotrellis.c
+  - path: public/silabs/adafruit_neotrellis_keypad_atsamd09/src/adafruit_neopixel.c
+  - path: public/silabs/adafruit_neotrellis_keypad_atsamd09/src/adafruit_seesaw.c

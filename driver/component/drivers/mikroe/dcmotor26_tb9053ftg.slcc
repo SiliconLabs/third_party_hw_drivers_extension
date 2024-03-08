@@ -1,0 +1,45 @@
+id: dcmotor26_tb9053ftg
+package: third_party_hw_drivers
+label: TB9053FTG - DC Motor 26 Click (Mikroe)
+description: >
+  Driver for the DC Motor 26 Click board.
+category: Motor Control
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_spi
+  - name: mikroe_peripheral_driver_adc
+config_file:
+  - path: public/mikroe/dcmotor26_tb9053ftg/config/brd2703a/mikroe_dcmotor26_config.h
+    file_id: driver_config_dcmotor26
+    condition: [brd2703a]
+  - path: public/mikroe/dcmotor26_tb9053ftg/config/brd4108a/mikroe_dcmotor26_config.h
+    file_id: driver_config_dcmotor26
+    condition: [brd4108a]
+  - path: public/mikroe/dcmotor26_tb9053ftg/config/brd4314a/mikroe_dcmotor26_config.h
+    file_id: driver_config_dcmotor26
+    condition: [brd4314a]
+  - path: public/mikroe/dcmotor26_tb9053ftg/config/other/mikroe_dcmotor26_config.h
+    file_id: driver_config_dcmotor26
+    unless: [brd4314a, brd4108a, brd2703a]
+template_contribution:
+  - name: component_catalog
+    value: dcmotor26_tb9053ftg
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/dcmotor26/lib_dcmotor26/include
+    file_list:
+      - path: dcmotor26.h
+      - path: spi_specifics.h
+  - path: public/mikroe/dcmotor26_tb9053ftg/inc
+    file_list:
+      - path: mikroe_tb9053ftg.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/dcmotor26/lib_dcmotor26/src/dcmotor26.c
+  - path: public/mikroe/dcmotor26_tb9053ftg/src/mikroe_tb9053ftg.c

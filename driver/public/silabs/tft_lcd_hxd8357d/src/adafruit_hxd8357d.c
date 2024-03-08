@@ -100,10 +100,10 @@ static sl_status_t adafruit_hxd8357d_spi_send_command(uint8_t command,
 {
   SPI_CS_LOW();
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_HXD8357D_PERIPHERAL, command);
+  USART_SpiTransfer(ADAFRUIT_HXD8357D_PERIPHERAL, command);
   SPI_DC_HIGH();
   while (len--) {
-    USART_Tx(ADAFRUIT_HXD8357D_PERIPHERAL, *data);
+    USART_SpiTransfer(ADAFRUIT_HXD8357D_PERIPHERAL, *data);
     data++;
   }
   SPI_CS_HIGH();
@@ -125,7 +125,7 @@ static sl_status_t adafruit_hxd8357d_spi_send_command(uint8_t command,
 static sl_status_t adafruit_hxd8357d_spi_write_command(uint8_t cmd)
 {
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_HXD8357D_PERIPHERAL, cmd);
+  USART_SpiTransfer(ADAFRUIT_HXD8357D_PERIPHERAL, cmd);
   SPI_DC_HIGH();
 
   return SL_STATUS_OK;
@@ -149,8 +149,8 @@ static sl_status_t adafruit_hxd8357d_spi_write16(uint16_t data)
   bytes[0] = data >> 8;
   bytes[1] = data & 0x00FF;
 
-  USART_Tx(ADAFRUIT_HXD8357D_PERIPHERAL, bytes[0]);
-  USART_Tx(ADAFRUIT_HXD8357D_PERIPHERAL, bytes[1]);
+  USART_SpiTransfer(ADAFRUIT_HXD8357D_PERIPHERAL, bytes[0]);
+  USART_SpiTransfer(ADAFRUIT_HXD8357D_PERIPHERAL, bytes[1]);
 
   return SL_STATUS_OK;
 }

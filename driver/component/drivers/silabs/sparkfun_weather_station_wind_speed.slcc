@@ -1,0 +1,31 @@
+id: sparkfun_weather_station_wind_speed
+package: third_party_hw_drivers
+label: Weather Meter Kit - Wind Speed (Sparkfun)
+description: >
+  Driver for the Sparkfun Weather Station Wind Speed Sensor.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: emlib_pcnt
+  - name: sleeptimer
+provides:
+  - name: sparkfun_weather_station_wind_speed
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_weather_station_wind_speed 
+config_file:    
+  - path: public/silabs/weather_station_wind_speed/config/brd2703a/sparkfun_weather_station_wind_speed_config.h
+    file_id: sparkfun_weather_station_wind_speed_config
+    condition: [brd2703a]
+  - path: public/silabs/weather_station_wind_speed/config/other/sparkfun_weather_station_wind_speed_config.h
+    file_id: sparkfun_weather_station_wind_speed_config
+    unless: [brd2703a]
+include:
+  - path: public/silabs/weather_station_wind_speed/inc
+    file_list:
+      - path: sparkfun_weather_station_wind_speed.h   
+source:
+  - path: public/silabs/weather_station_wind_speed/src/sparkfun_weather_station_wind_speed.c

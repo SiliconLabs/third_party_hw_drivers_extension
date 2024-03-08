@@ -1,0 +1,35 @@
+id: pm_sps30_i2c
+package: third_party_hw_drivers
+label: SPS30 - Particulate Matter Sensor (Sparkfun) - I2C
+description: >
+  Driver for the Sparkfun Particulate Matter Sensor SPS30 using I2C interface.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: i2cspm
+recommends:
+  - id: i2cspm
+    instance: [mikroe]
+provides:
+  - name: pm_sps30_i2c
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: pm_sps30_i2c
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: public/silabs/particulate_matter_sensor_sps30/inc
+    file_list:
+      - path: sensirion_common.h   
+      - path: sensirion_i2c_hal.h   
+      - path: sensirion_i2c.h
+      - path: sparkfun_sps30_i2c.h
+source:
+  - path: public/silabs/particulate_matter_sensor_sps30/src/sensirion_common.c
+  - path: public/silabs/particulate_matter_sensor_sps30/src/sensirion_i2c_hal.c
+  - path: public/silabs/particulate_matter_sensor_sps30/src/sensirion_i2c.c
+  - path: public/silabs/particulate_matter_sensor_sps30/src/sparkfun_sps30_i2c.c

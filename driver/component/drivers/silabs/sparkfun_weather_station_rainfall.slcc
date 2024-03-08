@@ -1,0 +1,30 @@
+id: sparkfun_weather_station_rainfall
+package: third_party_hw_drivers
+label: Weather Meter Kit - Rainfall (Sparkfun)
+description: >
+  Driver for the Sparkfun Weather Station - Rainfall  sensor.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: gpiointerrupt
+provides:
+  - name: sparkfun_weather_station_rainfall
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_weather_station_rainfall 
+config_file:    
+  - path: public/silabs/weather_station_rainfall/config/brd2703a/sparkfun_weather_station_rainfall_config.h
+    file_id: sparkfun_weather_station_rainfall_config
+    condition: [brd2703a]
+  - path: public/silabs/weather_station_rainfall/config/other/sparkfun_weather_station_rainfall_config.h
+    file_id: sparkfun_weather_station_rainfall_config
+    unless: [brd2703a]
+include:
+  - path: public/silabs/weather_station_rainfall/inc
+    file_list:
+      - path: sparkfun_weather_station_rainfall.h   
+source:
+  - path: public/silabs/weather_station_rainfall/src/sparkfun_weather_station_rainfall.c

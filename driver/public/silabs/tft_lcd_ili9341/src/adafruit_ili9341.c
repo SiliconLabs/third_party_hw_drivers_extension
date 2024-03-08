@@ -98,11 +98,11 @@ static sl_status_t adafruit_ili9341_spi_send_command(uint8_t command,
 {
   SPI_CS_LOW();
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, command);
+  USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, command);
   if (len != 0) {
     SPI_DC_HIGH();
     while (len--) {
-      USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, *data);
+      USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, *data);
       data++;
     }
   }
@@ -125,7 +125,7 @@ static sl_status_t adafruit_ili9341_spi_send_command(uint8_t command,
 static sl_status_t adafruit_ili9341_spi_write_command(uint8_t cmd)
 {
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, cmd);
+  USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, cmd);
   SPI_DC_HIGH();
 
   return SL_STATUS_OK;
@@ -149,8 +149,8 @@ static sl_status_t adafruit_ili9341_spi_write16(uint16_t data)
   bytes[0] = data >> 8;
   bytes[1] = data & 0x00FF;
 
-  USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, bytes[0]);
-  USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, bytes[1]);
+  USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, bytes[0]);
+  USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, bytes[1]);
 
   return SL_STATUS_OK;
 }
@@ -176,7 +176,7 @@ static sl_status_t adafruit_ili9341_spi_read_command8(uint8_t *result,
 {
   SPI_CS_LOW();
   SPI_DC_LOW();
-  USART_Tx(ADAFRUIT_ILI9341_PERIPHERAL, command);
+  USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, command);
   SPI_DC_HIGH();
   do {
     *result = USART_SpiTransfer(ADAFRUIT_ILI9341_PERIPHERAL, 0x00);

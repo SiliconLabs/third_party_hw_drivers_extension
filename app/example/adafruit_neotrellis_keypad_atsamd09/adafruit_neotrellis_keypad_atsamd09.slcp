@@ -1,0 +1,56 @@
+project_name: adafruit_neotrellis_keypad_atsamd09
+package: platform
+label: Third Party Hardware Drivers - NeoTrellis 4x4 Keypad (Adafruit)
+description: |
+  This example project shows an example for Adafruit NeoTrellis 4x4 Keypad.
+category: Example|Platform
+quality: evaluation
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+readme:
+- path: ../../documentation/example/adafruit_neotrellis_keypad_atsamd09/README.md
+source:
+- path: app.c
+- path: main.c
+include:
+- path: ''
+  file_list:
+  - path: app.h
+component:
+- id: sl_system
+- id: device_init
+- id: iostream_usart
+  instance: [vcom]
+- id: i2cspm
+  instance: [qwiic]
+- id: app_assert
+- id: sleeptimer
+- id: app_log
+- id: adafruit_neotrellis_keypad_atsamd09
+  from: third_party_hw_drivers
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 2.0.0
+
+other_file:
+  - path: ../../documentation/example/adafruit_neotrellis_keypad_atsamd09/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/adafruit_neotrellis_keypad_atsamd09/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/adafruit_neotrellis_keypad_atsamd09/image/result_test.gif
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true
+
