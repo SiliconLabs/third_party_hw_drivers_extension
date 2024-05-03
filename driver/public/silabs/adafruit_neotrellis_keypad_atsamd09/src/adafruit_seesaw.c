@@ -20,7 +20,7 @@ sl_status_t adafruit_seesaw_i2c_init(seesaw_t seesaw_dev)
 
   /// Transmit buffer, no data to send
   i2cTransfer.buf[0].data = 0;
-  i2cTransfer.buf[0].len = 1;
+  i2cTransfer.buf[0].len = 0;
 
   /// Receive buffer, two bytes to receive
   i2cTransfer.buf[1].data = &data;

@@ -45,25 +45,25 @@
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> MIKROE_DS3231M_INT
-// $[MIKROE_DS3231M_INT]
+// $[GPIO_MIKROE_DS3231M_INT]
 #warning "MIKROE_DS3231M_INT is not configured"
 // #define MIKROE_DS3231M_INT_PORT                        gpioPortB
 // #define MIKROE_DS3231M_INT_PIN                         3
-// [MIKROE_DS3231M_INT]$
+// [GPIO_MIKROE_DS3231M_INT]$
 
 // <gpio optional=true> MIKROE_DS3231M_AN
-// $[MIKROE_DS3231M_AN]
+// $[GPIO_MIKROE_DS3231M_AN]
 #warning "MIKROE_DS3231M_AN is not configured"
 // #define MIKROE_DS3231M_AN                              gpioPortB
 // #define MIKROE_DS3231M_AN                              3
-// [MIKROE_DS3231M_AN]$
+// [GPIO_MIKROE_DS3231M_AN]$
 
 // <gpio optional=true> MIKROE_DS3231M_RST
-// $[MIKROE_DS3231M_RST]
+// $[GPIO_MIKROE_DS3231M_RST]
 #warning "MIKROE_DS3231M_RST is not configured"
 // #define MIKROE_DS3231M_RST_PORT                        gpioPortB
 // #define MIKROE_DS3231M_RST_PIN                         3
-// [MIKROE_DS3231M_RST]$
+// [GPIO_MIKROE_DS3231M_RST]$
 
 // <<< sl:end pin_tool >>>
 

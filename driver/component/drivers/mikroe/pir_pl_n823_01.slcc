@@ -1,0 +1,46 @@
+id: mikroe_pir_pl_n823_01
+package: third_party_hw_drivers
+label: PL-N823-01 - PIR Click (Mikroe)
+description: >
+  Driver for the Mikroe PIR Click board.
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: mikroe_peripheral_driver_digital_io
+config_file:
+  - path: public/mikroe/pir_pl_n823_01/config/brd2703a/mikroe_pir_pl_n823_01_config.h
+    file_id: driver_config_pir
+    condition: [brd2703a]
+  - path: public/mikroe/pir_pl_n823_01/config/brd4108a/mikroe_pir_pl_n823_01_config.h
+    file_id: driver_config_pir
+    condition: [brd4108a]
+  - path: public/mikroe/pir_pl_n823_01/config/brd4314a/mikroe_pir_pl_n823_01_config.h
+    file_id: driver_config_pir
+    condition: [brd4314a]
+  - path: public/mikroe/pir_pl_n823_01/config/other/mikroe_pir_pl_n823_01_config.h
+    file_id: driver_config_pir
+    unless: [brd4314a, brd4108a, brd2703a]
+provides:
+  - name: mikroe_pir_pl_n823_01
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: mikroe_pir_pl_n823_01
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/pir/lib_pir/include
+    file_list:
+      - path: pir.h
+  - path: public/mikroe/pir_pl_n823_01/inc
+    file_list:
+      - path: mikroe_pl_n823_01.h
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/pir/lib_pir/src/pir.c
+  - path: public/mikroe/pir_pl_n823_01/src/mikroe_pl_n823_01.c

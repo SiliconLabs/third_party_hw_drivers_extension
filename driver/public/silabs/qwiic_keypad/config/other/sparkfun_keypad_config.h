@@ -23,12 +23,12 @@
 
 // <<< sl:start pin_tool >>>
 
-// <gpio> SPARKFUN_KEYPAD_NEW_EVENT_INTERRUPT
-// $[GPIO_SPARKFUN_KEYPAD_NEW_EVENT_INTERRUPT]
+// <gpio> SPARKFUN_KEYPAD_GPIO_INT
+// $[GPIO_SPARKFUN_KEYPAD_GPIO_INT]
 #warning "NEW_EVENT_INTERRUPT pin for keypad is not configured"
 // #define SPARKFUN_KEYPAD_GPIO_INT_PORT gpioPortB
 // #define SPARKFUN_KEYPAD_GPIO_INT_PIN  0
-// [GPIO_SPARKFUN_KEYPAD_NEW_EVENT_INTERRUPT]$
+// [GPIO_SPARKFUN_KEYPAD_GPIO_INT]$
 
 // <<< sl:end pin_tool >>>
 

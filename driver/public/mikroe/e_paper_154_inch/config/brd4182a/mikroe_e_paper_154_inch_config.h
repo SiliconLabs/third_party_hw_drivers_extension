@@ -63,8 +63,24 @@ extern "C"
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> E_PAPER_DC
+// $[GPIO_E_PAPER_DC]
+#ifndef E_PAPER_DC_PORT                         
+#define E_PAPER_DC_PORT                          gpioPortD
+#endif
+#ifndef E_PAPER_DC_PIN                          
+#define E_PAPER_DC_PIN                           2
+#endif
+// [GPIO_E_PAPER_DC]$
 
 // <gpio optional=true> E_PAPER_RST
+// $[GPIO_E_PAPER_RST]
+#ifndef E_PAPER_RST_PORT                        
+#define E_PAPER_RST_PORT                         gpioPortD
+#endif
+#ifndef E_PAPER_RST_PIN                         
+#define E_PAPER_RST_PIN                          3
+#endif
+// [GPIO_E_PAPER_RST]$
 
 // <gpio optional=true> E_PAPER_BSY
 // $[GPIO_E_PAPER_BSY]
@@ -76,21 +92,4 @@ extern "C"
 #endif
 // [GPIO_E_PAPER_BSY]$
 
-// $[GPIO_E_PAPER_DC]
-#ifndef E_PAPER_DC_PORT                         
-#define E_PAPER_DC_PORT                          gpioPortD
-#endif
-#ifndef E_PAPER_DC_PIN                          
-#define E_PAPER_DC_PIN                           2
-#endif
-// [GPIO_E_PAPER_DC]$
-
-// $[GPIO_E_PAPER_RST]
-#ifndef E_PAPER_RST_PORT                        
-#define E_PAPER_RST_PORT                         gpioPortD
-#endif
-#ifndef E_PAPER_RST_PIN                         
-#define E_PAPER_RST_PIN                          3
-#endif
-// [GPIO_E_PAPER_RST]$
 #endif

@@ -29,7 +29,7 @@
 
 // <<< sl:start pin_tool >>>
 
-// <gpio> PARKFUN_WEATHER_STATION_WIND_SPEED
+// <gpio> SPARKFUN_WEATHER_STATION_WIND_SPEED
 // $[GPIO_SPARKFUN_WEATHER_STATION_WIND_SPEED]
 #warning \
   "SPARKFUN_WEATHER_STATION_WIND_SPEED pin for wind speed is not configured"

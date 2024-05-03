@@ -22,7 +22,7 @@ Tested boards for working with this example:
 
 ## Hardware Connection ##
 
-Adafruit NeoTrellis can connect with the BGM220 Explorer Kit easily via I2C-Bus. Adafruit NeoTrellis includes a JST-PH 4-pin connector that provides two I2C wires (SDA and SCL), 3v3, and GND. To connect, you should solder these pins of the JST-PH 4-pin connector with the I2C Bus on the BMG220 as in the picture below:
+Adafruit NeoTrellis can connect with the BGM220 Explorer Kit easily via Qwiic connector. Adafruit NeoTrellis includes a JST-PH 4-pin connector that provides two I2C wires (SDA and SCL), 3v3, and GND. You can use [the JST PH to JST SH (qwiic) Cable](https://www.adafruit.com/product/4424) to connect the Adafruit Neotrellis to the BGM220 as in the picture below:
 
 ![connection](image/connection.png)
 

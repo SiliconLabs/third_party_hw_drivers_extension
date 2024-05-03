@@ -1475,8 +1475,8 @@
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="app/example/adafruit_neotrellis_keypad_atsamd09/adafruit_neotrellis_keypad_atsamd09.slcp"/>
     <properties key="readmeFiles" value="app/documentation/example/adafruit_neotrellis_keypad_atsamd09/README.md"/>
-    <properties key="boardCompatibility" value="brd2601b brd4314a brd2704a brd4108a com.silabs.board.none"/>
-    <properties key="partCompatibility" value=".*bgm22.* .*efr32bg22.* .*mgm24.*"/>
+    <properties key="boardCompatibility" value="brd2601b brd4314a brd2704a brd2703a brd4108a brd2602a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*bgm22.* .*efr32bg22.* .*mgm24.* .*efr32[bm]g24.* .*efr32[x]g24.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
@@ -1499,4 +1499,34 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
    </descriptors>
+  <descriptors name="mikroe_uwb_dwm1000" label="Third Party Hardware Drivers - DWM1000 - UWB Click (Mikroe)"
+               description="This project shows the implementation of the radio transciever for DWM1000 - UWB Click (Mikroe)">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_uwb_dwm1000/mikroe_uwb_dwm1000.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_uwb_dwm1000/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+    </descriptors>
+  <descriptors name="mikroe_pir_pl_n823_01" label="Third Party Hardware Drivers - PL-N823-01 - PIR Click (Mikroe)"
+               description="This example project shows an example for Mikroe PIR Click board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_pir_pl_n823_01/mikroe_pir_pl_n823_01.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_pir_pl_n823_01/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
 </model:MDescriptors>

@@ -1,0 +1,52 @@
+id: uwb_dwm1000
+package: third_party_hw_drivers
+label: DWM1000 - UWB Click (Mikroe)
+description: >
+  Driver for the Mikroe DWM1000 UWB Radio.
+category: Wireless Connectivity
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: status
+  - name: udelay
+  - name: mikroe_peripheral_driver_spi
+
+provides:
+  - name: mikroe_dwm1000
+
+template_contribution:
+  - name: component_catalog
+    value: mikroe_dwm1000
+
+config_file:
+  - path: public/mikroe/uwb_dwm1000/config/brd2703a/mikroe_uwb_dwm1000_config.h
+    file_id: driver_config_dwm1000
+    condition: [brd2703a]
+  - path: public/mikroe/uwb_dwm1000/config/brd4108a/mikroe_uwb_dwm1000_config.h
+    file_id: driver_config_dwm1000
+    condition: [brd4108a]
+  - path: public/mikroe/uwb_dwm1000/config/brd4314a/mikroe_uwb_dwm1000_config.h
+    file_id: driver_config_dwm1000
+    condition: [brd4314a]
+  - path: public/mikroe/uwb_dwm1000/config/other/mikroe_uwb_dwm1000_config.h
+    file_id: driver_config_dwm1000
+    unless: [brd2703a, brd4108a, brd4314a]
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/mikrosdk_click_v2/clicks/uwb/lib_uwb/include
+    file_list:
+      - path: uwb.h
+      - path: spi_specifics.h
+  - path: public/mikroe/uwb_dwm1000/inc
+    file_list:
+      - path: mikroe_uwb_dwm1000.h
+
+source:
+  - path: thirdparty/mikrosdk_click_v2/clicks/uwb/lib_uwb/src/uwb.c
+  - path: public/mikroe/uwb_dwm1000/src/mikroe_uwb_dwm1000.c
