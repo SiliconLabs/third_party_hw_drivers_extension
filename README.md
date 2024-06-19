@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v2.0.1-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v2.0.2-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
@@ -98,8 +98,9 @@ A full list of all drivers in this repository is defined below:
 | particulate_matter_sensor_sps30 | [Click Here](./driver/public/silabs/particulate_matter_sensor_sps30) | [Click Here](./app/example/sparkfun_particulate_matter_sensor_sps30) | [Click Here](./app/documentation/example/sparkfun_particulate_matter_sensor_sps30) |
 | adafruit_neotrellis_keypad_atsamd09 | [Click Here](./driver/public/silabs/adafruit_neotrellis_keypad_atsamd09) | [Click Here](./app/example/adafruit_neotrellis_keypad_atsamd09) | [Click Here](./app/documentation/example/adafruit_neotrellis_keypad_atsamd09) |
 | hvac_bundle_scd41_sps30 | [Click Here](./driver/public/mikroe/hvac_scd41) <br> [Click Here](./driver/public/silabs/particulate_matter_sensor_sps30)| [Click Here](./app/example/mikroe_hvac_bundle_scd41_sps30) | [Click Here](./app/documentation/example/mikroe_hvac_bundle_scd41_sps30) |
-| mikroe_uwb_dwm1000 | [Click Here](./driver/public/mikroe/uwb_dwm1000) | [Click Here](./app/example/mikroe_uwb_dwm1000) | [Click Here](./app/documentation/example/mikroe_uwb_dwm1000) |
 | mikroe_pir_pl_n823_01 | [Click Here](./driver/public/mikroe/pir_pl_n823_01) | [Click Here](./app/example/mikroe_pir_pl_n823_01) | [Click Here](./app/documentation/example/mikroe_pir_pl_n823_01) |
+| mikroe_uwb_dwm1000 | [Click Here](./driver/public/mikroe/uwb_dwm1000) | [Click Here](./app/example/mikroe_uwb_dwm1000) | [Click Here](./app/documentation/example/mikroe_uwb_dwm1000) |
+| mikroe_uwb2_dwm3000 | [Click Here](./driver/public/silabs/uwb2_dwm3000) | [Click Here](./app/example/mikroe_uwb2_dwm3000) | [Click Here](./app/documentation/example/mikroe_uwb2_dwm3000) |
 ## Requirements ##
 
 - Desired Silicon Labs Starter Kit

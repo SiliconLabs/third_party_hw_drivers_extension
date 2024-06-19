@@ -1,0 +1,80 @@
+project_name: mikroe_uwb2_dwm3000
+package: platform
+label: Third Party Hardware Drivers - DWM3000 - UWB2 Click (Mikroe)
+description: This example project shows an example for DWM3000 - UWB2 Click (Mikroe).
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../../documentation/example/mikroe_uwb2_dwm3000/README.md
+
+source:
+- path: ../app_files/app.c
+  directory: app_files
+- path: ../app_files/config_options.c
+  directory: app_files
+- path: ../app_files/shared_functions.c
+  directory: app_files
+- path: ../main.c
+
+include:
+- path: ../app_files
+  file_list:
+    - path: app.h
+    - path: config_options.h
+    - path: shared_defines.h
+    - path: shared_functions.h
+  directory: app_files
+
+component:
+- id: device_init
+- id: sl_system
+- id: component_catalog
+- id: app_assert
+- id: app_log
+- instance: [vcom]
+  id: iostream_eusart
+- id: mikroe_uwb2_dwm3000
+  from: third_party_hw_drivers
+
+toolchain_settings:
+  - option: linkerfile
+    value: linkerfile.ld
+
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 2.0.2
+
+other_file:
+  - path: ../linker_files/brd2703a/linkerfile.ld
+    condition: [brd2703a]
+  - path: ../linker_files/brd4108a/linkerfile.ld
+    condition: [brd4108a]
+  - path: ../linker_files/brd4314a/linkerfile.ld
+    condition: [brd4314a]
+  - path: ../../../documentation/example/mikroe_uwb2_dwm3000/image/create_example.png
+    directory: image
+  - path: ../../../documentation/example/mikroe_uwb2_dwm3000/image/hardware_connection.png
+    directory: image
+  - path: ../../../documentation/example/mikroe_uwb2_dwm3000/image/custom_linker.png
+    directory: image
+  - path: ../../../documentation/example/mikroe_uwb2_dwm3000/image/tx_log.png
+    directory: image
+  - path: ../../../documentation/example/mikroe_uwb2_dwm3000/image/rx_log.png
+    directory: image
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

@@ -2,7 +2,7 @@ id: third_party_hw_drivers
 label: Third Party Hardware Drivers
 description: >
   Third Party Hardware Driver extension for the Gecko SDK Suite
-version: 2.0.1
+version: 2.0.2
 sdk:
   id: gecko_sdk
   version: 4.4.0

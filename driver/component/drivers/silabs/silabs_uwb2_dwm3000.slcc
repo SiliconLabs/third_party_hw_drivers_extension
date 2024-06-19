@@ -1,0 +1,94 @@
+id: mikroe_uwb2_dwm3000
+package: third_party_hw_drivers
+label: DWM3000 - UWB 2 Click (Mikroe)
+description: Driver for the Mikroe DWM3000 UWB 2 Click.
+category: Wireless Connectivity
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+
+requires:
+  - name: status
+  - name: udelay
+  - name: spidrv_core
+  - name: sleeptimer
+  - name: gpiointerrupt
+
+provides:
+  - name: mikroe_uwb2_dwm3000
+
+template_contribution:
+  - name: component_catalog
+    value: mikroe_uwb2_dwm3000
+
+config_file:
+  - path: public/silabs/uwb2_dwm3000/config/brd2703a/uwb2_dwm3000_config.h
+    file_id: driver_config_dwm3000
+    condition: [brd2703a]
+  - path: public/silabs/uwb2_dwm3000/config/brd4108a/uwb2_dwm3000_config.h
+    file_id: driver_config_dwm3000
+    condition: [brd4108a]
+  - path: public/silabs/uwb2_dwm3000/config/brd4314a/uwb2_dwm3000_config.h
+    file_id: driver_config_dwm3000
+    condition: [brd4314a]
+  - path: public/silabs/uwb2_dwm3000/config/other/uwb2_dwm3000_config.h
+    file_id: driver_config_dwm3000
+    unless: [brd4314a, brd4108a, brd2703a]
+
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: thirdparty/decawave/uwb2_dwm3000/inc
+    file_list:
+      - path: deca_device_api.h
+      - path: deca_interface.h
+      - path: deca_types.h
+      - path: deca_version.h
+      - path: common.h
+      - path: deca_dbg.h
+      - path: error.h
+      - path: rtls_interface.h
+      - path: uwb_frames.h
+      - path: version.h
+  - path: public/silabs/uwb2_dwm3000/platform/deca_probe
+    file_list:
+      - path: deca_probe_interface.h
+  - path: public/silabs/uwb2_dwm3000/platform/deca_spi
+    file_list:
+      - path: deca_spi.h
+  - path: public/silabs/uwb2_dwm3000/platform/port
+    file_list:
+      - path: port_hal.h
+      - path: port.h     
+source:
+  - path: public/silabs/uwb2_dwm3000/platform/deca_probe/deca_probe_interface.c
+  - path: public/silabs/uwb2_dwm3000/platform/deca_sleep/deca_sleep.c
+  - path: public/silabs/uwb2_dwm3000/platform/deca_spi/deca_spi.c
+  - path: public/silabs/uwb2_dwm3000/platform/port/port_dw3000.c
+
+toolchain_settings:
+  - option: gcc_linker_option
+    value: "-Wl,--whole-archive ../libdwt_uwb_driver-m33-hfp-6.0.7.a -Wl,--no-whole-archive"
+    condition:
+    - "toolchain_gcc"
+    - "cortexm33"
+  - option: gcc_linker_option
+    value: "-Wl,--whole-archive ../libdwt_uwb_driver-m4-hfp-6.0.7.a -Wl,--no-whole-archive"
+    condition:
+    - "toolchain_gcc"
+    - "cortexm4"
+other_file:
+  - path: "thirdparty/decawave/uwb2_dwm3000/lib/libdwt_uwb_driver-m33-hfp-6.0.7.a"
+    condition:
+    - "toolchain_gcc"
+    - "cortexm33"
+    project:
+      transfer_ownership: true
+  - path: "thirdparty/decawave/uwb2_dwm3000/lib/libdwt_uwb_driver-m4-hfp-6.0.7.a"
+    condition:
+    - "toolchain_gcc"
+    - "cortexm4"
+    project:
+      transfer_ownership: true

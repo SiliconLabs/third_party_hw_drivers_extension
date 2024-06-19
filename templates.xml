@@ -1529,4 +1529,19 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
   </descriptors>
+  <descriptors name="mikroe_uwb2_dwm3000" label="Third Party Hardware Drivers - DWM3000 - UWB 2 Click (Mikroe)"
+               description="This example project shows an example for DWM3000 - UWB 2 Click (Mikroe).">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_uwb2_dwm3000/SimplicityStudio/mikroe_uwb2_dwm3000.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_uwb2_dwm3000/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
 </model:MDescriptors>

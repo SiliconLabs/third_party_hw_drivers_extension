@@ -45,7 +45,7 @@
 // -----------------------------------------------------------------------------
 //                          Static Variables Declarations
 // -----------------------------------------------------------------------------
-static uint8_t sensor_data_index;
+static uint8_t sensor_data_index = 0;
 static uint8_t sensor_data[MEASUREMENT_MAX_LEN] = { 0 };
 static uint8_t *dev_name;
 static bool b_encrypt_enable;
@@ -73,6 +73,8 @@ static uint8_t get_byte_number(uint8_t sens);
 static uint16_t get_factor(uint8_t sens);
 
 static void sort_sensor_data(void);
+
+static void remove_oldest_sensor_data(void);
 
 // -----------------------------------------------------------------------------
 //                          Public Function Definitions
@@ -151,6 +153,7 @@ void bthome_v2_build_packet(void)
   uint8_t address_type;
   // dev_name length
   uint8_t dn_length;
+  uint8_t dn_flag = COMPLETE_NAME;
   // build encrypt
   uint8_t ciphertext[MEASUREMENT_MAX_LEN];
   uint8_t encryption_mic[MIC_LEN];
@@ -175,30 +178,34 @@ void bthome_v2_build_packet(void)
 
   // local name
   if (!sl_str_is_empty((const char *)dev_name)) {
-    // +1(flag Complete local name)
-    dn_length = sl_strlen((char *)dev_name) + 1;
+    // +1(flag name)+1(name length)
+    dn_length = sl_strlen((char *)dev_name) + 2;
 
     if (b_encrypt_enable) {
       // deal with the device name to make sure the adv length <= 31
-      // 18=3(FLAG)+1(device name length bit)+1(COMPLETE_NAME)+1(SERVICE_DATA)
-      //    +2(UUID)+1(ENCRYPT)+4(nonce)+4(mic)+1(serviceData length bit)
-      if (dn_length > BLE_ADVERT_MAX_LEN - sensor_data_index - 18) {
-        dn_length = BLE_ADVERT_MAX_LEN - sensor_data_index - 18;
+      // 16=3(FLAG)+2(UUID)+1(ENCRYPT)
+      //    +4(nonce)+4(mic)+1(serviceData length bit)
+      if (dn_length > BLE_ADVERT_MAX_LEN - sensor_data_index - 16) {
+        dn_length = BLE_ADVERT_MAX_LEN - sensor_data_index - 16;
+        dn_flag = SHORT_NAME;
       }
     } else {
-      // 10=3(FLAG)+1(device name length bit)+1(COMPLETE_NAME)
-      //    +1(SERVICE_DATA)+2(UUID)+1(ENCRYPT)+1(serviceData length bit)
-      if (dn_length > BLE_ADVERT_MAX_LEN - sensor_data_index - 10) {
-        dn_length = BLE_ADVERT_MAX_LEN - sensor_data_index - 10;
+      // 8=3(FLAG)+1(SERVICE_DATA)+2(UUID)
+      //    +1(ENCRYPT)+1(serviceData length bit)
+      if (dn_length > BLE_ADVERT_MAX_LEN - sensor_data_index - 8) {
+        dn_length = BLE_ADVERT_MAX_LEN - sensor_data_index - 8;
+        dn_flag = SHORT_NAME;
       }
     }
 
     // Add the length of the Name
     // Complete_Name: Complete local name -- Short_Name: Shortened Name
-    payload_data[payload_count++] = dn_length;
-    payload_data[payload_count++] = COMPLETE_NAME;
-    for (uint8_t i = 0; i < (dn_length - 1); i++) {
-      payload_data[payload_count++] = dev_name[i];
+    if (dn_length > 2) {
+      payload_data[payload_count++] = dn_length - 1;
+      payload_data[payload_count++] = dn_flag;
+      for (uint8_t i = 0; i < (dn_length - 2); i++) {
+        payload_data[payload_count++] = dev_name[i];
+      }
     }
   }
 
@@ -327,6 +334,10 @@ void bthome_v2_add_measurement_state(uint8_t sensor_id,
                                      uint8_t state,
                                      uint8_t steps)
 {
+  if (sensor_id == EVENT_BUTTON) {
+    steps = 0;
+  }
+
   if ((sensor_data_index + 2 + ((steps > 0) ? 1 : 0))
       <= (MEASUREMENT_MAX_LEN - (b_encrypt_enable ? 8 : 0))) {
     sensor_data[sensor_data_index] = sensor_id & 0xff;
@@ -345,6 +356,7 @@ void bthome_v2_add_measurement_state(uint8_t sensor_id,
     last_object_id = sensor_id;
   } else {
     bthome_v2_send_packet();
+    remove_oldest_sensor_data();
     bthome_v2_add_measurement_state(sensor_id, state, steps);
   }
 }
@@ -360,8 +372,7 @@ void bthome_v2_add_measurement(uint8_t sensor_id, uint64_t value)
       <= (MEASUREMENT_MAX_LEN - (b_encrypt_enable ? 8 : 0))) {
     sensor_data[sensor_data_index] = sensor_id & 0xff;
     sensor_data_index++;
-    for (uint8_t i = 0; i < size; i++)
-    {
+    for (uint8_t i = 0; i < size; i++) {
       sensor_data[sensor_data_index] =
         (uint8_t)(((value * factor) >> (8 * i)) & 0xff);
       sensor_data_index++;
@@ -374,6 +385,7 @@ void bthome_v2_add_measurement(uint8_t sensor_id, uint64_t value)
     last_object_id = sensor_id;
   } else {
     bthome_v2_send_packet();
+    remove_oldest_sensor_data();
     bthome_v2_add_measurement(sensor_id, value);
   }
 }
@@ -390,8 +402,7 @@ void bthome_v2_add_measurement_float(uint8_t sensor_id, float value)
     uint64_t value2 = (uint64_t)(value * factor);
     sensor_data[sensor_data_index] = sensor_id & 0xff;
     sensor_data_index++;
-    for (uint8_t i = 0; i < size; i++)
-    {
+    for (uint8_t i = 0; i < size; i++) {
       sensor_data[sensor_data_index] = (uint8_t)((value2 >> (8 * i)) & 0xff);
       sensor_data_index++;
     }
@@ -403,6 +414,7 @@ void bthome_v2_add_measurement_float(uint8_t sensor_id, float value)
     last_object_id = sensor_id;
   } else {
     bthome_v2_send_packet();
+    remove_oldest_sensor_data();
     bthome_v2_add_measurement_float(sensor_id, value);
   }
 }
@@ -647,4 +659,17 @@ static void sort_sensor_data(void)
       j = j + data_block[i].data_len + 1;
     }
   }
+}
+
+/***************************************************************************//**
+ * Sort the sensor data.
+ ******************************************************************************/
+static void remove_oldest_sensor_data(void)
+{
+  uint8_t remove_length = get_byte_number(sensor_data[0]) + 1;
+
+  for (uint8_t i = 0; i < sensor_data_index - remove_length; i++) {
+    sensor_data[i] = sensor_data[i + remove_length];
+  }
+  sensor_data_index = sensor_data_index - remove_length;
 }

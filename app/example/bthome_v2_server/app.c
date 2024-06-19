@@ -84,7 +84,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
           == SIGNAL_LOG_DATA) {
         uint8_t mac[6];
         uint8_t device_count;
-        bthome_v2_server_sensor_data_t object[5];
+        bthome_v2_server_sensor_data_t object[10];
         uint8_t object_count;
         bool encrypted;
         bool key_available;
@@ -113,7 +113,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
           object_count = 0;
           bthome_v2_server_sensor_data_read(mac,
                                             object,
-                                            5,
+                                            10,
                                             &object_count,
                                             NULL);
 
