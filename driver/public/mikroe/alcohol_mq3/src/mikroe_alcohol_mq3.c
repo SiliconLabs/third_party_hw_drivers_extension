@@ -39,7 +39,6 @@
 
 #include <stddef.h>
 #include "mikroe_alcohol_mq3.h"
-#include "third_party_hw_drivers_helpers.h"
 #include "mikroe_alcohol_mq3_config.h"
 #include "alcohol.h"
 
@@ -51,14 +50,12 @@ void mikroe_mq3_setup(void)
   alcohol_cfg_setup(&alcohol_cfg);
 }
 
-sl_status_t mikroe_mq3_init(adc_t *handle)
+sl_status_t mikroe_mq3_init(mikroe_adc_handle_t handle)
 {
   if (NULL == handle) {
     return SL_STATUS_INVALID_HANDLE;
   }
   alcohol.adc.handle = handle;
-
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
   alcohol_cfg_setup(&alcohol_cfg);
 
@@ -67,9 +64,11 @@ sl_status_t mikroe_mq3_init(adc_t *handle)
                                      MQ3_ANALOG_OUTPUT_PIN);
 #endif
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(alcohol_init(&alcohol, &alcohol_cfg));
+  if (alcohol_init(&alcohol, &alcohol_cfg) != ALCOHOL_OK) {
+    return SL_STATUS_INITIALIZATION;
+  }
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }
 
 sl_status_t mikroe_mq3_read_an_pin_value(uint16_t *data_out)
@@ -77,12 +76,12 @@ sl_status_t mikroe_mq3_read_an_pin_value(uint16_t *data_out)
   if (NULL == data_out) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(alcohol_read_an_pin_value(&alcohol,
-                                                            data_out));
+  if (alcohol_read_an_pin_value(&alcohol, data_out) != ALCOHOL_OK) {
+    return SL_STATUS_FAIL;
+  }
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }
 
 sl_status_t mikroe_mq3_read_an_pin_voltage(float *data_out)
@@ -90,10 +89,10 @@ sl_status_t mikroe_mq3_read_an_pin_voltage(float *data_out)
   if (NULL == data_out) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(alcohol_read_an_pin_voltage(&alcohol,
-                                                              data_out));
+  if (alcohol_read_an_pin_voltage(&alcohol, data_out) != ALCOHOL_OK) {
+    return SL_STATUS_FAIL;
+  }
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }

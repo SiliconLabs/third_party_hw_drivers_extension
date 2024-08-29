@@ -37,7 +37,6 @@
  *
  ******************************************************************************/
 
-#include "third_party_hw_drivers_helpers.h"
 #include "mikroe_ssd1306_config.h"
 #include "mikroe_ssd1306.h"
 
@@ -50,13 +49,11 @@ static oledw_t oledw;
 static oledw_cfg_t oledw_cfg;
 static bool initialized = false;
 
-sl_status_t mikroe_ssd1306_init(SPIDRV_Handle_t spi_instance)
+sl_status_t mikroe_ssd1306_init(mikroe_spi_handle_t spi_instance)
 {
   if (NULL == spi_instance) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
   // Configure default spi instance
   oledw.spi.handle = spi_instance;
@@ -73,13 +70,23 @@ sl_status_t mikroe_ssd1306_init(SPIDRV_Handle_t spi_instance)
   oledw_cfg.rst = hal_gpio_pin_name(SSD1306_RST_PORT, SSD1306_RST_PIN);
 #endif
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(oledw_init(&oledw, &oledw_cfg));
+#if defined(SSD1306_CS_PORT) && defined(SSD1306_CS_PIN)
+  oledw_cfg.cs = hal_gpio_pin_name(SSD1306_CS_PORT, SSD1306_CS_PIN);
+#endif
+
+#if (MIKROE_SPI_SSD1306_UC == 1)
+  oledw_cfg.spi_speed = MIKROE_SPI_SSD1306_BITRATE;
+#endif
+
+  if (oledw_init(&oledw, &oledw_cfg) != OLEDW_OK) {
+    return SL_STATUS_INITIALIZATION;
+  }
 
   initialized = true;
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }
 
-sl_status_t mikroe_ssd1306_set_spi_instance(SPIDRV_Handle_t spi_instance)
+sl_status_t mikroe_ssd1306_set_spi_instance(mikroe_spi_handle_t spi_instance)
 {
   if (!initialized) {
     return SL_STATUS_NOT_INITIALIZED;
@@ -96,14 +103,14 @@ sl_status_t mikroe_ssd1306_set_spi_instance(SPIDRV_Handle_t spi_instance)
 sl_status_t mikroe_ssd1306_send(oledw_data_t tx_data,
                                 oledw_data_mode_t data_mode)
 {
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
-
   if (!initialized) {
     return SL_STATUS_NOT_INITIALIZED;
   }
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(oledw_send(&oledw, tx_data, data_mode));
+  if (oledw_send(&oledw, tx_data, data_mode) != OLEDW_OK) {
+    return SL_STATUS_FAIL;
+  }
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }
 
 sl_status_t mikroe_ssd1306_default_cfg(void)
@@ -268,17 +275,17 @@ sl_status_t mikroe_ssd1306_draw(const uint8_t *data)
   static const uint8_t command_table[] = {
 #ifdef SSD1306_USE_PAGE_ADDRESSING_MODE
 
-    /* Set Lower Column Start Address for Page Addressing Mode */
+    // Set Lower Column Start Address for Page Addressing Mode
     0x00,
 
-    /* Set Higher Column Start Address for Page Addressing Mode */
+    // Set Higher Column Start Address for Page Addressing Mode
     0x12
 #else
 
-    /* Set page start, end address + set page pointer to page start address */
+    // Set page start, end address + set page pointer to page start address
     OLEDW_PAGEADDR, 0, (SSD1306_NUM_PAGES - 1),
 
-    /* Set page start, end address + set page pointer to page start address */
+    // Set page start, end address + set page pointer to page start address
     OLEDW_COLUMNADDR, 0, (SSD1306_DISPLAY_WIDTH - 1),
 #endif
   };
@@ -289,29 +296,31 @@ sl_status_t mikroe_ssd1306_draw(const uint8_t *data)
 
 #ifdef SSD1306_USE_PAGE_ADDRESSING_MODE
 
-  /* Get start address to draw from */
+  // Get start address to draw from
   for (i = 0; i < SSD1306_NUM_PAGES; i++) {
-    /* Send update command and first line address */
-    /* Set the current RAM page address. */
+    /**
+     * Send update command and first line address
+     * Set the current RAM page address.
+     */
     oledw_send(&oledw, 0xB0 + i, OLEDW_COMMAND);
 
     for (uint16_t j = 0; j < sizeof(command_table); j++) {
       oledw_send(&oledw, command_table[j], OLEDW_COMMAND);
     }
 
-    /* Send pixels for this page */
+    // Send pixels for this page
     for (uint16_t j = 0; j < MIKROE_SSD1306_LCDWIDTH; j++) {
       oledw_send(&oledw, *data++, OLEDW_DATA);
     }
   }
 #else
 
-  /* Send commands to prepare data transfer from frame buffer */
+  // Send commands to prepare data transfer from frame buffer
   for (i = 0; i < sizeof(command_table); i++) {
     oledw_send(&oledw, command_table[i], OLEDW_COMMAND);
   }
 
-  /*Send frame buffer data*/
+  // Send frame buffer data
   for (i = 0; i < (SSD1306_DISPLAY_WIDTH * SSD1306_NUM_PAGES); i++) {
     oledw_send(&oledw, *data++, OLEDW_DATA);
   }

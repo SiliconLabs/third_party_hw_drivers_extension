@@ -44,17 +44,11 @@
 extern "C" {
 #endif
 
-#include "em_cmu.h"
-#include "em_gpio.h"
-
-#if defined(_SILICON_LABS_32B_SERIES_1)
-#include "em_adc.h"
-#elif defined(_SILICON_LABS_32B_SERIES_2)
-#include "em_iadc.h"
-#endif
-
+#include <stdint.h>
 #include "hal_gpio.h"
 #include "drv_name.h"
+
+typedef const void *mikroe_adc_handle_t; ///< Created ADC handle type
 
 typedef enum
 {
@@ -78,7 +72,7 @@ typedef enum
   ANALOG_IN_RESOLUTION_14_BIT,
   ANALOG_IN_RESOLUTION_16_BIT,
 
-  /*!< Default resolution. */
+  ///< Default resolution
   ANALOG_IN_RESOLUTION_DEFAULT = ANALOG_IN_RESOLUTION_12_BIT
 } analog_in_resolution_t;
 
@@ -89,13 +83,10 @@ typedef struct
   analog_in_vref_t vref_input;
   float vref_value;
 } analog_in_config_t;
+
 typedef struct
 {
-#if defined(_SILICON_LABS_32B_SERIES_1)
-  ADC_TypeDef *handle;
-#elif defined(_SILICON_LABS_32B_SERIES_2)
-  IADC_TypeDef *handle;
-#endif
+  mikroe_adc_handle_t handle;
   analog_in_config_t config;
 } analog_in_t;
 

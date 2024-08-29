@@ -8,6 +8,11 @@ quality: evaluation
 root_path: driver
 requires:
   - name: i2cspm
+    condition: [device_series_1]
+  - name: i2cspm
+    condition: [device_series_2]
+  - name: sl_i2c
+    condition: [device_si91x]
 recommends:
   - id: i2cspm
     instance: [mikroe]
@@ -25,3 +30,9 @@ include:
       - path: drv_i2c_master.h
 source:
   - path: peripheral_drivers/mikroe/src/drv_i2c_master.c
+    condition: [device_series_1]
+  - path: peripheral_drivers/mikroe/src/drv_i2c_master.c
+    condition: [device_series_2]
+  - path: peripheral_drivers/mikroe/src/drv_i2c_master_si91x.c
+    condition: [device_si91x]
+

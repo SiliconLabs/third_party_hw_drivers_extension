@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file ssd1306.h
+ * @file micro_oled_ssd1306.h
  * @brief SSD1306 interface
  *******************************************************************************
  * # License
@@ -33,19 +33,19 @@
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
 
-#ifndef SSD1306_H
-#define SSD1306_H
+#ifndef MICRO_OLED_SSD1306_H
+#define MICRO_OLED_SSD1306_H
 
 #include <stdbool.h>
 #include <stdint.h>
 #include "sl_status.h"
-#include "sl_i2cspm.h"
+#include "drv_i2c_master.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Fundamental Command */
+// Fundamental Command
 #define SSD1306_SETCONTRAST                           0x81
 #define SSD1306_DISPLAYALLON_RESUME                   0xA4
 #define SSD1306_DISPLAYALLON                          0xA5
@@ -54,7 +54,7 @@ extern "C" {
 #define SSD1306_DISPLAYOFF                            0xAE
 #define SSD1306_DISPLAYON                             0xAF
 
-/* Scrolling Command */
+// Scrolling Command
 #define SSD1306_RIGHT_HORIZONTAL_SCROLL               0x26
 #define SSD1306_LEFT_HORIZONTAL_SCROLL                0x27
 #define SSD1306_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL  0x29
@@ -63,7 +63,7 @@ extern "C" {
 #define SSD1306_ACTIVATE_SCROLL                       0x2F
 #define SSD1306_SET_VERTICAL_SCROLL_AREA              0xA3
 
-/* Addressing Setting Command */
+// Addressing Setting Command
 #define SSD1306_SETLOWCOLUMN                          0x00
 #define SSD1306_SETHIGHCOLUMN                         0x10
 #define SSD1306_MEMORYMODE                            0x20
@@ -75,7 +75,7 @@ extern "C" {
 #define SSD1306_VERTICAL_ADDRESSING_MODE              0x01
 #define SSD1306_PAGE_ADDRESSING_MODE                  0x02
 
-/* Hardware Configuration Command */
+// Hardware Configuration Command
 #define SSD1306_SETSTARTLINE                          0x40
 #define SSD1306_SEGREMAP                              0xA0
 #define SSD1306_SETSEGMENTREMAP                       0xA1
@@ -109,11 +109,26 @@ typedef struct ssd1306_t {
  * @brief
  *   Initialization function for the ssd1306 device driver.
  *
+ * @param[in] i2cspm_instance
+ *   I2C instance
+ *
  * @return
  *   If all operations completed sucessfully SL_STATUS_OK is returned. On
  *   failure a different status code is returned specifying the error.
  *****************************************************************************/
-sl_status_t ssd1306_init(sl_i2cspm_t *i2c_handle);
+sl_status_t ssd1306_init(mikroe_i2c_handle_t i2cspm_instance);
+
+/***************************************************************************//**
+ * @brief
+ *    This function sets the SPI instance used by platform functions
+ *
+ * @param[in] i2cspm_instance
+ *    I2C instance
+ *
+ * @return
+ *    SL_STATUS_OK if there are no errors.
+ ******************************************************************************/
+sl_status_t ssd1306_set_i2csmp_instance(mikroe_i2c_handle_t i2cspm_instance);
 
 /**************************************************************************//**
  * @brief
@@ -259,4 +274,4 @@ sl_status_t ssd1306_enable_display(bool on);
 
 /** @} */
 
-#endif
+#endif // MICRO_OLED_SSD1306_H

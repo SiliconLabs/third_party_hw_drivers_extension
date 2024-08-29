@@ -1,0 +1,33 @@
+id: sparkfun_gnss_max_m10s
+package: third_party_hw_drivers
+label: MAX-M10S - GNSS Receiver Breakout - I2C
+description: >
+  Driver for the Sparkfun GNSS Receiver Breakout board, this board relies on the MAX-M10S IC using I2C interface.
+category: Wireless Connectivity
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: mikroe_peripheral_driver_i2c
+  - name: sleeptimer
+  - name: sleeptimer_si91x
+    condition: [device_si91x]
+provides:
+  - name: sparkfun_gnss_max_m10s
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_gnss_max_m10s
+include:
+  - path: public/silabs/gnss_max_m10s/inc
+    file_list:
+      - path: gnss_max_m10s_driver.h
+      - path: gnss_max_m10s_micro_nmea.h
+      - path: gnss_max_m10s_nmea_struct.h
+      - path: gnss_max_m10s_nmea.h
+      - path: gnss_max_m10s_ubx_struct.h
+      - path: gnss_max_m10s_ubx.h
+source:
+  - path: public/silabs/gnss_max_m10s/src/gnss_max_m10s_driver.c
+  - path: public/silabs/gnss_max_m10s/src/gnss_max_m10s_micro_nmea.c
+  - path: public/silabs/gnss_max_m10s/src/gnss_max_m10s_nmea.c
+  - path: public/silabs/gnss_max_m10s/src/gnss_max_m10s_ubx.c

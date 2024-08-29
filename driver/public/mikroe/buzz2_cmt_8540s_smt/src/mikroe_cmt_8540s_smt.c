@@ -37,21 +37,18 @@
  *
  ******************************************************************************/
 
-#include "stddef.h"
-#include "third_party_hw_drivers_helpers.h"
+#include <stddef.h>
 #include "mikroe_cmt_8540s_smt.h"
 #include "buzz2.h"
 
 static buzz2_t buzz2;
 static buzz2_cfg_t buzz2_cfg;
 
-sl_status_t mikroe_cmt_8540s_smt_init(sl_pwm_instance_t *pwm_instance)
+sl_status_t mikroe_cmt_8540s_smt_init(mikroe_pwm_handle_t pwm_instance)
 {
   if (NULL == pwm_instance) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
   // Configure default i2csmp instance
   buzz2.pwm.handle = pwm_instance;
@@ -59,13 +56,15 @@ sl_status_t mikroe_cmt_8540s_smt_init(sl_pwm_instance_t *pwm_instance)
   // Call basic setup functions
   buzz2_cfg_setup(&buzz2_cfg);
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(buzz2_init(&buzz2, &buzz2_cfg));
+  if (buzz2_init(&buzz2, &buzz2_cfg) != PWM_SUCCESS) {
+    return SL_STATUS_INITIALIZATION;
+  }
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  return SL_STATUS_OK;
 }
 
 sl_status_t mikroe_cmt_8540s_smt_set_pwm_instance(
-  sl_pwm_instance_t *pwm_instance)
+  mikroe_pwm_handle_t pwm_instance)
 {
   if (NULL == pwm_instance) {
     return SL_STATUS_INVALID_PARAMETER;

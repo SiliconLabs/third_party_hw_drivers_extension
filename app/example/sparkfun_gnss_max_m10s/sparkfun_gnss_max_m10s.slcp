@@ -1,0 +1,65 @@
+project_name: sparkfun_gnss_max_m10s
+package: platform
+label: Third Party Hardware Drivers - MAX-M10S - GNSS Receiver Breakout (Sparkfun)
+description: |
+  This example project shows an example for Sparkfun MAX-M10S - GNSS Receiver Breakout board driver integration.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/sparkfun_gnss_max_m10s/README.md
+
+source:
+- path: app.c
+- path: main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+
+component:
+- id: sl_system
+- id: device_init
+- id: sleeptimer
+- id: iostream_usart
+  instance: [vcom]
+- id: app_log
+- id: sparkfun_gnss_max_m10s
+  from: third_party_hw_drivers
+- id: i2cspm
+  instance: [qwiic]
+
+define:
+- name: DEBUG_EFM
+
+toolchain_settings:
+  - option: gcc_linker_option
+    value: "-u _printf_float"
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 3.0.0
+
+other_file:
+  - path: ../../documentation/example/sparkfun_gnss_max_m10s/image/hw_connection.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_gnss_max_m10s/image/create_example_1.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_gnss_max_m10s/image/create_example_2.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_gnss_max_m10s/image/log.png
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

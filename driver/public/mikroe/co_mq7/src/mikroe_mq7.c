@@ -37,11 +37,18 @@
  *
  ******************************************************************************/
 
+#include <stddef.h>
+#include "em_device.h"
 #include "sl_status.h"
-#include "stddef.h"
 #include "third_party_hw_drivers_helpers.h"
 #include "co.h"
 #include "mikroe_mq7_config.h"
+
+#if defined(_SILICON_LABS_32B_SERIES_1)
+#include "em_adc.h"
+#elif defined(_SILICON_LABS_32B_SERIES_2)
+#include "em_iadc.h"
+#endif
 
 static co_t co;
 static co_cfg_t co_cfg;

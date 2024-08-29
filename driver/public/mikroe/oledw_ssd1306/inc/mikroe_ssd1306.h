@@ -41,7 +41,6 @@
 #define MIKROE_SSD1306_H_
 
 #include "sl_status.h"
-#include "spidrv.h"
 #include "oledw.h"
 
 #ifdef __cplusplus
@@ -142,7 +141,7 @@ extern "C" {
  *    SL_STATUS_OK Successful initialization.
  *    SL_STATUS_FAIL Initialization failed.
  ******************************************************************************/
-sl_status_t mikroe_ssd1306_init(SPIDRV_Handle_t spi_instance);
+sl_status_t mikroe_ssd1306_init(mikroe_spi_handle_t spi_instance);
 
 /***************************************************************************//**
  * @brief
@@ -155,7 +154,7 @@ sl_status_t mikroe_ssd1306_init(SPIDRV_Handle_t spi_instance);
  *    SL_STATUS_OK if there are no errors
  *    SL_STATUS_INVALID_PARAMETER if spi_instance is null
  ******************************************************************************/
-sl_status_t mikroe_ssd1306_set_spi_instance(SPIDRV_Handle_t spi_instance);
+sl_status_t mikroe_ssd1306_set_spi_instance(mikroe_spi_handle_t spi_instance);
 
 /***************************************************************************//**
  * @brief
@@ -307,4 +306,4 @@ sl_status_t mikroe_ssd1306_stop_scroll(void);
 
 /** @} (end addtogroup ssd1306) */
 
-#endif /* MIKROE_SSD1306_H_ */
+#endif // MIKROE_SSD1306_H_

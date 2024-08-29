@@ -40,8 +40,9 @@
 #ifndef MIKROE_PL_N823_01_H_
 #define MIKROE_PL_N823_01_H_
 
-#include "pir.h"
 #include "sl_status.h"
+#include "sl_i2cspm.h"
+#include "pir.h"
 
 #define PIR_PL_N823_01_I2C_SLAVE_ADDRESS 0x4D
 

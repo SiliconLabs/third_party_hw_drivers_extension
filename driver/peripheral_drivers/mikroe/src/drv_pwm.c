@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file drv_pwm.h
- * @brief mikroSDK 2.0 Click Peripheral Drivers
+ * @brief mikroSDK 2.0 Click Peripheral Drivers - PWM
  * @version 1.0.0
  *******************************************************************************
  * # License
@@ -39,9 +39,85 @@
 
 #include <string.h>
 #include "em_timer.h"
+#include "sl_pwm.h"
 #include "drv_pwm.h"
 
 static pwm_t *_owner = NULL;
+
+static err_t _acquire(pwm_t *obj, bool obj_open_state);
+
+void pwm_configure_default(pwm_config_t *config)
+{
+  config->pin = 0xFFFFFFFF;
+  config->freq_hz = 0;
+}
+
+err_t pwm_open(pwm_t *obj, pwm_config_t *config)
+{
+  pwm_config_t *p_config = &obj->config;
+  memcpy(p_config, config, sizeof(pwm_config_t));
+
+  return _acquire(obj, true);
+}
+
+err_t pwm_start(pwm_t *obj)
+{
+  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    sl_pwm_start((sl_pwm_instance_t *)obj->handle);
+    return PWM_SUCCESS;
+  } else {
+    return PWM_ERROR;
+  }
+}
+
+err_t pwm_stop(pwm_t *obj)
+{
+  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    sl_pwm_stop((sl_pwm_instance_t *)obj->handle);
+    return PWM_SUCCESS;
+  } else {
+    return PWM_ERROR;
+  }
+}
+
+err_t pwm_set_duty(pwm_t *obj, float duty_ratio)
+{
+  if (_acquire(obj, false) != ACQUIRE_FAIL) {
+    sl_pwm_set_duty_cycle((sl_pwm_instance_t *)obj->handle, duty_ratio * 100);
+    return PWM_SUCCESS;
+  } else {
+    return PWM_ERROR;
+  }
+}
+
+err_t pwm_set_freq(pwm_t *obj, uint32_t freq_hz)
+{
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
+    return PWM_ERROR;
+  }
+
+  sl_pwm_config_t sl_pwm_config;
+
+  obj->config.freq_hz = freq_hz;
+
+  if (sl_pwm_deinit((sl_pwm_instance_t *)obj->handle) != SL_STATUS_OK) {
+    return PWM_ERROR;
+  }
+  sl_pwm_config.frequency = freq_hz;
+  sl_pwm_config.polarity = PWM_ACTIVE_HIGH;
+  if (sl_pwm_init((sl_pwm_instance_t *)obj->handle, &sl_pwm_config)
+      != SL_STATUS_OK) {
+    return PWM_ERROR;
+  }
+  return PWM_SUCCESS;
+}
+
+void pwm_close(pwm_t *obj)
+{
+  sl_pwm_deinit((sl_pwm_instance_t *)obj->handle);
+  obj->handle = NULL;
+  _owner = NULL;
+}
 
 static err_t _acquire(pwm_t *obj, bool obj_open_state)
 {
@@ -56,79 +132,6 @@ static err_t _acquire(pwm_t *obj, bool obj_open_state)
   }
 
   return status;
-}
-
-void pwm_configure_default(pwm_config_t *config)
-{
-  config->pin = 0xFFFFFFFF;
-  config->freq_hz = 0;
-}
-
-err_t pwm_open(pwm_t *obj, pwm_config_t *config)
-{
-  sl_pwm_config_t sl_pwm_config;
-  pwm_config_t *p_config = &obj->config;
-  memcpy(p_config, config, sizeof(pwm_config_t));
-
-  sl_pwm_deinit(obj->handle);
-  sl_pwm_config.frequency = config->freq_hz;
-  sl_pwm_config.polarity = PWM_ACTIVE_HIGH;
-  sl_pwm_init(obj->handle, &sl_pwm_config);
-  return _acquire(obj, true);
-}
-
-err_t pwm_start(pwm_t *obj)
-{
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    sl_pwm_start(obj->handle);
-    return PWM_SUCCESS;
-  } else {
-    return PWM_ERROR;
-  }
-}
-
-err_t pwm_stop(pwm_t *obj)
-{
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    sl_pwm_stop(obj->handle);
-    return PWM_SUCCESS;
-  } else {
-    return PWM_ERROR;
-  }
-}
-
-err_t pwm_set_duty(pwm_t *obj, float duty_ratio)
-{
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    sl_pwm_set_duty_cycle(obj->handle, duty_ratio * 100);
-    return PWM_SUCCESS;
-  } else {
-    return PWM_ERROR;
-  }
-}
-
-err_t pwm_set_freq(pwm_t *obj, uint32_t freq_hz)
-{
-  sl_pwm_config_t sl_pwm_config;
-
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    obj->config.freq_hz = freq_hz;
-
-    sl_pwm_deinit(obj->handle);
-    sl_pwm_config.frequency = freq_hz;
-    sl_pwm_config.polarity = PWM_ACTIVE_HIGH;
-    sl_pwm_init(obj->handle, &sl_pwm_config);
-    return PWM_SUCCESS;
-  } else {
-    return PWM_ERROR;
-  }
-}
-
-void pwm_close(pwm_t *obj)
-{
-  sl_pwm_deinit(obj->handle);
-  obj->handle = NULL;
-  _owner = NULL;
 }
 
 // ------------------------------------------------------------------------- END

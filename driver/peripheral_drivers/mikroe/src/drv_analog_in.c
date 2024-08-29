@@ -37,9 +37,17 @@
  *
  ******************************************************************************/
 
+#include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include "em_cmu.h"
 #include "drv_analog_in.h"
+
+#if defined(_SILICON_LABS_32B_SERIES_1)
+#include "em_adc.h"
+#elif defined(_SILICON_LABS_32B_SERIES_2)
+#include "em_iadc.h"
+#endif
 
 #if defined(_SILICON_LABS_32B_SERIES_1)
 #define CLK_ADC_FREQ             16000000
@@ -57,10 +65,10 @@
 
 #if defined(_SILICON_LABS_32B_SERIES_2)
 #define calc_adc_pos(port, pin) \
-        ((((port) * 16) + pin) + (unsigned int)iadcNegInputPortAPin0)
+  ((((port) * 16) + pin) + (unsigned int)iadcNegInputPortAPin0)
 #define adc_mux_even(ref, adc, bus, index) \
-        GPIO->bus ## BUSALLOC |=           \
-          GPIO_ ## bus ## BUSALLOC_ ## bus ## EVEN ## index ## _ ## adc;
+  GPIO->bus ## BUSALLOC |=                 \
+    GPIO_ ## bus ## BUSALLOC_ ## bus ## EVEN ## index ## _ ## adc;
 #endif
 
 #if defined(_SILICON_LABS_32B_SERIES_1)
@@ -103,10 +111,11 @@ err_t analog_in_open(analog_in_t *obj, analog_in_config_t *config)
   analog_in_config_t *p_config = &obj->config;
   memcpy(p_config, config, sizeof(analog_in_config_t));
 
-  if (ADC_SUCCESS != hal_adc_init(obj)) {
+  if (_acquire(obj, true) == ACQUIRE_FAIL) {
     return ADC_ERROR;
   }
-  return _acquire(obj, true);
+
+  return hal_adc_init(obj);
 }
 
 err_t analog_in_set_resolution(analog_in_t *obj,
@@ -409,27 +418,28 @@ static err_t hal_adc_init(analog_in_t *obj)
     return ADC_ERROR;
   }
 
-  ADC_Init(obj->handle, &init);
-  ADC_InitSingle(obj->handle, &initSingle);
+  ADC_Init((ADC_TypeDef *)obj->handle, &init);
+  ADC_InitSingle((ADC_TypeDef *)obj->handle, &initSingle);
 
   return ADC_SUCCESS;
 }
 
 static void hal_adc_deinit(analog_in_t *obj)
 {
-  ADC_Reset(obj->handle);
+  ADC_Reset((ADC_TypeDef *)obj->handle);
 }
 
 uint16_t hal_adc_read(analog_in_t *obj)
 {
+  ADC_TypeDef *ptr = (ADC_TypeDef *)obj->handle;
   // Start ADC conversion
-  ADC_Start(obj->handle, adcStartSingle);
+  ADC_Start(ptr, adcStartSingle);
 
   // Wait for conversion to be complete
-  while (!(obj->handle->STATUS & _ADC_STATUS_SINGLEDV_MASK)) {}
+  while (!(ptr->STATUS & _ADC_STATUS_SINGLEDV_MASK)) {}
 
   // Get ADC result
-  return (uint16_t)ADC_DataSingleGet(obj->handle);
+  return (uint16_t)ADC_DataSingleGet((ADC_TypeDef *)obj->handle);
 }
 
 #elif defined(_SILICON_LABS_32B_SERIES_2)
@@ -442,9 +452,9 @@ static err_t allocate_analog_bus_even0(analog_in_t *obj)
         adc_mux_even(obj->handle, ADC0, A, 0);
         return ADC_SUCCESS;
 #elif (IADC_COUNT == 2)
-      } else if (obj->handle == IADC1) {
-        adc_mux_even(obj->handle, ADC1, A, 0);
-        return ADC_SUCCESS;
+  } else if (obj->handle == IADC1) {
+    adc_mux_even(obj->handle, ADC1, A, 0);
+    return ADC_SUCCESS;
 #endif
       } else {
         return ADC_ERROR;
@@ -456,9 +466,9 @@ static err_t allocate_analog_bus_even0(analog_in_t *obj)
         adc_mux_even(obj->handle, ADC0, B, 0);
         return ADC_SUCCESS;
 #elif (IADC_COUNT == 2)
-      } else if (obj->handle == IADC1) {
-        adc_mux_even(obj->handle, ADC1, B, 0);
-        return ADC_SUCCESS;
+  } else if (obj->handle == IADC1) {
+    adc_mux_even(obj->handle, ADC1, B, 0);
+    return ADC_SUCCESS;
 #endif
       } else {
         return ADC_ERROR;
@@ -471,9 +481,9 @@ static err_t allocate_analog_bus_even0(analog_in_t *obj)
         adc_mux_even(obj->handle, ADC0, CD, 0);
         return ADC_SUCCESS;
 #elif (IADC_COUNT == 2)
-      } else if (obj->handle == IADC1) {
-        adc_mux_even(obj->handle, ADC1, CD, 0);
-        return ADC_SUCCESS;
+  } else if (obj->handle == IADC1) {
+    adc_mux_even(obj->handle, ADC1, CD, 0);
+    return ADC_SUCCESS;
 #endif
       } else {
         return ADC_ERROR;
@@ -499,8 +509,8 @@ static err_t hal_adc_init(analog_in_t *obj)
   if (obj->handle == IADC0) {
     CMU_ClockEnable(cmuClock_IADC0, true);
 #elif (IADC_COUNT == 2)
-  } else if (obj->handle == IADC0) {
-    CMU_ClockEnable(cmuClock_IADC0, true);
+} else if (obj->handle == IADC0) {
+  CMU_ClockEnable(cmuClock_IADC0, true);
 #endif
   } else {
     return ADC_ERROR;
@@ -513,12 +523,12 @@ static err_t hal_adc_init(analog_in_t *obj)
 
   // Set the prescaler needed for the intended IADC clock frequency
   init.srcClkPrescale =
-    IADC_calcSrcClkPrescale(obj->handle, CLK_SRC_ADC_FREQ, 0);
+    IADC_calcSrcClkPrescale((IADC_TypeDef *)obj->handle, CLK_SRC_ADC_FREQ, 0);
 
   // Shutdown between conversions to reduce current
   init.warmup = iadcWarmupNormal;
 
-  /*
+  /**
    * Configuration 0 is used by both scan and single conversions by
    * default.  Use internal bandgap as the reference and specify the
    * reference voltage in mV.
@@ -544,8 +554,8 @@ static err_t hal_adc_init(analog_in_t *obj)
           initAllConfigs.configs[0].vRef = reference_voltage;
 #if defined(_IADC_CFG_REFSEL_VREF2P5)
         } else if (reference_voltage <= 2500) {
-            initAllConfigs.configs[0].reference = iadcCfgReferenceExt2V5;
-            initAllConfigs.configs[0].vRef = reference_voltage;
+          initAllConfigs.configs[0].reference = iadcCfgReferenceExt2V5;
+          initAllConfigs.configs[0].vRef = reference_voltage;
 #endif
 #if defined(_IADC_CFG_REFSEL_VREFBUF)
         } else if (reference_voltage < (MIKROE_CONFIG_ADC_AVDD - 300)) {
@@ -607,7 +617,7 @@ static err_t hal_adc_init(analog_in_t *obj)
     return ADC_ERROR;
   }
 
-  /*
+  /**
    * Resolution is not configurable directly but is based on the
    * selected oversampling ratio (osrHighSpeed), which defaults to
    * 2x and generates 12-bit results.
@@ -620,7 +630,7 @@ static err_t hal_adc_init(analog_in_t *obj)
   initAllConfigs.configs[0].osrHighSpeed = iadcCfgOsrHighSpeed2x;
   initAllConfigs.configs[0].analogGain = iadcCfgAnalogGain1x;
 
-  /*
+  /**
    * CLK_SRC_ADC must be prescaled by some value greater than 1 to
    * derive the intended CLK_ADC frequency.
    *
@@ -632,13 +642,13 @@ static err_t hal_adc_init(analog_in_t *obj)
    * 2-clock input multiplexer switching time is included.
    */
   initAllConfigs.configs[0].adcClkPrescale =
-    IADC_calcAdcClkPrescale(obj->handle,
+    IADC_calcAdcClkPrescale((IADC_TypeDef *)obj->handle,
                             CLK_ADC_FREQ,
                             0,
                             iadcCfgModeNormal,
                             init.srcClkPrescale);
 
-  /*
+  /**
    * Specify the input channel.  When negInput = iadcNegInputGnd, the
    * conversion is single-ended.
    */
@@ -654,27 +664,27 @@ static err_t hal_adc_init(analog_in_t *obj)
   }
 
   // Initialize IADC
-  IADC_init(obj->handle, &init, &initAllConfigs);
+  IADC_init((IADC_TypeDef *)obj->handle, &init, &initAllConfigs);
 
   // Initialize a single-channel conversion
-  IADC_initSingle(obj->handle, &initSingle, &singleInput);
+  IADC_initSingle((IADC_TypeDef *)obj->handle, &initSingle, &singleInput);
 
   return ADC_SUCCESS;
 }
 
 static void hal_adc_deinit(analog_in_t *obj)
 {
-  IADC_reset(obj->handle);
+  IADC_reset((IADC_TypeDef *)obj->handle);
 }
 
 uint16_t hal_adc_read(analog_in_t *obj)
 {
-  IADC_command(obj->handle, iadcCmdStartSingle);
+  IADC_command((IADC_TypeDef *)obj->handle, iadcCmdStartSingle);
   // while combined status bits 8 & 6 don't equal 1 and 0 respectively)
-  while ((IADC_getStatus(obj->handle) & (_IADC_STATUS_CONVERTING_MASK
-                                         | _IADC_STATUS_SINGLEFIFODV_MASK))
+  while ((IADC_getStatus((IADC_TypeDef *)obj->handle)
+          & (_IADC_STATUS_CONVERTING_MASK | _IADC_STATUS_SINGLEFIFODV_MASK))
          != IADC_STATUS_SINGLEFIFODV) {}
-  return IADC_pullSingleFifoResult(obj->handle).data;
+  return IADC_pullSingleFifoResult((IADC_TypeDef *)obj->handle).data;
 }
 
 #endif

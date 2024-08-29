@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-This project shows the implementation of the OLED driver using a **SparkFun Micro OLED Breakout (Qwiic) board** with **BGM220 Explorer Kit** based on I2C communication.
+This project shows the implementation of the OLED driver using a **SparkFun Micro OLED Breakout (Qwiic) board** with Silicon Labs Platform based on I2C communication.
 
 The SparkFun Micro OLED Breakout (Qwiic) board carries a monochrome, 64 x 48px and blue-on-black OLED display. It uses an SSD1306 controller to drive the display. Its built-in functionalities include contrast control, normal or inverse image display, vertical and horizontal scrolling functions and more. It can be used for applications where bright and crisp blue text or icons need to be displayed such as MP3 player, home appliances.
 
@@ -10,21 +10,32 @@ For more information about the SSD1306 controller, see the [specification page](
 
 >Please note that this is a monochrome OLED driver.
 
-## Quick Look Video
+## Quick Look Video ##
 
 [![SSD1306 Quick Look Video](image/yt_thumbnail.jpg)](https://youtu.be/0QMDpJgDQd4 "Quick Look - SparkFun Micro OLED Display - Silicon Labs")
 
 ## Required Hardware ##
 
-- [A BGM220 Explorer Kit board.](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)
+- [A BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)
 
-- [A SparkFun Micro OLED Breakout (Qwiic) board.](https://www.sparkfun.com/products/14532)
+- Or [SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-pk6031a-wifi-6-bluetooth-le-soc-pro-kit) (BRD4002 + BRD4338A)
+
+- [A SparkFun Micro OLED Breakout (Qwiic) board](https://www.sparkfun.com/products/14532)
 
 ## Hardware Connection ##
 
-You simply connect a *SparkFun Micro OLED Breakout (Qwiic) board* to a *BGM220 Explorer Kit* board using a Qwiic cable.
+- If the BGM220P Explorer Kit is used:
 
-![bgm220_kit_sparkfun_oled](image/bgm220_kit_sparkfun_oled.png)
+  You simply connect a *SparkFun Micro OLED Breakout (Qwiic) board* to a *BGM220 Explorer Kit* board using a Qwiic cable.
+
+  ![bgm220_kit_sparkfun_oled](image/bgm220_kit_sparkfun_oled.png)
+
+- If the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used:
+
+  | Description  | BRD4338A GPIO | BRD4002 EXP Header | SparkFun Micro OLED Breakout |
+  | -------------| ------------- | ------------------ | ---------------------------- |
+  | I2C_SDA      | ULP_GPIO_6    | EXP_16             | SDA                          |
+  | I2C_SCL      | ULP_GPIO_7    | EXP_15             | SCL                          |
 
 **Note:** There are several jumpers on *SparkFun Micro OLED Breakout (Qwiic) board* that can be changed to facilitate several different functions. The first of which is the ADDR jumper. The ADDR jumper can be used to change the I2C address of the board. The default jumper is open by default, pulling the address pin high and giving us an I2C address of 0X3D. Closing this jumper will ground the address pin, giving us an I2C address of 0X3C.
 
@@ -34,20 +45,26 @@ The second of which is the I2C pull-up jumper. If multiple boards are connected 
 
 ## Setup ##
 
-To test this application, you should connect the BMG220 Explorer Kit Board to the PC using a micro USB cable.
+To test this application, you should connect your board to the PC using a micro USB cable.
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD4314A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter micro oled.
+1. From the Launcher Home, add your device to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project filtering by *micro oled*.
 
-2. Click **Create** button on the **Third Party Hardware Drivers - SSD1306 - Micro OLED Breakout Qwiic (Sparkfun)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_example](image/create_example.png)
+2. Click **Create** button on the project:
+
+   - **Third Party Hardware Drivers - SSD1306 - Micro OLED Breakout Qwiic (Sparkfun)** example if the BGM220P Explorer Kit is used.
+   ![create_example](image/create_example_1.png)
+   - **Third Party Hardware Drivers - SSD1306 - Micro OLED Breakout Qwiic (Sparkfun) - Si91x** example if the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used.
+   ![create_example](image/create_example_2.png)
+
+   Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 
 3. Build and flash this example to the board.
 
 ### Start with an empty example project ###
 
-1. Create a "Platform - Empty C Example" project for the "BGM220 Explorer Kit Board" using Simplicity Studio 5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
+1. Create an "Empty C Project" for the your board using Simplicity Studio v5. Use the default project settings.
 
 2. Copy the file `app/example/sparkfun_micro_oled_ssd1306/app.c` into the project root folder (overwriting existing file).
 
@@ -55,8 +72,21 @@ To test this application, you should connect the BMG220 Explorer Kit Board to th
     - Open the .slcp file in the project.
     - Select the SOFTWARE COMPONENTS tab.
     - Install the following components:
-        - [Platform] → [Driver]→ [Button] → [Simple Button] → default instance name: **btn0**.
-        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - Micro OLED Breakout (Sparkfun) - I2C]
+
+      **If the BGM220P Explorer Kit is used:**
+
+        - [Services] → [Timers] → [Sleep Timer]
+        - [Platform] → [Driver]→ [Button] → [Simple Button] → default instance name: **btn0**
+        - [Platform] → [Driver] → [I2C] → [I2CSPM] → default instance name: **qwiic**
+        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - Micro OLED Breakout (Sparkfun) - I2C] → use default configuration
+        - [Third Party Hardware Drivers] → [Services] → [GLIB - OLED Graphics Library]
+
+      **If the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used:**
+
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Service] → [Sleep Timer for Si91x]
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Hardware] → [Button] → [btn0]
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Peripheral] → [I2C] → [i2c2]
+        - [Third Party Hardware Drivers] → [Display & LED] → [SSD1306 - Micro OLED Breakout (Sparkfun) - I2C] → use default configuration
         - [Third Party Hardware Drivers] → [Services] → [GLIB - OLED Graphics Library]
 
 4. Build and flash the project to your device.

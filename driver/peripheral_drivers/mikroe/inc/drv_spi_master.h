@@ -48,7 +48,8 @@ extern "C" {
 #include <stdbool.h>
 #include <string.h>
 #include "drv_name.h"
-#include "spidrv.h"
+
+typedef const void *mikroe_spi_handle_t; ///< Created SPI handle type
 
 typedef enum {
   SPI_MASTER_SUCCESS = 0, SPI_MASTER_ERROR = (-1)
@@ -81,7 +82,7 @@ typedef struct {
 } spi_master_config_t;
 
 typedef struct {
-  SPIDRV_Handle_t handle;
+  mikroe_spi_handle_t handle;
   spi_master_config_t config;
 } spi_master_t;
 
@@ -101,6 +102,10 @@ err_t spi_master_write(spi_master_t *obj,
 err_t spi_master_read(spi_master_t *obj,
                       uint8_t *read_data_buffer,
                       size_t read_data_length);
+err_t spi_master_exchange(spi_master_t *obj,
+                          uint8_t *write_data_buffer,
+                          uint8_t *read_data_buffer,
+                          size_t exchange_data_length);
 err_t spi_master_write_then_read(spi_master_t *obj,
                                  uint8_t *write_data_buffer,
                                  size_t length_write_data,

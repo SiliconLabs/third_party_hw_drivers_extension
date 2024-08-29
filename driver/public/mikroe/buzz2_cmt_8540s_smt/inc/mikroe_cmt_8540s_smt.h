@@ -41,7 +41,7 @@
 #define MIKROE_CMT_8540S_SMT_H_
 
 #include "sl_status.h"
-#include "sl_pwm.h"
+#include "drv_pwm.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -174,7 +174,7 @@ extern "C" {
  *    SL_STATUS_OK Successful initialization.
  *    SL_STATUS_FAIL Initialization failed.
  ******************************************************************************/
-sl_status_t mikroe_cmt_8540s_smt_init(sl_pwm_instance_t *pwm_instance);
+sl_status_t mikroe_cmt_8540s_smt_init(mikroe_pwm_handle_t pwm_instance);
 
 /***************************************************************************//**
  * @brief
@@ -188,7 +188,7 @@ sl_status_t mikroe_cmt_8540s_smt_init(sl_pwm_instance_t *pwm_instance);
  *    SL_STATUS_INVALID_PARAMETER if pwm_instance is null.
  ******************************************************************************/
 sl_status_t mikroe_cmt_8540s_smt_set_pwm_instance(
-  sl_pwm_instance_t *pwm_instance);
+  mikroe_pwm_handle_t pwm_instance);
 
 /***************************************************************************//**
  * @brief
@@ -248,4 +248,4 @@ void mikroe_cmt_8540s_smt_play_sound (uint16_t freq,
 #endif
 
 /** @} (end addtogroup cmt_8540s_smt) */
-#endif /* MIKROE_CMT_8540S_SMT_H_ */
+#endif // MIKROE_CMT_8540S_SMT_H_

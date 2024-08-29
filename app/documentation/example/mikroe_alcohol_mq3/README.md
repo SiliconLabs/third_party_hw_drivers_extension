@@ -12,15 +12,26 @@ The MQ-3 provides an analog representation of its concentration in the air sent 
 
 - [**EFR32xG24-EK2703A** EFR32xG24 Explorer Kit (BRD2703A xG24 Explorer Kit Board)](https://www.silabs.com/development-tools/wireless/efr32xg24-explorer-kit?tab=overview).
 
+- Or [SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit](https://www.silabs.com/development-tools/wireless/wi-fi/siwx917-pk6031a-wifi-6-bluetooth-le-soc-pro-kit) (BRD4002 + BRD4338A).
+
 - [**Mikroe Alcohol Click** board based on MQ-3 sensor](https://www.mikroe.com/alcohol-click).
 
 ## Hardware Connection ##
 
-The Alcohol Click supports MikroBus, so it can connect easily to EFR32xG24 Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
+- If the EFR32xG24 Explorer Kit is used:
 
-The hardware connection is shown in the image below:
+  The Alcohol Click supports MikroBus, so it can connect easily to EFR32xG24 Explorer Kit's MikroBus header. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line.
 
-![hardware_connection](image/hardware_connection.png)
+  The hardware connection is shown in the image below:
+
+  ![hardware_connection](image/hardware_connection.png)
+
+- If the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used:
+
+  | Description           | BRD4338A GPIO  | BRD4002 Breakout Pad | Acohol Click         |
+  | ----------------------| ---------------| ---------------------| -------------------- |
+  | Positive analog input | ULP_GPIO_1     | P16                  | OUT                  |
+  | Negative analog input | ULP_GPIO_7     | EXP_HEADER-15 to GND | --                   |
 
 ## Setup ##
 
@@ -28,13 +39,20 @@ You can either create a project based on an example project or start with an emp
 
 ### Create a project based on an example project ###
 
-1. From the Launcher Home, add the BRD2703A to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project with filter **mq3**.
-2. Click **Create** button on the **Third Party Hardware Drivers - MQ3 - Alcohol Click (Mikroe)** example. Example project creation dialog pops up -> click Create and Finish and Project should be generated.
-![create_project](image/create_project.png)
+1. From the Launcher Home, add your device to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project filtering by **mq3**.
+
+2. Click **Create** button on the project:
+
+   - **Third Party Hardware Drivers - MQ3 - Alcohol Click (Mikroe)** example if the EFR32xG24 Explorer Kit is used.
+   ![Create_example](image/create_example_1.png)
+   - **Third Party Hardware Drivers - MQ3 - Alcohol Click (Mikroe) - Si91x** example if the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used.
+   ![Create_example](image/create_example_2.png)
+
+   Example project creation dialog pops up -> click Create and Finish and Project should be generated.
 
 ### Start with an empty example project ###
 
-1. Create an "Empty C Project" for the "EFR32xG24 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings.
+1. Create an "Empty C Project" for your board using Simplicity Studio v5. Use the default project settings.
 
 2. Copy the file `app/example/mikroe_alcohol_mq3/app.c` into the project root folder (overwriting existing file).
 
@@ -46,13 +64,18 @@ You can either create a project based on an example project or start with an emp
 
     - Install the following components:
 
+      **If the EFR32xG24 Explorer Kit is used:**
+
         - [Services] → [Timers] → [Sleep Timer]
-
         - [Services] → [IO Stream] → [IO Stream: USART] → default instance name: **vcom**
-
         - [Application] → [Utility] → [Log]
-
         - [Third Party Hardware Drivers] → [Sensors] → [MQ3 - Alcohol Click (Mikroe)] → use default configuration
+
+      **If the SiWx917 Wi-Fi 6 and Bluetooth LE 8 MB Flash SoC Pro Kit is used:**
+
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Service] → [Sleep Timer for Si91x]
+        - [WiSeConnect 3 SDK] → [Device] → [Si91x] → [MCU] → [Peripheral] → [ADC] → [channel_0] → use default configuration
+        - [Third Party Hardware Drivers] → [Sensors] → [MQ3 - Alcohol Click (Mikroe)]
 
 4. Install printf float
 

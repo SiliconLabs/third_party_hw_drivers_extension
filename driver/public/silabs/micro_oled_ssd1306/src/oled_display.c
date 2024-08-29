@@ -36,7 +36,7 @@
 #include "micro_oled_ssd1306_config.h"
 #include "oled_display.h"
 
-/* This oled_frame_buffer is large enough to store one full frame. */
+// This oled_frame_buffer is large enough to store one full frame.
 static uint8_t oled_frame_buffer[(SSD1306_DISPLAY_HEIGHT + 7) / 8
                                  * SSD1306_DISPLAY_WIDTH];
 
@@ -65,9 +65,9 @@ static const oled_display_driver_api_t sl_memlcd_driver_api =
   .stop_scroll = ssd1306_stop_scroll,
 };
 
-/** Flag to monitor is this driver has been initialized. The
- *  oled_display_instance
- *  is only valid after initialized=true.
+/**
+ * Flag to monitor is this driver has been initialized.
+ * The oled_display_instance is only valid after initialized=true.
  */
 static bool initialized = false;
 
@@ -101,7 +101,7 @@ static sl_status_t fill_screen(uint16_t color)
 {
   uint16_t i;
 
-  /* Fill the display with the background color of the glib_context_t  */
+  // Fill the display with the background color of the glib_context_t
   for (i = 0; i < sizeof(oled_frame_buffer); i++) {
     oled_frame_buffer[i] = color == 0 ? 0x00 : 0xFF;
   }

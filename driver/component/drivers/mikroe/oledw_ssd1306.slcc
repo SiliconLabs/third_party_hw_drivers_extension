@@ -22,9 +22,12 @@ config_file:
   - path: public/mikroe/oledw_ssd1306/config/brd4314a/mikroe_ssd1306_config.h
     file_id: driver_config_oledw
     condition: [brd4314a]
+  - path: public/mikroe/oledw_ssd1306/config/brd4338a/mikroe_ssd1306_config.h
+    file_id: driver_config_oledw
+    condition: [brd4338a]
   - path: public/mikroe/oledw_ssd1306/config/other/mikroe_ssd1306_config.h
     file_id: driver_config_oledw
-    unless: [brd4314a, brd4108a, brd2703a]
+    unless: [brd4314a, brd4108a, brd2703a, brd4338a]
 template_contribution:
   - name: component_catalog
     value: mikroe_oledw

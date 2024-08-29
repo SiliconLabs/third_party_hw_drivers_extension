@@ -18,6 +18,9 @@ provides:
 template_contribution:
   - name: component_catalog
     value: mikroe_temphum9
+config_file:
+  - path: public/mikroe/temphum9_shtc3/config/mikroe_shtc3_config.h
+    file_id: driver_config_shtc3
 include:
   - path: inc
     file_list:

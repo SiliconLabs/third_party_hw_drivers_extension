@@ -42,6 +42,10 @@
 
 #include "em_gpio.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> WATER_DETECT_INT
@@ -52,4 +56,8 @@
 
 // <<< sl:end pin_tool >>>
 
-#endif /* MIKROE_WATER_DETECT_CONFIG_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif // MIKROE_WATER_DETECT_CONFIG_H_

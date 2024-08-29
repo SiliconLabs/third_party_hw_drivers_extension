@@ -40,17 +40,27 @@
 #ifndef MIKROE_WATER_DETECT_CONFIG_H_
 #define MIKROE_WATER_DETECT_CONFIG_H_
 
+#ifndef SLI_SI917
 #include "em_gpio.h"
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // <<< sl:start pin_tool >>>
 
 // <gpio optional=true> WATER_DETECT_INT
 // $[GPIO_WATER_DETECT_INT]
 #warning "WATER_DETECT_INT is not configured"
-// #define WATER_DETECT_INT_PORT                        gpioPortB
-// #define WATER_DETECT_INT_PIN                         3
+// #define WATER_DETECT_INT_PORT                        0
+// #define WATER_DETECT_INT_PIN                         0
 // [GPIO_WATER_DETECT_INT]$
 
 // <<< sl:end pin_tool >>>
 
-#endif /* MIKROE_WATER_DETECT_CONFIG_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif // MIKROE_WATER_DETECT_CONFIG_H_

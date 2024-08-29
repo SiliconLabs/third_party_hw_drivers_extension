@@ -43,12 +43,31 @@
 extern "C" {
 #endif
 
+#ifndef SLI_SI917
+#include "em_gpio.h"
+#endif
+
 #define OLED_DISPLAY_64_48  0
 #define OLED_DISPLAY_96_39  1
 #define OLED_DISPLAY_128_32 2
 #define OLED_DISPLAY_128_64 3
 
 // <<< Use Configuration Wizard in Context Menu >>>
+
+//<h>MIKROE SPI SSD1306 Configuration
+
+//  <e>MIKROE SPI SSD1306 UC Configuration
+//  <i> Enable: Peripheral configuration is taken straight from the configuration set in the universal configuration (UC).
+//  <i> Disable: If the application demands it to be modified during runtime, use the default API to modify the peripheral configuration.
+//  <i> Default: 0
+#define MIKROE_SPI_SSD1306_UC                  0
+
+// <o MIKROE_SPI_SSD1306_BITRATE> Bit Rate (Bits/Second) <1-116000000>
+// <i> Default: 10000000
+#define MIKROE_SPI_SSD1306_BITRATE             10000000
+
+// </e>
+// </h>
 
 // <h> Screen
 
@@ -87,18 +106,24 @@ extern "C" {
 
 // <<< sl:start pin_tool >>>
 
+// <gpio optional=true> SSD1306_CS
+// $[GPIO_SSD1306_CS]
+// #define SSD1306_CS_PORT                        0
+// #define SSD1306_CS_PIN                         0
+// [GPIO_SSD1306_CS]$
+
 // <gpio optional=true> SSD1306_DC
 // $[GPIO_SSD1306_DC]
 #warning "DC pin for SSD1306 is not configured"
-// #define SSD1306_DC_PORT                        gpioPortB
-// #define SSD1306_DC_PIN                         4
+// #define SSD1306_DC_PORT                        0
+// #define SSD1306_DC_PIN                         0
 // [GPIO_SSD1306_DC]$
 
 // <gpio optional=true> SSD1306_RST
 // $[GPIO_SSD1306_RST]
 #warning "RST pin for SSD1306 is not configured"
-// #define SSD1306_RST_PORT                       gpioPortC
-// #define SSD1306_RST_PIN                        6
+// #define SSD1306_RST_PORT                       0
+// #define SSD1306_RST_PIN                        0
 // [GPIO_SSD1306_RST]$
 
 // <<< sl:end pin_tool >>>
@@ -107,4 +132,4 @@ extern "C" {
 }
 #endif
 
-#endif /* SSD1306_SPI_CONFIG_H_ */
+#endif // SSD1306_SPI_CONFIG_H_

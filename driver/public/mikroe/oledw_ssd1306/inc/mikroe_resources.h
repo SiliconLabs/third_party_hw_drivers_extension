@@ -52,4 +52,4 @@ extern oledw_resources_t oledw_img[];
 }
 #endif
 
-#endif /* MIKROE_RESOURCES_H_ */
+#endif // MIKROE_RESOURCES_H_

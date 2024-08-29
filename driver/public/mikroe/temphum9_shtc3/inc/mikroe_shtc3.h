@@ -41,7 +41,7 @@
 #define MIKROE_SHTC3_H_
 
 #include "sl_status.h"
-#include "sl_i2cspm.h"
+#include "drv_i2c_master.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -168,7 +168,7 @@ typedef struct {
  *    SL_STATUS_OK Successful initialization.
  *    SL_STATUS_FAIL Initialization failed.
  ******************************************************************************/
-sl_status_t mikroe_shtc3_init(sl_i2cspm_t *i2cspm_instance);
+sl_status_t mikroe_shtc3_init(mikroe_i2c_handle_t i2cspm_instance);
 
 /***************************************************************************//**
  * @brief
@@ -181,7 +181,8 @@ sl_status_t mikroe_shtc3_init(sl_i2cspm_t *i2cspm_instance);
  *    SL_STATUS_OK if there are no errors.
  *    SL_STATUS_INVALID_PARAMETER if i2cspm_instance is null.
  ******************************************************************************/
-sl_status_t mikroe_shtc3_set_i2csmp_instance(sl_i2cspm_t *i2cspm_instance);
+sl_status_t mikroe_shtc3_set_i2csmp_instance(
+  mikroe_i2c_handle_t i2cspm_instance);
 
 /***************************************************************************//**
  * @brief
@@ -276,4 +277,4 @@ sl_status_t mikroe_shtc3_get_temperature_and_humidity(
 
 /** @} (end addtogroup mikroe_shtc3) */
 
-#endif /* MIKROE_SHTC3_H_ */
+#endif // MIKROE_SHTC3_H_

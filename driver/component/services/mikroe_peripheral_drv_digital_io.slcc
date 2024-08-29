@@ -12,6 +12,9 @@ provides:
 template_contribution:
   - name: component_catalog
     value: services_mikroe_peripheral_drivers_digital_io
+requires:
+  - name: sl_gpio
+    condition: [device_si91x]
 include:
   - path: peripheral_drivers/mikroe/inc
     file_list:
@@ -23,4 +26,14 @@ include:
       - path: hal_gpio.h
 source:
   - path: peripheral_drivers/mikroe/src/drv_digital_in.c
+    condition: [device_series_1]
+  - path: peripheral_drivers/mikroe/src/drv_digital_in.c
+    condition: [device_series_2]
+  - path: peripheral_drivers/mikroe/src/drv_digital_in_si91x.c
+    condition: [device_si91x]
   - path: peripheral_drivers/mikroe/src/drv_digital_out.c
+    condition: [device_series_1]
+  - path: peripheral_drivers/mikroe/src/drv_digital_out.c
+    condition: [device_series_2]
+  - path: peripheral_drivers/mikroe/src/drv_digital_out_si91x.c
+    condition: [device_si91x]

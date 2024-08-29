@@ -1,5 +1,5 @@
 /***************************************************************************//**
- * @file ssd1306.c
+ * @file micro_oled_ssd1306.c
  * @brief SSD1306 interface
  *******************************************************************************
  * # License
@@ -33,19 +33,22 @@
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
 #include <string.h>
-#include "micro_oled_ssd1306_i2c.h"
 #include "micro_oled_ssd1306.h"
 #include "micro_oled_ssd1306_config.h"
 
 #define SSD1306_NUM_PAGES           ((SSD1306_DISPLAY_HEIGHT + 7) / 8)
 
-/** ssd1306 instance. */
-static ssd1306_t ssd1306_instance = { 
+typedef i2c_master_t micro_oled_i2c_t;
+
+static micro_oled_i2c_t micro_oled_i2c;
+
+// ssd1306 instance.
+static ssd1306_t ssd1306_instance = {
   .width = SSD1306_DISPLAY_WIDTH,
   .height = SSD1306_DISPLAY_HEIGHT,
 };
 
-/** buffer used to initialize ssd1306. */
+// buffer used to initialize ssd1306.
 const uint8_t cmd_buff[] = {
   SSD1306_DISPLAYOFF,
   SSD1306_SETDISPLAYCLOCKDIV, 0x80,
@@ -93,9 +96,17 @@ const uint8_t cmd_buff[] = {
   SSD1306_DISPLAYON,
 };
 
-/** Flag to monitor is this driver has been initialized. The ssd1306_instance
- *  is only valid after initialized=true. */
+/**
+ * Flag to monitor is this driver has been initialized. The ssd1306_instance
+ * is only valid after initialized=true.
+ */
 static bool initialized = false;
+
+static sl_status_t ssd1306_send_command(const void *cmd, uint32_t len);
+static sl_status_t ssd1306_send_data(const void *data, uint32_t len);
+static sl_status_t ssd1306_send(const void *data,
+                                uint32_t len,
+                                uint8_t command_type);
 
 /**************************************************************************//**
  * @brief
@@ -105,16 +116,51 @@ static bool initialized = false;
  *   If all operations completed sucessfully SL_STATUS_OK is returned. On
  *   failure a different status code is returned specifying the error.
  *****************************************************************************/
-sl_status_t ssd1306_init(sl_i2cspm_t *i2c_handle)
+sl_status_t ssd1306_init(mikroe_i2c_handle_t i2cspm_instance)
 {
-  sl_status_t sc;
+  i2c_master_config_t micro_oled_cfg;
   const uint8_t *ptr = cmd_buff;
+  sl_status_t sc;
 
-  ssd1306_i2c_init(i2c_handle);
+  if (NULL == i2cspm_instance) {
+    return SL_STATUS_INVALID_PARAMETER;
+  }
+
+  // Configure default i2csmp instance
+  micro_oled_i2c.handle = i2cspm_instance;
+
+  i2c_master_configure_default(&micro_oled_cfg);
+
+  micro_oled_cfg.addr = CONFIG_OLED_DISPLAY_ADDRESS;
+  micro_oled_cfg.timeout_pass_count = 0;
+
+#if (MICRO_OLED_I2C__UC == 1)
+  micro_oled_cfg.speed = MICRO_OLED_I2C_SPEED_MODE;
+#endif
+
+  if (i2c_master_open(&micro_oled_i2c, &micro_oled_cfg) == I2C_MASTER_ERROR) {
+    return SL_STATUS_INITIALIZATION;
+  }
+
   initialized = true;
-  sc = ssd1306_send_command(ptr, sizeof(cmd_buff));
 
-  return sc;
+  sc = ssd1306_send_command(ptr, sizeof(cmd_buff));
+  if (sc != SL_STATUS_OK) {
+    return SL_STATUS_INITIALIZATION;
+  }
+
+  return SL_STATUS_OK;
+}
+
+sl_status_t ssd1306_set_i2csmp_instance(mikroe_i2c_handle_t i2cspm_instance)
+{
+  if (NULL == i2cspm_instance) {
+    return SL_STATUS_INVALID_PARAMETER;
+  }
+
+  micro_oled_i2c.handle = i2cspm_instance;
+
+  return SL_STATUS_OK;
 }
 
 /**************************************************************************//**
@@ -134,17 +180,17 @@ sl_status_t ssd1306_draw(const void *data)
   static const uint8_t command_table[] = {
 #ifdef SSD1306_USE_PAGE_ADDRESSING_MODE
 
-    /* Set Lower Column Start Address for Page Addressing Mode */
+    // Set Lower Column Start Address for Page Addressing Mode
     0x00,
 
-    /* Set Higher Column Start Address for Page Addressing Mode */
+    // Set Higher Column Start Address for Page Addressing Mode
     0x12
 #else
 
-    /* Set page start, end address + set page pointer to page start address */
+    // Set page start, end address + set page pointer to page start address
     SSD1306_PAGEADDR, 0, (SSD1306_NUM_PAGES - 1),
 
-    /* Set page start, end address + set page pointer to page start address */
+    // Set page start, end address + set page pointer to page start address
     SSD1306_COLUMNADDR, 0, (SSD1306_DISPLAY_WIDTH - 1),
 #endif
   };
@@ -152,24 +198,24 @@ sl_status_t ssd1306_draw(const void *data)
   const uint8_t *ptr = data;
   uint8_t cmd;
 
-  /* Get start address to draw from */
+  // Get start address to draw from
   for (uint8_t i = 0; i < SSD1306_NUM_PAGES; i++) {
-    /* Send update command and first line address */
-    cmd = 0xB0 + i; /* Set the current RAM page address. */
+    // Send update command and first line address
+    cmd = 0xB0 + i; // Set the current RAM page address.
     sc += ssd1306_send_command(&cmd, 1);
 
     sc += ssd1306_send_command(command_table, sizeof(command_table));
 
-    /* Send pixels for this page */
+    // Send pixels for this page
     sc += ssd1306_send_data(ptr, SSD1306_DISPLAY_WIDTH);
     ptr += SSD1306_DISPLAY_WIDTH;
   }
 #else
 
-  /* Send commands to prepare data transfer from frame buffer */
+  // Send commands to prepare data transfer from frame buffer
   sc += ssd1306_send_command(command_table, sizeof(command_table));
 
-  /*Send frame buffer data*/
+  // Send frame buffer data
   sc += ssd1306_send_data(data, (SSD1306_DISPLAY_WIDTH * SSD1306_NUM_PAGES));
 #endif
   if (sc != SL_STATUS_OK) {
@@ -187,7 +233,7 @@ sl_status_t ssd1306_draw(const void *data)
  *   Pointer to a SSD1306 structure or NULL if no SSD1306 is initialized
  *   yet.
  *****************************************************************************/
-const ssd1306_t* ssd1306_get(void)
+const ssd1306_t *ssd1306_get(void)
 {
   if (initialized) {
     return &ssd1306_instance;
@@ -434,4 +480,67 @@ sl_status_t ssd1306_enable_display(bool on)
   sc = ssd1306_send_command(&cmd, 1);
 
   return sc;
+}
+
+/***************************************************************************//**
+ * @brief
+ *    Start an blocking command transmit transfer.
+ *
+ * @note
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] command
+ *    Transmit command buffer.
+ *
+ * @param[in] len
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
+static sl_status_t ssd1306_send_command(const void *cmd, uint32_t len)
+{
+  return ssd1306_send(cmd, len, 0x00);
+}
+
+/***************************************************************************//**
+ * @brief
+ *    Start an blocking data transmit transfer.
+ *
+ * @note
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] data
+ *    Transmit data buffer.
+ *
+ * @param[in] count
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
+static sl_status_t ssd1306_send_data(const void *data, uint32_t len)
+{
+  return ssd1306_send(data, len, 0x40);
+}
+
+static sl_status_t ssd1306_send(const void *data,
+                                uint32_t len,
+                                uint8_t command_type)
+{
+  uint8_t i2c_write_data[len + 1];
+  const uint8_t *ptr = data;
+
+  i2c_write_data[0] = command_type;
+  for (uint32_t i = 0; i < len; i++) {
+    i2c_write_data[i + 1] = ptr[i];
+  }
+
+  if (I2C_MASTER_SUCCESS != i2c_master_write(&micro_oled_i2c,
+                                             i2c_write_data,
+                                             len + 1)) {
+    return SL_STATUS_TRANSMIT;
+  }
+
+  return SL_STATUS_OK;
 }

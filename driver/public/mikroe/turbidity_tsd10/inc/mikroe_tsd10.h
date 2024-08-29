@@ -40,10 +40,11 @@
 #ifndef MIKROE_TURBIDITY_H
 #define MIKROE_TURBIDITY_H
 
+#include "sl_status.h"
+#include "sl_i2cspm.h"
 #include "drv_digital_out.h"
 #include "drv_digital_in.h"
 #include "drv_i2c_master.h"
-#include "sl_status.h"
 
 /*!
  * @addtogroup turbidity Turbidity Click Driver

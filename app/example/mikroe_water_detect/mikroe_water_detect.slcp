@@ -42,16 +42,16 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 2.0.2
+  version: 3.0.0
 
 other_file:
-  - path: ../../documentation/example/mikroe_water_detect/image/create_example.png
+  - path: ../../documentation/example/mikroe_water_detect/image/create_example_1.png
+    directory: "image"
+  - path: ../../documentation/example/mikroe_water_detect/image/create_example_2.png
     directory: "image"
   - path: ../../documentation/example/mikroe_water_detect/image/hardware_connection.png
     directory: "image"
   - path: ../../documentation/example/mikroe_water_detect/image/log.png
-    directory: "image"
-  - path: ../../documentation/example/mikroe_water_detect/image/water_detect_config.png
     directory: "image"
   - path: ../../documentation/example/mikroe_water_detect/image/sw_layer.png
     directory: "image"
@@ -60,5 +60,3 @@ ui_hints:
   highlight:
     - path: README.md
       focus: true
-
-

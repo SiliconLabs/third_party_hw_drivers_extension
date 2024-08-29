@@ -29,6 +29,7 @@ include:
 component:
 - id: sl_system
 - id: device_init
+- id: sleeptimer
 - id: sparkfun_micro_oled_ssd1306
   from: third_party_hw_drivers
 - id: services_oled_glib
@@ -39,12 +40,6 @@ component:
   instance: [btn0]
 
 config_file:
-  - override:
-      component: i2cspm
-      file_id: i2cspm_config
-      instance: qwiic
-    path: brd2601b/sl_i2cspm_qwiic_config.h
-    condition: [brd2601b]
   - override:
       component: simple_button
       file_id: simple_button_config
@@ -57,16 +52,20 @@ define:
 
 sdk_extension:
 - id: third_party_hw_drivers
-  version: 2.0.2
+  version: 3.0.0
 
 other_file:
   - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/bgm220_kit_sparkfun_oled.png
     directory: "image"
-  - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/create_example.png
+  - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/create_example_1.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/create_example_2.png
     directory: "image"
   - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/sparkfun_oled_board.png
     directory: "image"
   - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/testing_result.gif
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_micro_oled_ssd1306/image/yt_thumbnail.jpg
     directory: "image"
 
 ui_hints:

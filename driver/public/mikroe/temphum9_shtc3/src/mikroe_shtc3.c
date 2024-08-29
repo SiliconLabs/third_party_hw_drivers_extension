@@ -37,20 +37,18 @@
  *
  ******************************************************************************/
 
-#include "third_party_hw_drivers_helpers.h"
+#include "mikroe_shtc3_config.h"
 #include "mikroe_shtc3.h"
 #include "temphum9.h"
 
 static temphum9_t temphum9;
 static temphum9_cfg_t temphum9_cfg;
 
-sl_status_t mikroe_shtc3_init(sl_i2cspm_t *i2cspm_instance)
+sl_status_t mikroe_shtc3_init(mikroe_i2c_handle_t i2cspm_instance)
 {
   if (NULL == i2cspm_instance) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
 
   // Configure default i2csmp instance
   temphum9.i2c.handle = i2cspm_instance;
@@ -58,12 +56,19 @@ sl_status_t mikroe_shtc3_init(sl_i2cspm_t *i2cspm_instance)
   // Call basic setup functions
   temphum9_cfg_setup(&temphum9_cfg);
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(temphum9_init(&temphum9, &temphum9_cfg));
+#if (MIKROE_I2C_SHTC3_UC == 1)
+  temphum9_cfg.i2c_speed = MIKROE_I2C_SHTC3_SPEED_MODE;
+#endif
 
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  if (temphum9_init(&temphum9, &temphum9_cfg) != TEMPHUM9_OK) {
+    return SL_STATUS_INITIALIZATION;
+  }
+
+  return SL_STATUS_OK;
 }
 
-sl_status_t mikroe_shtc3_set_i2csmp_instance(sl_i2cspm_t *i2cspm_instance)
+sl_status_t mikroe_shtc3_set_i2csmp_instance(
+  mikroe_i2c_handle_t i2cspm_instance)
 {
   if (NULL == i2cspm_instance) {
     return SL_STATUS_INVALID_PARAMETER;

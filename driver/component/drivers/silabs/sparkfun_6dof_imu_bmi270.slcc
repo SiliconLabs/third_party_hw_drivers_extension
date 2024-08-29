@@ -1,0 +1,29 @@
+id: sparkfun_6dof_imu_bmi270
+package: third_party_hw_drivers
+label: BMI270 - 6DOF IMU Breakout (Sparkfun)
+description: >
+  Driver for the BMI270 6DOF IMU breakout board.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+  - name: sleeptimer
+  - name: sleeptimer_si91x
+    condition: [device_si91x]
+  - name: mikroe_peripheral_driver_i2c
+config_file:
+  - path: public/silabs/sparkfun_6dof_imu_bmi270/config/sparkfun_bmi270_config.h
+    file_id: sparkfun_bmi270_config
+provides:
+  - name: sparkfun_6dof_imu_bmi270
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: sparkfun_6dof_imu_bmi270
+include:
+  - path: public/silabs/sparkfun_6dof_imu_bmi270/inc
+    file_list:
+      - path: sparkfun_bmi270.h   
+source:
+  - path: public/silabs/sparkfun_6dof_imu_bmi270/src/sparkfun_bmi270.c

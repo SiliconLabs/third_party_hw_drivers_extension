@@ -40,6 +40,8 @@
 #ifndef MIKORE_ALCOHOL_MQ3_CONFIG_H_
 #define MIKORE_ALCOHOL_MQ3_CONFIG_H_
 
+#include "em_gpio.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -49,7 +51,7 @@ extern "C" {
 // <gpio optional=true> MQ3_ANALOG_OUTPUT
 // $[GPIO_MQ3_ANALOG_OUTPUT]
 #warning "AN pin for MQ3 is not configured"
-// #define MQ3_ANALOG_OUTPUT_PORT                   gpioPortB
+// #define MQ3_ANALOG_OUTPUT_PORT                   0
 // #define MQ3_ANALOG_OUTPUT_PIN                    0
 // [GPIO_MQ3_ANALOG_OUTPUT]$
 
@@ -57,6 +59,5 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-
 #endif
-#endif /* MIKORE_ALCOHOL_MQ3_CONFIG_H_ */
+#endif // MIKORE_ALCOHOL_MQ3_CONFIG_H_

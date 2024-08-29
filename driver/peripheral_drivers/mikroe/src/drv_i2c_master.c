@@ -1,10 +1,10 @@
 /***************************************************************************//**
  * @file drv_i2c_master.h
- * @brief mikroSDK 2.0 Click Peripheral Drivers
+ * @brief mikroSDK 2.0 Click Peripheral Drivers - I2C Master
  * @version 1.0.0
  *******************************************************************************
  * # License
- * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2024 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
  *
  * SPDX-License-Identifier: Zlib
@@ -37,27 +37,15 @@
  *
  ******************************************************************************/
 
+#include "sl_i2cspm.h"
 #include "drv_i2c_master.h"
 #include "sl_status.h"
 
-static void i2c_master_config_speed(i2c_master_t *obj);
-
 static i2c_master_t *_owner = NULL;
+static uint32_t last_i2c_speed_used;
 
-static err_t _acquire(i2c_master_t *obj, bool obj_open_state)
-{
-  err_t status = ACQUIRE_SUCCESS;
-
-  if ((obj_open_state == true) && (_owner == obj)) {
-    return ACQUIRE_FAIL;
-  }
-
-  if (_owner != obj) {
-    _owner = obj;
-  }
-
-  return status;
-}
+static void i2c_master_config_speed(i2c_master_t *obj);
+static err_t _acquire(i2c_master_t *obj, bool obj_open_state);
 
 void i2c_master_configure_default(i2c_master_config_t *config)
 {
@@ -80,82 +68,90 @@ err_t i2c_master_open(i2c_master_t *obj, i2c_master_config_t *config)
 
 err_t i2c_master_set_speed(i2c_master_t *obj, uint32_t speed)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    obj->config.speed = speed;
-
-    // Configure i2c speed
-    i2c_master_config_speed(obj);
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  obj->config.speed = speed;
+  // Configure i2c speed
+  i2c_master_config_speed(obj);
+
+  return I2C_MASTER_SUCCESS;
 }
 
 err_t i2c_master_set_timeout(i2c_master_t *obj, uint16_t timeout_pass_count)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    obj->config.timeout_pass_count = timeout_pass_count;
-    // TODO Set timeout
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  obj->config.timeout_pass_count = timeout_pass_count;
+  // TODO Set timeout
+  return I2C_MASTER_SUCCESS;
 }
 
 err_t i2c_master_set_slave_address(i2c_master_t *obj, uint8_t address)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    obj->config.addr = address;
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  obj->config.addr = address;
+  return I2C_MASTER_SUCCESS;
 }
 
 err_t i2c_master_write(i2c_master_t *obj,
                        uint8_t *write_data_buf,
                        size_t len_write_data)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    I2C_TransferSeq_TypeDef seq;
-
-    seq.addr = obj->config.addr << 1;
-    seq.flags = I2C_FLAG_WRITE;
-
-    /*Write buffer*/
-    seq.buf[0].data = write_data_buf;
-    seq.buf[0].len = len_write_data;
-
-    if (I2CSPM_Transfer(obj->handle, &seq) != i2cTransferDone) {
-      return I2C_MASTER_ERROR;
-    }
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  I2C_TransferSeq_TypeDef seq;
+
+  if (last_i2c_speed_used != obj->config.speed) {
+    i2c_master_config_speed(obj);
+  }
+
+  seq.addr = obj->config.addr << 1;
+  seq.flags = I2C_FLAG_WRITE;
+
+  // Write buffer
+  seq.buf[0].data = write_data_buf;
+  seq.buf[0].len = len_write_data;
+
+  if (I2CSPM_Transfer((sl_i2cspm_t *)obj->handle, &seq) != i2cTransferDone) {
+    return I2C_MASTER_ERROR;
+  }
+  return I2C_MASTER_SUCCESS;
 }
 
 err_t i2c_master_read(i2c_master_t *obj,
                       uint8_t *read_data_buf,
                       size_t len_read_data)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    I2C_TransferSeq_TypeDef seq;
-
-    seq.addr = obj->config.addr << 1;
-    seq.flags = I2C_FLAG_READ;
-
-    /*Read buffer*/
-    seq.buf[0].data = read_data_buf;
-    seq.buf[0].len = len_read_data;
-
-    if (I2CSPM_Transfer(obj->handle, &seq) != i2cTransferDone) {
-      return I2C_MASTER_ERROR;
-    }
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  I2C_TransferSeq_TypeDef seq;
+
+  if (last_i2c_speed_used != obj->config.speed) {
+    i2c_master_config_speed(obj);
+  }
+
+  seq.addr = obj->config.addr << 1;
+  seq.flags = I2C_FLAG_READ;
+
+  // Read buffer
+  seq.buf[0].data = read_data_buf;
+  seq.buf[0].len = len_read_data;
+
+  if (I2CSPM_Transfer((sl_i2cspm_t *)obj->handle, &seq) != i2cTransferDone) {
+    return I2C_MASTER_ERROR;
+  }
+  return I2C_MASTER_SUCCESS;
 }
 
 err_t i2c_master_write_then_read(i2c_master_t *obj,
@@ -164,27 +160,46 @@ err_t i2c_master_write_then_read(i2c_master_t *obj,
                                  uint8_t *read_data_buf,
                                  size_t len_read_data)
 {
-  if (_acquire(obj, false) != ACQUIRE_FAIL) {
-    I2C_TransferSeq_TypeDef seq;
-
-    seq.addr = obj->config.addr << 1;
-    seq.flags = I2C_FLAG_WRITE_READ;
-
-    /*Write buffer*/
-    seq.buf[0].data = write_data_buf;
-    seq.buf[0].len = len_write_data;
-
-    /*Read buffer*/
-    seq.buf[1].data = read_data_buf;
-    seq.buf[1].len = len_read_data;
-
-    if (I2CSPM_Transfer(obj->handle, &seq) != i2cTransferDone) {
-      return I2C_MASTER_ERROR;
-    }
-    return I2C_MASTER_SUCCESS;
-  } else {
+  if (_acquire(obj, false) == ACQUIRE_FAIL) {
     return I2C_MASTER_ERROR;
   }
+
+  I2C_TransferSeq_TypeDef seq;
+
+  if (last_i2c_speed_used != obj->config.speed) {
+    i2c_master_config_speed(obj);
+  }
+
+  seq.addr = obj->config.addr << 1;
+  seq.flags = I2C_FLAG_WRITE_READ;
+
+  // Write buffer
+  seq.buf[0].data = write_data_buf;
+  seq.buf[0].len = len_write_data;
+
+  // Read buffer
+  seq.buf[1].data = read_data_buf;
+  seq.buf[1].len = len_read_data;
+
+  if (I2CSPM_Transfer((sl_i2cspm_t *)obj->handle, &seq) != i2cTransferDone) {
+    return I2C_MASTER_ERROR;
+  }
+  return I2C_MASTER_SUCCESS;
+}
+
+static err_t _acquire(i2c_master_t *obj, bool obj_open_state)
+{
+  err_t status = ACQUIRE_SUCCESS;
+
+  if ((obj_open_state == true) && (_owner == obj)) {
+    return ACQUIRE_FAIL;
+  }
+
+  if (_owner != obj) {
+    _owner = obj;
+  }
+
+  return status;
 }
 
 void i2c_master_close(i2c_master_t *obj)
@@ -197,6 +212,8 @@ static void i2c_master_config_speed(i2c_master_t *obj)
 {
   uint32_t speed;
   I2C_ClockHLR_TypeDef i2c_mode;
+
+  last_i2c_speed_used = obj->config.speed;
 
   switch (obj->config.speed) {
     default:
@@ -214,7 +231,7 @@ static void i2c_master_config_speed(i2c_master_t *obj)
       break;
   }
   // Set reference clock to zero to get the default reference clock
-  I2C_BusFreqSet(obj->handle, 0, speed, i2c_mode);
+  I2C_BusFreqSet((sl_i2cspm_t *)obj->handle, 0, speed, i2c_mode);
 }
 
 // ------------------------------------------------------------------------- END

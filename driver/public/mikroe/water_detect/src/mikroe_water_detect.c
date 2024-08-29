@@ -37,11 +37,9 @@
  *
  ******************************************************************************/
 
-#include <stdbool.h>
-#include "waterdetect.h"
 #include "mikroe_water_detect_config.h"
 #include "mikroe_water_detect.h"
-#include "third_party_hw_drivers_helpers.h"
+#include "waterdetect.h"
 
 static waterdetect_t waterdetect;
 static waterdetect_cfg_t waterdetect_cfg;
@@ -50,16 +48,16 @@ static waterdetect_cfg_t waterdetect_cfg;
 
 sl_status_t mikroe_water_detect_init(void)
 {
-  THIRD_PARTY_HW_DRV_RETCODE_INIT();
   waterdetect_cfg_setup(&waterdetect_cfg);
 #if defined(WATER_DETECT_INT_PORT) && defined(WATER_DETECT_INT_PIN)
   waterdetect_cfg.int_pin = hal_gpio_pin_name(WATER_DETECT_INT_PORT,
                                               WATER_DETECT_INT_PIN);
 #endif
 
-  THIRD_PARTY_HW_DRV_RETCODE_TEST(waterdetect_init(&waterdetect,
-                                                   &waterdetect_cfg));
-  return THIRD_PARTY_HW_DRV_RETCODE_VALUE;
+  if (waterdetect_init(&waterdetect, &waterdetect_cfg) != WATERDETECT_OK) {
+    return SL_STATUS_INITIALIZATION;
+  }
+  return SL_STATUS_OK;
 }
 
 uint8_t mikroe_water_detect_get_status(void)

@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file drv_digital_out.h
- * @brief mikroSDK 2.0 Click Peripheral Drivers
+ * @brief mikroSDK 2.0 Click Peripheral Drivers - Digital OUT
  * @version 1.0.0
  *******************************************************************************
  * # License

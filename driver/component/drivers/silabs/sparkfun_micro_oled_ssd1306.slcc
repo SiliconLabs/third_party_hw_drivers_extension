@@ -8,10 +8,7 @@ quality: evaluation
 root_path: driver
 requires:
   - name: status
-  - name: i2cspm
-recommends:
-  - id: i2cspm
-    instance: [qwiic]
+  - name: mikroe_peripheral_driver_i2c
 provides:
   - name: oled_display
 config_file:
@@ -23,10 +20,8 @@ template_contribution:
 include:
   - path: public/silabs/micro_oled_ssd1306/inc
     file_list:
-      - path: micro_oled_ssd1306_i2c.h
       - path: micro_oled_ssd1306.h
       - path: oled_display.h
 source:
   - path: public/silabs/micro_oled_ssd1306/src/micro_oled_ssd1306.c
-  - path: public/silabs/micro_oled_ssd1306/src/micro_oled_ssd1306_i2c.c
   - path: public/silabs/micro_oled_ssd1306/src/oled_display.c

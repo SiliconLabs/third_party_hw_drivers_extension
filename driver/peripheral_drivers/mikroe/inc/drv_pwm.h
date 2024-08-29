@@ -46,7 +46,8 @@ extern "C" {
 
 #include "drv_name.h"
 #include "hal_gpio.h"
-#include "sl_pwm.h"
+
+typedef const void *mikroe_pwm_handle_t; ///< Created PWM handle type
 
 typedef enum {
   PWM_SUCCESS = 0, PWM_ERROR = (-1)
@@ -58,7 +59,7 @@ typedef struct {
 } pwm_config_t;
 
 typedef struct {
-  sl_pwm_instance_t *handle;
+  mikroe_pwm_handle_t handle;
   hal_gpio_t pin;
   pwm_config_t config;
 } pwm_t;

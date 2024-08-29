@@ -1,7 +1,8 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v2.0.2-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
-[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.0-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![Version Badge](https://img.shields.io/badge/-v3.0.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
+[![WSDK Badge](https://img.shields.io/badge/WSDK-v3.2.0-green)](https://github.com/SiliconLabs/wiseconnect/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
 
 This repo contains example drivers developed by Silicon Labs engineers and are provided as [an SDK extension](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-getting-started/install-sdk-extensions). These drivers interface with different types of external hardware and are tested against a specific device listed in the driver name. These drivers are intended to be fully compatible with Silicon Labs' wireless stacks. All drivers provide a minimal Simplicity Studio project for testing and to show an example usage of the driver. The driver source is provided for modification and extension as needed. All drivers in this repository are considered to be EVALUATION QUALITY which implies that the code provided in the repos is subjected to limited testing and is provided provided as-is. It is not suitable for production environments.
@@ -101,12 +102,16 @@ A full list of all drivers in this repository is defined below:
 | mikroe_pir_pl_n823_01 | [Click Here](./driver/public/mikroe/pir_pl_n823_01) | [Click Here](./app/example/mikroe_pir_pl_n823_01) | [Click Here](./app/documentation/example/mikroe_pir_pl_n823_01) |
 | mikroe_uwb_dwm1000 | [Click Here](./driver/public/mikroe/uwb_dwm1000) | [Click Here](./app/example/mikroe_uwb_dwm1000) | [Click Here](./app/documentation/example/mikroe_uwb_dwm1000) |
 | mikroe_uwb2_dwm3000 | [Click Here](./driver/public/silabs/uwb2_dwm3000) | [Click Here](./app/example/mikroe_uwb2_dwm3000) | [Click Here](./app/documentation/example/mikroe_uwb2_dwm3000) |
+| sparkfun_gnss_max_m10s | [Click Here](./driver/public/silabs/gnss_max_m10s) | [Click Here](./app/example/sparkfun_gnss_max_m10s) | [Click Here](./app/documentation/example/sparkfun_gnss_max_m10s) |
+| sparkfun_6dof_imu_bmi270 | [Click Here](./driver/public/silabs/sparkfun_6dof_imu_bmi270) | [Click Here](./app/example/sparkfun_6dof_imu_bmi270) | [Click Here](./app/documentation/example/sparkfun_6dof_imu_bmi270) |
+
 ## Requirements ##
 
 - Desired Silicon Labs Starter Kit
 - Driver specific test hardware
-- Simplicity Studio v5.6.0.0 or newer
-- Gecko SDK Suite 4.3.1, available via Simplicity Studio
+- Simplicity Studio v5.9.2.1 or newer
+- Gecko SDK 4.4.3
+- WiSeConnect SDK 3.2.0
 
 ## How to add to Simplicity Studio IDE ##
 

@@ -14,6 +14,21 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
   </descriptors>
+  <descriptors name="mikroe_temphum9_shtc3_si91x" label="Third Party Hardware Drivers - SHTC3 - Temp&amp;Hum 9 Click (Mikroe) - Si91x"
+               description="This example project shows an example for Mikroe Temp&amp;Hum 9 Click board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_temphum9_shtc3/mikroe_temphum9_shtc3_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_temphum9_shtc3/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
   <descriptors name="mikroe_heartrate2_maxm86161" label="Third Party Hardware Drivers - MAXM86161 - Heartrate 2 Click (Mikroe)"
                description="This example project shows an example for Mikroe Heartrate 2 Click board driver integration.">
     <properties key="namespace" value="template.uc"/>
@@ -59,6 +74,21 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
   </descriptors>
+  <descriptors name="mikroe_buzz2_cmt_8540s_smt_si91x" label="Third Party Hardware Drivers - CMT-8540S-SMT - Buzz 2 Click (Mikroe) - Si91x"
+               description="This example project shows an example for Mikroe Buzz 2 Click board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_buzz2_cmt_8540s_smt/mikroe_buzz2_cmt_8540s_smt_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_buzz2_cmt_8540s_smt/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
   <descriptors name="mikroe_brushless16_lb11685av" label="Third Party Hardware Drivers - LB11685AV - Brushless 16 Click (Mikroe)"
                description="This example project shows an example for Mikroe Brushless 16 Click board driver integration.">
     <properties key="namespace" value="template.uc"/>
@@ -82,6 +112,21 @@
     <properties key="readmeFiles" value="app/documentation/example/mikroe_oledw_ssd1306/README.md"/>
     <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>    
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_oledw_ssd1306_si91x" label="Third Party Hardware Drivers - SSD1306 - Mikroe OLEDW Click (Mikroe) - Si91x"
+               description="This example project shows an example for Mikroe OLEDW Click driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_oledw_ssd1306/mikroe_oledw_ssd1306_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_oledw_ssd1306/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
@@ -127,6 +172,21 @@
     <properties key="readmeFiles" value="app/documentation/example/sparkfun_micro_oled_ssd1306/README.md"/>
     <properties key="boardCompatibility" value="brd2703a brd4108a brd4314a brd2601b brd2704a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*bgm22.* .*bg22.* .*efr32[bm]g24.* .*efr32[x]g24.* .*mgm24.*"/>    
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_micro_oled_ssd1306_si91x" label="Third Party Hardware Drivers - SSD1306 - Micro OLED Breakout Qwiic (Sparkfun) - Si91x"
+               description="This example project shows an example for Sparkfun SSD1306 - Micro OLED Breakout board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_micro_oled_ssd1306/sparkfun_micro_oled_ssd1306_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_micro_oled_ssd1306/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
@@ -373,7 +433,22 @@
     <properties key="quality" value="EVALUATION"/>
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
-  </descriptors>   
+  </descriptors>
+  <descriptors name="mikroe_water_detect_si91x" label="Third Party Hardware Drivers - Water Detect Click (Mikroe) - Si91x"
+               description="This example project shows an example for Mikroe Water Detect Click board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_water_detect/mikroe_water_detect_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_water_detect/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
   <descriptors name="mikroe_radar_mm5d91_00" label="Third Party Hardware Drivers - MM5D91-00 - Radar Click (Mikroe)"
                description="This example project shows an example for Mikroe Radar Click board driver integration.">
     <properties key="namespace" value="template.uc"/>
@@ -502,6 +577,21 @@
     <properties key="readmeFiles" value="app/documentation/example/mikroe_alcohol_mq3/README.md"/>
     <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="mikroe_alcohol_mq3_si91x" label="Third Party Hardware Drivers - MQ3 - Alcohol Click (Mikroe) - Si91x"
+               description="This example project shows an example for Mikroe Alcohol Click board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/mikroe_alcohol_mq3/mikroe_alcohol_mq3_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/mikroe_alcohol_mq3/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>
@@ -1537,6 +1627,66 @@
     <properties key="readmeFiles" value="app/documentation/example/mikroe_uwb2_dwm3000/README.md"/>
     <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
     <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_6dof_imu_bmi270" label="Third Party Hardware Drivers - BMI270 - 6DOF IMU (SparkFun)"
+               description="This example project shows an example for BMI270 - 6DOF IMU (SparkFun).">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_6dof_imu_bmi270/sparkfun_6dof_imu_bmi270.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_6dof_imu_bmi270/README.md"/>
+    <properties key="boardCompatibility" value="brd2703a brd4314a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32mg24.* .*bgm22.* .*efr32bg22.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_6dof_imu_bmi270_si91x" label="Third Party Hardware Drivers - BMI270 - 6DOF IMU (SparkFun) - Si91x"
+               description="This example project shows an example for BMI270 - 6DOF IMU (SparkFun) with Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_6dof_imu_bmi270/sparkfun_6dof_imu_bmi270_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_6dof_imu_bmi270/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_gnss_max_m10s" label="Third Party Hardware Drivers - MAX-M10S - GNSS Receiver Breakout (Sparkfun)"
+               description="This example project shows an example for Sparkfun MAX-M10S - GNSS Receiver Breakout board driver integration.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_gnss_max_m10s/sparkfun_gnss_max_m10s.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_gnss_max_m10s/README.md"/>
+    <properties key="boardCompatibility" value="brd2601b brd4314a brd2704a brd2703a brd4108a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*bgm22.* .*efr32bg22.* .*mgm24.* .*efr32[bm]g24.* .*efr32[x]g24.*"/>
+    <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="sparkfun_gnss_max_m10s_si91x" label="Third Party Hardware Drivers - MAX-M10S - GNSS Receiver Breakout (Sparkfun) - Si91x"
+               description="This example project shows an example for Sparkfun MAX-M10S - GNSS Receiver Breakout board driver integration on Si91x.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/sparkfun_gnss_max_m10s/sparkfun_gnss_max_m10s_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/sparkfun_gnss_max_m10s/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917m111.*"/>
     <properties key="ideCompatibility" value="iar-embedded-workbench makefile-ide segger-embedded-studio simplicity-ide"/>
     <properties key="toolchainCompatibility" value="gcc iar segger"/>
     <properties key="category" value="Third Party Hardware Drivers"/>

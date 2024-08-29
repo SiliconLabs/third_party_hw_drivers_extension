@@ -41,6 +41,7 @@
 #define MIKROE_PRESSURE3_H
 
 #include "sl_status.h"
+#include "sl_i2cspm.h"
 #include "drv_digital_out.h"
 #include "drv_digital_in.h"
 #include "drv_i2c_master.h"

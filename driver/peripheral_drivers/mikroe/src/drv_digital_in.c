@@ -40,7 +40,38 @@
 #include "drv_digital_in.h"
 #include "em_gpio.h"
 
+static err_t drv_digital_in_init(digital_in_t *in,
+                                 pin_name_t name,
+                                 GPIO_Mode_TypeDef mode,
+                                 unsigned int out);
+
 err_t digital_in_init(digital_in_t *in, pin_name_t name)
+{
+  return drv_digital_in_init(in, name, gpioModeInput, 0);
+}
+
+err_t digital_in_pullup_init(digital_in_t *in, pin_name_t name)
+{
+  return drv_digital_in_init(in, name, gpioModeInputPull, 1);
+}
+
+err_t digital_in_pulldown_init(digital_in_t *in, pin_name_t name)
+{
+  return drv_digital_in_init(in, name, gpioModeInputPull, 0);
+}
+
+uint8_t digital_in_read(digital_in_t *in)
+{
+  if (GPIO_PORT_VALID(in->pin.base)) {
+    return (uint8_t) ((GPIO_PortInGet(in->pin.base) & in->pin.mask) != 0);
+  }
+  return 0;
+}
+
+static err_t drv_digital_in_init(digital_in_t *in,
+                                 pin_name_t name,
+                                 GPIO_Mode_TypeDef mode,
+                                 unsigned int out)
 {
   GPIO_Port_TypeDef port_index;
   unsigned int pin_index;
@@ -57,18 +88,10 @@ err_t digital_in_init(digital_in_t *in, pin_name_t name)
   if (!GPIO_PORT_PIN_VALID(port_index, pin_index)) {
     return DIGITAL_IN_UNSUPPORTED_PIN;
   }
-  GPIO_PinModeSet(port_index, pin_index, gpioModeInput, 0);
+  GPIO_PinModeSet(port_index, pin_index, mode, out);
   in->pin.base = port_index;
   in->pin.mask = 1 << pin_index;
   return DIGITAL_IN_SUCCESS;
-}
-
-uint8_t digital_in_read(digital_in_t *in)
-{
-  if (GPIO_PORT_VALID(in->pin.base)) {
-    return (uint8_t) ((GPIO_PortInGet(in->pin.base) & in->pin.mask) != 0);
-  }
-  return 0;
 }
 
 // ------------------------------------------------------------------------- END

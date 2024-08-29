@@ -37,37 +37,65 @@
  *
  ******************************************************************************/
 
-/***************************************************************************//**
- * Initialize application.
- ******************************************************************************/
-
 #include "sl_sleeptimer.h"
-#include "sl_i2cspm_instances.h"
-#include "app_log.h"
 #include "mikroe_shtc3.h"
 
-static bool sensor_init_ok = false;
+#if (defined(SLI_SI917))
+#include "sl_i2c_instances.h"
+#include "rsi_debug.h"
+#else
+#include "sl_i2cspm_instances.h"
+#include "app_log.h"
+#endif
+
+#define READING_INTERVAL_MSEC    1000
+
+#if (defined(SLI_SI917))
+#define app_printf(...) DEBUGOUT(__VA_ARGS__)
+#else
+#define app_printf(...) app_log(__VA_ARGS__)
+#endif
+
+#if (defined(SLI_SI917))
+#define I2C_INSTANCE_USED            SL_I2C2
+static sl_i2c_instance_t i2c_instance = I2C_INSTANCE_USED;
+#endif
+
+static sl_sleeptimer_timer_handle_t app_timer_handle;
+static volatile bool trigger_process = false;
+static mikroe_i2c_handle_t app_i2c_instance = NULL;
+
+void app_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data);
 
 void app_init(void)
 {
-  app_log(
+  app_printf(
     "-- SHTC3 - Temp&Hum 9 Click board driver, example application. --\n");
 
-  if (SL_STATUS_OK != mikroe_shtc3_init(sl_i2cspm_mikroe)) {
-    app_log("> SHTC3 - Temp&Hum 9 Click board driver init failed.\n");
-  } else {
-    sensor_init_ok = true;
+#if (defined(SLI_SI917))
+  app_i2c_instance = &i2c_instance;
+#else
+  app_i2c_instance = sl_i2cspm_mikroe;
+#endif
+
+  if (SL_STATUS_OK != mikroe_shtc3_init(app_i2c_instance)) {
+    app_printf("> SHTC3 - Temp&Hum 9 Click board driver init failed.\n");
+    return;
   }
 
-  if (sensor_init_ok) {
-    mikroe_shtc3_send_command(MIKROE_SHTC3_CMD_SLEEP);
-    sl_sleeptimer_delay_millisecond(500);
-    mikroe_shtc3_send_command(MIKROE_SHTC3_CMD_WAKEUP);
-    sl_sleeptimer_delay_millisecond(100);
+  mikroe_shtc3_send_command(MIKROE_SHTC3_CMD_SLEEP);
+  sl_sleeptimer_delay_millisecond(500);
+  mikroe_shtc3_send_command(MIKROE_SHTC3_CMD_WAKEUP);
+  sl_sleeptimer_delay_millisecond(100);
 
-    app_log("> App init done.\n");
-    app_log("> Starting periodic measurement.\n");
-  }
+  app_printf("> App init done.\n");
+  app_printf("> Starting periodic measurement.\n");
+  sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
+                                        READING_INTERVAL_MSEC,
+                                        app_timer_callback,
+                                        NULL,
+                                        0,
+                                        0);
 }
 
 /***************************************************************************//**
@@ -77,12 +105,20 @@ void app_process_action(void)
 {
   mikroe_shtc3_measurement_data_t measurement_data;
 
-  if (sensor_init_ok) {
+  if (trigger_process) {
+    trigger_process = false;
     mikroe_shtc3_get_temperature_and_humidity(SHTC3_DATA_MODE_NORMAL,
                                               &measurement_data);
 
-    app_log(">> Temp: %.2f °C RH: %.2f %%\n", measurement_data.temperature,
-            measurement_data.humidity);
-    sl_sleeptimer_delay_millisecond(1000);
+    app_printf(">> Temp: %.2f °C RH: %.2f %%\n", measurement_data.temperature,
+               measurement_data.humidity);
   }
+}
+
+void app_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void) data;
+  (void) handle;
+
+  trigger_process = true;
 }

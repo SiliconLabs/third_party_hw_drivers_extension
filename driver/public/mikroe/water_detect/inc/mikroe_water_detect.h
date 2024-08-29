@@ -117,4 +117,4 @@ uint8_t mikroe_water_detect_get_status(void);
 #endif
 
 /** @} (end addtogroup water_detect) */
-#endif /* MIKROE_WATER_DETECT_H_ */
+#endif // MIKROE_WATER_DETECT_H_

@@ -38,7 +38,9 @@
  ******************************************************************************/
 #ifndef MIKROE_ADPD188BI_H_
 #define MIKROE_ADPD188BI_H_
+
 #include "sl_status.h"
+#include "spidrv.h"
 #include "smoke2.h"
 
 #ifdef __cplusplus

@@ -11,6 +11,8 @@ requires:
     condition: [device_series_1]
   - name: emlib_iadc
     condition: [device_series_2]
+  - name: sl_adc
+    condition: [device_si91x]
 provides:
   - name: mikroe_peripheral_driver_adc
     allow_multiple: false
@@ -26,3 +28,8 @@ include:
       - path: hal_target.h
 source:
   - path: peripheral_drivers/mikroe/src/drv_analog_in.c
+    condition: [device_series_1]
+  - path: peripheral_drivers/mikroe/src/drv_analog_in.c
+    condition: [device_series_2]
+  - path: peripheral_drivers/mikroe/src/drv_analog_in_si91x.c
+    condition: [device_si91x]

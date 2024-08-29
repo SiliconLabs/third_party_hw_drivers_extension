@@ -37,7 +37,6 @@
 
 #include <stdbool.h>
 #include "sl_status.h"
-
 #include "micro_oled_ssd1306.h"
 
 #ifdef __cplusplus
@@ -86,4 +85,4 @@ const oled_display_t *oled_display_get(void);
 }
 #endif
 
-#endif
+#endif // OLED_DISPLAY_H

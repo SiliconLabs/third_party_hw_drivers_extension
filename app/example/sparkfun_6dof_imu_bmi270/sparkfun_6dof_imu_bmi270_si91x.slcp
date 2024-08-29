@@ -1,0 +1,70 @@
+project_name: sparkfun_6dof_imu_bmi270
+label: Third Party Hardware Drivers - BMI270 - 6DOF IMU Breakout (Sparkfun).
+package: platform
+description: |
+  This example project shows an example for the Sparkfun BMI270 6DOF IMU Sensor board.
+category: Example|Platform
+quality: evaluation
+
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+
+readme:
+- path: ../../documentation/example/sparkfun_6dof_imu_bmi270/README.md
+
+source:
+- path: app.c
+- path: main.c
+
+include:
+- path: ''
+  file_list:
+  - path: app.h
+
+component:
+- id: sl_system
+- id: app_assert
+- id: syscalls
+  from: wiseconnect3_sdk
+- id: si917_memory_default_config
+  from: wiseconnect3_sdk
+- instance: [i2c2]
+  from: wiseconnect3_sdk
+  id: i2c_instance
+- id: sparkfun_6dof_imu_bmi270
+  from: third_party_hw_drivers
+define:
+- name: DEBUG_EFM
+
+sdk_extension:
+- id: third_party_hw_drivers
+  version: 3.0.0
+- id: wiseconnect3_sdk
+  version: 3.2.0
+
+toolchain_settings:
+  - option: gcc_linker_option
+    value: "-u _printf_float"
+
+other_file:
+  - path: ../../documentation/example/sparkfun_6dof_imu_bmi270/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_6dof_imu_bmi270/image/create_example_si91x.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_6dof_imu_bmi270/image/hardware_connection.png
+    directory: "image"
+  - path: ../../documentation/example/sparkfun_6dof_imu_bmi270/image/log.png
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true
+
+post_build:
+  path: ../../../utilities/postbuild_profile/wiseconnect_soc.slpb

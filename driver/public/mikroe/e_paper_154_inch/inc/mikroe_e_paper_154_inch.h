@@ -43,6 +43,7 @@
 //                               Includes
 // -----------------------------------------------------------------------------
 
+#include "sl_status.h"
 #include "eink_154inch.h"
 #include "spidrv.h"
 

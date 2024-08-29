@@ -4,7 +4,7 @@
  * @version 1.0.0
  *******************************************************************************
  * # License
- * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2024 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
  *
  * SPDX-License-Identifier: Zlib
@@ -48,7 +48,8 @@ extern "C" {
 #include <stdbool.h>
 #include <string.h>
 #include "drv_name.h"
-#include "sl_i2cspm.h"
+
+typedef const void *mikroe_i2c_handle_t; ///< Created I2C handle type
 
 typedef enum {
   I2C_MASTER_SUCCESS = 0, I2C_MASTER_ERROR = (-1)
@@ -67,7 +68,7 @@ typedef struct {
 } i2c_master_config_t;
 
 typedef struct {
-  sl_i2cspm_t *handle;
+  mikroe_i2c_handle_t handle;
   i2c_master_config_t config;
 } i2c_master_t;
 
