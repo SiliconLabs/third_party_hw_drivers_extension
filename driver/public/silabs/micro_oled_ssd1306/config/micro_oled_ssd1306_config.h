@@ -68,7 +68,6 @@ extern "C" {
 
 // </e>
 // </h>
-// <<< end of configuration section >>>
 
 // <h> Connection
 // <o CONFIG_OLED_DISPLAY_ADDRESS> I2C Address <0x1..0x7E:0x1><f.h>

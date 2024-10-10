@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/-v3.0.0-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/-v3.0.1-green)](https://github.com/SiliconLabs/third_party_hw_drivers_extension/releases)
 [![GSDK Badge](https://img.shields.io/badge/GSDK-v4.4.3-green)](https://github.com/SiliconLabs/gecko_sdk/releases)
 [![WSDK Badge](https://img.shields.io/badge/WSDK-v3.2.0-green)](https://github.com/SiliconLabs/wiseconnect/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
