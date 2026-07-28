@@ -18,10 +18,10 @@ source:
   - path: cli.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
-    - path: cli.h
+      - path: app.h
+      - path: cli.h
 
 component:
   - id: bluetooth_stack
@@ -53,7 +53,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
 readme:
   - path: ../../documentation/example/bthome_v2_server/README.md

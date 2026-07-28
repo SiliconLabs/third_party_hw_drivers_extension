@@ -1,0 +1,27 @@
+id: asair_temp_hum_dht11_dht22
+package: third_party_hw_drivers
+label: DHT11/DHT22 - Temperature & Humidity Sensor - GPIO
+description: Driver for the DHT11 and DHT22 temperature & humidity sensor
+category: Sensors
+quality: evaluation
+ui_hints:
+  visibility: basic
+root_path: driver
+requires:
+  - name: status
+  - name: device_gpio
+provides:
+  - name: asair_temp_hum_dht11_dht22
+    allow_multiple: false
+template_contribution:
+  - name: component_catalog
+    value: asair_temp_hum_dht11_dht22
+include:
+  - path: inc
+    file_list:
+      - path: third_party_hw_drivers_helpers.h
+  - path: public/silabs/asair_temp_hum_dht11_dht22/inc
+    file_list:
+      - path: dht.h
+source:
+  - path: public/silabs/asair_temp_hum_dht11_dht22/src/dht.c

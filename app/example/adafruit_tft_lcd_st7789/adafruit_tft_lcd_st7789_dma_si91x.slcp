@@ -23,9 +23,9 @@ source:
   - path: nature_image.c
 
 include:
-  - path: 'si91x'
+  - path: "si91x"
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -47,7 +47,7 @@ configuration:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 

@@ -18,9 +18,9 @@ source:
   - path: app.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -48,14 +48,14 @@ config_file:
       instance: ezurio
 
 configuration:
-- name: SL_BOARD_ENABLE_VCOM
-  value: '1'
+  - name: SL_BOARD_ENABLE_VCOM
+    value: "1"
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
-readme: 
+readme:
   - path: ../../documentation/example/ezurio_lora_rm126x/README.md
 
 other_file:
@@ -64,5 +64,5 @@ other_file:
 
 ui_hints:
   highlight:
-  - path: README.md
-    focus: true
+    - path: README.md
+      focus: true

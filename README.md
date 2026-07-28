@@ -1,6 +1,6 @@
 # Third Party Hardware Drivers #
 
-[![Version Badge](https://img.shields.io/badge/v4.5.0-green)](https://github.com/SiliconLabsSoftware/third_party_hw_drivers_extension/releases)
+[![Version Badge](https://img.shields.io/badge/v4.6.0-green)](https://github.com/SiliconLabsSoftware/third_party_hw_drivers_extension/releases)
 [![SiSDK Badge](https://img.shields.io/badge/SiSDK-v2025.6.2-green)](https://github.com/SiliconLabs/simplicity_sdk/releases)
 [![WSDK Badge](https://img.shields.io/badge/WSDK-v3.5.2-green)](https://github.com/SiliconLabs/wiseconnect/releases)
 ![License badge](https://img.shields.io/badge/License-Zlib-green)
@@ -145,6 +145,8 @@ A full list of all examples and drivers in this repository is defined below:
 | 114 | RM126X - LoRa AT command driver | [Example](./app/example/ezurio_lora_rm126x) | [Documentation](./app/documentation/example/ezurio_lora_rm126x) |
 | 115 | HC-SR04 (RCWL-9610A) - Ultrasonic Distance Sensor (Sparkfun) | [Example](./app/example/sparkfun_hc_sr04_rcwl_9610a) | [Documentation](./app/documentation/example/sparkfun_hc_sr04_rcwl_9610a) |
 | 116 | MPU6050 - Accel 8 Click (Mikroe) | [Example](./app/example/mikroe_accel8_mpu6050) | [Documentation](./app/documentation/example/mikroe_accel8_mpu6050) |
+| 117 | LM75A - Temperature Sensor | [Example](./app/example/lm75a_temp_sensor) | [Documentation](./app/documentation/example/lm75a_temp_sensor) |
+| 118 | DHT11/DHT22 Temperature and Humidity Sensors | [Example](./app/example/asair_temp_hum_dht11_dht22) | [Documentation](./app/documentation/example/asair_temp_hum_dht11_dht22) |
 
 ## Drivers ##
 
@@ -515,6 +517,13 @@ A full list of all examples and drivers in this repository is defined below:
                 </tr>
         <tr></tr>
         <tr>
+                    <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;LM75A - Temperature Sensor</td>
+                    <td>
+                        <a href="./driver/public/silabs/lm75a_temp_sensor">Driver</a>
+                        </td>
+                </tr>
+        <tr></tr>
+        <tr>
                     <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;AS3935 - Thunder Click (Mikroe)</td>
                     <td>
                         <a href="./driver/public/mikroe/thunder_as3935">Driver</a>
@@ -856,6 +865,13 @@ A full list of all examples and drivers in this repository is defined below:
                         <a href="./driver/public/mikroe/accel8_mpu6050">Driver</a>
                         </td>
                         </tr>
+        <tr></tr>
+        <tr>
+                    <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;DHT11/DHT22 Temperature and Humidity Sensors</td>
+                    <td>
+                        <a href="./driver/public/silabs/asair_temp_hum_dht11_dht22">Driver</a>
+                    </td>
+        </tr>
         <tr></tr>
         <tr>
                 <td colspan="3" align="left"><b>Services</b></td>

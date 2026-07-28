@@ -1,0 +1,68 @@
+project_name: lm75a_temp_sensor_series2
+label: Third Party Hardware Drivers - LM75A - Temperature Sensor (Series 2)
+package: platform
+
+description: |
+  This example demonstrates LM75A temperature sensor integration
+  over I2C on Silicon Labs Series 2 devices.
+
+category: Example|Platform
+quality: evaluation
+
+filter:
+  - name: Device Type
+    value: [SoC]
+  - name: MCU
+    value: [32-bit MCU]
+  - name: Project Difficulty
+    value: [Beginner]
+
+source:
+  - path: app.c
+
+include:
+  - path: ""
+    file_list:
+      - path: app.h
+
+component:
+  - id: sl_main
+  - id: device_init
+  - id: clock_manager
+  - id: iostream_usart
+    instance: [vcom]
+  - id: sleeptimer
+  - id: i2cspm
+    instance: [i2c_sensor]
+  - id: app_log
+  - id: lm75a_temp_sensor
+    from: third_party_hw_drivers
+
+toolchain_settings:
+  - option: gcc_linker_option
+
+define:
+  - name: DEBUG_EFM
+
+configuration:
+  - { name: SL_BOARD_ENABLE_VCOM, value: "1" }
+
+sdk_extension:
+  - id: third_party_hw_drivers
+    version: 4.6.0
+
+readme:
+  - path: ../../documentation/example/lm75a_temp_sensor/README.md
+
+other_file:
+  - path: ../../documentation/example/lm75a_temp_sensor/image/connection.png
+    directory: "image"
+  - path: ../../documentation/example/lm75a_temp_sensor/image/create_example.png
+    directory: "image"
+  - path: ../../documentation/example/lm75a_temp_sensor/image/console.png
+    directory: "image"
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true

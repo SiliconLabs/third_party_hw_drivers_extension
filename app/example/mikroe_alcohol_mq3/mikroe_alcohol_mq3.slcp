@@ -18,9 +18,9 @@ source:
   - path: app.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -42,7 +42,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
 readme:
   - path: ../../documentation/example/mikroe_alcohol_mq3/README.md

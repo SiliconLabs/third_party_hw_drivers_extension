@@ -19,10 +19,10 @@ source:
   - path: app_iostream_cli_si91x.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
-    - path: app_iostream_cli.h
+      - path: app.h
+      - path: app_iostream_cli.h
 
 component:
   - id: sl_main
@@ -39,7 +39,7 @@ toolchain_settings:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 

@@ -18,9 +18,9 @@ source:
   - path: app.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -28,10 +28,10 @@ component:
   - id: clock_manager
   - id: iostream_eusart
     instance:
-    - vcom
+      - vcom
   - id: iostream_usart
     instance:
-    - mikroe
+      - mikroe
   - id: app_log
   - id: mikroe_radar
     from: third_party_hw_drivers
@@ -45,7 +45,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
 readme:
   - path: ../../documentation/example/mikroe_radar_mm5d91_00/README.md

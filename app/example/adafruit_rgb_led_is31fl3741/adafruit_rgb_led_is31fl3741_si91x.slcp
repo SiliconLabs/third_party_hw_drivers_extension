@@ -18,9 +18,9 @@ source:
   - path: app.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -41,7 +41,7 @@ component:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 
@@ -70,7 +70,7 @@ configuration:
     value: 13
     condition:
       - brd2708a
-      
+
 readme:
   - path: ../../documentation/example/adafruit_rgb_led_is31fl3741/README.md
 

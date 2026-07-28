@@ -1,0 +1,58 @@
+id: lm75a_temp_sensor
+package: third_party_hw_drivers
+label: LM75A - Temperature Sensor
+description: >
+  Driver for LM75A temperature sensor over I2C supporting SiWx917 and Series 2 platforms.
+category: Sensors
+quality: evaluation
+root_path: driver
+requires:
+  - name: status
+provides:
+  - name: lm75a_temp_sensor
+template_contribution:
+  - name: component_catalog
+    value: lm75a_temp_sensor
+include:
+  - path: public/silabs/lm75a_temp_sensor/inc
+    file_list:
+      - path: lm75a_temp_sensor.h
+source:
+  - path: public/silabs/lm75a_temp_sensor/src/lm75a_temp_sensor.c
+config_file:
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/common/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4187c]
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/common/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4186c]
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/common/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4181c]
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/common/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4182a]
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/common/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4204d]
+  - override:
+      component: i2cspm
+      file_id: i2cspm_config
+      instance: i2c_sensor
+    path: public/silabs/lm75a_temp_sensor/config/brd4401c/sl_i2cspm_i2c_sensor_config.h
+    condition: [brd4401c]

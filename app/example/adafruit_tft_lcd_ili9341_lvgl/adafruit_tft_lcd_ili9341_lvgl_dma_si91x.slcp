@@ -31,14 +31,14 @@ source:
   - path: app_ui/double_buffered_dma/screens/ui_main.c
 
 include:
-  - path: 'si91x'
+  - path: "si91x"
     file_list:
-    - path: app.h
+      - path: app.h
   - path: app_ui/double_buffered_dma
     file_list:
-    - path: ui_events.h
-    - path: ui_helpers.h
-    - path: ui.h
+      - path: ui_events.h
+      - path: ui_helpers.h
+      - path: ui.h
 
 component:
   - id: sl_main
@@ -73,7 +73,7 @@ component:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 

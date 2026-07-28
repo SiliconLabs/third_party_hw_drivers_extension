@@ -19,10 +19,10 @@ source:
   - path: spi_nand_example_si91x.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
-    - path: spi_nand_example.h
+      - path: app.h
+      - path: spi_nand_example.h
 
 component:
   - id: sl_main
@@ -44,7 +44,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 

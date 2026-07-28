@@ -29,14 +29,14 @@ source:
   - path: app_ui/images/ui_img_842152610.c
 
 include:
-  - path: 'gecko'
+  - path: "gecko"
     file_list:
-    - path: app.h
+      - path: app.h
   - path: app_ui
     file_list:
-    - path: ui_events.h
-    - path: ui_helpers.h
-    - path: ui.h
+      - path: ui_events.h
+      - path: ui_helpers.h
+      - path: ui.h
 
 component:
   - id: sl_main
@@ -66,7 +66,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
 readme:
   - path: ../../documentation/example/adafruit_tft_lcd_hxd8357d_lvgl/README.md
@@ -91,17 +91,17 @@ other_file:
 
 configuration:
   - name: TOUCHSCREEN_X_MIN
-    value: '428'
+    value: "428"
   - name: TOUCHSCREEN_X_MAX
-    value: '3628'
+    value: "3628"
   - name: TOUCHSCREEN_Y_MIN
-    value: '260'
+    value: "260"
   - name: TOUCHSCREEN_Y_MAX
-    value: '3776'
+    value: "3776"
   - name: TOUCHSCREEN_HOR_RES
-    value: '320'
+    value: "320"
   - name: TOUCHSCREEN_VER_RES
-    value: '480'
+    value: "480"
   - name: LV_BUFFER_MODE
     value: "0"
   - name: LV_DISPLAY_ROTATION
@@ -115,4 +115,3 @@ ui_hints:
   highlight:
     - path: README.md
       focus: true
-

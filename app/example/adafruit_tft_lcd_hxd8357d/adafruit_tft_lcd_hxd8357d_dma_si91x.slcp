@@ -20,9 +20,9 @@ source:
   - path: app_calib_screen.c
 
 include:
-  - path: 'si91x'
+  - path: "si91x"
     file_list:
-    - path: app.h
+      - path: app.h
 
 component:
   - id: sl_main
@@ -46,7 +46,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
   - id: wiseconnect3_sdk
     version: 3.5.2
 
@@ -73,17 +73,17 @@ configuration:
   - name: SL_GSPI_DMA_CONFIG_ENABLE
     value: "1"
   - name: TOUCHSCREEN_X_MIN
-    value: '678'
+    value: "678"
   - name: TOUCHSCREEN_X_MAX
-    value: '3566'
+    value: "3566"
   - name: TOUCHSCREEN_Y_MIN
-    value: '393'
+    value: "393"
   - name: TOUCHSCREEN_Y_MAX
-    value: '3521'
+    value: "3521"
   - name: TOUCHSCREEN_HOR_RES
-    value: '320'
+    value: "320"
   - name: TOUCHSCREEN_VER_RES
-    value: '480'
+    value: "480"
   - name: "GSPI_UC"
     value: "0"
 

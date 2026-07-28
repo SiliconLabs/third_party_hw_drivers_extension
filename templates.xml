@@ -3311,4 +3311,64 @@
     <properties key="filters" value="Project\ Difficulty|Beginner"/>
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
   </descriptors>
+  <descriptors name="lm75a_temp_sensor" label="Third Party Hardware Drivers - LM75A - Temperature Sensor"
+               description="This example demonstrates LM75A temperature sensor integration over I2C on Silicon Labs Series 2 devices.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/lm75a_temp_sensor/lm75a_temp_sensor.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/lm75a_temp_sensor/README.md"/>
+    <properties key="boardCompatibility" value="brd4187c brd4186c brd4181c brd4182a brd4204d brd4401c com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32[bm]g24.* .*efr32mg21.* .*efr32mg22.* .*efr32zg23.* .*efr32[fz]g28.*"/>
+    <properties key="ideCompatibility" value="makefile-ide simplicity-ide visual-studio-code generic-template"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="lm75a_temp_sensor" label="Third Party Hardware Drivers - LM75A - Temperature Sensor"
+               description="This example demonstrates LM75A temperature sensor integration over I2C on Silicon Labs Si91x devices">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/lm75a_temp_sensor/lm75a_temp_sensor_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/lm75a_temp_sensor/README.md"/>
+    <properties key="boardCompatibility" value="brd2605a brd2708a brd4343a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917.*"/>
+    <properties key="ideCompatibility" value="makefile-ide simplicity-ide visual-studio-code generic-template"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="asair_temp_hum_dht11_dht22" label="Third Party Hardware Drivers - DHT11/DHT22 - Temperature/Humidity Sensor"
+               description="This example project shows an example for DHT11/DHT22 Temperature and Humidity Sensors.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/asair_temp_hum_dht11_dht22/asair_temp_hum_dht11_dht22.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/asair_temp_hum_dht11_dht22/README.md"/>
+    <properties key="boardCompatibility" value="brd4182a brd4187c com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32[bm]g22.* .*efr32[bm]g24.*"/>
+    <properties key="ideCompatibility" value="makefile-ide simplicity-ide visual-studio-code generic-template"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
+  <descriptors name="asair_temp_hum_dht11_dht22" label="Third Party Hardware Drivers - DHT11/DHT22 - Temperature/Humidity Sensor"
+               description="This example project shows an example for DHT11/DHT22 Temperature and Humidity Sensors.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="projectFilePaths" value="app/example/asair_temp_hum_dht11_dht22/asair_temp_hum_dht11_dht22_si91x.slcp"/>
+    <properties key="readmeFiles" value="app/documentation/example/asair_temp_hum_dht11_dht22/README.md"/>
+    <properties key="boardCompatibility" value="brd4338a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*siwg917.*"/>
+    <properties key="ideCompatibility" value="makefile-ide simplicity-ide visual-studio-code generic-template"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Third Party Hardware Drivers"/>
+    <properties key="quality" value="EVALUATION"/>
+    <properties key="filters" value="Project\ Difficulty|Beginner"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+  </descriptors>
 </model:MDescriptors>

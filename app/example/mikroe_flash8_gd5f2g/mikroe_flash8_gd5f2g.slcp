@@ -19,10 +19,10 @@ source:
   - path: spi_nand_example_efx.c
 
 include:
-  - path: ''
+  - path: ""
     file_list:
-    - path: app.h
-    - path: spi_nand_example.h
+      - path: app.h
+      - path: spi_nand_example.h
 
 component:
   - id: sl_main
@@ -43,7 +43,7 @@ define:
 
 sdk_extension:
   - id: third_party_hw_drivers
-    version: 4.4.1
+    version: 4.6.0
 
 readme:
   - path: ../../documentation/example/mikroe_flash8_gd5f2g/README.md
